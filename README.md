@@ -21,7 +21,7 @@ Das Docker Image muss in das lokale Repository auf unserem Server. Wenn ihr noch
 
 ## Deployment, Service & Ingress yaml
 
-In dem Ordner "dev-ops" liegt eine Datei "service-deployment-template.yaml". Jeder Microservice muss diese Datei einmal kopieren, den Namen und das Docker Image ändern (von "express-test" zu wie auch immer ihr euren microservice nennen wollt) und in das Kubernetes Cluster laden. Dafür sind die untenstehenden Befehle:
+In dem Ordner "templates" liegt eine Datei "service-deployment-template.yaml". Jeder Microservice muss diese Datei einmal kopieren, den Namen und das Docker Image ändern (von "express-test" zu wie auch immer ihr euren microservice nennen wollt) und in das Kubernetes Cluster laden. Dafür sind die untenstehenden Befehle:
 
 | Befehl                                              | Erklärung                                                    |
 | --------------------------------------------------- | ------------------------------------------------------------ |
