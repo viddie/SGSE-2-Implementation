@@ -1,0 +1,24 @@
+{
+  "name": "mern-back-end",
+  "version": "1.0.0",
+  "description": "barter-smarter",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DLehwalder/Projekt_SGSE_Team2.git"
+  },
+  "author": "artem shipilov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DLehwalder/Projekt_SGSE_Team2/issues"
+  },
+  "homepage": "https://github.com/DLehwalder/Projekt_SGSE_Team2#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-validator": "^6.12.0",
+    "mongoose": "^5.12.14"
+  }
+}
