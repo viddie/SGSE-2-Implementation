@@ -48,4 +48,18 @@ Hier ein paar nützliche Befehle für Kubernetes & Umgebung:
 
 
 
-Was die Datenbanken angeht müssen wir auch noch mal sprechen. Ich glaube nicht, dass das so funktioniert, wie wir uns das am Anfang gedacht haben. Eine Datenbank kann nicht mit der Express Anwendung im gleichen Pod laufen, da der Pod keine Daten persistieren kann. Hier muss ich mal nach schauen, wie wir das Umsetzen können...
+Datenbanken für die Microservices:
+
+| Microservice       | Datenbank | IP:Port           |
+| ------------------ | --------- | ----------------- |
+| E-Mail             | MySQL     | 172.17.0.12:3306  |
+| Suche              | MySQL     | 172.17.0.13:3306  |
+| Chat               | MongoDB   | 172.17.0.14:27017 |
+| Angebote           | MongoDB   | 172.17.0.15:27017 |
+| Bewertungen        | MongoDB   | 172.17.0.16:27017 |
+| Benutzerverwaltung | MongoDB   | 172.17.0.17:27017 |
+
+Die IP Adressen sollten sich nicht mehr ändern, also können diese hardcoded werden. Anmeldedaten (für alle gleich):
+
+- Benutzername: `root`
+- Passwort: `passwort123!`

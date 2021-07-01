@@ -1,0 +1,67 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mongodb-user-data-disk
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongodb-user-deployment
+  labels:
+    app: mongodb-user
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mongodb-user
+  template:
+    metadata:
+      labels:
+        app: mongodb-user
+    spec:
+      containers:
+        - name: mongodb-user
+          image: mongo:latest
+          ports:
+            - containerPort: 27017
+          volumeMounts:
+            - mountPath: "/mnt/user"
+              subPath: "mongodb"
+              name: mongodb-data-user
+          env:
+            - name: MONGO_INITDB_ROOT_USERNAME
+              value: root
+            - name: MONGO_INITDB_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: db-secrets
+                  key: USER_DB_PASSWORD
+          resources:
+            limits:
+              memory: 512Mi
+              cpu: "1"
+            requests:
+              memory: 256Mi
+              cpu: "0.2"
+      volumes:
+        - name: mongodb-data-user
+          persistentVolumeClaim:
+            claimName: mongodb-user-data-disk
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongodb-user-service
+spec:
+  selector:
+    app: mongodb-user
+  ports:
+  - protocol: TCP
+    port: 27017
+    targetPort: 27017

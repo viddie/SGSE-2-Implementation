@@ -1,0 +1,67 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mongodb-ratings-data-disk
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongodb-ratings-deployment
+  labels:
+    app: mongodb-ratings
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mongodb-ratings
+  template:
+    metadata:
+      labels:
+        app: mongodb-ratings
+    spec:
+      containers:
+        - name: mongodb-ratings
+          image: mongo:latest
+          ports:
+            - containerPort: 27017
+          volumeMounts:
+            - mountPath: "/mnt/ratings"
+              subPath: "mongodb"
+              name: mongodb-data-ratings
+          env:
+            - name: MONGO_INITDB_ROOT_USERNAME
+              value: root
+            - name: MONGO_INITDB_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: db-secrets
+                  key: RATINGS_DB_PASSWORD
+          resources:
+            limits:
+              memory: 512Mi
+              cpu: "1"
+            requests:
+              memory: 256Mi
+              cpu: "0.2"
+      volumes:
+        - name: mongodb-data-ratings
+          persistentVolumeClaim:
+            claimName: mongodb-ratings-data-disk
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongodb-ratings-service
+spec:
+  selector:
+    app: mongodb-ratings
+  ports:
+  - protocol: TCP
+    port: 27017
+    targetPort: 27017

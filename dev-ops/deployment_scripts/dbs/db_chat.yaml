@@ -1,0 +1,67 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mongodb-chat-data-disk
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongodb-chat-deployment
+  labels:
+    app: mongodb-chat
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mongodb-chat
+  template:
+    metadata:
+      labels:
+        app: mongodb-chat
+    spec:
+      containers:
+        - name: mongodb-chat
+          image: mongo:latest
+          ports:
+            - containerPort: 27017
+          volumeMounts:
+            - mountPath: "/mnt/chat"
+              subPath: "mongodb"
+              name: mongodb-data-chat
+          env:
+            - name: MONGO_INITDB_ROOT_USERNAME
+              value: root
+            - name: MONGO_INITDB_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: db-secrets
+                  key: CHAT_DB_PASSWORD
+          resources:
+            limits:
+              memory: 512Mi
+              cpu: "1"
+            requests:
+              memory: 256Mi
+              cpu: "0.2"
+      volumes:
+        - name: mongodb-data-chat
+          persistentVolumeClaim:
+            claimName: mongodb-chat-data-disk
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongodb-chat-service
+spec:
+  selector:
+    app: mongodb-chat
+  ports:
+  - protocol: TCP
+    port: 27017
+    targetPort: 27017
