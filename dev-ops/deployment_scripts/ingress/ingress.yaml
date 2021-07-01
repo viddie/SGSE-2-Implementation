@@ -15,7 +15,7 @@ spec:
         path: "/"
         backend:
           service:
-            name: nginx #Hier kommt das Frontend rein
+            name: frontend-service #Hier kommt das Frontend rein
             port: 
               number: 80
       - pathType: Prefix

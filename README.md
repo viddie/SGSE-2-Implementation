@@ -61,9 +61,10 @@ Bennenung für Kubernetes Deployment/Service in der deployment.yaml:
 | Angebote           | offers            |
 | Bewertungen        | ratings           |
 | Benutzerverwaltung | user              |
+| Frontend           | frontend          |
 | Test Service       | express-test      |
 
-Diese Infos müsst ihr in eurer deployment.yaml angeben. Euer Deployment heißt dann `<name>-deployment`, der Service `<name>-service` und euer API Endpunkt ist erreichbar unter `/api/<name>`.
+Diese Infos müsst ihr in eurer deployment.yaml angeben. Euer Deployment heißt dann `<name>-deployment`, der Service `<name>-service` und euer API Endpunkt ist erreichbar unter `/api/<name>`. Der Frontend Service ist unter `http://sgse2.ad.fh-bielefeld.de/` erreichbar.
 
 
 
