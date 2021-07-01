@@ -32,3 +32,40 @@ spec:
             name: express-test-service
             port: 
               number: 3000
+
+      # Microservices here
+      - pathType: Prefix
+        path: "/api/chat/?(.*)"
+        backend:
+          service:
+            name: chat-service
+            port: 
+              number: 3000
+      - pathType: Prefix
+        path: "/api/email/?(.*)"
+        backend:
+          service:
+            name: email-service
+            port: 
+              number: 3000
+      - pathType: Prefix
+        path: "/api/offers/?(.*)"
+        backend:
+          service:
+            name: offers-service
+            port: 
+              number: 3000
+      - pathType: Prefix
+        path: "/api/search/?(.*)"
+        backend:
+          service:
+            name: search-service
+            port: 
+              number: 3000
+      - pathType: Prefix
+        path: "/api/user/?(.*)"
+        backend:
+          service:
+            name: user-service
+            port: 
+              number: 3000

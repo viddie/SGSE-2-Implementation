@@ -2,12 +2,17 @@ const express = require('express');
 const fetch = require('node-fetch');
 var mysql = require('mysql');
 const {MongoClient} = require('mongodb');
+var bodyParser = require('body-parser');
 
 const app = express();
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
 const port = 30100;
 
 var con = mysql.createConnection({
-  host: "172.17.0.8",
+  host: "172.17.0.9",
   user: "root",
   password: "passwort123!"
 });
@@ -42,6 +47,12 @@ app.get('/test', (req, res) => {
   fetch("http://sgse2.ad.fh-bielefeld.de/api/echo").then(res => res.text()).then(text => {
     res.send('Some example fetch -> '+text);
   });
+});
+
+
+app.post('/test2', (req, res) => {
+  console.log('Got request for /test2');
+  res.send('This is from the different path /test2. Body of request: '+JSON.stringify(req.body));
 });
 
 app.listen(port, () => {
