@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: mongodb-user-data-disk
+  name: mysql-user-data-disk
 spec:
   accessModes:
     - ReadWriteOnce
@@ -12,32 +12,30 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mongodb-user-deployment
+  name: mysql-user-deployment
   labels:
-    app: mongodb-user
+    app: mysql-user
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: mongodb-user
+      app: mysql-user
   template:
     metadata:
       labels:
-        app: mongodb-user
+        app: mysql-user
     spec:
       containers:
-        - name: mongodb-user
-          image: mongo:latest
+        - name: mysql-user
+          image: mysql:5.7
           ports:
-            - containerPort: 27017
+            - containerPort: 3306
           volumeMounts:
             - mountPath: "/mnt/user"
-              subPath: "mongodb"
-              name: mongodb-data-user
+              subPath: "mysql"
+              name: mysql-data-user
           env:
-            - name: MONGO_INITDB_ROOT_USERNAME
-              value: root
-            - name: MONGO_INITDB_ROOT_PASSWORD
+            - name: MYSQL_ROOT_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: db-secrets
@@ -48,20 +46,20 @@ spec:
               cpu: "1"
             requests:
               memory: 256Mi
-              cpu: "0.2"
+              cpu: "150m"
       volumes:
-        - name: mongodb-data-user
+        - name: mysql-data-user
           persistentVolumeClaim:
-            claimName: mongodb-user-data-disk
+            claimName: mysql-user-data-disk
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: mongodb-user-service
+  name: mysql-user-service
 spec:
   selector:
-    app: mongodb-user
+    app: mysql-user
   ports:
   - protocol: TCP
-    port: 27017
-    targetPort: 27017
+    port: 3306
+    targetPort: 3306

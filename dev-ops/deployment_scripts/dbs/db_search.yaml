@@ -46,7 +46,7 @@ spec:
               cpu: "1"
             requests:
               memory: 256Mi
-              cpu: "0.2"
+              cpu: "150m"
       volumes:
         - name: mysql-data-search
           persistentVolumeClaim:

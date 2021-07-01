@@ -1,35 +1,35 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: <name>-deployment
+  name: echo-deployment
 spec:
   selector:
     matchLabels:
-      app: <name>-deployment
+      app: echo-deployment
   template:
     metadata:
       labels:
-        app: <name>-deployment
+        app: echo-deployment
     spec:
       containers:
-      - name: <name>-deployment
-        image: localhost:5000/<name>
-        imagePullPolicy: IfNotPresent
+      - name: echo-deployment
+        image: gcr.io/google_containers/echoserver:1.0
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
         resources:
           limits:
             memory: "128Mi"
             cpu: "150m"
-        ports:
-        - containerPort: 3000
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: <name>-service
+  name: echo-service
 spec:
   selector:
-    app: <name>-deployment
+    app: echo-deployment
   ports:
   - protocol: TCP
-    port: 3000
-    targetPort: 30100
+    port: 80
+    targetPort: 8080
