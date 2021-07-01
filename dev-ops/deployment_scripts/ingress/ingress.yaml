@@ -8,25 +8,25 @@ metadata:
     name: api-ingress
 spec:
   rules:
-  - host: api.bartersmarter.de
+  - host: sgse2.ad.fh-bielefeld.de
     http:
       paths:
       - pathType: Prefix
         path: "/"
         backend:
           service:
-            name: nginx
+            name: nginx #Hier kommt das Frontend rein
             port: 
               number: 80
       - pathType: Prefix
-        path: "/echo"
+        path: "/api/echo"
         backend:
           service:
             name: echoserver
             port: 
               number: 8080
       - pathType: Prefix
-        path: "/express-test"
+        path: "/api/express-test"
         backend:
           service:
             name: express-test

@@ -34,17 +34,18 @@ Ihr müsst darauf achten, dass in der deployment.yaml das "port" Feld des Servic
 
 Wenn der Service mit einem Pod am Laufen ist, ist das Deployment fertig. Auf die Schnittstelle direkt zugreifen geht natürlich nicht ohne Weiteres, da diese Schnittstellen intern sind. Zum Debuggen kann allerdings dieser Befehl verwendet werden: `sudo kubectl port-forward service/<name> --address 0.0.0.0 <beliebiger-port>:3000`. Im Terminal sollte so etwas wie `Forwarding from 0.0.0.0:<port> -> <targetPort>` stehen und ihr könnt über die URL `http://sgse2.ad.fh-bielefeld.de:<port>` auf euren Microservice zugreifen.
 
-Damit euer Microservice für die anderen Microservices sichtbar ist, muss ein Eintrag in der `ingress.yaml` gemacht werden. Da das aber nur eine einzelne Date ist, sollten wir das lieber zusammen machen, damit wir uns da nicht in die Quere kommen (am besten schon am 24.06). Wenn euer Microservice in der `ingress.yaml` hinterlegt wurde, können alle anderen Microservices über die URL `http://api.bartersmarter.de/<microservice>` auf diesen Zugreifen. Der Hostname "api.bartersmarter.de" ist ein Eintrag in der Hosts Datei, deswegen ist dieser auch nur intern verfügbar.
+Damit euer Microservice für die anderen Microservices sichtbar ist, muss ein Eintrag in der `ingress.yaml` gemacht werden. Da das aber nur eine einzelne Date ist, sollten wir das lieber zusammen machen, damit wir uns da nicht in die Quere kommen (am besten schon am 24.06). Wenn euer Microservice in der `ingress.yaml` hinterlegt wurde, können alle anderen Microservices über die URL `http://sgse2.ad.fh-bielefeld.de/api/<microservice>` auf diesen Zugreifen. ~~Der Hostname "api.bartersmarter.de" ist ein Eintrag in der Hosts Datei, deswegen ist dieser auch nur intern verfügbar.~~
 
 
 
 Hier ein paar nützliche Befehle für Kubernetes & Umgebung:
 
-| Befehl                                      | Erklärung                                                    |
-| ------------------------------------------- | ------------------------------------------------------------ |
-| `kubectl rollout restart deployment <name>` | Starte Deployments neu. Nützlich, wenn ihr ein neues Docker Image gepusht habt und den Service nicht aktualisiert |
-| `kubectl exec -it <pod> -- /bin/bash`       | Öffnet eine bash in dem Pod. Der Podname muss aus `kubectl get pods` entnommen werden |
-| `curl -L api.bartersmarter.de/<path>`       | Eine schnelle Möglichkeit zum Abrufen eures Microservices wenn ihr auf dem Server seid. |
+| Befehl                                                       | Erklärung                                                    |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| `kubectl rollout restart deployment <name>`                  | Starte Deployments neu. Nützlich, wenn ihr ein neues Docker Image gepusht habt und den Service nicht aktualisiert |
+| `kubectl exec -it <pod> -- /bin/bash`                        | Öffnet eine bash in dem Pod. Der Podname muss aus `kubectl get pods` entnommen werden |
+| `curl -L api.bartersmarter.de/<path>`                        | Eine schnelle Möglichkeit zum Abrufen eures Microservices wenn ihr auf dem Server seid. |
+| `sudo kubectl port-forward service/ingress-nginx-controller -n ingress-nginx --address 0.0.0.0 80:80` | Macht den Cluster Endpunkt für externe auf                   |
 
 
 
