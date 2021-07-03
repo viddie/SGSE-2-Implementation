@@ -60,6 +60,11 @@ app.get('/ci-cd', (req, res) => {
   res.send('CI/CD test interface');
 });
 
+app.get('/emailpw', (req, res) => {
+  console.log('Got request for /emailpw');
+  res.send('Email login: username -> '+process.env.EMAIL_USERNAME+', password -> '+process.env.EMAIL_PASSWORD);
+});
+
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
 });

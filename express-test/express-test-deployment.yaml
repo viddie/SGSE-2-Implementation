@@ -20,6 +20,17 @@ spec:
             cpu: "150m"
         ports:
         - containerPort: 3000
+        env:
+        - name: EMAIL_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: email-secret
+              key: username
+        - name: EMAIL_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: email-secret
+              key: username
 ---
 apiVersion: v1
 kind: Service
