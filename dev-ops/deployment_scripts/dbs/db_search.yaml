@@ -1,0 +1,65 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mysql-search-data-disk
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql-search-deployment
+  labels:
+    app: mysql-search
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql-search
+  template:
+    metadata:
+      labels:
+        app: mysql-search
+    spec:
+      containers:
+        - name: mysql-search
+          image: mysql:5.7
+          ports:
+            - containerPort: 3306
+          volumeMounts:
+            - mountPath: "/mnt/search"
+              subPath: "mysql"
+              name: mysql-data-search
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: db-secrets
+                  key: SEARCH_DB_PASSWORD
+          resources:
+            limits:
+              memory: 512Mi
+              cpu: "1"
+            requests:
+              memory: 256Mi
+              cpu: "150m"
+      volumes:
+        - name: mysql-data-search
+          persistentVolumeClaim:
+            claimName: mysql-search-data-disk
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql-search-service
+spec:
+  selector:
+    app: mysql-search
+  ports:
+  - protocol: TCP
+    port: 3306
+    targetPort: 3306
