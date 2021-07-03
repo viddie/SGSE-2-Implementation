@@ -30,7 +30,7 @@ spec:
           valueFrom:
             secretKeyRef:
               name: email-secret
-              key: username
+              key: password
 ---
 apiVersion: v1
 kind: Service
