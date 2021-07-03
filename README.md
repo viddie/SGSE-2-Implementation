@@ -8,7 +8,7 @@ Wenn ihr in irgendeiner weise Docker auf dem Server verwenden wollt, muss der fo
 
 ## Docker Image Build
 
-Das Docker Image muss in das lokale Repository auf unserem Server. Wenn ihr noch andere Wege kennt außer den Source Code zu pushen und auf dem Server zu builden, könnt ihr mir das gerne sagen.
+Update: Docker Images können auch über unsere Docker Hub Registry gepushed werden. Dazu sind die untenstehenden Befehle notwendig. Wenn ihr von `localhost:5000` auf Docker Hub's `sgse2` umsteigt, vergesst nicht, das Image in den Deployment Dateien umzubenennen.
 
 ### Source Code pushen und auf dem Server builden
 
@@ -16,9 +16,11 @@ Das Docker Image muss in das lokale Repository auf unserem Server. Wenn ihr noch
 | --------------------------------------------------- | ------------------------------------------------------------ |
 | `scp -r ./* <username>@sgse2.ad.fh-bielefeld.de:~/` | Kopiert alle Daten des derzeitigen Verzeichnisses auf den Server |
 | `ssh minikube@sgse2.ad.fh-bielefeld.de`             | Anschließend SSH Verbindung aufbauen                         |
-| `eval $(minikube -p minikube docker-env)`           | Docker Daemon von minikube verwenden                         |
-| `docker build -t localhost:5000/<image-name> .`     | Baut die Source Files zu einem Docker Image zusammen und lädt dieses in das minikube Repository |
-| `docker images`                                     | Zum Überprüfen, ob das Image im Repository angekommen ist    |
+| `docker login -u sgse2 -p <passwortAusWhatsapp>`    | Loggt das Terminal auf unserem Docker Hub Konto ein          |
+| `docker build -t sgse2/<image-name>:latest .`       | Baut die Source Files zu einem Docker Image zusammen         |
+| `docker push sgse2/<image-name>:latest`             | Pushed das Image zu Docker Hub                               |
+
+Die Images könnt ihr euch auch auf `https://hub.docker.com/` anschauen, Anmeldedaten sind in WhatsApp.
 
 ## Deployment, Service & Ingress yaml
 

@@ -13,8 +13,7 @@ spec:
     spec:
       containers:
       - name: express-test-deployment
-        image: localhost:5000/express-test
-        imagePullPolicy: IfNotPresent
+        image: sgse2/express-test:latest
         resources:
           limits:
             memory: "128Mi"
