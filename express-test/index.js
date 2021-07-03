@@ -55,9 +55,9 @@ app.post('/test2', (req, res) => {
   res.send('This is from the different path /test2. Body of request: '+JSON.stringify(req.body));
 });
 
-app.get('/test3', (req, res) => {
-  console.log('Got request for /test3');
-  res.send('Docker Hub test interface');
+app.get('/ci-cd', (req, res) => {
+  console.log('Got request for /ci-cd');
+  res.send('CI/CD test interface');
 });
 
 app.listen(port, () => {
