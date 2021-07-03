@@ -13,8 +13,7 @@ spec:
     spec:
       containers:
       - name: <name>-deployment
-        image: localhost:5000/<name>
-        imagePullPolicy: IfNotPresent
+        image: sgse2/<name>:latest
         resources:
           limits:
             memory: "128Mi"
