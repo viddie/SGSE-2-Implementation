@@ -3,7 +3,6 @@ const express = require('express')
 const nodemailer = require("nodemailer")
 const app = express()
 const port = 3000
-const webconfig = require("./webconfig.json")
 const sqlite3 = require('sqlite3').verbose();
 const axios = require('axios');
 
@@ -58,14 +57,15 @@ test_query = `SELECT * FROM emails`
 //dbQuery(insert_query);
 //dbQuery(test_query);
 create_db()
+console.log(process.env)
 
 transporter = nodemailer.createTransport({
   host: "smtp.web.de",
   port: 587,
   secure: false,
   auth: {
-    user: webconfig.username,
-    pass: webconfig.password
+    user: process.env.EMAIL_USERNAME,
+    pass: process.env.EMAIL_PASSWORD
   }
 });
 
