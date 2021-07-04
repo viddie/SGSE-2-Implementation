@@ -1,37 +1,19 @@
 # Docker Image zu Kubernetes
 
-Hier ist der Ablauf zum deployn von Docker Images zu unserem Kubernetes Cluster. Es ist derzeit noch sehr mühselig, aber so könnt ihr eure Microservices auch Kommunikation der anderen Microservices testen. CI/CD z.B. mit GitHub Actions muss ich noch nach schauen, ob wir das irgendwie bei uns hinbekommen können, oder wir ggf. auf Azure oder sowas switchen müssen.
+Von nichts zum funktionierenden Service sind diese Schritte notwendig:
 
-## Vorab
+1. NodeJS App + Dockerfile auf euren Branch in unser GitHub Repo pushen
+2. Die Schritte unten befolgen, um den Service einmalig in Kubernetes zu starten
 
-Wenn ihr in irgendeiner weise Docker auf dem Server verwenden wollt, muss der folgende Befehl ausgeführt werden, damit das Terminal auf Minikube's (= unser Cluster) Docker Daemon zeigt: `eval $(minikube -p minikube docker-env)`
+Jetzt sollte der Service abrufbar sein. Falls nicht, checkt die Logs (Befehle stehen weiter unten). Wenn ihr wieder etwas pusht wird automatisch ein neues Image zu Docker Hub hochgeladen. Danach brauch es nur noch ein `kubectl rollout restart deployment <name>` und der Service ist auf dem neuesten Stand.
 
-## Docker Image Build
-
-Update: Docker Images können auch über unsere Docker Hub Registry gepushed werden. Dazu sind die untenstehenden Befehle notwendig. Wenn ihr von `localhost:5000` auf Docker Hub's `sgse2` umsteigt, vergesst nicht, das Image in den Deployment Dateien umzubenennen.
-
-### Source Code pushen und auf dem Server builden
-
-| Befehl                                              | Erklärung                                                    |
-| --------------------------------------------------- | ------------------------------------------------------------ |
-| `scp -r ./* <username>@sgse2.ad.fh-bielefeld.de:~/` | Kopiert alle Daten des derzeitigen Verzeichnisses auf den Server |
-| `ssh minikube@sgse2.ad.fh-bielefeld.de`             | Anschließend SSH Verbindung aufbauen                         |
-| `docker login -u sgse2 -p <passwortAusWhatsapp>`    | Loggt das Terminal auf unserem Docker Hub Konto ein          |
-| `docker build -t sgse2/<image-name>:latest .`       | Baut die Source Files zu einem Docker Image zusammen         |
-| `docker push sgse2/<image-name>:latest`             | Pushed das Image zu Docker Hub                               |
-
-Die Images könnt ihr euch auch auf `https://hub.docker.com/` anschauen, Anmeldedaten sind in WhatsApp.
-
-## Deployment, Service & Ingress yaml
+## Deployment & Service yaml
 
 In dem Ordner "templates" liegt eine Datei "service-deployment-template.yaml". Jeder Microservice muss diese Datei einmal kopieren, den Namen und das Docker Image ändern (von "`<name>`" zu den Namen, die unten in der Tabelle stehen) und in das Kubernetes Cluster laden. Dafür sind die untenstehenden Befehle:
 
 | Befehl                                              | Erklärung                                                    |
 | --------------------------------------------------- | ------------------------------------------------------------ |
 | `kubectl apply -f <name-der-deployment-datei>.yaml` | Registriert oder Aktualisiert eine Deployment/Service Definition in Kubernetes |
-| `kubectl get service`                               | Zum Abfragen, ob der Service hinzugefügt wurde               |
-| `kubectl get pods`                                  | Zum Abfragen, ob das Docker Image für den Service in einem Pod ausgeführt werden konnte |
-| `kubectl logs <pod-name>`                           | `<pod-name>` muss aus `kubectl get pods` kopiert werden. Gibt die logs aus, die z.B. über ein `console.log` im Express.js Server geloggt wurden |
 
 Für die Benennung eurer Services steht unten eine Tabelle. Die Namen müssen eingehalten werden, da der `ingress.yaml` Eintrag für diese Services schon erstellt wurde. Der "targetPort" des Services muss der Port sein, auf dem der Express Server listened.
 
@@ -39,17 +21,6 @@ Wenn euer Service gestartet ist, kann auf den Microservice über die URL `http:/
 
 - `kubectl get service` - In der Auflistung muss euer Service als `ClusterIP` aufgelistet sein, mit dem Port aus dem Feld `port` der deploment.yaml (Also 3000)
 - `kubectl get pods` - In dieser Auflistung muss ein Pod von eurem Service angezeigt werden. Der Name ist der Name des Deployments (`<microservice>-deployment`) mit einem zufälligen Hash dahinter, der Pod muss `READY 1/1` mit dem Zustand `STATUS Running` sein.
-
-
-
-Hier ein paar nützliche Befehle für Kubernetes & Umgebung:
-
-| Befehl                                                       | Erklärung                                                    |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| `kubectl rollout restart deployment <name>`                  | Starte Deployments neu. Nützlich, wenn ihr ein neues Docker Image gepusht habt und den Service nicht aktualisiert |
-| `kubectl exec -it <pod> -- /bin/bash`                        | Öffnet eine bash in dem Pod. Der Podname muss aus `kubectl get pods` entnommen werden |
-| `curl -L sgse2.ad.fh-bielefeld.de/api/<path>`                | Eine schnelle Möglichkeit zum Abrufen eures Microservices wenn ihr auf dem Server seid. |
-| `sudo kubectl port-forward service/ingress-nginx-controller -n ingress-nginx --address 0.0.0.0 80:80` | Macht den Cluster Endpunkt für externe auf (Läuft derzeitig schon auf dem Server) |
 
 
 
@@ -68,9 +39,7 @@ Bennenung für Kubernetes Deployment/Service in der deployment.yaml:
 
 Diese Infos müsst ihr in eurer deployment.yaml angeben. Euer Deployment heißt dann `<name>-deployment`, der Service `<name>-service` und euer API Endpunkt ist erreichbar unter `/api/<name>`. Der Frontend Service ist unter `http://sgse2.ad.fh-bielefeld.de/` erreichbar.
 
-
-
-Datenbanken für die Microservices:
+## Datenbanken
 
 | Microservice       | Datenbank | IP:Port           |
 | ------------------ | --------- | ----------------- |
@@ -86,3 +55,17 @@ Die IP Adressen sollten sich nicht mehr ändern, also können diese hardcoded we
 
 - Benutzername: `root`
 - Passwort: `passwort123!`
+
+## Nützliche Befehle für Kubernetes & Umgebung:
+
+| Befehl                                                       | Erklärung                                                    |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| `kubectl rollout restart deployment <name>`                  | Starte Deployments neu. Nützlich, wenn ihr ein neues Docker Image gepusht habt und den Service nicht aktualisiert |
+| `kubectl exec -it <pod> -- /bin/bash`                        | Öffnet eine bash in dem Pod. Der Podname muss aus `kubectl get pods` entnommen werden |
+| `curl -L sgse2.ad.fh-bielefeld.de/api/<path>`                | Eine schnelle Möglichkeit zum Abrufen eures Microservices wenn ihr auf dem Server seid. |
+| `sudo kubectl port-forward service/ingress-nginx-controller -n ingress-nginx --address 0.0.0.0 80:80` | Macht den Cluster Endpunkt für externe auf (Läuft derzeitig schon auf dem Server) |
+| `kubectl get service`                                        | Zum Abfragen, ob der Service hinzugefügt wurde               |
+| `kubectl get pods`                                           | Zum Abfragen, ob das Docker Image für den Service in einem Pod ausgeführt werden konnte |
+| `kubectl logs <pod-name>`                                    | `<pod-name>` muss aus `kubectl get pods` kopiert werden. Gibt die logs aus, die z.B. über ein `console.log` im Express.js Server geloggt wurden |
+
+
