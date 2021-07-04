@@ -4,13 +4,12 @@ const mongoose = require('mongoose')
 
 const PORT = 8080;
 
-mongoose.createConnection(
-  "mongodb://172.17.0.8:27017",
-  {
+mongoose.connect("mongodb://72.17.0.8:27017", {
+    "auth": { "authSource": "admin" },
     "user": "root",
-    "pass": "passwort123!"
-  }
-);
+    "pass": "passwort123!",
+    "useMongoClient": true
+});
 
 const db = mongoose.connection
 db.on('error', (error) => console.log(error))
