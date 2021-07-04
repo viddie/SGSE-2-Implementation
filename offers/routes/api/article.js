@@ -47,8 +47,8 @@ router.put('/article', upload.any(), function (req, res) {
                             article.price = parseFloat(req.body.price).toFixed(2);
                             article.save(function (err) {
                                 if (err) return console.error(err);
+                                return res.status(200).json('Alles jut')
                             });
-                            return res.status(200).json('Alles jut')
                         } else {
                             return res.status(400).json('Angebot existiert nicht!')
                         }
