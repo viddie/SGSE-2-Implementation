@@ -2,8 +2,7 @@ const router = require('express').Router();
 const path = require('path');
 
 router.use('/api-docs', require('./api-docs'));
-router.use('/api', require('./api'));
-
+router.use('/', require('./api'));
 
 // Testseite zur Verfügung stellen wenn in Entwicklungsphase
 router.get('/', (req, res) => {
