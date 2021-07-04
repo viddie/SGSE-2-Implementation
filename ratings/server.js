@@ -4,7 +4,7 @@ const mongoose = require('mongoose')
 
 const PORT = 8080;
 
-const mongo_client = new MongoClient("mongodb://root:passwort123!@172.17.0.17:27017"); //user DB
+const mongo_client = new MongoClient("mongodb://root:passwort123!@172.17.0.8:27017"); //user DB
 async function main(){
   try {
     await mongo_client.connect();
