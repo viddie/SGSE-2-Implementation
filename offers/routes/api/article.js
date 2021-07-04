@@ -153,7 +153,6 @@ router.post('/article', upload.any(), function (req, res) {
             return res.status(400).json('Ungültige Eingabeparameter!')
         }
     });
-    res.redirect('/');
 });
 
 module.exports = router;
