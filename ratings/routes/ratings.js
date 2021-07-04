@@ -34,12 +34,26 @@ router.post("/CreateUser/:id", async (req,res) =>
         res.status(400).json({message: err.message})
     }
 })
+router.post("/CreateUser/:id", async (req,res) =>
+{
+    const user = new User({
+        ID: req.params.id 
+    })
+
+    try{
+        const newUser = await user.save()
+        res.status(201).json(newUser)
+    }catch(err){
+        res.status(400).json({message: err.message})
+    }
+})
+
 router.patch('/UserID/:id/Rating/:star_num', getUser, async (req,res) =>
 {
     if(req.params.star_num == "1"){
         try{
             res.user.One_Star = res.user.One_Star + 1
-            Math.round((res.user.totalRatings*res.user.avgStar + 1)/(res.user.totalRatings+1)*100)/100
+            res.user.avgStar = (res.user.totalRatings*res.user.avgStar + 1)/(res.user.totalRatings+1)
             res.user.totalRatings = res.user.totalRatings + 1
             const updatedUser = await res.user.save()              
             res.json(updatedUser)
@@ -50,7 +64,7 @@ router.patch('/UserID/:id/Rating/:star_num', getUser, async (req,res) =>
     if(req.params.star_num == "2"){
         try{
             res.user.Two_Star = res.user.Two_Star + 1
-            Math.round((res.user.totalRatings*res.user.avgStar + 2)/(res.user.totalRatings+1)*100)/100
+            res.user.avgStar = (res.user.totalRatings*res.user.avgStar + 2)/(res.user.totalRatings+1)
             res.user.totalRatings = res.user.totalRatings + 1
             const updatedUser = await res.user.save()   
             res.json(updatedUser)
@@ -61,7 +75,7 @@ router.patch('/UserID/:id/Rating/:star_num', getUser, async (req,res) =>
     if(req.params.star_num == "3"){
         try{
             res.user.Three_Star = res.user.Three_Star + 1
-            Math.round((res.user.totalRatings*res.user.avgStar + 3)/(res.user.totalRatings+1)*100)/100
+            res.user.avgStar = (res.user.totalRatings*res.user.avgStar + 3)/(res.user.totalRatings+1)
             res.user.totalRatings = res.user.totalRatings + 1
             const updatedUser = await res.user.save()   
             res.json(updatedUser)
@@ -72,7 +86,7 @@ router.patch('/UserID/:id/Rating/:star_num', getUser, async (req,res) =>
     if(req.params.star_num == "4"){
         try{
             res.user.Four_Star = res.user.Four_Star + 1
-            res.user.avgStar = Math.round((res.user.totalRatings*res.user.avgStar + 4)/(res.user.totalRatings+1)*100)/100
+            res.user.avgStar = (res.user.totalRatings*res.user.avgStar + 4)/(res.user.totalRatings+1)
             res.user.totalRatings = res.user.totalRatings + 1
             const updatedUser = await res.user.save()   
             res.json(updatedUser)
@@ -81,9 +95,9 @@ router.patch('/UserID/:id/Rating/:star_num', getUser, async (req,res) =>
         }
         }
     if(req.params.star_num == "5"){
-    try{
+        try{
         res.user.Five_Star = res.user.Five_Star + 1
-        res.user.avgStar = Math.round((res.user.totalRatings*res.user.avgStar + 5)/(res.user.totalRatings+1)*100)/100
+        res.user.avgStar = (res.user.totalRatings*res.user.avgStar + 5)/(res.user.totalRatings+1)
         res.user.totalRatings = res.user.totalRatings + 1
         const updatedUser = await res.user.save()   
         res.json(updatedUser)
