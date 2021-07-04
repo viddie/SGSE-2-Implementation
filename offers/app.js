@@ -25,7 +25,7 @@ mongoose.connect(process.env.MONGO_URL,
 );
 
 // Lade die Artikelmodellierung
-require(__dirname +'/models/Article');
+require(__dirname +'/models/article');
 
 // Lade die Routen
 app.use(require(__dirname+'/routes'));
