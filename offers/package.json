@@ -4,7 +4,7 @@
   "description": "This is a microservice that provides the methods to handle the articles for our business model",
   "main": "app.js",
   "scripts": {
-    "dev": "nodemon app.js",
+    "start": "nodemon app.js",
     "test": "mocha"
   },
   "author": "TNentwig",
@@ -16,6 +16,7 @@
     "express-session": "^1.17.2",
     "gridfs-stream": "^1.1.1",
     "method-override": "^3.0.0",
+    "mocha": "^9.0.2",
     "mongoose": "^5.12.13",
     "multer": "^1.4.2",
     "multer-gridfs-storage": "^5.0.0",
