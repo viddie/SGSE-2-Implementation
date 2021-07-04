@@ -24,10 +24,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: chat
+  name: chat-service
 spec:
   selector:
-    app: chat
+    app: chat-deployment
   ports:
   - protocol: TCP
     port: 3000
