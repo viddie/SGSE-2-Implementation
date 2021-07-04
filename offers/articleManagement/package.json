@@ -1,0 +1,26 @@
+{
+  "name": "article-management",
+  "version": "0.0.1",
+  "description": "This is a microservice that provides the methods to handle the articles for our business model",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "TNentwig",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "express-session": "^1.17.2",
+    "gridfs-stream": "^1.1.1",
+    "method-override": "^3.0.0",
+    "mongoose": "^5.12.13",
+    "multer": "^1.4.2",
+    "multer-gridfs-storage": "^5.0.0",
+    "swagger-ui-express": "^4.1.6"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
