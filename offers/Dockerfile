@@ -9,4 +9,4 @@ COPY . .
 # Starte die Applikation
 EXPOSE 8080
 
-CMD [ "npm", "start" ]
+CMD npm app.js

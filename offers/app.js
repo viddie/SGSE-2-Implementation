@@ -1,6 +1,5 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const path = require('path');
 session = require('express-session'),
 
 // Lade Konfigurationsdatei um einfacher zwischen Dockercontainer und Entwicklungsumgebung zu wechseln
@@ -15,7 +14,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json())
 
 app.use(require('method-override')());
-app.use(express.static(__dirname + '/public'));
 
 app.use(session({ secret: 'conduit', cookie: { maxAge: 60000 }, resave: false, saveUninitialized: false  }));
 
@@ -27,10 +25,10 @@ mongoose.connect(process.env.MONGO_URL,
 );
 
 // Lade die Artikelmodellierung
-require('./models/Article');
+require(__dirname +'/models/Article');
 
 // Lade die Routen
-app.use(require('./routes'));
+app.use(require(__dirname+'/routes'));
 
 // Errorhandling
 app.use(function(req, res, next) {
