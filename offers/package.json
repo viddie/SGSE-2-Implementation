@@ -4,7 +4,7 @@
   "description": "This is a microservice that provides the methods to handle the articles for our business model",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "author": "TNentwig",
   "license": "ISC",
