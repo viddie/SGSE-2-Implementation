@@ -4,19 +4,10 @@ const {MongoClient} = require('mongodb');
 
 const PORT = 8080;
 
-const mongo_client = new MongoClient("mongodb://root:passwort123!@172.17.0.8:27017"); //user DB
-async function main(){
-  try {
-    await mongo_client.connect();
-    console.log("Connected to mongoDB!");
-  } catch (e) {
-      console.error(e);
-  } finally {
-      await mongo_client.close();
-  }
-}
-main().catch(console.error);
-
+mongoose.connect('mongodb://root:passwort123!@172.17.0.8:27017/ratings',  {useUnifiedTopology: true } , { useNewUrlParser: true } )
+const db = mongoose.connection
+db.on('error', (error) => console.log(error))
+db.once('open', () => console.log('Connected succesfully'))
 
 app.use(express.json())
 
