@@ -19,11 +19,12 @@ app.use(session({ secret: 'conduit', cookie: { maxAge: 60000 }, resave: false, s
 
 // Mit MongoDB verbinden
 mongoose.connect(process.env.MONGO_URL,
-   { useNewUrlParser: true, useUnifiedTopology: true }, err => {
-       console.log('Mit MongoDB verbunden!')
-   }
-);
-
+{
+    "auth": { "authSource": "admin" },
+    "user": "root",
+    "pass": "passwort123!",
+    //"useMongoClient": true
+});
 // Lade die Artikelmodellierung
 require(__dirname +'/models/article');
 
