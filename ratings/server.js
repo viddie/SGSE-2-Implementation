@@ -18,7 +18,7 @@ db.once('open', () => console.log('Connected succesfully'))
 app.use(express.json())
 
 const subroutes = require("./routes/ratings")
-app.use("/", subroutes)
+app.use("/ratings", subroutes)
 
 app.listen(PORT, () => console.log("Server Started"))
 
