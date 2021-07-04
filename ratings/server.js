@@ -4,7 +4,13 @@ const mongoose = require('mongoose')
 
 const PORT = 8080;
 
-mongoose.connect('mongodb://root:passwort123!@172.17.0.8:27017/ratings',  {useUnifiedTopology: true } , { useNewUrlParser: true } )
+mongoose.connect("mongodb://172.17.0.8:27017/ratings", {
+    "auth": { "authSource": "admin" },
+    "user": "root",
+    "pass": "passwort123!",
+    "useMongoClient": true
+});
+
 const db = mongoose.connection
 db.on('error', (error) => console.log(error))
 db.once('open', () => console.log('Connected succesfully'))
