@@ -1,6 +1,6 @@
 const express = require("express")
 const app = express()
-const {MongoClient} = require('mongodb');
+const mongoose = require('mongoose')
 
 const PORT = 8080;
 
