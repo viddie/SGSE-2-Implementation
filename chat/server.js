@@ -4,7 +4,7 @@ const {MongoClient} = require('mongodb')
 
 const PORT = 8080;
 
-const mongo_client = new MongoClient("mongodb://root:passwort123!@172.17.0.6:27017/chat");
+const mongo_client = new MongoClient("mongodb://root:passwort123!@172.17.0.6:27017");
 async function main(){
     try {
         await mongo_client.connect();
