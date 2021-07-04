@@ -1,0 +1,42 @@
+###
+
+GET http://localhost:8080/configuration/3
+###
+
+GET http://localhost:8080/messages
+###
+
+POST http://localhost:8080/messages/send
+Content-Type: application/json
+
+{
+    "id": "5",
+    "sender": "Peter",
+    "receiver": "Panddd",
+    "text": "Lorem Ipsum dolor sit amet TEST CHAT MESSAGE"
+}
+###
+
+###
+POST http://localhost:8080/configuration
+Content-Type: application/json
+
+{
+    "id": 2,
+    "userID": 3,
+    "allowMessages": true,
+    "openChatOnNewMessage": true,
+    "fontSize": "large",
+    "windowSize": "small"
+}
+###
+
+DELETE  http://localhost:8080/subscribers/60c4944237ef7a0012f41246
+
+###
+PATCH   http://localhost:8080/subscribers/60c4941037ef7a0012f41245
+Content-Type: application/json
+
+{
+    "name": "Hans"
+}
