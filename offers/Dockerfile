@@ -9,4 +9,4 @@ COPY . .
 # Starte die Applikation
 EXPOSE 8080
 
-CMD node /home/app.js
+CMD node app.js
