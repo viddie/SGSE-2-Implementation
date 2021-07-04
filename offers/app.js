@@ -1,4 +1,3 @@
-const http = require("http");
 const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
@@ -19,11 +18,6 @@ app.use(require('method-override')());
 app.use(express.static(__dirname + '/public'));
 
 app.use(session({ secret: 'conduit', cookie: { maxAge: 60000 }, resave: false, saveUninitialized: false  }));
-
-// Nutze einen Errorhandler wenn im Produktivbundle
-if (!isProduction) {
-    app.use(errorhandler());
-}
 
 // Mit MongoDB verbinden
 mongoose.connect(process.env.MONGO_URL,
