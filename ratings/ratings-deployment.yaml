@@ -1,3 +1,4 @@
+  
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -19,7 +20,7 @@ spec:
             memory: "128Mi"
             cpu: "150m"
         ports:
-        - containerPort: 3000
+        - containerPort: 8080
 ---
 apiVersion: v1
 kind: Service
@@ -31,5 +32,4 @@ spec:
   ports:
   - protocol: TCP
     port: 3000
-    targetPort: 80
-© 2021 GitHub, Inc.
+    targetPort: 8080
