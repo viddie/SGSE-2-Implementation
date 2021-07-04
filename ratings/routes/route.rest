@@ -1,0 +1,16 @@
+GET http://0.0.0.0:8080/ratings
+
+###
+
+GET http://localhost:8080/ratings/UserID/6666
+
+###
+
+POST http://localhost:8080/ratings/CreateUser/88
+
+###
+
+DELETE  http://localhost:8080/ratings/6666
+
+###
+PATCH   http://localhost:8080/ratings/UserID/6666/Rating/1

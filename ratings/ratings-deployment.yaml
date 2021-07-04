@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ratings-deployment
+spec:
+  selector:
+    matchLabels:
+      app: ratings-deployment
+  template:
+    metadata:
+      labels:
+        app: ratings-deployment
+    spec:
+      containers:
+      - name: ratings-deployment
+        image: sgse2/ratings:latest
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "150m"
+        ports:
+        - containerPort: 3000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ratings-service
+spec:
+  selector:
+    app: ratings-deployment
+  ports:
+  - protocol: TCP
+    port: 3000
+    targetPort: 80
+© 2021 GitHub, Inc.
