@@ -1,9 +1,3 @@
-FROM node:alpine
-WORKDIR '/app'
+FROM nginx:alpine
+COPY SPA/dist /usr/share/nginx/html
 
-COPY package.json .
-RUN npm install
-COPY server .
-COPY SPA/dist public
-
-CMD ["npm", "start"]
