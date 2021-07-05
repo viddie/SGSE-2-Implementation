@@ -4,14 +4,14 @@ const app = express()
 const port = 3001
 
 
-app.get('/', function (req, res) {
-  console.log('###GET REQUEST received');
-  res.sendFile(__dirname + '/public/index.html'); 
-});
-
 app.get('/App.js', function (req, res) {
   console.log('###GET REQUEST received');
   res.sendFile(__dirname + '/public/App.js'); 
+});
+
+app.get('/', function (req, res) {
+  console.log('###GET REQUEST received');
+  res.sendFile(__dirname + '/public/index.html'); 
 });
 
 // Start server
