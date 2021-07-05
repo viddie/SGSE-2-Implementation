@@ -6,10 +6,6 @@ const port = 3001
 const STATIC = path.resolve(__dirname, 'dist');
 const INDEX = path.resolve(STATIC, 'index.html');
 
-
-const app = express();
-app.use(bodyParser.json());
-
 // Static content
 app.use(express.static(STATIC));
 
