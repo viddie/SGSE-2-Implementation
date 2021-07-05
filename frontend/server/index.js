@@ -8,7 +8,7 @@ app.use(express.static(__dirname + '/public'))
 app.get('/', function(req, res){
 
   // save html files in the `views` folder...
-  sendfile(__dirname + "/views/index.html");
+  res.sendFile(__dirname + "/views/index.html");
 });
 // Start server
 app.listen(port, function () {
