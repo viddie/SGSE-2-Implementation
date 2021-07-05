@@ -4,8 +4,12 @@
   "description": "Express Server zum Deployment der SPA",
   "main": "server/index.js",
   "scripts": {
-    "start" : "nodemon index.js"
+    "start": "nodemon index.js"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "nodemon": "^2.0.9"
+  }
 }
