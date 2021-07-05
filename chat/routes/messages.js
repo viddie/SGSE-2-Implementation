@@ -15,7 +15,7 @@ router.get('/', async (req,res) =>
 })
 
 // Getting one
-router.get('/receive/:id', getMessage, (req,res) =>
+router.get('/:id', getMessage, (req,res) =>
 {
     res.json(res.message)
 })
