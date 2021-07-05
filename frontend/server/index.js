@@ -4,7 +4,7 @@ const app = express()
 const port = 3001
 
 
-app.get('/App.js', function (req, res) {
+app.get('/app/App.js', function (req, res) {
   console.log('Brunnnnnnnnnni');
   res.sendFile(__dirname + '/public/App.js'); 
 });
