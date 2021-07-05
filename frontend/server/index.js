@@ -6,9 +6,14 @@ const port = 3001
 
 app.get('/', function (req, res) {
   console.log('###GET REQUEST received');
+  res.sendFile(__dirname + '/public/index.html'); 
+});
+
+app.get('/App.js', function (req, res) {
+  console.log('###GET REQUEST received');
   res.sendFile(__dirname + '/public/App.js'); 
 });
-app.use(express.static(__dirname + '/public', {index: false}))
+
 // Start server
 app.listen(port, function () {
   console.log('Server up and running on the pod!');
