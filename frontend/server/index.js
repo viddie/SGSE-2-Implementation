@@ -6,8 +6,7 @@ const port = 3001
 app.use(express.static(__dirname + '/public', {index: false}))
 app.get('/', function (req, res) {
   console.log('###GET REQUEST received');
-  console.log(req);
-  res.sendFile(__dirname + '/public/index.html'); 
+  res.sendFile(__dirname + '/public/App.js'); 
 });
 // Start server
 app.listen(port, function () {
