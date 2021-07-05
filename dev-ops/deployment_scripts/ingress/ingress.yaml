@@ -12,13 +12,6 @@ spec:
     http:
       paths:
       - pathType: Prefix
-        path: "/"
-        backend:
-          service:
-            name: frontend-service #Hier kommt das Frontend rein
-            port: 
-              number: 80
-      - pathType: Prefix
         path: "/api/echo"
         backend:
           service:
@@ -67,5 +60,20 @@ spec:
         backend:
           service:
             name: user-service
+            port: 
+              number: 3000
+      - pathType: Prefix
+        path: "/api/ratings/?(.*)"
+        backend:
+          service:
+            name: ratings-service
+            port: 
+              number: 3000
+              
+      - pathType: Prefix
+        path: "/?(.*)"
+        backend:
+          service:
+            name: frontend-service #Hier kommt das Frontend rein
             port: 
               number: 3000
