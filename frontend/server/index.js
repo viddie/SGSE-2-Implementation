@@ -3,11 +3,11 @@ const app = express()
 const port = 3001
 
 app.get('/', function(req, res){
-  res.sendFile('public/index.html');
+  res.sendFile(__dirname+'/public/index.html');
 });
 
 app.get('/App.js', function(req, res){
-  res.sendFile('public/App.js');
+  res.sendFile(__dirname+'/public/App.js');
 }); 
 
 app.listen(port, () => {
