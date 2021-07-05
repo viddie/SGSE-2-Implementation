@@ -4,6 +4,7 @@ WORKDIR '/app'
 COPY package.json .
 RUN npm install
 COPY server .
-COPY SPA/dist .
+COPY SPA/dist/index.html .
+COPY SPA/dist/App.js dist
 
 CMD ["npm", "start"]
