@@ -15,12 +15,12 @@ router.get('/', async (req,res) =>
 })
 
 // Getting one
-router.get('/:id', getMessage, (req,res) =>
+router.get('/receive/:id', getMessage, (req,res) =>
 {
     res.json(res.message)
 })
 
-router.get('/receive/:user', getUserSpecific, (req, res) =>
+router.get('/receive/:sender', getUserSpecific, (req, res) =>
 {
     res.json(res.messages)
 })
@@ -59,10 +59,10 @@ async function getMessage(req, res, next){
 async function getUserSpecific(req, res, next) {
     try{
         messages = await Message.findOne({
-            user: req.params.user
+            sender: req.params.sender
         })
         if(messages == null){
-            return res.status(404).json({messages: 'Invalid User'})
+            return res.status(404).json({messages: 'Invalid Sender'})
         }
     } catch (err) {
         return res.status(500).json({messages: err.message})
