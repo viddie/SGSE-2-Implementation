@@ -11,5 +11,5 @@ app.get('/', function (req, res) {
 });
 // Start server
 app.listen(port, function () {
-  console.log('Server up and running on ', `http://localhost:${port}/`);
+  console.log('Server up and running on the pod!');
 });
