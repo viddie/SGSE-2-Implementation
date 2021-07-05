@@ -3,8 +3,22 @@ const path = require('path');
 const app = express()
 const port = 3001
 
-app.use(express.static(__dirname + '/dist'));
+const STATIC = path.resolve(__dirname, 'dist');
+const INDEX = path.resolve(STATIC, 'index.html');
 
-app.listen(port, () => {
-  console.log(`Uuuuuuuunnnnnnnnd looooooosgehts ..... Frontend gestartet!`);
-})
+
+const app = express();
+app.use(bodyParser.json());
+
+// Static content
+app.use(express.static(STATIC));
+
+// All GET request handled by INDEX file
+app.get('*', function (req, res) {
+  res.sendFile(INDEX);
+});
+
+// Start server
+app.listen(port, function () {
+  console.log('Server up and running on ', `http://localhost:${port}/`);
+});
