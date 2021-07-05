@@ -67,7 +67,7 @@ async function getUserSpecific(req, res, next) {
     } catch (err) {
         return res.status(500).json({messages: err.message})
     }
-    res.messages = a
+    res.messages = messages
     next()
 }
 
