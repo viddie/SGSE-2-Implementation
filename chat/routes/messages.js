@@ -20,7 +20,7 @@ router.get('/:id', getMessage, (req,res) =>
     res.json(res.message)
 })
 
-router.get('/receive/:sender', getUserSpecific, (req, res) =>
+router.get('/receive/:receiver/:sender', getUserSpecific, (req, res) =>
 {
     res.json(res.messages)
 })
@@ -59,7 +59,8 @@ async function getMessage(req, res, next){
 async function getUserSpecific(req, res, next) {
     try{
         messages = await Message.find({
-            sender: req.params.sender
+            sender: req.params.sender,
+            receiver: req.params.receiver
         })
         if(messages == null){
             return res.status(404).json({messages: 'Invalid Sender'})
