@@ -58,7 +58,7 @@ async function getMessage(req, res, next){
 
 async function getUserSpecific(req, res, next) {
     try{
-        messages = await Message.findOne({
+        messages = await Message.find({
             sender: req.params.sender
         })
         if(messages == null){
