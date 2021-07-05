@@ -5,12 +5,12 @@ const port = 3001
 
 
 app.get('/App.js', function (req, res) {
-  console.log('###GET REQUEST received');
+  console.log('Brunnnnnnnnnni');
   res.sendFile(__dirname + '/public/App.js'); 
 });
 
 app.get('/', function (req, res) {
-  console.log('###GET REQUEST received');
+  console.log('Tutttttt');
   res.sendFile(__dirname + '/public/index.html'); 
 });
 
