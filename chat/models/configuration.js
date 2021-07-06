@@ -8,7 +8,7 @@ const configuration_subsschema = new mongoose.Schema({
     },
 
     userID: {
-        type: Number,
+        type: String,
         required: true
     },
 
