@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: email-deployment
+spec:
+  selector:
+    matchLabels:
+      app: email-deployment
+  template:
+    metadata:
+      labels:
+        app: email-deployment
+    spec:
+      containers:
+      - name: email-deployment
+        image: sgse2/email
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "150m"
+        ports:
+        - containerPort: 3000
+        env:
+        - name: EMAIL_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: email-secret
+              key: username
+        - name: EMAIL_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: email-secret
+              key: password
+                
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: email-service
+spec:
+  selector:
+    app: email-deployment
+  ports:
+  - protocol: TCP
+    port: 3000
+    targetPort: 30100

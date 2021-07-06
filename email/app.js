@@ -6,6 +6,11 @@ const port = 30100
 const sqlite3 = require('sqlite3').verbose();
 const axios = require('axios');
 
+const axiosi = axios.create({
+  baseURL: 'http://sgse2.ad.fh-bielefeld.de/api/',
+  timeout: 1000,
+})
+
 let db = new sqlite3.Database(':memory:', (err) => {
   if (err) {
     return console.error(err.message);
@@ -49,7 +54,7 @@ create_query = `CREATE TABLE IF NOT EXISTS emails (
   angebot_id INTEGER NULL)`
 
 insert_query = `INSERT INTO emails(an,von,inhalt,angebot_id)
-  VALUES(2,1,"Hilfe ich suche meine Bananen",6)`
+  VALUES(2,1,"Danke für die Emails",6)`
 
 test_query = `SELECT * FROM emails`
 
@@ -113,7 +118,7 @@ async function sendmail(p_to,p_subject,p_body,p_res)
 
 async function getUser(id)
 {
-  axios.get("/user/",{
+  axiosi.get("/user/",{
     params: {
       ID: id
     }
@@ -128,7 +133,8 @@ async function getUser(id)
 
 async function checkAngebote()
 {
-  axios.get("/articles").then(function(response){
+  axiosi.get("/articles").then(function(response){
+    console.log(response)
     for (angebot in response)
     {
       angebotid = angebot.articleID;
@@ -141,7 +147,7 @@ async function checkAngebote()
       if(empty == false)
       {
         userid = angebot.sellerID;
-        axios.get("/user/",{
+        axiosi.get("/user/",{
           params: {
             ID: userid
           }
@@ -167,4 +173,4 @@ async function test()
   console.log("Ich werde aufgerufen")
 }
 
-setInterval(test,10000);
+setInterval(checkAngebote,10000);
