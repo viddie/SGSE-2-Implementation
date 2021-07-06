@@ -1,0 +1,50 @@
+GET http://sgse2.ad.fh-bielefeld.de/api/user/auth
+
+
+
+###
+
+POST http://sgse2.ad.fh-bielefeld.de/api/user/auth/signup
+Content-Type: application/json
+
+{
+    "username": "Tristan",
+    "password": "Hempi123",
+    "email": "hempi@coder.de",
+    "role": "admin"
+}
+
+###
+
+POST http://sgse2.ad.fh-bielefeld.de/api/user/auth/login
+Content-Type: application/json
+
+{
+    "username": "Marius",
+    "password": "13hallo"
+}
+
+###
+
+
+POST http://sgse2.ad.fh-bielefeld.de/api/user/auth/logout
+Content-Type: application/json
+
+{
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Ik1hcml1cyIsInJvbGUiOiJ1c2VyIiwiaWQiOiI2MGU0NTZlOGVmNWE3NjAwMTRhYzYzYTAiLCJlbWFpbCI6InBldGVyQHBldGVycy5kZSIsImlhdCI6MTYyNTU3NzI4Nn0.FcwSbZR7vEl4n6k2seY0L12SvF62dPCALOiQfSjHj2k"
+}
+
+###
+
+POST http://sgse2.ad.fh-bielefeld.de/api/user/auth/token
+Content-Type: application/json
+
+{
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Ik1hcml1cyIsInJvbGUiOiJ1c2VyIiwiaWQiOiI2MGU0NTZlOGVmNWE3NjAwMTRhYzYzYTAiLCJlbWFpbCI6InBldGVyQHBldGVycy5kZSIsImlhdCI6MTYyNTU3NzI4Nn0.FcwSbZR7vEl4n6k2seY0L12SvF62dPCALOiQfSjHj2k"
+}
+
+###
+
+DELETE  http://sgse2.ad.fh-bielefeld.de/api/user/auth
+
+###
