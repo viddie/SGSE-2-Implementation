@@ -15,7 +15,6 @@ const SmallView = (props) => {
 
     return (
         <div>
-            <img src={article.pictures[0]}></img>
             <div>{article.heading}</div>
             <div>{article.description}</div>
             <div>{article.price}</div>
