@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import haenchen from './wurm.jpg'
 
 const SmallView = (props) => {
 
@@ -15,11 +16,12 @@ const SmallView = (props) => {
 
     return (
         <div>
-            <div>{article.heading}</div>
+            {article.pictures[0] ? <img height="100px" align="left" src={article.pictures[0]}></img> : <img height="100px" align="left" src={haenchen}></img>}
+            <div><b>{article.heading}</b></div>
             <div>{article.description}</div>
-            <div>{article.price}</div>
-            <div>{article.startedOn}</div>
-            <div>{article.endsOn}</div>
+            <div>{article.price} €</div>
+            <div>Angeboten von: {article.sellerID}</div>
+            <div>Endet am: {article.endsOn}</div>
         </div>
         );
 }
