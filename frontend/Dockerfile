@@ -5,7 +5,7 @@ COPY SPA/package.json .
 RUN npm install
 COPY SPA/ .
 
-CMD ["npm", "run-script build"]
+CMD ["npm", "build"]
 
 FROM nginx:alpine
 COPY --from=builder /app/build/ /var/www
