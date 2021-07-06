@@ -1,6 +1,8 @@
 import React from 'react'
 import { Button, Navbar, NavDropdown, Nav, Form, FormControl, Container, Image } from 'react-bootstrap'
 import { propTypes } from 'react-bootstrap/esm/Image'
+import ReactDOM from 'react-dom';
+import App from './App';
 
 /**
  * @author
@@ -18,7 +20,16 @@ const Header = (props) => {
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="me-auto">
                         <Nav.Link href="#features">Angebot erstellen</Nav.Link>
-                        <Nav.Link href="#pricing">Chat</Nav.Link>
+                        <input type="button" className="chatButton" onClick={() => {
+                            ReactDOM.render(
+                                <React.StrictMode>
+                                    <App />
+                                </React.StrictMode>,
+                                document.getElementById('root')
+                              );
+                        }}>
+                            Chat
+                        </input>
                         <NavDropdown title="User" id="collasible-nav-dropdown">
                             <NavDropdown.Item href="#action/3.1">Login</NavDropdown.Item>
                             <NavDropdown.Divider />
