@@ -24,3 +24,5 @@ const SmallView = (props) => {
         </div>
         );
 }
+
+export default SmallView;
