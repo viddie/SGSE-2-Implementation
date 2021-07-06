@@ -20,16 +20,11 @@ const Header = (props) => {
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="me-auto">
                         <Nav.Link href="#features">Angebot erstellen</Nav.Link>
-                        <input type="button" className="chatButton" onClick={() => {
-                            ReactDOM.render(
-                                <React.StrictMode>
-                                    <App />
-                                </React.StrictMode>,
-                                document.getElementById('root')
-                              );
+                        <div className="chat_button" onClick={() => {
+                            alert("CHAT!");
                         }}>
-                            Chat
-                        </input>
+                            Chat-Test
+                        </div>
                         <NavDropdown title="User" id="collasible-nav-dropdown">
                             <NavDropdown.Item href="#action/3.1">Login</NavDropdown.Item>
                             <NavDropdown.Divider />
