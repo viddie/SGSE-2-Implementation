@@ -148,7 +148,7 @@ async function getUser(req, res, next){
 
 async function userTokenAcces(req, res, next){
     try{
-        user = await User.findOne({ID: req.params.id})
+        user = await User.findOne({ID: req.validUser.id})
 
         if(user == null){
             return res.status(404).json({message: 'Invalid User'})
@@ -161,14 +161,5 @@ async function userTokenAcces(req, res, next){
     next()
 }
 
-// function calcAverage(tempUser)
-// {
-//     if(amountOfStars > 0)
-//         return (5*tempUser.Five_Star+4*tempUser.Four_Star+
-//             3*tempUser.Three_Star+2*tempUser.Two_Star+tempUser.One_Star)/(tempUser.Five_Star+tempUser.Four_Star+
-//                 tempUser.Three_Star+tempUser.Two_Star+tempUser.One_Star) 
-//     else
-//         return 0
-// }
 
 module.exports = router
