@@ -1,5 +1,5 @@
 # Einfügen der jwt-Validation
-
+Vorher müsst ihr logischerweise noch das package.json anpassen für den npm install im Dockerfile
 ## Imports
 ```js
 const bodyParser = require('body-parser');
