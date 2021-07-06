@@ -48,3 +48,7 @@ Content-Type: application/json
 DELETE  http://sgse2.ad.fh-bielefeld.de/api/user/auth
 
 ###
+
+GET  http://sgse2.ad.fh-bielefeld.de/api/ratings/ratings
+content-Type: application/xml
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRyaXN0YW4iLCJyb2xlIjoiYWRtaW4iLCJpZCI6IjYwZTQ2MzE3ZWY1YTc2MDAxNGFjNjNiMCIsImVtYWlsIjoiaGVtcGlAY29kZXIuZGUiLCJpYXQiOjE2MjU1ODE4NzIsImV4cCI6MTYyNTU4MTkzMn0.VomwpElvUjLmGAKl92ew97DDmuDIj0ugwjbehjZkVEM
