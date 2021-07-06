@@ -2,7 +2,7 @@ import React from 'react'
 import { Button, Navbar, NavDropdown, Nav, Form, FormControl, Container, Image } from 'react-bootstrap'
 import { propTypes } from 'react-bootstrap/esm/Image'
 import ReactDOM from 'react-dom';
-import App from './App';
+import App from '../../chat/chat';
 
 /**
  * @author

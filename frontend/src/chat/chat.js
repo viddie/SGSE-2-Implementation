@@ -27,11 +27,6 @@ function ChatRoom() {
     const { receiver } = props.receiver;
     const dummy = useRef();
     
-    //const messagesRef = firestore.collection('messages');
-    //const query = messagesRef.orderBy('createdAt').limit(25);
-
-    //const [messages] = useCollectionData(query, { idField: 'id' });
-
     const [formValue, setFormValue] = useState('');
 
 
@@ -40,12 +35,6 @@ function ChatRoom() {
 
         const { uid, photoURL } = { user, image };
 
-        /*await messagesRef.add({
-            text: formValue,
-            createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-            uid,
-            photoURL
-        })*/
         const requestOptions = {
             method: 'POST',
             headers: {
