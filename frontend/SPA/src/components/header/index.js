@@ -15,7 +15,7 @@ const Header = (props) => {
         <Navbar collapseOnSelect expand="lg" bg="success" variant="dark">
             <Navbar sticky="top" />
             <Container>
-                <Navbar.Brand href="https://www.google.de/">Barter Smarter</Navbar.Brand>
+                <Navbar.Brand href="http://sgse2.ad.fh-bielefeld.de">Barter Smarter</Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="me-auto">
