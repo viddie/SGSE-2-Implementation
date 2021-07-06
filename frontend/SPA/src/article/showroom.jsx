@@ -15,7 +15,7 @@ const Showroom = () => {
 
   return (
       <div>
-        {articleIds}
+        {articleIds.map((id => <SmallView id={id}></SmallView>))}
       </div>
     );
 }
