@@ -3,8 +3,33 @@ const express = require("express")
 const router = express.Router()
 const User = require('../models/ratings')
 
+const bodyParser = require('body-parser');
+const jwt = require('jsonwebtoken');
+
+
+const accessTokenSecret = 'somerandomaccesstoken';
+
+const authenticateJWT = (req, res, next) => {
+    const authHeader = req.headers.authorization;
+
+    if (authHeader) {
+        const token = authHeader.split(' ')[1];
+
+        jwt.verify(token, accessTokenSecret, (err, user) => {
+            if (err) {
+                return res.sendStatus(403);
+            }
+
+            req.validUser = user;
+            next();
+        });
+    } else {
+        res.sendStatus(401);
+    }
+}
+
 // Getting all
-router.get('/', async (req,res) =>
+router.get('/', authenticateJWT, async (req,res) =>
 {
     try{
         const users = await User.find()
