@@ -1,9 +1,9 @@
 FROM node:10 AS builder
 
 WORKDIR /app
-COPY package.json /app/
+COPY SPA/package.json /app/
 RUN npm install
-COPY ./ /app/
+COPY SPA/ /app/
 
 CMD ["npm", "run-script build"]
 
