@@ -56,7 +56,7 @@ router.post('/send', authenticateJWT, async (req, res) =>
 {
     const message = new Message({
         id: req.body.id,
-        sender: req.body.id,//req.validUser.id,
+        sender: req.body.sender,//req.validUser.id,
         receiver: req.body.receiver,
         text: req.body.text,
         timestamp: req.body.timestamp
