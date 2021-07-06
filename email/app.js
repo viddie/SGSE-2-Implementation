@@ -31,7 +31,7 @@ app.post("/sendMessage",(req,res) => {
 })
 
 
-app.get("/newOffer",(req,res) => {
+app.get("/newOffer", async (req,res) => {
   res.send("email send")
   res_article = await axiosi.get("/offers/articles",{params: {id: req.query.id}})
   res_users = await axiosi.get("/user/auth")
@@ -46,7 +46,7 @@ app.get("/newOffer",(req,res) => {
   sendmail(correct_user.email,"Barter Smarter Angebot erstellt",correct_user.username)
 })
 
-app.get("/confirmOffer",(req,res) => {
+app.get("/confirmOffer",async (req,res) => {
   res.send("email send")
   res_article = await axiosi.get("/offers/articles",{params: {id: req.query.id}})
   res_users = await axiosi.get("/user/auth")
@@ -67,9 +67,3 @@ app.listen(port, () => {
 })
 
 
-async function test()
-{
-  console.log("Ich werde aufgerufen")
-}
-
-setInterval(checkAngebote,10000);
