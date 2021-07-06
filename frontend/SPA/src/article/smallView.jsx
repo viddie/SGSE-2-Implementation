@@ -12,7 +12,7 @@ const SmallView = (props) => {
         .then(res => res.json())
         .then(res => setArticle(res))
         .catch(() => setErrors(true))
-    });
+    }, []);
 
     return (
         <div>
