@@ -16,7 +16,7 @@ const SmallView = (props) => {
             setLoaded(true);
         })
         .catch(() => setErrors(true))
-    }, []);
+    }, [loaded]);
 
     if (loaded){
         return (
