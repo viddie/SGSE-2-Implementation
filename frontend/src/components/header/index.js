@@ -21,12 +21,7 @@ const Header = (props) => {
                     <Nav className="me-auto">
                         <Nav.Link href="#features">Angebot erstellen</Nav.Link>
                         <button className="chat_button" onClick={() => {
-                            ReactDOM.render(
-                                <React.StrictMode>
-                                    <App />
-                                </React.StrictMode>,
-                                document.getElementById('root')
-                              );
+                            alert("CHAT!");
                         }}>
                             Chat
                         </button>
