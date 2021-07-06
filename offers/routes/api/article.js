@@ -40,6 +40,7 @@ router.get('/article/findByTags', function (req, res, next) {
 
 router.get('/article/:id', function (req, res, next) {
     // Ausgabe des gefundenen Artikel
+    const id = req.params.id
     ArticleModel.find({_id : id}, (err, article) => {
         if (err) {
             return console.error(err);
