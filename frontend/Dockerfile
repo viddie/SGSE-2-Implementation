@@ -1,6 +1,5 @@
-FROM node:alpine
-WORKDIR '/app'
-COPY package.json .
-RUN npm install
-COPY . .
-CMD ["npm", "start"]
+FROM nginx:alpine
+COPY SPA/dist /var/www
+COPY nginx.conf /etc/nginx/nginx.conf
+
+ENTRYPOINT ["nginx","-g","daemon off;"]
