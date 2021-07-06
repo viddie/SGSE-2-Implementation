@@ -9,7 +9,7 @@ const Showroom = () => {
   useEffect(() =>{
       fetch("/api/offers/article/findByCategory?categories=household,%20electronics")
       .then(res => res.json())
-      .then(res => setArticleId(res))
+      .then(res => setArticleIds(res))
       .catch(() => setErrors(true))
   });
 
