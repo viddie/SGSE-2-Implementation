@@ -20,11 +20,11 @@ const Header = (props) => {
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="me-auto">
                         <Nav.Link href="#features">Angebot erstellen</Nav.Link>
-                        <button className="chat_button" onClick={() => {
+                        <div className="chat_button" onClick={() => {
                             alert("CHAT!");
                         }}>
-                            Chat
-                        </button>
+                            Chat-Test
+                        </div>
                         <NavDropdown title="User" id="collasible-nav-dropdown">
                             <NavDropdown.Item href="#action/3.1">Login</NavDropdown.Item>
                             <NavDropdown.Divider />
