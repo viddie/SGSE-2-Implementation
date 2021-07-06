@@ -5,7 +5,7 @@ COPY package.json .
 RUN npm install
 COPY . .
 
-CMD ["npm", "build"]
+RUN npm run-script build
 
 FROM nginx:alpine
 COPY --from=builder /app/build /var/www
