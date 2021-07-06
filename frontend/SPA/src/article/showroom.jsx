@@ -11,11 +11,11 @@ const Showroom = () => {
       .then(res => res.json())
       .then(res => setArticleIds(res))
       .catch(() => setErrors(true))
-  });
+  }, []);
 
   return (
       <div>
-        <SmallView id={articleIds[0]}></SmallView>
+        {articleIds.map((id => <SmallView id={id}></SmallView>))}
       </div>
     );
 }
