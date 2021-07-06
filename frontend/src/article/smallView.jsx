@@ -16,7 +16,7 @@ const SmallView = (props) => {
 
     return (
         <div>
-            {article.pictures ? <img height="100px" align="left" src={article.pictures[0]}></img> : <img height="100px" align="left" src={haenchen}></img>}
+            <img width="100px" align="left" src={haenchen}></img>
             <div><b>{article.heading}</b></div>
             <div>{article.description}</div>
             <div>{article.price} €</div>
