@@ -42,7 +42,12 @@ router.get('/:id', authenticateJWT, getMessage, (req,res) =>
     res.json(res.message)
 })
 
-router.get('/receive/:receiver/:sender', authenticateJWT, getUserSpecific, (req, res) =>
+router.get('/receive/:receiver', authenticateJWT, getUserSpecific, (req, res) =>
+{
+    res.json(res.messages)
+})
+
+router.get('/receive/:receiver/:sender', authenticateJWT, getSenderSpecific, (req, res) =>
 {
     res.json(res.messages)
 })
@@ -79,6 +84,21 @@ async function getMessage(req, res, next){
 }
 
 async function getUserSpecific(req, res, next) {
+    try{
+        messages = await Message.find({
+            receiver: req.params.receiver
+        })
+        if(messages == null){
+            return res.status(404).json({messages: 'Invalid Sender'})
+        }
+    } catch (err) {
+        return res.status(500).json({messages: err.message})
+    }
+    res.messages = messages
+    next()
+}
+
+async function getSenderSpecific(req, res, next) {
     try{
         messages = await Message.find({
             sender: req.params.sender,
