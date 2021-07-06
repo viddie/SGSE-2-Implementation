@@ -14,7 +14,7 @@ function App() {
       <Filter/>
       <BrowserRouter>
       <Switch>
-        <Route exact path='#/cool' component={showroom} />
+        <Route exact path='#/cool' component={showroom} /> 
         <Route exact path='#/hallo' component={random} />
       </Switch>
       </BrowserRouter>
