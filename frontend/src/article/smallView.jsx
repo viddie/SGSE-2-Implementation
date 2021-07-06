@@ -20,7 +20,7 @@ const SmallView = (props) => {
 
     if (loaded){
         return (
-            <div display={"grid"}>
+            <div display={"grid"} onclick={setLoaded(false)}>
                 {article.pictures[0] ? <img width="100px" align="left" src={article.pictures[0]}></img> :<img width="100px" align="left" src={haenchen}></img>}
                 <div><b>{article.heading}</b></div>
                 <div>{article.description}</div>
