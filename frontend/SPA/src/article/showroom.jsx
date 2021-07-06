@@ -4,12 +4,12 @@ import SmallView from "./smallView"
 const Showroom = () => {
   // Zustandsobjekte 
   const [hasError, setErrors] = useState(false);
-  const [articleId, setArticleId] = useState({});
+  const [articleIds, setArticleIds] = useState([]);
 
   useEffect(() =>{
       fetch("/api/offers/article/findByCategory?categories=household,%20electronics")
       .then(res => res.json())
-      .then(res => setArticleId({ articles: res }))
+      .then(res => setArticleId(res))
       .catch(() => setErrors(true))
   });
 
