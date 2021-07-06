@@ -21,8 +21,8 @@ const Header = (props) => {
                         <Nav.Link href="#features">Angebot erstellen</Nav.Link>
                         <a class="nav-link" id="chat-button" onClick={() => {
                             alert("This is a Cry for Help!");
-                            const app = document.querySelector('div.App');
-                            console.log(app)
+                            //const app = document.querySelector('div.App');
+                            //console.log(app)
                             //app.appendChild(Chat)
                         }}>Chat</a>
                         <NavDropdown title="User" id="collasible-nav-dropdown">
