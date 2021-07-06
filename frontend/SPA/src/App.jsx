@@ -12,7 +12,7 @@ function App() {
       <Header/>
       <div className = "mt-3">
       <Filter/>
-      <Showroom></Showroom>
+      <Showroom/>
       </div>
       <Footer/>
     </div>
