@@ -1,7 +1,6 @@
 import React from 'react'
 import { Button, Navbar, NavDropdown, Nav, Form, FormControl, Container, Image } from 'react-bootstrap'
 import { propTypes } from 'react-bootstrap/esm/Image'
-import Chat from '../../chat/chat';
 
 /**
  * @author
@@ -19,6 +18,7 @@ const Header = (props) => {
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="me-auto">
                         <Nav.Link href="#features">Angebot erstellen</Nav.Link>
+                        <Nav.Link href="#pricing">Chat Test 2</Nav.Link>
                         <NavDropdown title="User" id="collasible-nav-dropdown">
                             <NavDropdown.Item href="#action/3.1">Profil</NavDropdown.Item>
                             <NavDropdown.Divider />
