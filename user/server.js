@@ -6,7 +6,12 @@ const bodyParser = require('body-parser');
 
 const PORT = 7070;
 
-mongoose.connect('mongodb://mongo:27017/auth',  {useUnifiedTopology: true } , { useNewUrlParser: true } )
+mongoose.connect("mongodb://172.17.0.12:27017", {
+    "auth": { "authSource": "admin" },
+    "user": "root",
+    "pass": "passwort123!",
+    //"useMongoClient": true
+});
 const db = mongoose.connection
 db.on('error', (error) => console.log(error))
 db.once('open', () => console.log('Connected succesfully'))
