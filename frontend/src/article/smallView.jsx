@@ -4,7 +4,7 @@ import haenchen from './wurm.jpg'
 const SmallView = (props) => {
 
     // Zustandsobjekte
-    const [loaded, setLoades] = useState(false);
+    const [loaded, setLoaded] = useState(false);
     const [hasError, setErrors] = useState(false);
     const [article, setArticle] = useState({});
 
@@ -16,7 +16,7 @@ const SmallView = (props) => {
             setLoaded(true);
         })
         .catch(() => setErrors(true))
-    }, [loaded]);
+    }, []);
 
     if (loaded){
         return (
