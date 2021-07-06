@@ -32,6 +32,7 @@ app.post("/sendMessage",(req,res) => {
 
 
 app.get("/newOffer",(req,res) => {
+  res.send("email send")
   res_article = await axiosi.get("/offers/articles",{params: {id: req.query.id}})
   res_users = await axiosi.get("/user/auth")
   let correct_user;
@@ -46,6 +47,7 @@ app.get("/newOffer",(req,res) => {
 })
 
 app.get("/confirmOffer",(req,res) => {
+  res.send("email send")
   res_article = await axiosi.get("/offers/articles",{params: {id: req.query.id}})
   res_users = await axiosi.get("/user/auth")
   let correct_user;
