@@ -13,7 +13,8 @@
     "chai": "^4.3.4",
     "express": "^4.17.1",
     "mocha": "^9.0.2",
-    "mongoose": "^5.13.0"
+    "mongoose": "^5.13.0",
+    "jsonwebtoken": "^8.5.1"
   },
   "devDependencies": {
     "dotenv": "^10.0.0",
