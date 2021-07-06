@@ -1,6 +1,7 @@
 import React from 'react'
 import { Button, Navbar, NavDropdown, Nav, Form, FormControl, Container, Image } from 'react-bootstrap'
 import { propTypes } from 'react-bootstrap/esm/Image'
+import Chat from '../../chat/chat';
 
 /**
  * @author
