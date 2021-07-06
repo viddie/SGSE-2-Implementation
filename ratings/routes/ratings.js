@@ -41,12 +41,12 @@ router.get('/', authenticateJWT, async (req,res) =>
 })
 
 // Getting one
-router.get('/UserID/:id', getUser, (req,res) =>
+router.get('/UserID/:id',authenticateJWT, getUser, (req,res) =>
 {
     res.json(res.user)
 })
 
-router.post("/CreateUser/:id", async (req,res) =>
+router.post("/CreateUser/:id",authenticateJWT, async (req,res) =>
 {
     const user = new User({
         ID: req.params.id 
@@ -73,7 +73,7 @@ router.post("/CreateUser/:id", async (req,res) =>
     }
 })
 
-router.patch('/UserID/:id/Rating/:star_num', getUser, async (req,res) =>
+router.patch('/UserID/:id/Rating/:star_num',authenticateJWT, getUser, async (req,res) =>
 {
     if(req.params.star_num == "1"){
         try{
@@ -132,7 +132,7 @@ router.patch('/UserID/:id/Rating/:star_num', getUser, async (req,res) =>
     }
 })
 
-router.delete('/:id', getUser, async (req,res) =>
+router.delete('/:id',authenticateJWT, getUser, async (req,res) =>
 {
     try{
         await res.user.remove()
