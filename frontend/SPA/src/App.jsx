@@ -1,21 +1,35 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Header from "./components/header";
+import HeaderIn from "./components/headerLoggedIn";
+import HeaderOut from "./components/headerLoggedOut"
 import Filter from './components/filter';
 import Footer from './components/footer';
 import Showroom from './article/showroom';
+import {Switch, BrowserRouter, Route} from 'react-router-dom'
 
 function App() {
   return (
     <div className="App">
-      <Header/>
+      <HeaderIn/>
       <div className = "mt-3">
       <Filter/>
-      <Showroom/>
+      <BrowserRouter>
+      <Switch>
+        <Route exact path='/cool' component={showroom} />
+        <Route exact path='/hallo' component={random} />
+      </Switch>
+      </BrowserRouter>
       </div>
       <Footer/>
     </div>
   );
 }
+
+const showroom = () => (
+  <Showroom/>
+)
+const random = () => (
+  <HeaderOut/>
+)
 
 export default App;
