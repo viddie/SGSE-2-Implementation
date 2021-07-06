@@ -17,7 +17,8 @@ router.get('/article/findByCategory', function (req, res, next) {
         if (err) {
             return console.error(err);
         } else {
-            res.status(200).json(articles);
+            idList = articles.map(element => element._id)
+            res.status(200).json(idList);
         }
     });
 });
