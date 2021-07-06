@@ -23,6 +23,32 @@ router.get('/article/findByCategory', function (req, res, next) {
     });
 });
 
+router.get('/article/findByTags', function (req, res, next) {
+    // Suche nach Tags
+    let tags = req.query.tags.split(',');
+    tags = tags.map(e => e.trim().toLowerCase());
+    // Ausgabe der gefundenen Artikel
+    ArticleModel.find({tags : tags}, (err, articles) => {
+        if (err) {
+            return console.error(err);
+        } else {
+            idList = articles.map(element => element._id)
+            res.status(200).json(idList);
+        }
+    });
+});
+
+router.get('/article/:id', function (req, res, next) {
+    // Ausgabe des gefundenen Artikel
+    ArticleModel.find({_id : id}, (err, article) => {
+        if (err) {
+            return console.error(err);
+        } else {
+            res.status(200).json(article[0]);
+        }
+    });
+});
+
 // Ändere einen Artikel
 router.put('/article', upload.any(), function (req, res) {
     // Es muss überprüft werden, ob der Nutzer zur Änderung berechtigt ist, also Inhaber des Angebotes ist
@@ -128,7 +154,7 @@ router.post('/article', upload.any(), function (req, res) {
                 if (req.body.tags){
                     tagsString = req.body.tags;
                     tagsArray = tagsString.split(',');
-                    article.tags = tagsArray.map(el => el.trim());
+                    article.tags = tagsArray.map(el => el.trim().toLowerCase());
                 };
                 base64images = []
                 
