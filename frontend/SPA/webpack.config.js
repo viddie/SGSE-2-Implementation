@@ -47,7 +47,7 @@ module.exports = {
         ],
     },
     output: {
-        path: path.resolve(__dirname, 'dist'), // string
+        path: path.resolve(__dirname, 'build'), // string
         filename: '[name].js'
 
     }
