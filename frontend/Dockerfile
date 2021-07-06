@@ -1,14 +1,14 @@
 FROM node:10 AS builder
 
 WORKDIR /app
-COPY SPA/package.json /app/
+COPY package.json .
 RUN npm install
-COPY SPA/ /app/
+COPY . .
 
-CMD ["npm", "run-script build"]
+RUN npm run-script build
 
 FROM nginx:alpine
-COPY --from=builder /app/build/ /var/www
-COPY --from=builder /nginx.conf /etc/nginx/nginx.conf
+COPY --from=builder /app/build /var/www
+COPY --from=builder /app/nginx.conf /etc/nginx/nginx.conf
 
 ENTRYPOINT ["nginx","-g","daemon off;"]
