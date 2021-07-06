@@ -1,5 +1,4 @@
 import './App.css';
-import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from "./components/header";
 import Filter from './components/filter';
