@@ -4,7 +4,7 @@ WORKDIR /app
 COPY SPA .
 RUN npm install
 
-RUN npm run-script build
+CMD ["npm", "run-script build"]
 
 FROM nginx:alpine
 COPY --from=builder /app/dist /var/www
