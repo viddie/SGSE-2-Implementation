@@ -2,9 +2,31 @@ const { json } = require("express")
 const express = require("express")
 const router = express.Router()
 const Message = require('../models/message')
+const jwt = require('jsonwebtoken')
+
+const accessTokenSecret = 'somerandomaccesstoken';
+
+const authenticateJWT = (req, res, next) => {
+    const authHeader = req.headers.authorization;
+
+    if (authHeader) {
+        const token = authHeader.split(' ')[1];
+
+        jwt.verify(token, accessTokenSecret, (err, user) => {
+            if (err) {
+                return res.sendStatus(403);
+            }
+
+            req.validUser = user;
+            next();
+        });
+    } else {
+        res.sendStatus(401);
+    }
+}
 
 // Getting all
-router.get('/', async (req,res) =>
+router.get('/', authenticateJWT, async (req,res) =>
 {
     try{
         const messages = await Message.find()
@@ -15,21 +37,21 @@ router.get('/', async (req,res) =>
 })
 
 // Getting one
-router.get('/:id', getMessage, (req,res) =>
+router.get('/:id', authenticateJWT, getMessage, (req,res) =>
 {
     res.json(res.message)
 })
 
-router.get('/receive/:receiver/:sender', getUserSpecific, (req, res) =>
+router.get('/receive/:receiver/:sender', authenticateJWT, getUserSpecific, (req, res) =>
 {
     res.json(res.messages)
 })
 
-router.post('/send', async (req, res) =>
+router.post('/send', authenticateJWT, async (req, res) =>
 {
     const message = new Message({
         id: req.body.id,
-        sender: req.body.sender,
+        sender: req.validUser.id,
         receiver: req.body.receiver,
         text: req.body.text,
         timestamp: req.body.timestamp

@@ -2,13 +2,36 @@ const { json } = require("express")
 const express = require("express")
 const router = express.Router()
 const Configuration = require('../models/configuration')
+const jwt = require('jsonwebtoken')
 
-router.get('/:userID', getConfig, (req,res) =>
+
+const accessTokenSecret = 'somerandomaccesstoken';
+
+const authenticateJWT = (req, res, next) => {
+    const authHeader = req.headers.authorization;
+
+    if (authHeader) {
+        const token = authHeader.split(' ')[1];
+
+        jwt.verify(token, accessTokenSecret, (err, user) => {
+            if (err) {
+                return res.sendStatus(403);
+            }
+
+            req.validUser = user;
+            next();
+        });
+    } else {
+        res.sendStatus(401);
+    }
+}
+
+router.get('/:userID', authenticateJWT, getConfig, (req,res) =>
 {
     res.json(res.config)
 })
 
-router.post('/', async (req, res) =>
+router.post('/', authenticateJWT, async (req, res) =>
 {
     const config = new Configuration({
         id: req.body.id,
@@ -27,7 +50,7 @@ router.post('/', async (req, res) =>
     }
 })
 
-router.patch('/:userID', getConfig, async (req,res) =>
+router.patch('/:userID', authenticateJWT, getConfig, async (req,res) =>
 {
     if (req.body.allowMessages != null) {
         res.configuration.allowMessages = req.body.allowMessages
