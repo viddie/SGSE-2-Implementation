@@ -19,7 +19,7 @@ const Header = (props) => {
                     <Nav className="me-auto">
                         <Nav.Link href="#features">Angebot erstellen</Nav.Link>
                         <Nav.Link href="#pricing">Chat</Nav.Link>
-                        <NavDropdown title="Profil" id="collasible-nav-dropdown">
+                        <NavDropdown title="User" id="collasible-nav-dropdown">
                             <NavDropdown.Item href="#action/3.1">Login</NavDropdown.Item>
                             <NavDropdown.Divider />
                             <NavDropdown.Item href="#action/3.2">Sign Up</NavDropdown.Item>
