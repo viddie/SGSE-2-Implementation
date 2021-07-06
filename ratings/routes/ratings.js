@@ -59,19 +59,6 @@ router.post("/CreateUser/:id",authenticateJWT, async (req,res) =>
         res.status(400).json({message: err.message})
     }
 })
-router.post("/CreateUser/:id", async (req,res) =>
-{
-    const user = new User({
-        ID: req.params.id 
-    })
-
-    try{
-        const newUser = await user.save()
-        res.status(201).json(newUser)
-    }catch(err){
-        res.status(400).json({message: err.message})
-    }
-})
 
 router.patch('/UserID/:id/Rating/:star_num',authenticateJWT, getUser, async (req,res) =>
 {
