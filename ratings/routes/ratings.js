@@ -46,10 +46,10 @@ router.get('/UserID/:id',authenticateJWT, getUser, (req,res) =>
     res.json(res.user)
 })
 
-router.post("/CreateUser/:id",authenticateJWT, async (req,res) =>
+router.post("/CreateUser",authenticateJWT, async (req,res) =>
 {
     const user = new User({
-        ID: req.params.id 
+        ID: req.validUser.id 
     })
 
     try{
