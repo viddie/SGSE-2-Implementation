@@ -11,7 +11,7 @@ const Showroom = () => {
       .then(res => res.json())
       .then(res => setArticleIds(res))
       .catch(() => setErrors(true))
-  });
+  }, []);
 
   return (
       <div>

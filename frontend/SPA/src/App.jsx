@@ -3,7 +3,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import HeaderIn from "./components/headerLoggedIn";
 import HeaderOut from "./components/headerLoggedOut"
 import Filter from './components/filter';
-import Footer from './components/footer';
 import Showroom from './article/showroom';
 import {Switch, BrowserRouter, Route} from 'react-router-dom'
 
@@ -20,7 +19,6 @@ function App() {
       </Switch>
       </BrowserRouter>
       </div>
-      <Footer/>
     </div>
   );
 }

@@ -37,6 +37,13 @@ module.exports = {
                 use: ['babel-loader'],
                 exclude: [/node_modules/],
             },
+            {
+                test: /\.jpg$/,
+                loader: 'file-loader',
+                options: {
+                    name: '[name].[ext]',
+                },
+            }
         ],
     },
     output: {
