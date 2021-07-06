@@ -9,9 +9,9 @@ import './chat.css';
 const image = "https://www.linusakesson.net/programming/kernighans-lever/cat.png"
 
 
-function App() {
+function Chat() {
     return (
-        <div className="App">
+        <div className="Chat">
             <header>
                 <h1>Name of Chat Partner</h1>
                 <div>Options</div>
@@ -24,7 +24,7 @@ function App() {
 }
 
 function ChatRoom() {
-    const { receiver } = props.receiver;
+    const { receiver, token } = props;
     const dummy = useRef();
     
     const [formValue, setFormValue] = useState('');
@@ -98,4 +98,4 @@ function ChatMessage(props) {
     );
 }
 
-export default App
+export default Chat
