@@ -118,35 +118,10 @@ function getMessages(other_user, token) {
     var data2 = ApiCall(other_user, this_user);
     var data = []
     
-    if (data1 != null && data1.length == 0) {
-        if (data2 != null && data2.length != 0) {
-            data = data2;
-        }
-    } else {
-        if (data2 != null && data2.length == 0) {
-            data = data1;
-        } else {
-            Promise.all([data1, data2]).then(function(val) {
-                data = [...val[0],...val[1]]
-            });
-            /*data = [...data1, ...data2];
-            
-            console.log("ALL GLORY TO THE DATA!");
-            console.log(data1);
-            console.log(data2);
-            console.log(data);
+    Promise.all([data1, data2]).then(function(val) {
+        data = [...val[0],...val[1]]
+    });
 
-            function compareTimestamps(a, b) {
-                a = a.toLowerCase();
-                b = b.toLowerCase();
-                return (a<b)?-1:(a>b)?1:0;
-            }
-
-            data.sort( function(a, b) {
-                return compareTimestamps(a.timestamp, b.timestamp);
-            }); */
-        }
-    }
     return data;
 }
 
