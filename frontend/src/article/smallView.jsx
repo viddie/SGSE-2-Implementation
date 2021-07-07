@@ -27,7 +27,10 @@ function SmallArticle(props) {
           className="justify-content-md-center"
         >
           <Col>
-            <img width="150px" alt="tick" src={haenchen}></img>
+          {props.article.pictures[0] ?
+            <img width="150px" alt="tick" src={props.article.pictures[0]}></img> : <img width="150px" alt="tick" src={haenchen}></img>  
+          }
+            
           </Col>
           <Col xs align="left">
             <Row>
@@ -35,18 +38,80 @@ function SmallArticle(props) {
                 {props.article.heading}
               </b>
             </Row>
-            <Row>Angeboten von: {props.article.sellerID}</Row>
-            <Row>Endet am: {props.article.endsOn}</Row>
+            <Row><b>Angeboten von: </b>{props.article.sellerID}</Row>
+            <Row><b>Angeboten seit: </b>{props.article.startedOn}</Row>
+            <Row><b>Endet am:</b> {props.article.endsOn}</Row>
           </Col>
           <Col className="d-flex justify-content-center">
             <b className="center-block" col-xs-1 style={{ fontSize: "30px" }}>
               {props.article.price} €{" "}
             </b>
           </Col>
+          {hoover.expanded ? (
+          <Container>
+            <Row>
+              <Col>
+                <b> Beschreibung </b>
+                <div>{props.article.description}</div>
+                <b> Verkäufer </b>
+                <div style={{ fontStyle: "italic" }}>
+                  {props.article.sellerID}
+                </div>
+                <div float="left">
+                  <text>Bewertung:</text>
+                  <RatingStars></RatingStars>
+                </div>
+              </Col>
+              <Col style={{ display: "flex", alignItems: "center" }}>
+                <Button size="lg" block>
+                  Anbieter kontaktieren
+                </Button>
+              </Col>
+            </Row>
+          </Container>
+        ) : null}
         </Row>
       </ListGroup.Item>
     );
   }
+
+function RatingStars(props) {
+  return (
+    <svg height="10px" width="100px">
+      <RatingStar fill={true} offset={5} />
+      <RatingStar fill={true} offset={15} />
+      <RatingStar fill={true} offset={25} />
+      <RatingStar fill={true} offset={35} />
+      <RatingStar fill={true} offset={45} />
+    </svg>
+  );
+}
+  
+function RatingStar(props) {
+  if (props.fill) {
+    return (
+      <circle
+        cx={15 + props.offset}
+        cy="5"
+        r="4"
+        stroke="black"
+        stroke-width="1"
+        fill="orange"
+      />
+    );
+  } else {
+    return (
+      <circle
+        cx={5 + props.offset}
+        cy="5"
+        r="4"
+        stroke="black"
+        stroke-width="1"
+        fill="white"
+      />
+    );
+  }
+}
 
 const SmallView = (props) => {
 
