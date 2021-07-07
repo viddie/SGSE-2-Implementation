@@ -17,21 +17,18 @@ function App() {
         <Route exact path='/'>
           <Showroom categories={["all"]}/>
         </Route>
-        <Route exact path='/#login'>
+        <Route exact path='/login'>
           <Login></Login>
         </Route>
-        <Route exact path='/#createAccount'/>
+        <Route exact path='/chat'>
+          <Chat></Chat>
+        </Route>
+        <Route exact path='/createAccount'/>
       </Switch>
       </BrowserRouter>
       </div>
     </div>
   );
 }
-const random = () => (
-  <HeaderOut/>
-)
-const chatroom = () => (
-  <Chat/>
-)
 
 export default App;
