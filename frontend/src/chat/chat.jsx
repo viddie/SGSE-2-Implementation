@@ -33,11 +33,7 @@ function ChatRoom(props) {
     
     const [formValue, setFormValue] = useState('');
 
-    const getConvo = async () => {
-        const data = await getMessages(receiver, token);
-        return data;
-    }
-    const messages = getConvo();
+    const messages = getMessages(receiver, token);
 
 
     console.log("ChatRoom: [messages]");
@@ -114,46 +110,41 @@ function ChatMessage(props) {
     );
 }
 
-const getMessages = async (other_user, token) => {
+function getMessages(other_user, token) {
     //var this_user = extract_username_from_token(token);
     var this_user = token;
 
-    const apiCall = async () => {
-        var data1 = await ApiCall(this_user, other_user);
-        var data2 = await ApiCall(other_user, this_user);
-        var data = []
+    var data1 = ApiCall(this_user, other_user);
+    var data2 = ApiCall(other_user, this_user);
+    var data = []
     
-        if (data1 != undefined && data1.length == 0) {
-            if (data2 != undefined && data2.length != 0) {
-                data = data2;
-            }
-        } else {
-            if (data2 != undefined && data2.length == 0) {
-                data = data1;
-            } else {
-                data = [data1, data2];
-                /*data = [...data1, ...data2];
-                
-                console.log("ALL GLORY TO THE DATA!");
-                console.log(data1);
-                console.log(data2);
-                console.log(data);
-    
-                function compareTimestamps(a, b) {
-                    a = a.toLowerCase();
-                    b = b.toLowerCase();
-                    return (a<b)?-1:(a>b)?1:0;
-                }
-    
-                data.sort( function(a, b) {
-                    return compareTimestamps(a.timestamp, b.timestamp);
-                }); */
-            }
+    if (data1 != undefined && data1.length == 0) {
+        if (data2 != undefined && data2.length != 0) {
+            data = data2;
         }
-        return data;
+    } else {
+        if (data2 != undefined && data2.length == 0) {
+            data = data1;
+        } else {
+            data = [data1, data2];
+            /*data = [...data1, ...data2];
+            
+            console.log("ALL GLORY TO THE DATA!");
+            console.log(data1);
+            console.log(data2);
+            console.log(data);
+
+            function compareTimestamps(a, b) {
+                a = a.toLowerCase();
+                b = b.toLowerCase();
+                return (a<b)?-1:(a>b)?1:0;
+            }
+
+            data.sort( function(a, b) {
+                return compareTimestamps(a.timestamp, b.timestamp);
+            }); */
+        }
     }
-    
-    const data = apiCall();
     return data;
 }
 
@@ -164,7 +155,8 @@ function ApiCall(user1, user2) {
         return json;
     }
     
-    return request();
+    const data = request();
+    return data;
 }
 
 export default Chat
