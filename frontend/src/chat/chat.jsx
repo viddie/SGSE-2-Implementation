@@ -113,57 +113,47 @@ function getMessages(other_user, token) {
     var data2 = ApiCall(other_user, this_user);
     var data = []
 
-    if (data1.length == 0) {
-        if (data2.length != 0) {
+    if (data1 != undefined && data1.length == 0) {
+        if (data2 != undefined && data2.length != 0) {
             data = data2;
         }
     } else {
-        if (data2.length == 0) {
+        if (data2 != undefined && data2.length == 0) {
             data = data1;
         } else {
             data = [...data1, ...data2];
+            
+            console.log("ALL GLORY TO THE DATA!");
+            console.log(data1);
+            console.log(data2);
+            console.log(data);
+
+            function compareTimestamps(a, b) {
+                a = a.toLowerCase();
+                b = b.toLowerCase();
+                return (a<b)?-1:(a>b)?1:0;
+            }
+
+            data.sort( function(a, b) {
+                return compareTimestamps(a.timestamp, b.timestamp);
+            });
         }
     }
-
-    console.log("ALL GLORY TO THE DATA!");
-    console.log(data1);
-    console.log(data2);
-    console.log(data);
-
-    function compareTimestamps(a, b) {
-        a = a.toLowerCase();
-        b = b.toLowerCase();
-        return (a<b)?-1:(a>b)?1:0;
-    }
-
-    data.sort( function(a, b) {
-        return compareTimestamps(a.timestamp, b.timestamp);
-    });
 
     return data;
 }
 
 function ApiCall(user1, user2) {
-    var data_r
+    const request = async () => {
+        const response = await fetch(`http://sgse2.ad.fh-bielefeld.de/api/chat/messages/receive/${user1}/${user2}`, {method: 'GET'});
+        const json = await response.json();
+        console.log("does data exist and if so, can it feel?");
+        console.log(json);
 
-    async function getData(url = '') {
-        const response = await fetch(url, {
-            method: 'GET'
-        });
-        return response.json();
+        return json;
     }
-
-    getData(`http://sgse2.ad.fh-bielefeld.de/api/chat/messages/receive/${user1}/${user2}`)
-        .then(data => {
-            console.log("does data exist and if so, can it feel?");
-            console.log(data);
-            data_r = data;
-        });
-
-    console.log("DEBUG: data_r");
-    console.log(data_r);
-
-    return data_r
+    
+    return request();
 }
 
 export default Chat
