@@ -32,7 +32,7 @@ function SmallArticle(props) {
         >
           <Col>
           {props.article.pictures[0] ?
-            <Image width="150px" alt="tick" src={props.article.pictures[0]}></Image> : <Image width="150px" maxHeight="150px" alt="tick" src={haenchen}></Image>  
+            <Image width="150px" rounded alt="tick" src={props.article.pictures[0]}></Image> : <Image width="150px" maxHeight="150px" rounded alt="tick" src={haenchen}></Image>  
           }
             
           </Col>
@@ -50,7 +50,7 @@ function SmallArticle(props) {
               <b>Angeboten seit: </b>
               <div>{props.article.startedOn}</div>
               </Row>
-            <Row><b>Endet am:</b> {props.article.endsOn}</Row>
+            <Row><b>Endet am:</b> <div>{props.article.endsOn}</div></Row>
           </Col>
           <Col className="d-flex justify-content-center">
             <b className="center-block" style={{ fontSize: "30px" }}>
@@ -68,7 +68,7 @@ function SmallArticle(props) {
                     {props.article.sellerID}
                   </div>
                   <div float="left">
-                    <text>Bewertung:</text>
+                    <div>Bewertung:</div>
                     <RatingStars></RatingStars>
                   </div>
                 </Col>
