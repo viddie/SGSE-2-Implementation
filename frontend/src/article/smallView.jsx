@@ -26,11 +26,13 @@ const SmallView = (props) => {
                         {article.pictures[0] ? <img width="100px" align="left" src={article.pictures[0]}></img> :<img width="100px" align="left" src={haenchen}></img>}
                     </Col>
                     <Col>
-                        <div><b>{article.heading}</b></div>
-                        <div>{article.description}</div>
-                        <div>{article.price} €</div>
-                        <div>Angeboten von: {article.sellerID}</div>
-                        <div>Endet am: {article.endsOn}</div>
+                        <ListGroup>
+                        <ListGroup.Item><b>{article.heading}</b></ListGroup.Item>
+                        <ListGroup.Item>{article.description}</ListGroup.Item>
+                        <ListGroup.Item>{article.price} €</ListGroup.Item>
+                        <ListGroup.Item>Angeboten von: {article.sellerID}</ListGroup.Item>
+                        <ListGroup.Item>Endet am: {article.endsOn}</ListGroup.Item>
+                        </ListGroup>
                     </Col>
                     </Row>
             </Container>
