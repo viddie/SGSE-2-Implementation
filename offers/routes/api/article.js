@@ -13,7 +13,6 @@ router.get('/article/findByCategory', function (req, res, next) {
     // Wird nur der Parameter "all" verwendet, werden alle zurückgeben
     let categories = req.query.categories.split(',');
     categories = categories.map(e => e.trim());
-    const searchObject = {};
     if (categories[0] == "all") {
         ArticleModel.find({}, (err, articles) => {
             if (err) {
