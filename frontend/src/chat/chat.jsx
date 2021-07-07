@@ -160,17 +160,16 @@ function ApiCall(user1, user2) {
             console.log(data);
             data_r = data;
         });*/
-    fetch(`http://sgse2.ad.fh-bielefeld.de/api/chat/messages/receive/${user1}/${user2}`, {
-        method: 'GET'
-    })
-        .then(response => {
-            return response.json();
-        })
-        .then(parsedResponse => {
-            console.log("does data exist and if so, can it feel?");
-            console.log(parsedResponse);
-            data_r = parsedResponse;
-        })
+
+    const request = async () => {
+        const response = await fetch(`http://sgse2.ad.fh-bielefeld.de/api/chat/messages/receive/${user1}/${user2}`, {method: 'GET'});
+        const json = await response.json();
+        console.log("does data exist and if so, can it feel?");
+        console.log(json);
+        data_r = json;
+    }
+    
+    request();
 
     console.log("DEBUG: data_r");
     console.log(data_r);
