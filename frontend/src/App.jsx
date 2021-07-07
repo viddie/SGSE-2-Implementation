@@ -17,10 +17,10 @@ function App() {
         <Route exact path='/'>
           <Showroom categories={["all"]}/>
         </Route>
-        <Route exact path='/login'>
+        <Route exact path='/#login'>
           <Login></Login>
         </Route>
-        <Route exact path='/chat'>
+        <Route exact path='/#chat'>
           <Chat></Chat>
         </Route>
         <Route exact path='/createAccount'/>
