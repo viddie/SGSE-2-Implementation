@@ -35,6 +35,9 @@ function ChatRoom(props) {
 
     const [messages] = getMessages(receiver, token);
 
+    console.log("ChatRoom: [messages]");
+    console.log(messages);
+
     const sendMessage = async (e) => {
         e.preventDefault();
 
@@ -127,7 +130,7 @@ function getMessages(other_user, token) {
             console.log(data1);
             console.log(data2);
             console.log(data);
-/*
+
             function compareTimestamps(a, b) {
                 a = a.toLowerCase();
                 b = b.toLowerCase();
@@ -136,7 +139,7 @@ function getMessages(other_user, token) {
 
             data.sort( function(a, b) {
                 return compareTimestamps(a.timestamp, b.timestamp);
-            });*/
+            });
         }
     }
 
