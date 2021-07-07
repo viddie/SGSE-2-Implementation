@@ -37,8 +37,9 @@ const Login = (props) => {
                 setPassword("");
                 setUsername("");
               } else {
-                sessionStorage.setItem('accessToken', res.body.accessToken);
-                sessionStorage.setItem('refreshToken', res.body.refreshToken);
+                    token = JSON.stringify(res.body);
+                    sessionStorage.setItem('accessToken', token.accessToken);
+                    sessionStorage.setItem('refreshToken', token.refreshToken);
               }
           })
           .catch(()=>{
@@ -70,11 +71,6 @@ const Login = (props) => {
             Login
             </Button>
         </Form>
-        {error &&
-            <Alert variant={"warning"}>
-                Passwort oder Benutzername falsch!
-            </Alert>
-        }
         </Container>
     )
 }
