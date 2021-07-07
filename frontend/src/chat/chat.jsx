@@ -103,7 +103,11 @@ function ChatMessage(props) {
 function getMessages(other_user, token) {
     //var this_user = extract_username_from_token(token);
     var this_user = token;
-    var data = ApiCall(this_user, other_user).push(ApiCall(other_user, this_user));
+    var data = ApiCall(this_user, other_user)
+
+    console.log(data)
+
+    data.push(ApiCall(other_user, this_user));
 
     console.log(data)
 
