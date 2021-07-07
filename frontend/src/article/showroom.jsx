@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { ListGroup } from "react-bootstrap";
+import { Container, ListGroup } from "react-bootstrap";
 import SmallView from "./smallView"
 
 const Showroom = (props) => {
@@ -16,9 +16,11 @@ const Showroom = (props) => {
   }, []);
 
   return (
+    <Container style={{ maxWidth: "60%", minWidth: "600px" }}>
       <ListGroup>
         {articleIds.map((id => <SmallView id={id} key={id}></SmallView>))}
       </ListGroup>
+    </Container>
     );
 }
 
