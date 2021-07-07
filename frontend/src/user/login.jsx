@@ -37,7 +37,8 @@ const Login = (props) => {
                 setPassword("");
                 setUsername("");
               } else {
-                    token = JSON.stringify(res.body);
+                  console.log(res.body)
+                    token = res.body.json();
                     sessionStorage.setItem('accessToken', token.accessToken);
                     sessionStorage.setItem('refreshToken', token.refreshToken);
               }
@@ -49,6 +50,11 @@ const Login = (props) => {
     
     return(
         <Container className="m-auto" style={{maxWidth: "60%"}} >
+        {error &&
+            <Alert variant={"warning"}>
+                Passwort oder Benutzername falsch!
+            </Alert>
+        }
         <Form onSubmit={handleSubmit}>
             <Form.Group size="lg" controlId="username">
             <Form.Label>Benutzername</Form.Label>
