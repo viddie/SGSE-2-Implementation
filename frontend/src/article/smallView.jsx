@@ -20,14 +20,20 @@ const SmallView = (props) => {
 
     if (loaded){
         return (
-            <div display={"grid"} >
-                {article.pictures[0] ? <img width="100px" align="left" src={article.pictures[0]}></img> :<img width="100px" align="left" src={haenchen}></img>}
-                <div><b>{article.heading}</b></div>
-                <div>{article.description}</div>
-                <div>{article.price} €</div>
-                <div>Angeboten von: {article.sellerID}</div>
-                <div>Endet am: {article.endsOn}</div>
-            </div>
+            <Container>
+                <Row>
+                    <Col>
+                        {article.pictures[0] ? <img width="100px" align="left" src={article.pictures[0]}></img> :<img width="100px" align="left" src={haenchen}></img>}
+                    </Col>
+                    <Col>
+                        <div><b>{article.heading}</b></div>
+                        <div>{article.description}</div>
+                        <div>{article.price} €</div>
+                        <div>Angeboten von: {article.sellerID}</div>
+                        <div>Endet am: {article.endsOn}</div>
+                    </Col>
+                    </Row>
+            </Container>
             );
     } else {
         return null
