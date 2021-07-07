@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Container, ListGroup } from "react-bootstrap";
-import SmallView from "./smallView"
-import { Link } from 'react-router-dom';
 
 const Showroom = (props) => {
   // Zustandsobjekte 

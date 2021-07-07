@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Container, Row, Col, ListGroup, Image, Button } from "react-bootstrap";
+import SmallView from "./smallView"
+import { Link } from 'react-router-dom';
 import haenchen from './wurm.jpg'
 
 function SmallArticle(props) {
@@ -106,7 +108,7 @@ function RatingStar(props) {
         cy="5"
         r="4"
         stroke="black"
-        stroke-width="1"
+        strokeWidth="1"
         fill="orange"
       />
     );
@@ -117,7 +119,7 @@ function RatingStar(props) {
         cy="5"
         r="4"
         stroke="black"
-        stroke-width="1"
+        strokeWidth="1"
         fill="white"
       />
     );
