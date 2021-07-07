@@ -17,7 +17,7 @@ function Chat() {
                 <div>Options</div>
             </header>
             <section>
-                <ChatRoom/>
+                <div>chatroom?</div>
             </section>
         </div>
     );
