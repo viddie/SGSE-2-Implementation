@@ -126,6 +126,8 @@ function getMessages(other_user, token) {
     }
 
     console.log("ALL GLORY TO THE DATA!");
+    console.log(data1);
+    console.log(data2);
     console.log(data);
 
     function compareTimestamps(a, b) {
@@ -155,6 +157,9 @@ function ApiCall(user1, user2) {
         .then(data => {
             data_r = data;
         });
+
+    console.log("DEBUG: data_r");
+    console.log(data_r);
 
     return data_r
 }
