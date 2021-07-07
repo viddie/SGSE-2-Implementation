@@ -6,27 +6,22 @@ import haenchen from './wurm.jpg'
 function SmallArticle(props) {
   const [hoover, setHoover] = useState({
     expanded: false,
-    background: "white",
-    cursor: "default"
-  });
+    background: "white"});
   
     return (
       <ListGroup.Item>
         <Row
           style={{
             background: hoover.background,
-            cursor: hoover.cursor,
             borderWidth: "50px",
             border: "double 4px transparent",
             borderRadius: "8px"
           }}
           onMouseOver={() =>
-            setHoover({ background: "#e0e0e0", cursor: "pointer",
-            expanded: true })
+            setHoover({ background: "#e0e0e0", expanded: true })
           }
           onMouseLeave={() =>
-            setHoover({ background: "white", cursor: "default",
-            expanded: false })
+            setHoover({ background: "white", expanded: false })
           }
           className="justify-content-md-center"
         >
