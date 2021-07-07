@@ -1,10 +1,10 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Header from "./components/header";
-
-import Filter from './components/filter';
+import Header from "./header/header";
 import Showroom from './article/showroom';
 import Chat from './chat/chat';
+import Login from './user/login'
+
 import {Switch, BrowserRouter, Route} from 'react-router-dom';
 
 function App() {
@@ -12,14 +12,15 @@ function App() {
     <div className="App">
       <Header/>
       <div className = "mt-3">
-      <Filter/>
       <BrowserRouter>
       <Switch>
         <Route exact path='/'>
           <Showroom categories={["all"]}/>
         </Route>
-        <Route exact path='/hallo' component={random} />
-        <Route exact path='/zwiebeltasche' component={chatroom} />
+        <Route exact path='/#login'>
+          <Login></Login>
+        </Route>
+        <Route exact path='/#createAccount'/>
       </Switch>
       </BrowserRouter>
       </div>
