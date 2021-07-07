@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Row, Col, ListGroup } from "react-bootstrap";
 import haenchen from './wurm.jpg'
 
-function SmallArticle(article) {
+function SmallArticle(props) {
     const [hoover, setHoover] = useState({
       background: "white",
       cursor: "default"
@@ -32,15 +32,15 @@ function SmallArticle(article) {
           <Col xs align="left">
             <Row>
               <b style={{ color: "darkgreen", fontSize: "20px" }}>
-                {article.heading}
+                {props.article.heading}
               </b>
             </Row>
-            <Row>Angeboten von: {article.sellerID}</Row>
-            <Row>Endet am: {article.endsOn}</Row>
+            <Row>Angeboten von: {props.article.sellerID}</Row>
+            <Row>Endet am: {props.article.endsOn}</Row>
           </Col>
           <Col className="d-flex justify-content-center">
             <b className="center-block" col-xs-1 style={{ fontSize: "30px" }}>
-              {article.price} €{" "}
+              {props.article.price} €{" "}
             </b>
           </Col>
         </Row>
