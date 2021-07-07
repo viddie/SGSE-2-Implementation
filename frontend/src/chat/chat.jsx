@@ -34,8 +34,13 @@ function ChatRoom(props) {
     const [formValue, setFormValue] = useState('');
 
     console.log("DEBUG: TEST 1");
+    
 
-    const [messages] = await getMessages(receiver, token);
+    const getMessages = async () => {
+        return await getMessages(receiver, token);;
+    }
+    
+    const [messages] = getMessages();
 
     console.log("ChatRoom: [messages]");
     console.log(messages);
