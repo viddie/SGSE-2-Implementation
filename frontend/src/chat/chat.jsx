@@ -122,23 +122,23 @@ function getMessages(other_user, token) {
             data = data1;
         } else {
             data = [...data1, ...data2];
+            
+            console.log("ALL GLORY TO THE DATA!");
+            console.log(data1);
+            console.log(data2);
+            console.log(data);
+
+            function compareTimestamps(a, b) {
+                a = a.toLowerCase();
+                b = b.toLowerCase();
+                return (a<b)?-1:(a>b)?1:0;
+            }
+
+            data.sort( function(a, b) {
+                return compareTimestamps(a.timestamp, b.timestamp);
+            });
         }
     }
-
-    console.log("ALL GLORY TO THE DATA!");
-    console.log(data1);
-    console.log(data2);
-    console.log(data);
-
-    function compareTimestamps(a, b) {
-        a = a.toLowerCase();
-        b = b.toLowerCase();
-        return (a<b)?-1:(a>b)?1:0;
-    }
-
-    data.sort( function(a, b) {
-        return compareTimestamps(a.timestamp, b.timestamp);
-    });
 
     return data;
 }
