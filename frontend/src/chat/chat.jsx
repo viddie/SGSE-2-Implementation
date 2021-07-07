@@ -113,12 +113,12 @@ function getMessages(other_user, token) {
     var data2 = ApiCall(other_user, this_user);
     var data = []
 
-    if (data1.length == 0) {
-        if (data2.length != 0) {
+    if (data1 != undefined && data1.length == 0) {
+        if (data2 != undefined && data2.length != 0) {
             data = data2;
         }
     } else {
-        if (data2.length == 0) {
+        if (data2 != undefined && data2.length == 0) {
             data = data1;
         } else {
             data = [...data1, ...data2];
@@ -144,37 +144,16 @@ function getMessages(other_user, token) {
 }
 
 function ApiCall(user1, user2) {
-    var data_r
-
-    /*
-    async function getData(url = '') {
-        const response = await fetch(url, {
-            method: 'GET'
-        });
-        return response.json();
-    }
-
-    getData(`http://sgse2.ad.fh-bielefeld.de/api/chat/messages/receive/${user1}/${user2}`)
-        .then(data => {
-            console.log("does data exist and if so, can it feel?");
-            console.log(data);
-            data_r = data;
-        });*/
-
     const request = async () => {
         const response = await fetch(`http://sgse2.ad.fh-bielefeld.de/api/chat/messages/receive/${user1}/${user2}`, {method: 'GET'});
         const json = await response.json();
         console.log("does data exist and if so, can it feel?");
         console.log(json);
-        data_r = json;
+
+        return json;
     }
     
-    request();
-
-    console.log("DEBUG: data_r");
-    console.log(data_r);
-
-    return data_r
+    return request();
 }
 
 export default Chat
