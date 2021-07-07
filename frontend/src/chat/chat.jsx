@@ -151,7 +151,9 @@ function getMessages(other_user, token) {
         return data;
     }
     
-    return apiCall();
+    const data = apiCall();
+    console.log(data)
+    return data;
 }
 
 function ApiCall(user1, user2) {
