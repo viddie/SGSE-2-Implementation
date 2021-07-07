@@ -146,15 +146,12 @@ function getMessages(other_user, token) {
                 }); */
             }
         }
+        console.log("DEBUG: TEST 3");
+        console.log(data)
         return data;
     }
     
-    data = apiCall();
-
-    console.log("DEBUG: TEST 3");
-    console.log(data)
-
-    return data;
+    return apiCall();
 }
 
 function ApiCall(user1, user2) {
