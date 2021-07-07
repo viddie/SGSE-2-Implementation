@@ -34,11 +34,15 @@ const Login = (props) => {
           .then((res)=>{
             sessionStorage.setItem('bodyWieHempie', res.body);
           })
-          .catch(()=>setError(true))
+          .catch(()=>{
+              setError(true);
+              setPassword("");
+              setUsername("");
+          })
     }
     
     return(
-        <div style={{maxWidth: "60%"}} >
+        <Container className="m-auto" style={{maxWidth: "60%"}} >
         <Form onSubmit={handleSubmit}>
             <Form.Group size="lg" controlId="username">
             <Form.Label>Benutzername</Form.Label>
@@ -61,7 +65,12 @@ const Login = (props) => {
             Login
             </Button>
         </Form>
-        </div>
+        {error &&
+            <Alert variant={"warning"}>
+                Passwort oder Benutzername falsch!
+            </Alert>
+        }
+        </Container>
     )
 }
 
