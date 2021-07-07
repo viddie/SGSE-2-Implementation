@@ -1,7 +1,7 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import HeaderIn from "./components/headerLoggedIn";
-import HeaderOut from "./components/headerLoggedOut"
+import Header from "./components/header";
+
 import Filter from './components/filter';
 import Showroom from './article/showroom';
 import Chat from './chat/chat';
@@ -10,7 +10,7 @@ import {Switch, BrowserRouter, Route} from 'react-router-dom';
 function App() {
   return (
     <div className="App">
-      <HeaderIn/>
+      <Header/>
       <div className = "mt-3">
       <Filter/>
       <BrowserRouter>

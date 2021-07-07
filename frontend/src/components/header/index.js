@@ -1,8 +1,7 @@
 import React from 'react'
 import { Button, Navbar, NavDropdown, Nav, Form, FormControl, Container, Image } from 'react-bootstrap'
-import { propTypes } from 'react-bootstrap/esm/Image'
-import ReactDOM from 'react-dom';
-import App from '../../chat/chat';
+import logo from '/static/wurm.png'
+
 
 /**
  * @author
@@ -15,7 +14,10 @@ const Header = (props) => {
         <Navbar collapseOnSelect expand="lg" bg="success" variant="dark">
             <Navbar sticky="top" />
             <Container>
-                <Navbar.Brand href="http://sgse2.ad.fh-bielefeld.de">Barter Smarter</Navbar.Brand>
+                <Navbar.Brand href="http://sgse2.ad.fh-bielefeld.de">
+                    <Image src={logo} height="40"></Image>
+                    Barter Smarter
+                    </Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="me-auto">
