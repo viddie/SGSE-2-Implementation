@@ -113,7 +113,7 @@ function ChatMessage(props) {
     );
 }
 
-function getMessages(other_user, token) {
+const getMessages = async (other_user, token) => {
     //var this_user = extract_username_from_token(token);
     var this_user = token;
 
