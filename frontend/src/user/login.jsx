@@ -32,12 +32,17 @@ const Login = (props) => {
                 body: JSON.stringify(data) // body data type must match "Content-Type" header
           })
           .then((res)=>{
-            sessionStorage.setItem('bodyWieHempie', res.body);
+              if (!res.ok){
+                setError(true);
+                setPassword("");
+                setUsername("");
+              } else {
+                sessionStorage.setItem('accessToken', res.body.accessToken);
+                sessionStorage.setItem('refreshToken', res.body.refreshToken);
+              }
           })
           .catch(()=>{
-              setError(true);
-              setPassword("");
-              setUsername("");
+              ;
           })
     }
     
