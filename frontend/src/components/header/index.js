@@ -15,8 +15,9 @@ const Header = (props) => {
             <Navbar sticky="top" />
             <Container>
                 <Navbar.Brand href="http://sgse2.ad.fh-bielefeld.de">
+                    <div>Barter</div>
                     <Image src={logo} height="40"></Image>
-                    Barter Smarter
+                    <div>Smarter</div>
                     </Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
