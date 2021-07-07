@@ -16,14 +16,15 @@ function Chat() {
                 <div>Options</div>
             </header>
             <section>
-                <ChatRoom/>
+                <ChatRoom receiver={props.receiver} token={props.token}/>
             </section>
         </div>
     );
 }
 
 function ChatRoom() {
-    const { receiver, token } = props;
+    const receiver = props.receiver;
+    const token = props.token;
     const dummy = useRef();
     
     const [formValue, setFormValue] = useState('');
