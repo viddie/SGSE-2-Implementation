@@ -8,7 +8,7 @@ import React from 'react'
 const image = "https://www.linusakesson.net/programming/kernighans-lever/cat.png"
 
 
-function Chat() {
+function Chat(props) {
     return (
         <div className="Chat">
             <header>
@@ -22,7 +22,7 @@ function Chat() {
     );
 }
 
-function ChatRoom() {
+function ChatRoom(props) {
     const receiver = props.receiver;
     const token = props.token;
     const dummy = useRef();
