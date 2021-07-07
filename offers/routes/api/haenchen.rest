@@ -1,0 +1,7 @@
+POST http://sgse2.ad.fh-bielefeld.de/api/user/auth/login
+Content-Type: application/json
+
+{
+    "username": "Tristan",
+    "password": "Hempi123"
+}
