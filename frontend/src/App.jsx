@@ -26,7 +26,7 @@ function App() {
 }
 
 const showroom = () => (
-  <Showroom/>
+  <Showroom categories={["household","electronics"]}/>
 )
 const random = () => (
   <HeaderOut/>
