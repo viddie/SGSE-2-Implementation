@@ -127,7 +127,7 @@ function getMessages(other_user, token) {
             console.log(data1);
             console.log(data2);
             console.log(data);
-
+/*
             function compareTimestamps(a, b) {
                 a = a.toLowerCase();
                 b = b.toLowerCase();
@@ -136,7 +136,7 @@ function getMessages(other_user, token) {
 
             data.sort( function(a, b) {
                 return compareTimestamps(a.timestamp, b.timestamp);
-            });
+            });*/
         }
     }
 
