@@ -16,8 +16,8 @@ const Header = (props) => {
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="me-auto">
-                        <Nav.Link href="/#login">Login</Nav.Link>
-                        <Nav.Link href="/#createAccount">Konto erstellen</Nav.Link>
+                        <Nav.Link href="/login">Login</Nav.Link>
+                        <Nav.Link href="/createAccount">Konto erstellen</Nav.Link>
                     </Nav>
                     <Nav>
                         <Form className="d-flex">
