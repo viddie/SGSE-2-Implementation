@@ -139,33 +139,7 @@ function getMessages(other_user, token) {
 }
 
 function ApiCall(user1, user2) {
-    const data = []
-    
-/*    const sendMessage = async (e) => {
-        e.preventDefault();
-
-        const requestOptions = {
-            method: 'GET'
-        };
-        fetch(`http://sgse2.ad.fh-bielefeld.de/api/chat/messages/receive/${user1}/${user2}`, requestOptions)
-            .then(async response => {
-                const isJson = response.headers.get('content-type')?.includes('application/json');
-                const data = isJson && await response.json();
-    
-                // check for error response
-                if (!response.ok) {
-                    // get error message from body or default to response status
-                    const error = (data && data.message) || response.status;
-                    return Promise.reject(error);
-                }
-
-                console.log(data)
-            })
-            .catch(error => {
-                this.setState({ errorMessage: error.toString() });
-                console.error('Error while sending chat message: API call malfunctioned', error);
-            });
-    }*/
+    const data_r = []
 
     async function getData(url = '') {
         const response = await fetch(url, {
@@ -177,12 +151,10 @@ function ApiCall(user1, user2) {
     getData(`http://sgse2.ad.fh-bielefeld.de/api/chat/messages/receive/${user1}/${user2}`)
         .then(data => {
             console.log(data);
+            data_r = data;
         });
 
-    console.log("API CALL RETURNED: ")
-    console.log(data)
-
-    return data
+    return data_r
 }
 
 export default Chat
