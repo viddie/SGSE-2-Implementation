@@ -15,7 +15,9 @@ function App() {
       <Filter/>
       <BrowserRouter>
       <Switch>
-        <Route exact path='/cool' component={showroom} /> 
+        <Route exact path='/'>
+          <Showroom categories={["all"]}/>
+        </Route>
         <Route exact path='/hallo' component={random} />
         <Route exact path='/zwiebeltasche' component={chatroom} />
       </Switch>
@@ -24,10 +26,6 @@ function App() {
     </div>
   );
 }
-
-const showroom = () => (
-  <Showroom categories={["household","electronics"]}/>
-)
 const random = () => (
   <HeaderOut/>
 )
