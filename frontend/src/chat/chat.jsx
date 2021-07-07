@@ -125,7 +125,7 @@ function getMessages(other_user, token) {
 }
 
 function ApiCall(user1, user2) {
-    const data = {}
+    const data = []
     const getMessages = async (e) => {
         e.preventDefault();
 
@@ -152,6 +152,9 @@ function ApiCall(user1, user2) {
         setFormValue('');
         dummy.current.scrollIntoView({ behavior: 'smooth' });
     }
+
+    console.log("API CALL RETURNED: ")
+    console.log(data)
 
     return data
 }
