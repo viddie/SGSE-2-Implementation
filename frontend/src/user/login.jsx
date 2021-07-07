@@ -37,7 +37,7 @@ const Login = (props) => {
                 setPassword("");
                 setUsername("");
               } else {
-                  console.log(res.body)
+                  console.log(res.json())
                     token = res.json();
                     sessionStorage.setItem('accessToken', token.accessToken);
                     sessionStorage.setItem('refreshToken', token.refreshToken);
