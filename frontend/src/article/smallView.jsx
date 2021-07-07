@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { Row, Col, ListGroup } from "react-bootstrap";
+import { Container, Row, Col, ListGroup, Image, Button } from "react-bootstrap";
 import haenchen from './wurm.jpg'
 
 function SmallArticle(props) {
-    const [hoover, setHoover] = useState({
-      background: "white",
-      cursor: "default"
-    });
+  const [hoover, setHoover] = useState({
+    expanded: false,
+    background: "white",
+    cursor: "default"
+  });
   
     return (
       <ListGroup.Item>
@@ -19,10 +20,12 @@ function SmallArticle(props) {
             borderRadius: "8px"
           }}
           onMouseOver={() =>
-            setHoover({ background: "#e0e0e0", cursor: "pointer" })
+            setHoover({ background: "#e0e0e0", cursor: "pointer",
+            expanded: true })
           }
           onMouseLeave={() =>
-            setHoover({ background: "white", cursor: "default" })
+            setHoover({ background: "white", cursor: "default",
+            expanded: false })
           }
           className="justify-content-md-center"
         >
@@ -43,33 +46,33 @@ function SmallArticle(props) {
             <Row><b>Endet am:</b> {props.article.endsOn}</Row>
           </Col>
           <Col className="d-flex justify-content-center">
-            <b className="center-block" col-xs-1 style={{ fontSize: "30px" }}>
+            <b className="center-block" style={{ fontSize: "30px" }}>
               {props.article.price} €{" "}
             </b>
           </Col>
           {hoover.expanded ? (
-          <Container>
-            <Row>
-              <Col>
-                <b> Beschreibung </b>
-                <div>{props.article.description}</div>
-                <b> Verkäufer </b>
-                <div style={{ fontStyle: "italic" }}>
-                  {props.article.sellerID}
-                </div>
-                <div float="left">
-                  <text>Bewertung:</text>
-                  <RatingStars></RatingStars>
-                </div>
-              </Col>
-              <Col style={{ display: "flex", alignItems: "center" }}>
-                <Button size="lg" block>
-                  Anbieter kontaktieren
-                </Button>
-              </Col>
-            </Row>
-          </Container>
-        ) : null}
+            <Container>
+              <Row>
+                <Col>
+                  <b> Beschreibung </b>
+                  <div>{props.article.description}</div>
+                  <b> Verkäufer </b>
+                  <div style={{ fontStyle: "italic" }}>
+                    {props.article.sellerID}
+                  </div>
+                  <div float="left">
+                    <text>Bewertung:</text>
+                    <RatingStars></RatingStars>
+                  </div>
+                </Col>
+                <Col style={{ display: "flex", alignItems: "center" }}>
+                  <Button size="lg" block>
+                    Anbieter kontaktieren
+                  </Button>
+                </Col>
+              </Row>
+            </Container>
+          ) : null}
         </Row>
       </ListGroup.Item>
     );
