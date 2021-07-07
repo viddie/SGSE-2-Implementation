@@ -1,3 +1,4 @@
+import { func } from 'prop-types';
 import React, { useRef, useState } from 'react';
 import 'regenerator-runtime/runtime'
 
@@ -105,7 +106,7 @@ function ChatMessage(props) {
     );
 }
 
-const getMessages = async (other_user, token) => {
+function getMessages(other_user, token) {
     //var this_user = extract_username_from_token(token);
     var this_user = token;
     var data1 = ApiCall(this_user, other_user);
@@ -140,17 +141,43 @@ const getMessages = async (other_user, token) => {
 function ApiCall(user1, user2) {
     const data = []
     
-    const requestOptions = {
-        method: 'GET'
-    };
-    let response = await fetch(`http://sgse2.ad.fh-bielefeld.de/api/chat/messages/receive/${user1}/${user2}`, requestOptions);
+/*    const sendMessage = async (e) => {
+        e.preventDefault();
 
-    if (response.ok) {
-        let json = await response.json();
-        console.log(json);
-    } else {
-        console.error('Error while sending chat message: API call malfunctioned', response.status);
+        const requestOptions = {
+            method: 'GET'
+        };
+        fetch(`http://sgse2.ad.fh-bielefeld.de/api/chat/messages/receive/${user1}/${user2}`, requestOptions)
+            .then(async response => {
+                const isJson = response.headers.get('content-type')?.includes('application/json');
+                const data = isJson && await response.json();
+    
+                // check for error response
+                if (!response.ok) {
+                    // get error message from body or default to response status
+                    const error = (data && data.message) || response.status;
+                    return Promise.reject(error);
+                }
+
+                console.log(data)
+            })
+            .catch(error => {
+                this.setState({ errorMessage: error.toString() });
+                console.error('Error while sending chat message: API call malfunctioned', error);
+            });
+    }*/
+
+    async function getData(url = '') {
+        const response = await fetch(url, {
+            method: 'GET'
+        });
+        return response.json();
     }
+
+    getData(`http://sgse2.ad.fh-bielefeld.de/api/chat/messages/receive/${user1}/${user2}`)
+        .then(data => {
+            console.log(data);
+        });
 
     console.log("API CALL RETURNED: ")
     console.log(data)
