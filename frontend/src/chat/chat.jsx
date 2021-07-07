@@ -125,6 +125,9 @@ function getMessages(other_user, token) {
         }
     }
 
+    console.log("ALL GLORY TO THE DATA!");
+    console.log(data);
+
     function compareTimestamps(a, b) {
         a = a.toLowerCase();
         b = b.toLowerCase();
@@ -150,7 +153,6 @@ function ApiCall(user1, user2) {
 
     getData(`http://sgse2.ad.fh-bielefeld.de/api/chat/messages/receive/${user1}/${user2}`)
         .then(data => {
-            console.log(data);
             data_r = data;
         });
 
