@@ -1,5 +1,10 @@
 const sqlite3 = require('sqlite3').verbose();
 
+module.exports = {
+  saveItem: saveItem,
+  db_Query: db_Query
+};
+
 let db = new sqlite3.Database(':memory:', (err) => {
     if (err) {
       return console.error(err.message);
@@ -14,7 +19,7 @@ function create_db()
 
 function saveItem(an,von,inhalt,angebot_id)
 {
-    in_query = "INSERT INTO emails(an,von,inhalt,angebot_id) VALUES(" + an + ","+ von + "," + inhalt +"," + angebot_id + ")"
+    in_query = "INSERT INTO emails(an,von,inhalt,angebot_id) VALUES('" + an + "','"+ von + "','" + inhalt +"','" + angebot_id + "')"
     db.all(in_query,[],(err,rows) => {
         if(err){
             throw err;

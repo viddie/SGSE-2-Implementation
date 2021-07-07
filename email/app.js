@@ -20,7 +20,15 @@ app.get('/', (req, res) => {
 })
 
 app.get('/sqlite', (req, res) => {
-  res.send()
+  db.db_Query("SELECT * FROM emails",(err, rows) => {
+    if (err) {
+      throw err;
+    }
+    rows.forEach((row) => {
+      console.log(row);
+    })
+    res.send(rows);
+  })
 })
 
 app.post("/sendMessage",(req,res) => {
@@ -47,7 +55,12 @@ app.get("/newOffer", async (req,res) => {
       correct_user = user;
     }
   }
-  mail.sendmail(correct_user.email,"Barter Smarter Angebot erstellt",correct_user.username)
+  no_string = `Hallo ${correct_user.username} \n
+  Ihr Angebot ${res_article.heading} wurde erfolgreich erstellt. \n \n
+  Mit freundlichen Grüßen \n
+  Ihr Barter Smarter Team`
+  mail.sendmail(correct_user.email,"Barter Smarter Angebot erstellt",no_string)
+  db.saveItem(correct_user._id,"Barter Smarter",no_string,res_article._id)
 })
 
 app.get("/confirmOffer",async (req,res) => {
@@ -66,7 +79,12 @@ app.get("/confirmOffer",async (req,res) => {
       correct_user = user;
     }
   }
-  mail.sendmail(correct_user.email,"Barter Smarter Angebot wurde gekauft",correct_user.username)
+  no_string = `Hallo ${correct_user.username} \n
+  Ihr Angebot ${res_article.heading} wurde gekauft. \n \n
+  Mit freundlichen Grüßen \n
+  Ihr Barter Smarter Team`
+  mail.sendmail(correct_user.email,"Barter Smarter Angebot gekauft",no_string)
+  db.saveItem(correct_user._id,"Barter Smarter",no_string,res_article._id)
 
 })
 
