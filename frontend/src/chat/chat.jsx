@@ -35,7 +35,7 @@ function ChatRoom(props) {
 
     console.log("DEBUG: TEST 1");
 
-    const [messages] = getMessages(receiver, token);
+    const [messages] = await getMessages(receiver, token);
 
     console.log("ChatRoom: [messages]");
     console.log(messages);
@@ -112,7 +112,7 @@ function ChatMessage(props) {
     );
 }
 
-function getMessages(other_user, token) {
+const getMessages = async(other_user, token) => {
     //var this_user = extract_username_from_token(token);
     var this_user = token;
     var data1 = ApiCall(this_user, other_user);
@@ -150,6 +150,7 @@ function getMessages(other_user, token) {
     }
 
     console.log("DEBUG: TEST 3");
+    console.log("data")
 
     return data;
 }
@@ -159,8 +160,6 @@ function ApiCall(user1, user2) {
         const response = await fetch(`http://sgse2.ad.fh-bielefeld.de/api/chat/messages/receive/${user1}/${user2}`, {method: 'GET'});
         const json = await response.json();
         console.log("does data exist and if so, can it feel?");
-        console.log(json);
-
         return json;
     }
     
