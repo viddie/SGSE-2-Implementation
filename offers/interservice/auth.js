@@ -1,14 +1,21 @@
+const jwt = require('jsonwebtoken');
+const accessTokenSecret = 'somerandomaccesstoken';
 
-exports.checkUserAuthorization = function (userID, access) {
-    return new Promise(resolve => {
-        // Hier wird der User Micorservice angepingt ob der Token okay ist
-        // Unterscheidung in Lese und Schreibrechte
-        if (access == "r") {
-            resolve(true)
-        } else if (access == "w") {
-            resolve(true)
-        } else {
-            resolve(false)
-        }
-    })  
+exports.authenticateJWT = (req, res, next) => {
+    const authHeader = req.headers.authorization;
+
+    if (authHeader) {
+        const token = authHeader.split(' ')[1];
+
+        jwt.verify(token, accessTokenSecret, (err, user) => {
+            if (err) {
+                return res.sendStatus(403);
+            }
+
+            req.validUser = user;
+            next();
+        });
+    } else {
+        res.sendStatus(401);
+    }
 }

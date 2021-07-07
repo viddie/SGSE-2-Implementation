@@ -2,8 +2,8 @@ const mongoose = require('mongoose');
 
 // Artikelschema anlegen
 const articleSchema = new mongoose.Schema({
-    articleID: Number,
     sellerID: Number,
+    sellerName: String,
     buyerID: Number,
     heading: String,
     description: String,
