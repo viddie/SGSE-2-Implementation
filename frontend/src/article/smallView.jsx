@@ -31,7 +31,7 @@ function SmallArticle(props) {
         >
           <Col>
           {props.article.pictures[0] ?
-            <img width="150px" alt="tick" src={props.article.pictures[0]}></img> : <img width="150px" alt="tick" src={haenchen}></img>  
+            <Image width="150px" alt="tick" src={props.article.pictures[0]}></Image> : <Image width="150px" maxHeight="150px" alt="tick" src={haenchen}></Image>  
           }
             
           </Col>
@@ -41,8 +41,14 @@ function SmallArticle(props) {
                 {props.article.heading}
               </b>
             </Row>
-            <Row><b>Angeboten von: </b>{props.article.sellerID}</Row>
-            <Row><b>Angeboten seit: </b>{props.article.startedOn}</Row>
+            <Row>
+              <b>Angeboten von: </b>
+              <div>{props.article.sellerID}</div>
+            </Row>
+            <Row>
+              <b>Angeboten seit: </b>
+              <div>{props.article.startedOn}</div>
+              </Row>
             <Row><b>Endet am:</b> {props.article.endsOn}</Row>
           </Col>
           <Col className="d-flex justify-content-center">
@@ -53,7 +59,7 @@ function SmallArticle(props) {
           {hoover.expanded ? (
             <Container>
               <Row>
-                <Col>
+                <Col xs align="left">
                   <b> Beschreibung </b>
                   <div>{props.article.description}</div>
                   <b> Verkäufer </b>
@@ -66,9 +72,11 @@ function SmallArticle(props) {
                   </div>
                 </Col>
                 <Col style={{ display: "flex", alignItems: "center" }}>
-                  <Button size="lg" block>
-                    Anbieter kontaktieren
-                  </Button>
+                  <Link to="/chat">
+                    <Button size="lg" block style={{ backgroundColor: "darkgreen", borderColor: "darkgreen" }}>
+                      Anbieter kontaktieren
+                    </Button>
+                  </Link>
                 </Col>
               </Row>
             </Container>
