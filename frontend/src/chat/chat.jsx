@@ -110,40 +110,46 @@ function ChatMessage(props) {
     );
 }
 
-const getMessages = async(other_user, token) => {
+function getMessages(other_user, token) {
     //var this_user = extract_username_from_token(token);
     var this_user = token;
-    var data1 = await ApiCall(this_user, other_user);
-    var data2 = await ApiCall(other_user, this_user);
-    var data = []
 
-    if (data1 != undefined && data1.length == 0) {
-        if (data2 != undefined && data2.length != 0) {
-            data = data2;
-        }
-    } else {
-        if (data2 != undefined && data2.length == 0) {
-            data = data1;
-        } else {
-            data = [data1, data2];
-            /*data = [...data1, ...data2];
-            
-            console.log("ALL GLORY TO THE DATA!");
-            console.log(data1);
-            console.log(data2);
-            console.log(data);
-
-            function compareTimestamps(a, b) {
-                a = a.toLowerCase();
-                b = b.toLowerCase();
-                return (a<b)?-1:(a>b)?1:0;
+    const apiCall = async () => {
+        var data1 = await ApiCall(this_user, other_user);
+        var data2 = await ApiCall(other_user, this_user);
+        var data = []
+    
+        if (data1 != undefined && data1.length == 0) {
+            if (data2 != undefined && data2.length != 0) {
+                data = data2;
             }
-
-            data.sort( function(a, b) {
-                return compareTimestamps(a.timestamp, b.timestamp);
-            }); */
+        } else {
+            if (data2 != undefined && data2.length == 0) {
+                data = data1;
+            } else {
+                data = [data1, data2];
+                /*data = [...data1, ...data2];
+                
+                console.log("ALL GLORY TO THE DATA!");
+                console.log(data1);
+                console.log(data2);
+                console.log(data);
+    
+                function compareTimestamps(a, b) {
+                    a = a.toLowerCase();
+                    b = b.toLowerCase();
+                    return (a<b)?-1:(a>b)?1:0;
+                }
+    
+                data.sort( function(a, b) {
+                    return compareTimestamps(a.timestamp, b.timestamp);
+                }); */
+            }
         }
+        return data;
     }
+    
+    data = apiCall();
 
     console.log("DEBUG: TEST 3");
     console.log(data)
