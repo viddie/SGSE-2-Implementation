@@ -12,7 +12,7 @@ const Login = (props) => {
         return username.length > 0 && password.length > 0;
     }
 
-    function handleSubmit(event) {
+    async function handleSubmit(event) {
         const data = {
             username: username,
             password: password
