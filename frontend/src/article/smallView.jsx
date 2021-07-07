@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Row, Col, ListGroup } from "react-bootstrap";
 import haenchen from './wurm.jpg'
 
