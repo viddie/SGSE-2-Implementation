@@ -35,8 +35,7 @@ function ChatRoom(props) {
 
     console.log("DEBUG: TEST 1");
 
-    const messages = getMessages(receiver, token);
-    [messages] = messages.value;
+    const [messages] = getMessages(receiver, token).value;
 
     console.log("ChatRoom: [messages]");
     console.log(messages);
