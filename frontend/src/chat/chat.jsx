@@ -146,6 +146,7 @@ function getMessages(other_user, token) {
 function ApiCall(user1, user2) {
     var data_r
 
+    /*
     async function getData(url = '') {
         const response = await fetch(url, {
             method: 'GET'
@@ -158,7 +159,16 @@ function ApiCall(user1, user2) {
             console.log("does data exist and if so, can it feel?");
             console.log(data);
             data_r = data;
-        });
+        });*/
+    fetch(`http://sgse2.ad.fh-bielefeld.de/api/chat/messages/receive/${user1}/${user2}`, {method='GET'})
+        .then(response => {
+            return response.json();
+        })
+        .then(parsedResponse => {
+            console.log("does data exist and if so, can it feel?");
+            console.log(parsedResponse);
+            data_r = parsedResponse;
+        })
 
     console.log("DEBUG: data_r");
     console.log(data_r);
