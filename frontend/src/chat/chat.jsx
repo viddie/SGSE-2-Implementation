@@ -119,9 +119,9 @@ function getMessages(other_user, token) {
     var data = []
     
     Promise.all([data1, data2]).then(function(val) {
-        console.log(val);
+        //console.log(val);
         data = [...val[0],...val[1]];
-        console.log(data);
+        //console.log(data);
     });
 
     return data;
