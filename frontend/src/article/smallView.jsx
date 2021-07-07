@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Container, Row, Col, ListGroup, Image, Button } from "react-bootstrap";
-import SmallView from "./smallView"
 import { Link } from 'react-router-dom';
 import haenchen from './wurm.jpg'
 

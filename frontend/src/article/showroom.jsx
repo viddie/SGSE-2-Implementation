@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Container, ListGroup } from "react-bootstrap";
+import SmallView from "./smallView"
 
 const Showroom = (props) => {
   // Zustandsobjekte 
