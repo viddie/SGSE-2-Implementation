@@ -16,7 +16,7 @@ const Showroom = (props) => {
 
   return (
       <div>
-        {articleIds.map((id => <SmallView id={id}></SmallView>))}
+        {articleIds.map((id => <SmallView id={id} key={id}></SmallView>))}
       </div>
     );
 }

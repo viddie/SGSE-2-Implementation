@@ -26,11 +26,11 @@ const SmallView = (props) => {
     if (loaded){
         return (
             <Container>
-                <Row>
+                <Row className="justify-content-md-center">
                     <Col>
                         {article.pictures[0] ? <img width="100px" align="left" src={article.pictures[0]}></img> :<img width="100px" align="left" src={haenchen}></img>}
                     </Col>
-                    <Col>
+                    <Col  xs={6}>
                         <ListGroup>
                         <ListGroup.Item><b>{article.heading}</b></ListGroup.Item>
                         <ListGroup.Item>{article.description}</ListGroup.Item>
@@ -39,7 +39,7 @@ const SmallView = (props) => {
                         <ListGroup.Item>Endet am: {article.endsOn}</ListGroup.Item>
                         </ListGroup>
                     </Col>
-                    </Row>
+                </Row>
             </Container>
             );
     } else {
