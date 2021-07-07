@@ -39,7 +39,7 @@ function ChatRoom(props) {
         console.log(data);
         return data;
     }
-    const [messages] = getConvo();
+    const messages = getConvo();
 
 
     console.log("ChatRoom: [messages]");
