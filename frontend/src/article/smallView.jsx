@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from "react";
+import Container from 'react-bootstrap/Container'
+import ListGroup from 'react-bootstrap/ListGroup'
+
 import haenchen from './wurm.jpg'
 
 const SmallView = (props) => {
