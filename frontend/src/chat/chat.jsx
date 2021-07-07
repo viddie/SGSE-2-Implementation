@@ -118,8 +118,8 @@ function ChatMessage(props) {
 const getMessages = async(other_user, token) => {
     //var this_user = extract_username_from_token(token);
     var this_user = token;
-    var data1 = ApiCall(this_user, other_user);
-    var data2 = ApiCall(other_user, this_user);
+    var data1 = await ApiCall(this_user, other_user);
+    var data2 = await ApiCall(other_user, this_user);
     var data = []
 
     if (data1 != undefined && data1.length == 0) {
@@ -160,7 +160,6 @@ function ApiCall(user1, user2) {
     const request = async () => {
         const response = await fetch(`http://sgse2.ad.fh-bielefeld.de/api/chat/messages/receive/${user1}/${user2}`, {method: 'GET'});
         const json = await response.json();
-        console.log("does data exist and if so, can it feel?");
         return json;
     }
     
