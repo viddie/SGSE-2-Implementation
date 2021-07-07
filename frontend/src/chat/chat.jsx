@@ -143,22 +143,14 @@ function ApiCall(user1, user2) {
     const requestOptions = {
         method: 'GET'
     };
-    fetch(`http://sgse2.ad.fh-bielefeld.de/api/chat/receive/${user1}/${user2}`, requestOptions)
-        .then(async response => {
-            const isJson = response.headers.get('content-type')?.includes('application/json');
-            data = isJson && await response.json();
+    let response = await fetch(`http://sgse2.ad.fh-bielefeld.de/api/chat/receive/${user1}/${user2}`, requestOptions);
 
-            // check for error response
-            if (!response.ok) {
-                // get error message from body or default to response status
-                const error = (data && data.message) || response.status;
-                return Promise.reject(error);
-            }
-        })
-        .catch(error => {
-            this.setState({ errorMessage: error.toString() });
-            console.error('Error while sending chat message: API call malfunctioned', error);
-        });
+    if (response.ok) {
+        let json = await response.json();
+        console.log(json);
+    } else {
+        console.error('Error while sending chat message: API call malfunctioned', response.status);
+    }
 
     console.log("API CALL RETURNED: ")
     console.log(data)
