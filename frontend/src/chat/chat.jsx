@@ -34,11 +34,17 @@ function ChatRoom(props) {
     const [formValue, setFormValue] = useState('');
 
     console.log("DEBUG: TEST 1");
+    
 
-    const [messages] = getMessages(receiver, token);
+    const getConversation = async () => {
+        return await getMessages(receiver, token);;
+    }
+    
+    const [messages] = getConversation();
 
     console.log("ChatRoom: [messages]");
     console.log(messages);
+    console.log(messages.value);
 
     const sendMessage = async (e) => {
         e.preventDefault();
@@ -111,7 +117,7 @@ function ChatMessage(props) {
     );
 }
 
-function getMessages(other_user, token) {
+const getMessages = async(other_user, token) => {
     //var this_user = extract_username_from_token(token);
     var this_user = token;
     var data1 = ApiCall(this_user, other_user);
@@ -128,7 +134,8 @@ function getMessages(other_user, token) {
         if (data2 != undefined && data2.length == 0) {
             data = data1;
         } else {
-            data = [...data1, ...data2];
+            data = [data1, data2];
+            /*data = [...data1, ...data2];
             
             console.log("ALL GLORY TO THE DATA!");
             console.log(data1);
@@ -143,11 +150,12 @@ function getMessages(other_user, token) {
 
             data.sort( function(a, b) {
                 return compareTimestamps(a.timestamp, b.timestamp);
-            });
+            }); */
         }
     }
 
     console.log("DEBUG: TEST 3");
+    console.log("data")
 
     return data;
 }
@@ -157,8 +165,6 @@ function ApiCall(user1, user2) {
         const response = await fetch(`http://sgse2.ad.fh-bielefeld.de/api/chat/messages/receive/${user1}/${user2}`, {method: 'GET'});
         const json = await response.json();
         console.log("does data exist and if so, can it feel?");
-        console.log(json);
-
         return json;
     }
     
