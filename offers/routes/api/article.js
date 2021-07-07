@@ -14,18 +14,26 @@ router.get('/article/findByCategory', function (req, res, next) {
     let categories = req.query.categories.split(',');
     categories = categories.map(e => e.trim());
     const searchObject = {};
-    if (categories[0] != "all") {
-        searchObject = {category : categories};
-    }
+    if (categories[0] == "all") {
+        ArticleModel.find({}, (err, articles) => {
+            if (err) {
+                return console.error(err);
+            } else {
+                idList = articles.map(element => element._id)
+                res.status(200).json(idList);
+            }
+        });
+    } else {
     // Ausgabe der gefundenen Artikel
-    ArticleModel.find(searchObject, (err, articles) => {
-        if (err) {
-            return console.error(err);
-        } else {
-            idList = articles.map(element => element._id)
-            res.status(200).json(idList);
-        }
-    });
+        ArticleModel.find({category : categories}, (err, articles) => {
+            if (err) {
+                return console.error(err);
+            } else {
+                idList = articles.map(element => element._id)
+                res.status(200).json(idList);
+            }
+        });
+    }
 });
 
 router.get('/article/findByTags', function (req, res, next) {
