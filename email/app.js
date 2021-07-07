@@ -31,11 +31,29 @@ app.get('/sqlite', (req, res) => {
   })
 })
 
-app.post("/sendMessage",(req,res) => {
-  const von = req.body.von
-  const an = req.body.an
-  const inhalt = req.body.inhalt 
-  sendmail(an,"Bestellbestätigung Barter Smarter",inhalt,res)
+app.post("/sendMessage",async (req,res) => {
+  res_users = await axiosi.get("/user/auth")
+  res_users = res_users.data
+  let von = req.body.von
+  let an = req.body.an
+  let von_user;
+  let an_user;
+  for(var i = 0; i < res_users.length; i++) 
+  {
+    if(res_users[i]._id == von)
+    {
+      von_user = res_users[i];
+    }
+    if(res_users[i]._id == an)
+    {
+      an_user = res_users[i];
+    }
+  }
+  let inhalt = req.body.inhalt 
+  let message = `Hallo ${an_user.username},\n
+  ${von_user.username} hat ihnen folgende Nachricht geschickt:\n
+  ${inhalt}`
+  mail.sendmail(an_user.email,`Nachricht von ${von_user.username}(BarterSmarter)`,message,res)
 })
 
 
@@ -48,11 +66,11 @@ app.get("/newOffer", async (req,res) => {
   res_users = res_users.data
   console.log(res_users)
   let correct_user = res_users[0];
-  for(user in res_users)
+  for(var i = 0; i < res_users.length; i++) 
   {
-    if(user._id == res_article.sellerID)
+    if(res_users[i]._id == res_article.sellerID)
     {
-      correct_user = user;
+      correct_user = res_users[i];
     }
   }
   no_string = `Hallo ${correct_user.username} \n
@@ -72,11 +90,11 @@ app.get("/confirmOffer",async (req,res) => {
   res_users = res_users.data
   console.log(res_users)
   let correct_user = res_users[0];
-  for(user in res_users)
+  for(var i = 0; i < res_users.length; i++) 
   {
-    if(user._id == res_article.sellerID)
+    if(res_users[i]._id == res_article.sellerID)
     {
-      correct_user = user;
+      correct_user = res_users[i];
     }
   }
   no_string = `Hallo ${correct_user.username} \n
