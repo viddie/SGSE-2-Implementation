@@ -4,7 +4,8 @@ import HeaderIn from "./components/headerLoggedIn";
 import HeaderOut from "./components/headerLoggedOut"
 import Filter from './components/filter';
 import Showroom from './article/showroom';
-import {Switch, BrowserRouter, Route} from 'react-router-dom'
+import Chat from './chat/chat';
+import {Switch, BrowserRouter, Route} from 'react-router-dom';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
       <Switch>
         <Route exact path='/cool' component={showroom} /> 
         <Route exact path='/hallo' component={random} />
+        <Route exact path='/zwiebeltasche' component={chatroom} />
       </Switch>
       </BrowserRouter>
       </div>
@@ -28,6 +30,9 @@ const showroom = () => (
 )
 const random = () => (
   <HeaderOut/>
+)
+const chatroom = () => (
+  <Chat/>
 )
 
 export default App;
