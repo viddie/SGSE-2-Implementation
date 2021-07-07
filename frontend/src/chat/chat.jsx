@@ -160,9 +160,6 @@ function ApiCall(user1, user2) {
             console.error('Error while sending chat message: API call malfunctioned', error);
         });
 
-    setFormValue('');
-    dummy.current.scrollIntoView({ behavior: 'smooth' });
-
     console.log("API CALL RETURNED: ")
     console.log(data)
 
