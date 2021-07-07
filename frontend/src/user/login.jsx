@@ -12,7 +12,7 @@ const Login = (props) => {
         return username.length > 0 && password.length > 0;
     }
 
-    async function handleSubmit(event) {
+    function handleSubmit(event) {
         const data = {
             username: username,
             password: password
@@ -37,9 +37,11 @@ const Login = (props) => {
                 setPassword("");
                 setUsername("");
               } else {
-                    await res.json();
-                    sessionStorage.setItem('accessToken', res.accessToken);
-                    sessionStorage.setItem('refreshToken', res.refreshToken);
+                    res.json()
+                    .then((res)=>{
+                        sessionStorage.setItem('accessToken', res.accessToken);
+                        sessionStorage.setItem('refreshToken', res.refreshToken);
+                    })
               }
           })
           .catch(()=>{
