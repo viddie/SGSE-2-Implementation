@@ -33,11 +33,9 @@ function ChatRoom(props) {
     
     const [formValue, setFormValue] = useState('');
 
-    console.log("DEBUG: TEST 1");
-    
-
     const getConversation = async () => {
-        return await getMessages(receiver, token);;
+        const convo = await getMessages(receiver, token);
+        return convo;
     }
     
     const [messages] = getConversation();
@@ -124,8 +122,6 @@ const getMessages = async(other_user, token) => {
     var data2 = ApiCall(other_user, this_user);
     var data = []
 
-    console.log("DEBUG: TEST 2");
-
     if (data1 != undefined && data1.length == 0) {
         if (data2 != undefined && data2.length != 0) {
             data = data2;
@@ -155,7 +151,7 @@ const getMessages = async(other_user, token) => {
     }
 
     console.log("DEBUG: TEST 3");
-    console.log("data")
+    console.log(data)
 
     return data;
 }
