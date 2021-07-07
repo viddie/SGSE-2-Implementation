@@ -126,7 +126,7 @@ function getMessages(other_user, token) {
         if (data2 != undefined && data2.length == 0) {
             data = data1;
         } else {
-            data = [data1, data2];
+            data = [...data1, ...data2];
             /*data = [...data1, ...data2];
             
             console.log("ALL GLORY TO THE DATA!");
