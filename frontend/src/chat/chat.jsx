@@ -118,15 +118,17 @@ function getMessages(other_user, token) {
     var data2 = ApiCall(other_user, this_user);
     var data = []
     
-    if (data1 != undefined && data1.length == 0) {
-        if (data2 != undefined && data2.length != 0) {
+    if (data1 != null && data1.length == 0) {
+        if (data2 != null && data2.length != 0) {
             data = data2;
         }
     } else {
-        if (data2 != undefined && data2.length == 0) {
+        if (data2 != null && data2.length == 0) {
             data = data1;
         } else {
-            data = [...data1, ...data2];
+            Promise.all([data1, data2]).then(function(val) {
+                data = [...val[0],...val[1]]
+            });
             /*data = [...data1, ...data2];
             
             console.log("ALL GLORY TO THE DATA!");
