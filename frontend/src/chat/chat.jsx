@@ -160,7 +160,9 @@ function ApiCall(user1, user2) {
             console.log(data);
             data_r = data;
         });*/
-    fetch(`http://sgse2.ad.fh-bielefeld.de/api/chat/messages/receive/${user1}/${user2}`, {method='GET'})
+    fetch(`http://sgse2.ad.fh-bielefeld.de/api/chat/messages/receive/${user1}/${user2}`, {
+        method: 'GET'
+    })
         .then(response => {
             return response.json();
         })
