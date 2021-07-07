@@ -35,10 +35,11 @@ function ChatRoom(props) {
 
     console.log("DEBUG: TEST 1");
 
-    const [messages] = getMessages(receiver, token).value;
+    const [messages] = getMessages(receiver, token);
 
     console.log("ChatRoom: [messages]");
     console.log(messages);
+    console.log(messages.value);
 
     const sendMessage = async (e) => {
         e.preventDefault();
