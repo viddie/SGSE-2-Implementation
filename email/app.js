@@ -4,7 +4,7 @@ const app = express()
 const port = 30100
 const axios = require('axios');
 const db = require("./database/database.js")
-const mail = require("./email/email.js")
+const mail = require("./email/email")
 
 
 const axiosi = axios.create({
@@ -33,9 +33,13 @@ app.post("/sendMessage",(req,res) => {
 
 app.get("/newOffer", async (req,res) => {
   res.send("email send")
-  res_article = await axiosi.get("/offers/articles",{params: {id: req.query.id}})
+  res_article = await axiosi.get("/offers/article/" + req.query.id)
+  res_article = res_article.data
+  console.log(res_article)
   res_users = await axiosi.get("/user/auth")
-  let correct_user;
+  res_users = res_users.data
+  console.log(res_users)
+  let correct_user = res_users[0];
   for(user in res_users)
   {
     if(user._id == res_article.sellerID)
@@ -43,14 +47,18 @@ app.get("/newOffer", async (req,res) => {
       correct_user = user;
     }
   }
-  sendmail(correct_user.email,"Barter Smarter Angebot erstellt",correct_user.username)
+  mail.sendmail(correct_user.email,"Barter Smarter Angebot erstellt",correct_user.username)
 })
 
 app.get("/confirmOffer",async (req,res) => {
   res.send("email send")
-  res_article = await axiosi.get("/offers/articles",{params: {id: req.query.id}})
+  res_article = await axiosi.get("/offers/article/" + req.query.id)
+  res_article = res_article.data
+  console.log(res_article)
   res_users = await axiosi.get("/user/auth")
-  let correct_user;
+  res_users = res_users.data
+  console.log(res_users)
+  let correct_user = res_users[0];
   for(user in res_users)
   {
     if(user._id == res_article.sellerID)
@@ -58,7 +66,7 @@ app.get("/confirmOffer",async (req,res) => {
       correct_user = user;
     }
   }
-  sendmail(correct_user.email,"Barter Smarter Angebot wurde gekauft",correct_user.username)
+  mail.sendmail(correct_user.email,"Barter Smarter Angebot wurde gekauft",correct_user.username)
 
 })
 
