@@ -35,8 +35,6 @@ function ChatRoom(props) {
 
     const getConvo = async () => {
         const data = await getMessages(receiver, token);
-        console.log("this is my biggest dream");
-        console.log(data);
         return data;
     }
     const messages = getConvo();
@@ -152,13 +150,10 @@ const getMessages = async (other_user, token) => {
                 }); */
             }
         }
-        console.log("DEBUG: TEST 3");
-        console.log(data)
         return data;
     }
     
     const data = apiCall();
-    console.log(data)
     return data;
 }
 
