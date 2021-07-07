@@ -44,7 +44,7 @@ function ChatRoom(props) {
             },
             body: JSON.stringify({
                 id: 1,
-                sender: "WHY IS THIS EVEN HERE???",
+                sender: token,
                 receiver: receiver,
                 text: formValue
             })
@@ -73,27 +73,32 @@ function ChatRoom(props) {
     return (
         <>
             <main>
-                {messages && messages.map(msg => <ChatMessage key={msg.id} message={msg} />)}
+                {messages && messages.map(msg => <ChatMessage key={msg.receiver} val={receiver} message={msg.text} />)}
                 <span ref={dummy}></span>
             </main>
 
             <form onSubmit={sendMessage}>
                 <input value={formValue} onChange={(e) => setFormValue(e.target.value)} placeholder="type..." />
             </form>
-                <button type="submit" disabled={!formValue}>send</button>
+            <button type="submit" disabled={!formValue}>send</button>
         </>
     )
 }
 
 function ChatMessage(props) {
-    const { text, uid, photoURL } = props.message;
+    const text = props.message;
+    const uid = props.key;
+    const uid_r = props.val;
 
-    const messageClass = uid === auth.currentUser.uid ? 'sent' : 'received';
+    const messageClass = 'sent';
+    if (uid == uid_r) {
+        messageClass = 'received';
+    }
 
     return (
         <>
             <div className={`message ${messageClass}`}>
-                <img src={photoURL || 'https://www.linusakesson.net/programming/kernighans-lever/cat.png'} />
+                <img src={'https://www.linusakesson.net/programming/kernighans-lever/cat.png'} />
                 <p>{text}</p>
             </div>
         </>
@@ -103,13 +108,21 @@ function ChatMessage(props) {
 function getMessages(other_user, token) {
     //var this_user = extract_username_from_token(token);
     var this_user = token;
-    var data = ApiCall(this_user, other_user)
+    var data1 = ApiCall(this_user, other_user);
+    var data2 = ApiCall(other_user, this_user);
+    var data = []
 
-    console.log(data)
-
-    data.push(ApiCall(other_user, this_user));
-
-    console.log(data)
+    if (data1.length == 0) {
+        if (data2.length != 0) {
+            data = data2;
+        }
+    } else {
+        if (data2.length == 0) {
+            data = data1;
+        } else {
+            data = [...data1, ...data2];
+        }
+    }
 
     function compareTimestamps(a, b) {
         a = a.toLowerCase();
@@ -126,32 +139,29 @@ function getMessages(other_user, token) {
 
 function ApiCall(user1, user2) {
     const data = []
-    const getMessages = async (e) => {
-        e.preventDefault();
-
-        const requestOptions = {
-            method: 'GET'
-        };
-        fetch(`http://sgse2.ad.fh-bielefeld.de/api/chat/receive/${user1}/${user2}`, requestOptions)
-            .then(async response => {
-                const isJson = response.headers.get('content-type')?.includes('application/json');
-                data = isJson && await response.json();
     
-                // check for error response
-                if (!response.ok) {
-                    // get error message from body or default to response status
-                    const error = (data && data.message) || response.status;
-                    return Promise.reject(error);
-                }
-            })
-            .catch(error => {
-                this.setState({ errorMessage: error.toString() });
-                console.error('Error while sending chat message: API call malfunctioned', error);
-            });
+    const requestOptions = {
+        method: 'GET'
+    };
+    fetch(`http://sgse2.ad.fh-bielefeld.de/api/chat/receive/${user1}/${user2}`, requestOptions)
+        .then(async response => {
+            const isJson = response.headers.get('content-type')?.includes('application/json');
+            data = isJson && await response.json();
 
-        setFormValue('');
-        dummy.current.scrollIntoView({ behavior: 'smooth' });
-    }
+            // check for error response
+            if (!response.ok) {
+                // get error message from body or default to response status
+                const error = (data && data.message) || response.status;
+                return Promise.reject(error);
+            }
+        })
+        .catch(error => {
+            this.setState({ errorMessage: error.toString() });
+            console.error('Error while sending chat message: API call malfunctioned', error);
+        });
+
+    setFormValue('');
+    dummy.current.scrollIntoView({ behavior: 'smooth' });
 
     console.log("API CALL RETURNED: ")
     console.log(data)
