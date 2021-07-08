@@ -90,13 +90,17 @@ const CreateArticle = (props) => {
             </Form.Group>
 
             <Form.Group size="lg" controlId="tags">
-            <Form.Label>Beschreibung</Form.Label>
+            <Form.Label>Tags</Form.Label>
             <Form.Control
                 autoFocus
-                type="email"
+                type="text"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
+                aria-describedby="tagsHelper"
             />
+            <Form.Text id="tagsHelper" muted>
+                Gib hier prägnante Tags kommasepariert ein. Es wird die Erreichbarkeit erhöhen!
+            </Form.Text>
             </Form.Group>
 
             <Button block size="lg" onClick={()=>handleSubmit()} disabled={!validateForm()}>

@@ -77,7 +77,7 @@ const Login = (props) => {
                 onChange={(e) => setPassword(e.target.value)}
             />
             </Form.Group>
-            <Button block size="lg" onClick={()=>handleSubmit()} disabled={!validateForm()}>
+            <Button block size="lg" onSubmit={()=>handleSubmit()} onEnter disabled={!validateForm()}>
             Login
             </Button>
         </Form>
