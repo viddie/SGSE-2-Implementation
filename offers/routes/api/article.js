@@ -3,12 +3,15 @@ const mongoose = require('mongoose');
 const multer = require('multer');
 const fs = require('fs');
 const auth = require('../../interservice/auth')
-
+const axios = require('axios');
 var ArticleModel = mongoose.model('Article');
 
 const upload = multer({ dest: "uploads" });
 
-
+const axiosi = axios.create({
+    baseURL: 'http://sgse2.ad.fh-bielefeld.de/api/',
+    timeout: 1000,
+  })
 
 router.get('/getAll', async (req,res) =>
 {
@@ -174,7 +177,6 @@ router.post('/article', auth.authenticateJWT, upload.any(), function (req, res) 
             startedOn : startDate.toString(),
             endsOn : endDate.toString()
         });
-
         // Falls Tags vorhanden sind werden diese hinzugefügt
         if (req.body.tags){
             tagsString = req.body.tags;
@@ -199,6 +201,15 @@ router.post('/article', auth.authenticateJWT, upload.any(), function (req, res) 
             if (err) return console.error(err);
             return res.status(200).json('Alles jut')
         });
+        console.log(article._id);
+        articleid = article._id.toString();
+        axiosi.get('/email/newOffer', {
+            params: {
+              id: articleid
+            }
+          }).catch(function (error) {
+            console.log(error);
+          })
         
     } else {
         return res.status(400).json('Ungültige Eingabeparameter!')
