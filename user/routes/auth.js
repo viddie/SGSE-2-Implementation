@@ -10,6 +10,8 @@ let refreshTokens = [];
 const accessTokenSecret = 'somerandomaccesstoken';
 const refreshTokenSecret = 'somerandomstringforrefreshtoken';
 
+const emailRegexp = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+
 // Getting all
 router.get('/', async (req,res) =>
 {
@@ -23,7 +25,8 @@ router.get('/', async (req,res) =>
 })
 
 router.post("/signup", SignUp, async (req,res) =>
-{    
+{
+    console.log(emailRegexp.test(req.body.email));
     const user = new User({
         
         username: req.body.username,
