@@ -4,7 +4,7 @@ import Header from "./header/header";
 import Showroom from './article/showroom';
 import Chat from './chat/chat';
 import Login from './user/login'
-import SignUp from './user/signup'
+import SignUp from './user/signUp'
 import {Switch, BrowserRouter, Route} from 'react-router-dom';
 
 
