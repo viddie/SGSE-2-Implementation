@@ -8,7 +8,7 @@ const Header = (props) => {
     
     const [expired, setExpired] = useState(true);
     const [user, setUser] = ("");
-
+    console.log("ahfiuh")
     const token = localStorage.getItem("accessToken");
     if (token) {
         const { decodedToken, isExpired } = useJwt(token);
