@@ -5,20 +5,22 @@ import { Redirect } from 'react-router-dom';
 const SignUp = (props) => {
 
     const [username, setUsername] = useState("");
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState(false);
 
     function validateForm() {
-        return username.length > 0 && password.length > 0;
+        return username.length > 0 && password.length > 0 && email.length > 0;
     }
 
     function handleSubmit(event) {
         const data = {
             username: username,
+            email: email,
             password: password
         };
         fetch(
-            "http://sgse2.ad.fh-bielefeld.de/api/user/auth/login",
+            "http://sgse2.ad.fh-bielefeld.de/api/user/auth/signup",
             {
                 method: 'POST', // *GET, POST, PUT, DELETE, etc.
                 mode: 'cors', // no-cors, *cors, same-origin
@@ -35,14 +37,10 @@ const SignUp = (props) => {
               if (!res.ok){
                 setError(true);
                 setPassword("");
+                setEmail("");
                 setUsername("");
               } else {
-                    res.json()
-                    .then((res)=>{
-                        sessionStorage.setItem('accessToken', res.accessToken);
-                        sessionStorage.setItem('refreshToken', res.refreshToken);
-                        <Redirect to="/"></Redirect>;
-                    })
+                    <Redirect to="/"></Redirect>;
               }
           })
           .catch(()=>{
@@ -54,7 +52,7 @@ const SignUp = (props) => {
         <Container className="m-auto" style={{maxWidth: "60%"}} >
         {error &&
             <Alert variant={"warning"}>
-                Passwort oder Benutzername falsch!
+                Email nicht valide!
             </Alert>
         }
         <Form onSubmit={handleSubmit}>
@@ -65,6 +63,15 @@ const SignUp = (props) => {
                 type="username"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
+            />
+            </Form.Group>
+            <Form.Group size="lg" controlId="email">
+            <Form.Label>Email</Form.Label>
+            <Form.Control
+                autoFocus
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
             />
             </Form.Group>
             <Form.Group size="lg" controlId="password">
@@ -83,4 +90,4 @@ const SignUp = (props) => {
     )
 }
 
-export default Login
+export default SignUp
