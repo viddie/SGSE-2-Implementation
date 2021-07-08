@@ -121,7 +121,6 @@ async function getMessages(other_user, token) {
     var this_user = token;
     let data1 = {}
     let data2 = {}
-    let data = {}
     
     await fetch(`http://sgse2.ad.fh-bielefeld.de/api/chat/messages/receive/${this_user}/${other_user})`)
         .then(res => res.json())
@@ -130,20 +129,15 @@ async function getMessages(other_user, token) {
             fetch(`http://sgse2.ad.fh-bielefeld.de/api/chat/messages/receive/${other_user}/${this_user})`)
             .then(res => res.json())
             .then(json => data2 = json)
-            .then(resolve(true))
+            .then(
+                Promise.all([data1, data2]).then(function(val) {
+                    let data = [...val[0],...val[1]];
+                    console.log("DEBUG: getMessages: data")
+                    console.log(data);
+                    return data;
+                })
+            )
         })
-    
-    Promise.all([data1, data2]).then(function(val) {
-        data = [...val[0],...val[1]];
-        console.log("DEBUG: getMessages: val")
-        console.log(val);
-    });
-
-    console.log("DEBUG: getMessages: data")     
-    console.log(data);      
-    if (data != undefined) {         
-        return data;    
-    } 
 }
 
 export default Chat
