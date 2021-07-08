@@ -6,7 +6,7 @@ import {LinkContainer} from 'react-router-bootstrap'
 
 const Header = (props) => {
     
-    const expired, setExpired= useState(true);
+    const [expired, setExpired] = useState(true);
     const user, setUser = ("");
 
     useEffect(()=> {
