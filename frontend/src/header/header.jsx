@@ -9,15 +9,13 @@ const Header = (props) => {
     const [expired, setExpired] = useState(true);
     const [user, setUser] = ("");
 
-    useEffect(()=> {
-        const token = localStorage.getItem("accessToken");
-        if (token) {
-            const { decodedToken, isExpired } = useJwt(token);
-            setUser(decodedToken.username);
-            setExpired(isExpired);
-            console.log(isExpired)
-        }
-    }, [])
+    const token = localStorage.getItem("accessToken");
+    if (token) {
+        const { decodedToken, isExpired } = useJwt(token);
+        setUser(decodedToken.username);
+        setExpired(isExpired);
+        console.log(isExpired)
+    }
 
     return (
         <Navbar collapseOnSelect expand="lg" bg="success" variant="dark">
