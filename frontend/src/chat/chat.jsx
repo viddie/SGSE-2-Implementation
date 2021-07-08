@@ -118,6 +118,9 @@ function getMessages(other_user, token) {
     var data1 = ApiCall(this_user, other_user);
     var data2 = ApiCall(other_user, this_user);
     var data = []
+
+    console.log(data1)
+    console.log(data2)
     
     Promise.all([data1, data2]).then(function(val) {
         console.log(val);
