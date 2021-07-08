@@ -23,7 +23,7 @@ function App() {
       <Header store={store}/>
       <div className = "mt-3">
         <Switch>
-          <Route path='/'>
+          <Route exact path='/'>
             <Showroom store={store} categories={["all"]}></Showroom>
           </Route>
           <React.Fragment>
