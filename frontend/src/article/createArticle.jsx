@@ -109,10 +109,17 @@ const CreateArticle = (props) => {
                     <option value="electronics">Elektroartikel</option>
                     <option value="antiques">Antiquitäten</option>
                     <option value="miscellaneous">Sonstiges</option>
-                    <option>Default select</option>
                 </Form.Control>
             </Form.Group>
 
+            <Form>
+                <Form.File 
+                    id="pictureUpload"
+                    label="Bilder hinzufügen"
+                    data-browse="Datei suchen"
+                    custom
+                />
+            </Form>
             <Button block size="lg" onClick={()=>handleSubmit()} disabled={!validateForm()}>
             Artikel einstellen
             </Button>
