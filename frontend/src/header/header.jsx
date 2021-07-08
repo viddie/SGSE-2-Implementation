@@ -1,21 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { Button, Navbar, Nav, Form, FormControl, Container, Image } from 'react-bootstrap'
 import { useJwt } from "react-jwt";
+import { LinkContainer } from 'react-router-bootstrap';
+import { State } from './statemanagement/state';
 import logo from '/static/wurm.png'
-import {LinkContainer} from 'react-router-bootstrap'
 
 const Header = (props) => {
     
-    const [expired, setExpired] = useState(true);
-    const [user, setUser] = ("");
-    console.log("ahfiuh")
-    const token = localStorage.getItem("accessToken");
-    if (token) {
-        const { decodedToken, isExpired } = useJwt(token);
-        setUser(decodedToken.username);
-        setExpired(isExpired);
-        console.log(isExpired)
-    }
+    const [state, dispatch] = useContext(State);
 
     return (
         <Navbar collapseOnSelect expand="lg" bg="success" variant="dark">
@@ -29,7 +21,7 @@ const Header = (props) => {
                 </Navbar.Brand>
                 </LinkContainer>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-                {expired ?
+                {state.loggedIn ?
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className="me-auto">
                             <LinkContainer to="/login">

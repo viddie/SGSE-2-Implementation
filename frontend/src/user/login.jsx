@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import { Button, Form, Container, Alert} from 'react-bootstrap'
 import { useHistory } from 'react-router-dom'; // version 5.2.0
+import { State } from './statemanagement/state';
 
 const Login = (props) => {
     const history = useHistory();
+
+    const [state, dispatch] = useContext(State);
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState(false);
@@ -42,6 +45,7 @@ const Login = (props) => {
                         sessionStorage.setItem('accessToken', res.accessToken);
                         sessionStorage.setItem('refreshToken', res.refreshToken);
                         history.push("/");
+                        dispatch({loggedIn : true})
                     })
               }
           })
