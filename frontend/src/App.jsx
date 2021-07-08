@@ -11,13 +11,12 @@ import {Switch, BrowserRouter, Route} from 'react-router-dom';
 
 import { useObserver, useLocalStore } from 'mobx-react-lite'
 
-const store = useLocalStore(()=> ({
-  loggedIn : false
-}))
-
-
-
 function App() {
+
+  const store = useLocalStore(()=> ({
+    loggedIn : false
+  }))
+
   return useObserver(()=>(
     <BrowserRouter>
     <div className="App">
