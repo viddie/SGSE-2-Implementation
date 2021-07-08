@@ -64,7 +64,11 @@ const SmallArticle = (props) => {
                   </div>
                 </Col>
                 <Col style={{ display: "flex", alignItems: "center" }}>
-                  {props.store.loggedIn ? <ContactButton></ContactButton> : <LoginButton></LoginButton>}
+                  {
+                    props.store.loggedIn ? 
+                    <ContactButton></ContactButton> : 
+                    <LoginButton></LoginButton>
+                  }
                 </Col>
               </Row>
             </Container>
@@ -76,7 +80,7 @@ const SmallArticle = (props) => {
 
 function ContactButton() {
   return (    
-      <Link to="/chat">
+      <Link to="/chat?hempelmann">
         <Button size="lg" block style={{ backgroundColor: "darkgreen", borderColor: "darkgreen" }}>
           Anbieter kontaktieren
         </Button>

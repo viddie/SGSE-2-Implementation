@@ -27,7 +27,7 @@ function App() {
         <div className = "mt-3">
           <Switch>
             <Route exact path='/'>
-              <Showroom store={store} categories={["all"]}/>
+              <Showroom store={store} path={"/api/offers/article/findByCategory?categories=all"}/>
             </Route>
             {!store.loggedIn &&
               <Route exact path='/login'>
@@ -41,7 +41,9 @@ function App() {
                 <Route exact path='/userChat' component={Chat}/>
             }
             {store.loggedIn &&
-                <Route exact path='/myArticles' component={MyArticles}/>
+                <Route exact path='/myArticles'>
+                  <Showroom store={store} path={"/api/offers/article/findByCategory?categories=all"}/>
+                </Route>
             }
             {store.loggedIn &&
                 <Route exact path='/createArticle' component={CreateArticle}/>

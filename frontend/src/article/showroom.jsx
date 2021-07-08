@@ -8,8 +8,8 @@ const Showroom = (props) => {
   const [articleIds, setArticleIds] = useState([]);
 
   useEffect(() =>{
-    const categories = props.categories
-      fetch("/api/offers/article/findByCategory?categories="+ categories.join(","))
+    const path = props.path
+      fetch(path)
       .then(res => res.json())
       .then(res => setArticleIds(res))
       .catch(() => setErrors(true))
