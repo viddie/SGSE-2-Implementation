@@ -8,6 +8,7 @@ import Chat from './chat/chat';
 import Login from './user/login';
 import SignUp from './user/signUp';
 import CreateArticle from './article/createArticle';
+import MyArticles from './article/myArticles';
 import ErrorPageNotFound from './notFoundError/routeNotFound';
 import { Switch, BrowserRouter, Route, Redirect } from 'react-router-dom';
 
@@ -40,6 +41,7 @@ function App() {
             :
             <React.Fragment>
               <Route exact path='/userChat' component={Chat}/>
+              <Route exact path='/myArticles' component={MyArticles}/>
               <Route exact path='/createArticle' component={CreateArticle}/>
             </React.Fragment>
             }
