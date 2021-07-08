@@ -3,10 +3,10 @@
     left: 50%;
     width: 30em;
     height: 18em;
-    margin-top: -9em;
+    margin-top: -15em;
     margin-left: -15em;
     border: 0px;
-    background-color: #b1b1b1;
+    background-color: white;
     position: fixed;
 }
 
@@ -15,7 +15,7 @@
 }
 
 .container_title {
-    font-size: large;
+    font-size: larger;
 }
 
 .container_text {
