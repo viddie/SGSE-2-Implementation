@@ -132,6 +132,8 @@ async function getMessages(other_user, token) {
                     data2 = json;
                         let data = [...data1,...data2];
                         console.log("DEBUG: getMessages: data")
+                        console.log(data1);
+                        console.log(data2);
                         console.log(data);
 
                         return data;
