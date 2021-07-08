@@ -66,7 +66,7 @@ const SmallArticle = (props) => {
                 <Col style={{ display: "flex", alignItems: "center" }}>
                   {
                     props.store.loggedIn ? 
-                    <DispatchButton sellerID={props.article.sellerID}></DispatchButton> : 
+                    <DispatchButton sellerID={props.article.sellerID} articleID={props.article._id}></DispatchButton> : 
                     <LoginButton></LoginButton>
                   }
                 </Col>
@@ -81,7 +81,7 @@ const SmallArticle = (props) => {
 function DispatchButton(props) {
 
   function deleteArticle(){
-    console.log("Deleted");
+    fetch
   }
 
   if (props.sellerID == sessionStorage.getItem("userID")) {
