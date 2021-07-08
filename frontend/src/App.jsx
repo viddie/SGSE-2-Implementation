@@ -7,7 +7,6 @@ import Login from './user/login'
 import SignUp from './user/signUp'
 import {Switch, BrowserRouter, Route} from 'react-router-dom';
 
-
 function App() {
   return (
     <BrowserRouter>
