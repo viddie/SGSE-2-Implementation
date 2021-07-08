@@ -20,35 +20,35 @@ function App() {
   }))
 
   return useObserver(()=>(
-    <BrowserRouter>
-      <div className="App">
-        <Header store={store}/>
-        <div className = "mt-3">
-        <Switch>
-          <Route exact path='/'>
-            <Showroom store={store} categories={["all"]}/>
-          </Route>
-          {!store.loggedIn ?
-            <React.Fragment>
-              <Route exact path='/login'>
-                <Login store={store}></Login>
-              </Route>
-              <Route exact path='/createAccount'>
-                <SignUp></SignUp>
-              </Route>
-            </React.Fragment>
-            :
-            <React.Fragment>
-              <Route exact path='/userChat' component={Chat}/>
-              <Route exact path='/createArticle' component={CreateArticle}/>
-            </React.Fragment>
+  <div className="App">
+    <Header store={store}/>
+      <div className = "mt-3">
+        <BrowserRouter>
+          <Switch>
+            <Route exact path='/'>
+              <Showroom store={store} categories={["all"]}/>
+            </Route>
+            {!store.loggedIn ?
+              <React.Fragment>
+                <Route exact path='/login'>
+                  <Login store={store}></Login>
+                </Route>
+                <Route exact path='/createAccount'>
+                  <SignUp></SignUp>
+                </Route>
+              </React.Fragment>
+              :
+              <React.Fragment>
+                <Route exact path='/userChat' component={Chat}/>
+                <Route exact path='/createArticle' component={CreateArticle}/>
+              </React.Fragment>
             }
-          <Route path='/404' component={ErrorPageNotFound} />
-          <Redirect to='/404' />
+            <Route path='/404' component={ErrorPageNotFound} />
+            <Redirect to='/404' />
           </Switch>
-        </div>
+        </BrowserRouter>
       </div>
-    </BrowserRouter>
+    </div>
   ));
 }
 
