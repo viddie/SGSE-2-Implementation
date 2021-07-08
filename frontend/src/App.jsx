@@ -25,15 +25,20 @@ function App() {
           <Route exact path='/'>
             <Showroom categories={["all"]}/>
           </Route>
+          {!state.loggedIn ?
+          <React.Fragment>
           <Route exact path='/login'>
             <Login state={state}></Login>
-          </Route>
-          <Route exact path='/chat'>
-            <Chat></Chat>
           </Route>
           <Route path='/createAccount'>
             <SignUp></SignUp>
           </Route>
+          </React.Fragment>
+           :
+           <Route exact path='/chat'>
+            <Chat></Chat>
+          </Route>
+           }
         </Switch>
       </div>
     </div>
