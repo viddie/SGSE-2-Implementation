@@ -34,9 +34,7 @@ function App() {
                 <Route exact path='/login'>
                   <Login store={store}></Login>
                 </Route>
-                <Route exact path='/createAccount'>
-                  <SignUp></SignUp>
-                </Route>
+                <Route exact path='/createAccount' component={SignUp}/>
               </React.Fragment>
               :
               <React.Fragment>
@@ -45,8 +43,8 @@ function App() {
                 <Route exact path='/createArticle' component={CreateArticle}/>
               </React.Fragment>
             }
-            <Route path='/404' component={ErrorPageNotFound} />
-            <Redirect to='/404' />
+            <Route path='/404' component={ErrorPageNotFound}/>
+            <Redirect to='/404'/>
           </Switch>
       </div>
       </BrowserRouter>
