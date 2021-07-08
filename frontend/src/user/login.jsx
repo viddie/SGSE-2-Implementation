@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Form, Container, Alert} from 'react-bootstrap'
 import { useHistory } from 'react-router-dom';
-import { useJwt } from "react-jwt";
+import jwt_decode from "jwt-decode";
 
 const Login = (props) => {
     const history = useHistory();
@@ -43,8 +43,8 @@ const Login = (props) => {
                     .then((res)=>{
                         sessionStorage.setItem('accessToken', res.accessToken);
                         sessionStorage.setItem('refreshToken', res.refreshToken);
-                        const { decodedToken, isExpired } = useJwt(res.accessToken);
-                        sessionStorage.setItem('userID', decodedToken.id);
+                        var decoded = jwt_decode(res.accessToken);
+                        sessionStorage.setItem('userID', decoded.id);
                         props.store.loggedIn = true;
                         history.push("/");
                     })
