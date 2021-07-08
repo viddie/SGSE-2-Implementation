@@ -3,7 +3,7 @@ import { Button, Form, Container, Alert} from 'react-bootstrap'
 import { useHistory } from 'react-router-dom'; // version 5.2.0
 
 const Login = (props) => {
-
+    const history = useHistory();
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState(false);
@@ -13,7 +13,6 @@ const Login = (props) => {
     }
 
     function handleSubmit(event) {
-        const history = useHistory();
         const data = {
             username: username,
             password: password
@@ -42,7 +41,7 @@ const Login = (props) => {
                     .then((res)=>{
                         sessionStorage.setItem('accessToken', res.accessToken);
                         sessionStorage.setItem('refreshToken', res.refreshToken);
-                        history.replace("/");
+                        ()=>history.replace("/");
                     })
               }
           })

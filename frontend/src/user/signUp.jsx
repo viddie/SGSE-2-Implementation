@@ -3,7 +3,7 @@ import { Button, Form, Container, Alert} from 'react-bootstrap'
 import { useHistory } from 'react-router-dom'; 
 
 const SignUp = (props) => {
-
+    const history = useHistory();
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -14,7 +14,6 @@ const SignUp = (props) => {
     }
 
     function handleSubmit(event) {
-        const history = useHistory();
         const data = {
             username: username,
             email: email,
@@ -41,7 +40,7 @@ const SignUp = (props) => {
                 setEmail("");
                 setUsername("");
               } else {
-                history.replace("/");
+                ()=>history.replace("/");
               }
           })
           .catch(()=>{

@@ -8,11 +8,13 @@ const Header = (props) => {
         <Navbar collapseOnSelect expand="lg" bg="success" variant="dark">
             <Navbar sticky="top" />
             <Container>
-                <Navbar.Brand href="http://sgse2.ad.fh-bielefeld.de">
+                <LinkContainer to="/">
+                <Navbar.Brand>
                     Barter 
                     <Image src={logo} height="40"></Image>
                     Smarter
                 </Navbar.Brand>
+                </LinkContainer>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="me-auto">
