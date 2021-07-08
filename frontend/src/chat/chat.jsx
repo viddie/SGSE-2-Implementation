@@ -126,7 +126,7 @@ async function getMessages(other_user, token) {
         .then(res => res.json())
         .then(json => {
             data1 = json;
-            fetch(`http://sgse2.ad.fh-bielefeld.de/api/chat/messages/receive/${other_user}/${this_user}`, { method: "GET", headers: { 'Content-Type': 'application/json' } })
+            await fetch(`http://sgse2.ad.fh-bielefeld.de/api/chat/messages/receive/${other_user}/${this_user}`, { method: "GET", headers: { 'Content-Type': 'application/json' } })
                 .then(res => res.json())
                 .then(json => {
                     data2 = json;
