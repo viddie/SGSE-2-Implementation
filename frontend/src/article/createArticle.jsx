@@ -31,7 +31,6 @@ const CreateArticle = (props) => {
                 cache: 'no-cache', 
                 credentials: 'same-origin', 
                 headers: {
-                    'Content-Type': 'multipart/form-data ',
                     'Authorization': 'Bearer '+ sessionStorage.getItem("accessToken")
                 },
                 redirect: 'follow', // manual, *follow, error
