@@ -8,6 +8,19 @@ var ArticleModel = mongoose.model('Article');
 
 const upload = multer({ dest: "uploads" });
 
+
+
+router.get('/getAll', async (req,res) =>
+{
+    try{
+        const articels = await ArticleModel.find()
+        res.json(articels)
+    }catch(err)
+    {
+        res.status(500).json({message: err.message})
+    }
+})
+
 router.get('/article/findByCategory', function (req, res, next) {
     // Die Angabe der zulässigen Kategorien erfolgt per Query Parameter mit Komma getrennt
     // Wird nur der Parameter "all" verwendet, werden alle zurückgeben
@@ -140,6 +153,7 @@ router.post('/article', auth.authenticateJWT, upload.any(), function (req, res) 
     // Überprüfe das Token, enthält auch die UserID
     const sellerID = req.validUser.id;
     const sellerName = req.validUser.username;
+    console.log(sellerName, sellerID);
     // Überprüfe bzw. Überarbeite die notwendigen Eingabefelder
     let heading = req.body.heading;
     let description = req.body.description;
@@ -152,7 +166,7 @@ router.post('/article', auth.authenticateJWT, upload.any(), function (req, res) 
         let endDate = startDate + 7*24*60*60*1000;
         const article = new ArticleModel({
             sellerID: sellerID,
-            userName: sellerName,
+            sellerName: sellerName,
             heading: heading,
             description: description,
             category: category,
