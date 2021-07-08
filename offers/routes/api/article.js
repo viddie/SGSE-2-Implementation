@@ -161,7 +161,6 @@ router.post('/article', auth.authenticateJWT, upload.any(), function (req, res) 
             startedOn : startDate.toString(),
             endsOn : endDate.toString()
         });
-
         // Falls Tags vorhanden sind werden diese hinzugefügt
         if (req.body.tags){
             tagsString = req.body.tags;
@@ -186,6 +185,7 @@ router.post('/article', auth.authenticateJWT, upload.any(), function (req, res) 
             if (err) return console.error(err);
             return res.status(200).json('Alles jut')
         });
+        console.log(article._id);
         
     } else {
         return res.status(400).json('Ungültige Eingabeparameter!')
