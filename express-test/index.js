@@ -12,7 +12,7 @@ app.use(bodyParser.json());
 const port = 30100;
 
 var con = mysql.createConnection({
-  host: "172.17.0.9",
+  host: "172.17.0.55",
   user: "root",
   password: "passwort123!"
 });
