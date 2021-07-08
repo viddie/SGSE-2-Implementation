@@ -16,7 +16,7 @@ function Chat(props) {
     return (
         <div className="Chat">
             <div className="chat_header">
-                <h1>Name of Chat Partner</h1>
+                <h1>{props.receiver}</h1>
                 <div className="chat_header_options">Options</div>
             </div>
             <div className="chat_section">
@@ -112,7 +112,7 @@ function ChatMessage(props) {
     );
 }
 
-function getMessages(other_user, token) {
+const getMessages = async(other_user, token) => {
     //var this_user = extract_username_from_token(token);
     var this_user = token;
     
@@ -122,8 +122,8 @@ function getMessages(other_user, token) {
         return json;
     }
 
-    var data1 = request(this_user, other_user);
-    var data2 = request(other_user, this_user);
+    var data1 = await request(this_user, other_user);
+    var data2 = await request(other_user, this_user);
     var data = undefined;
 
     Promise.all([data1, data2]).then(function(val) {
