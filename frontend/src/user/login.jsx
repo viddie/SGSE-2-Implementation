@@ -42,8 +42,8 @@ const Login = (props) => {
                     .then((res)=>{
                         sessionStorage.setItem('accessToken', res.accessToken);
                         sessionStorage.setItem('refreshToken', res.refreshToken);
+                        props.state.loggedIn = true;
                         history.push("/");
-                        props.state = {loggedIn : true};
                     })
               }
           })

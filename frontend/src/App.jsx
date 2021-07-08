@@ -1,6 +1,7 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from "./header/header";
+import React from 'react';
 import Footer from "./footer/footer";
 import Showroom from './article/showroom';
 import Chat from './chat/chat';
