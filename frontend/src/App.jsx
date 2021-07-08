@@ -10,25 +10,26 @@ import {Switch, BrowserRouter, Route} from 'react-router-dom';
 
 function App() {
   return (
+    <BrowserRouter>
     <div className="App">
       <Header/>
       <div className = "mt-3">
-      <BrowserRouter>
-      <Switch>
-        <Route path='/'>
-          <Showroom categories={["all"]}/>
-        </Route>
-        <Route path='/login'>
-          <Login></Login>
-        </Route>
-        <Route path='/chat'>
-          <Chat></Chat>
-        </Route>
-        <Route path='/createAccount'/>
-      </Switch>
-      </BrowserRouter>
+
+        <Switch>
+          <Route path='/'>
+            <Showroom categories={["all"]}/>
+          </Route>
+          <Route path='/login'>
+            <Login></Login>
+          </Route>
+          <Route path='/chat'>
+            <Chat></Chat>
+          </Route>
+          <Route path='/createAccount'/>
+        </Switch>
       </div>
     </div>
+    </BrowserRouter>
   );
 }
 
