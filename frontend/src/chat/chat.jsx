@@ -132,7 +132,12 @@ function getMessages(other_user, token) {
     console.log("DEBUG: getMessages: data")
     console.log(data);
 
-    return data;
+    if (data != undefined) {
+        return data;
+    } else {
+        return [];
+    }
+
 }
 
 function ApiCall(user1, user2) {
@@ -145,11 +150,11 @@ function ApiCall(user1, user2) {
         console.log("DEBUG: ApiCall: json")
         console.log(json)
     }
-
-    console.log("DEBUG: ApiCall: data")
-    console.log(data)
     
     request();
+    
+    console.log("DEBUG: ApiCall: data")
+    console.log(data)
 
     return data;
 }
