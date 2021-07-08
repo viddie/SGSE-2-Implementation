@@ -23,23 +23,37 @@ router.get('/', async (req,res) =>
     }
 })
 
-router.post("/signup", SignUp, async (req,res) =>
-{
-
-    const user = new User({
-        
-        username: req.body.username,
-        password: req.body.password,
-        role: req.body.role,
-        email: req.body.email  
-    })
+outer.post("/signup",[
+    check('username').isLength({ min: 3 }),
+    check('email').isEmail(),
+    ],
+    SignUp, async (req,res) =>
+{    
     
-    try{
-        const newUser = await user.save()
-        res.status(201).json(newUser)
-    }catch(err){
-        res.status(400).json({message: err.message})
+    const name  = req.body.name
+    const email = req.body.email
+
+    const errors = validationResult(req)
+    
+    if (errors.isEmpty()){
+        const user = new User({
+            
+            username: req.body.username,
+            password: req.body.password,
+            role: req.body.role,
+            email: req.body.email  
+        })
+
+        try{
+            const newUser = await user.save()
+            res.sendStatus(201)
+        }catch(err){
+            res.status(400).json({message: err.message})
+        }
+    }else{
+        return res.status(422).json({ errors: errors.array()})
     }
+
 })
 
 router.post('/login', getUser, (req, res) => {
