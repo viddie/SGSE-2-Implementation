@@ -15,8 +15,9 @@ const Header = (props) => {
             const { decodedToken, isExpired } = useJwt(token);
             setUser(decodedToken.username);
             setExpired(isExpired);
+            console.log(isExpired)
         }
-    })
+    }, [])
 
     return (
         <Navbar collapseOnSelect expand="lg" bg="success" variant="dark">
