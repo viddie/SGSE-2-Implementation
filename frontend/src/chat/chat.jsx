@@ -38,8 +38,13 @@ function ChatRoom(props) {
     const messages = getMessages(receiver, token);
 
 
-    console.log("ChatRoom: [messages]");
+    console.log("DEBUG: ChatRoom: messages");
     console.log(messages);
+
+    console.log("DEBUG: ChatRoom: messages.resolve");
+    const data = Promise.resolve(messages);
+    console.log(p);
+
 
     const sendMessage = async (e) => {
         e.preventDefault();
@@ -120,14 +125,12 @@ function getMessages(other_user, token) {
     var data2 = ApiCall(other_user, this_user);
     var data = []
 
-    console.log(data1)
-    console.log(data2)
-    
     Promise.all([data1, data2]).then(function(val) {
-        console.log(val);
         data = [...val[0],...val[1]];
-        console.log(data);
     });
+
+    console.log("DEBUG: getMessages: data")
+    console.log(data);
 
     return data;
 }
@@ -142,7 +145,6 @@ function ApiCall(user1, user2) {
     }
     
     request();
-    console.log(data);
     return data;
 }
 
