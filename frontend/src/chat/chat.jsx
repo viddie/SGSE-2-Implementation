@@ -124,19 +124,18 @@ async function getMessages(other_user, token) {
     
     await fetch(`http://sgse2.ad.fh-bielefeld.de/api/chat/messages/receive/${this_user}/${other_user})`)
         .then(res => res.json())
-        .then(json => data1 = json)
-        .then(() => {
+        .then(json => {
+            data1 = json;
             fetch(`http://sgse2.ad.fh-bielefeld.de/api/chat/messages/receive/${other_user}/${this_user})`)
-            .then(res => res.json())
-            .then(json => data2 = json)
-            .then(
-                Promise.all([data1, data2]).then(function(val) {
-                    let data = [...val[0],...val[1]];
-                    console.log("DEBUG: getMessages: data")
-                    console.log(data);
-                    return data;
+                .then(res => res.json())
+                .then(json => {
+                    data2 = json;
+                        let data = [...data1,...data2];
+                        console.log("DEBUG: getMessages: data")
+                        console.log(data);
+
+                        return data;
                 })
-            )
         })
 }
 
