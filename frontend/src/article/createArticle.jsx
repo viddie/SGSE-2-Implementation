@@ -9,7 +9,7 @@ const CreateArticle = (props) => {
     const [description, setDescription] = useState("");
     const [price, setPrice] = useState(0.00);
     const [tags, setTags] = useState("");
-    const [category, setCategory] = useState("Haushalt")
+    const [category, setCategory] = useState("household")
     const [error, setError] = useState(false)
 
     function validateForm() {
@@ -21,6 +21,7 @@ const CreateArticle = (props) => {
         formData.append("heading", heading);
         formData.append("description", description);
         formData.append("price", price);
+        formData.append("category", category);
         formData.append("tags", tags);
 
         fetch(
@@ -103,7 +104,7 @@ const CreateArticle = (props) => {
             </Form.Group>
 
             <Form.Group>
-                <Form.Control as="select">
+                <Form.Control value={category} onChange={(e) => setCategory(e.target.value)} as="select">
                     <option value="household">Haushaltswaren</option>
                     <option value="electronics">Elektroartikel</option>
                     <option value="antiques">Antiquitäten</option>
