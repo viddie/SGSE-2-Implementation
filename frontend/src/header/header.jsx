@@ -7,7 +7,7 @@ import {LinkContainer} from 'react-router-bootstrap'
 const Header = (props) => {
     
     const [expired, setExpired] = useState(true);
-    const user, setUser = ("");
+    const [user, setUser] = ("");
 
     useEffect(()=> {
         const token = localStorage.getItem("accessToken");
