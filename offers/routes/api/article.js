@@ -153,7 +153,7 @@ router.post('/article', auth.authenticateJWT, upload.any(), function (req, res) 
         let endDate = startDate + 7*24*60*60*1000;
         const article = new ArticleModel({
             sellerID: sellerID,
-            userName: sellerName,
+            sellerName: sellerName,
             heading: heading,
             description: description,
             category: category,
