@@ -66,7 +66,7 @@ const SmallArticle = (props) => {
                 <Col style={{ display: "flex", alignItems: "center" }}>
                   {
                     props.store.loggedIn ? 
-                    <DispatchButton></DispatchButton> : 
+                    <DispatchButton sellerID={props.article.sellerID}></DispatchButton> : 
                     <LoginButton></LoginButton>
                   }
                 </Col>
