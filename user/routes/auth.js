@@ -26,7 +26,7 @@ router.get('/', async (req,res) =>
 
 router.post("/signup", SignUp, async (req,res) =>
 {
-    console.log(emailRegexp.test(req.body.email));
+    if(emailRegexp.test(req.body.email)){
     const user = new User({
         
         username: req.body.username,
@@ -34,7 +34,8 @@ router.post("/signup", SignUp, async (req,res) =>
         role: req.body.role,
         email: req.body.email  
     })
-
+    }
+    
     try{
         const newUser = await user.save()
         res.status(201).json(newUser)
