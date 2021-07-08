@@ -36,11 +36,11 @@ function App() {
           </Route>
           </React.Fragment>
            :
-           <Route exact exact path='/userChat'>
+           <Route exact path='/userChat'>
             <Chat></Chat>
           </Route>
            }
-          <Route>
+          <Route path='*'>
           <div> Du dummes Vieh. Gib mal ne richtige URI ein!!!!</div>
         </Route>
         </Switch>
