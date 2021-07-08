@@ -9,34 +9,35 @@ import Login from './user/login'
 import SignUp from './user/signUp'
 import {Switch, BrowserRouter, Route} from 'react-router-dom';
 
-const state = {
+import { useObserver, useLocalStore } from 'mobx-react'
+
+const store = useLocalStore = (()=> ({
   loggedIn : false
-}
+}))
+
 
 
 function App() {
-  return (
-    
-
+  return useObserver(()=>(
     <BrowserRouter>
     <div className="App">
-      <Header state={state}/>
+      <Header state={store}/>
       <div className = "mt-3">
         <Switch>
           <Route exact path='/'>
             <Showroom categories={["all"]}/>
           </Route>
-          {!state.loggedIn ?
+          {!store.loggedIn ?
           <React.Fragment>
           <Route exact path='/login'>
-            <Login state={state}></Login>
+            <Login state={store}></Login>
           </Route>
-          <Route path='/createAccount'>
+          <Route exact path='/createAccount'>
             <SignUp></SignUp>
           </Route>
           </React.Fragment>
            :
-           <Route exact path='/chat'>
+           <Route exact exact path='/userChat'>
             <Chat></Chat>
           </Route>
            }
@@ -44,7 +45,7 @@ function App() {
       </div>
     </div>
     </BrowserRouter>
-  );
+  ));
 }
 
 export default App;
