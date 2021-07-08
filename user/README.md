@@ -51,7 +51,7 @@ router.get('/', authenticateJWT, async (req,res) =>
     const role = req.validUser.role; //siehe authenticateJWT
     const email = req.validUser.email;
     const id = req.validUser.id;
-    const role = req.validUser.role;
+
 //z.B
     if (role != 'admin') {
         return res.sendStatus(403);
