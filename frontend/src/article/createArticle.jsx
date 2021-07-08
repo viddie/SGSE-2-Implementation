@@ -26,13 +26,13 @@ const CreateArticle = (props) => {
         fetch(
             "http://sgse2.ad.fh-bielefeld.de/api/offers/article",
             {
-                method: 'POST', // *GET, POST, PUT, DELETE, etc.
-                mode: 'cors', // no-cors, *cors, same-origin
-                cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-                credentials: 'same-origin', // include, *same-origin, omit
+                method: 'POST', 
+                mode: 'cors', 
+                cache: 'no-cache', 
+                credentials: 'same-origin', 
                 headers: {
                     'Content-Type': 'multipart/form-data ',
-                    'Authorization': 'Bearer '+ localStorage.getItem("accessToken")
+                    'Authorization': 'Bearer '+ sessionStorage.getItem("accessToken")
                 },
                 redirect: 'follow', // manual, *follow, error
                 referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
@@ -61,7 +61,6 @@ const CreateArticle = (props) => {
             <Form.Group size="lg" controlId="heading">
             <Form.Label>Überschrift</Form.Label>
             <Form.Control
-                as="textarea" rows={3}
                 type="text"
                 value={heading}
                 onChange={(e) => setHeading(e.target.value)}
@@ -71,8 +70,9 @@ const CreateArticle = (props) => {
             <Form.Group size="lg" controlId="description">
             <Form.Label>Beschreibung</Form.Label>
             <Form.Control
+                as="textarea" rows={3}
                 autoFocus
-                type="email"
+                type="text"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
             />
@@ -114,7 +114,7 @@ const CreateArticle = (props) => {
             </Form.Group>
 
             <Button block size="lg" onClick={()=>handleSubmit()} disabled={!validateForm()}>
-            Login
+            Artikel einstellen
             </Button>
         </Form>
         </Container>
