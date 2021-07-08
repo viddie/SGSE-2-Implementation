@@ -58,32 +58,47 @@ const CreateArticle = (props) => {
             </Alert>
         }
         <Form onSubmit={handleSubmit}>
-            <Form.Group size="lg" controlId="username">
-            <Form.Label>Benutzername</Form.Label>
+            <Form.Group size="lg" controlId="heading">
+            <Form.Label>Überschrift</Form.Label>
             <Form.Control
-                autoFocus
-                type="username"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
+                as="textarea" rows={3}
+                type="text"
+                value={heading}
+                onChange={(e) => setHeading(e.target.value)}
             />
             </Form.Group>
-            <Form.Group size="lg" controlId="email">
-            <Form.Label>Email</Form.Label>
+
+            <Form.Group size="lg" controlId="description">
+            <Form.Label>Beschreibung</Form.Label>
             <Form.Control
                 autoFocus
                 type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
             />
             </Form.Group>
-            <Form.Group size="lg" controlId="password">
-            <Form.Label>Password</Form.Label>
+
+            <Form.Group size="lg" controlId="price">
+            <Form.Label>Mein Preis</Form.Label>
             <Form.Control
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                type="number"
+                placeholder="0.00" 
+                step="0.01"
+                value={price}
+                onChange={(e) => setPrice(e.target.value)}
             />
             </Form.Group>
+
+            <Form.Group size="lg" controlId="tags">
+            <Form.Label>Beschreibung</Form.Label>
+            <Form.Control
+                autoFocus
+                type="email"
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+            />
+            </Form.Group>
+
             <Button block size="lg" onClick={()=>handleSubmit()} disabled={!validateForm()}>
             Login
             </Button>

@@ -7,6 +7,7 @@ import Showroom from './article/showroom';
 import Chat from './chat/chat';
 import Login from './user/login';
 import SignUp from './user/signUp';
+import CreateArticle from './article/createArticle';
 import ErrorPageNotFound from './notFoundError/routeNotFound';
 import {Switch, BrowserRouter, Route} from 'react-router-dom';
 
@@ -36,12 +37,17 @@ function App() {
           </Route>
           </React.Fragment>
            :
-           <Route exact path='/userChat'>
-            <Chat></Chat>
-          </Route>
+           <React.Fragment>
+            <Route exact path='/userChat'>
+              <Chat></Chat>
+            </Route>
+            <Route exact path='/createArticle'>
+              <CreateArticle></CreateArticle>
+            </Route>
+        </React.Fragment>
            }
-          <Route path='*'>
-          <ErrorPageNotFound></ErrorPageNotFound>
+          <Route>
+            <ErrorPageNotFound></ErrorPageNotFound>
         </Route>
       </div>
     </div>
