@@ -40,7 +40,7 @@ const SignUp = (props) => {
                 setEmail("");
                 setUsername("");
               } else {
-                ()=>history.replace("/");
+                ()=>history.push("/");
               }
           })
           .catch(()=>{

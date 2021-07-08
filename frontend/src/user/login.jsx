@@ -41,7 +41,7 @@ const Login = (props) => {
                     .then((res)=>{
                         sessionStorage.setItem('accessToken', res.accessToken);
                         sessionStorage.setItem('refreshToken', res.refreshToken);
-                        ()=>history.replace("/");
+                        history.push("/");
                     })
               }
           })
