@@ -44,7 +44,7 @@ const Header = (props) => {
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className="me-auto">
                             <LinkContainer to="/userArticles">
-                                <Nav.Link >Artikel</Nav.Link>
+                                <Nav.Link >Meine Artikel</Nav.Link>
                             </LinkContainer>
                             <LinkContainer to="/userChat">
                                 <Nav.Link >Chat</Nav.Link>

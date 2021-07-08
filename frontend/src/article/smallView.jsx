@@ -64,11 +64,7 @@ function SmallArticle(props) {
                   </div>
                 </Col>
                 <Col style={{ display: "flex", alignItems: "center" }}>
-                  <Link to="/chat">
-                    <Button size="lg" block style={{ backgroundColor: "darkgreen", borderColor: "darkgreen" }}>
-                      Anbieter kontaktieren
-                    </Button>
-                  </Link>
+                  {props.store.loggedIn ? <ContactButton></ContactButton> : <LoginButton></LoginButton>}
                 </Col>
               </Row>
             </Container>
@@ -77,6 +73,28 @@ function SmallArticle(props) {
       </ListGroup.Item>
     );
   }
+
+function ContactButton() {
+  return (    
+      <Link to="/chat">
+        <Button size="lg" block style={{ backgroundColor: "darkgreen", borderColor: "darkgreen" }}>
+          Anbieter kontaktieren
+        </Button>
+      </Link>
+  )
+}
+
+function LoginButton() {
+  return (    
+      <Link to="/login">
+        <Button size="lg" block style={{ backgroundColor: "darkgreen", borderColor: "darkgreen" }}>
+          Einloggen, um Anbieter zu kontaktieren
+        </Button>
+        <div>Noch nicht dabei? Registriere dich!</div>
+      </Link>
+  )
+}
+
 
 function RatingStars(props) {
   return (
