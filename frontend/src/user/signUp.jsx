@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Form, Container, Alert} from 'react-bootstrap'
-import { Redirect } from 'react-router-dom';
+import { useHistory } from 'react-router-dom'; 
 
 const SignUp = (props) => {
 
@@ -40,7 +40,7 @@ const SignUp = (props) => {
                 setEmail("");
                 setUsername("");
               } else {
-                    <Redirect to="/"></Redirect>;
+                history.replace("/");
               }
           })
           .catch(()=>{
