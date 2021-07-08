@@ -25,7 +25,9 @@ const CreateArticle = (props) => {
         formData.append("category", category);
         formData.append("tags", tags);
         
-        files.forEach((file)=>formData.append('file',file));
+        for (let i= 0; i<files.length; i++){
+            formData.append('file', files[i])
+        }
 
         fetch(
             "http://sgse2.ad.fh-bielefeld.de/api/offers/article",
