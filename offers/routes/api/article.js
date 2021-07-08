@@ -48,6 +48,19 @@ router.get('/article/findByCategory', function (req, res, next) {
     }
 });
 
+router.get('/article/findByUser', function (req, res, next) {
+    // Die Angabe der zulässigen Kategorien erfolgt per Query Parameter mit Komma getrennt
+    let users = req.query.usersplit(',');
+    users = categories.map(e => e.trim());
+    ArticleModel.find({sellerID : users}, (err, articles) => {
+        if (err) {
+            return console.error(err);
+        } else {
+            res.status(200).json(articles);
+        }
+    });
+});
+
 router.get('/article/findByTags', function (req, res, next) {
     // Suche nach Tags
     let tags = req.query.tags.split(',');
