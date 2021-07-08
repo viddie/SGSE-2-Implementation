@@ -24,8 +24,9 @@ function App() {
       <div className = "mt-3">
         <Switch>
           <Route exact path='/'>
-            <Showroom store={store} categories={["all"]}></Showroom>
+            <Showroom store={store} categories={["all"]}/>
           </Route>
+          {!store.loggedIn ?
           <React.Fragment>
           <Route exact path='/login'>
             <Login store={store}></Login>
@@ -34,12 +35,14 @@ function App() {
             <SignUp></SignUp>
           </Route>
           </React.Fragment>
-           <Route exact path='/Chat'>
+           :
+           <Route exact exact path='/userChat'>
             <Chat></Chat>
           </Route>
+           }
           <Route>
-            <div>Not found</div>
-          </Route>
+          <div> Du dummes Vieh. Gib mal ne richtige URI ein!!!!</div>
+        </Route>
         </Switch>
       </div>
     </div>
