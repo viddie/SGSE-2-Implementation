@@ -4,5 +4,4 @@ const initialState = {
     loggedIn : false
 };
 
-export const Context = createContext(initialState);
-export default State;
+export const State = createContext(initialState);
