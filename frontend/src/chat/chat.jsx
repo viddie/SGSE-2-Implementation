@@ -13,12 +13,12 @@ const image = "https://www.linusakesson.net/programming/kernighans-lever/cat.png
 
 function Chat(props) {
     return (
-        <div className="Chat" style={{ textAlign: 'center', maxWidth: 728 + 'px', margin: 0 + 'auto' }}>
-            <header style={{ backgroundColor: '#' + 181717, height: 10 + 'vh', minHeight: 50 + 'px', color: 'white', position: 'fixed', width: 100  + '%', maxWidth: 728 + 'px', top: 0, display: 'flex', alignItems: 'center', justifyContent: 'spaceBetween', zIndex: 99, padding: 10 + 'px', boxSizing: 'border-box' }}>
+        <div className="Chat">
+            <header>
                 <h1>Name of Chat Partner</h1>
                 <div>Options</div>
             </header>
-            <section style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', minHeight: 100 + 'vh', backgroundColor: "rgb(40, 37, 53)" }}>
+            <section>
                 <ChatRoom receiver="Ben" token="Alf"/>
             </section>
         </div>
@@ -78,15 +78,15 @@ function ChatRoom(props) {
 
     return (
         <>
-            <main style={{ padding: 10 + 'px', height: 80 + 'vh', margin: 10 + 'vh ' +  0 + ' ' + 10 + 'vh', overflowY: 'scroll', display: 'flex', flexDirection: 'column' }}>
+            <mainchatroom>
                 {messages && messages.map(msg => <ChatMessage key={msg.receiver} val={receiver} message={msg.text} />)}
-                <span ref={dummy}></span>
-            </main>
+                <span className="chatdummy" ref={dummy}></span>
+            </mainchatroom>
 
-            <form onSubmit={sendMessage} style={{ height: 10 + 'vh', position: 'fixed', bottom: 0, backgroundColor: 'rgb(24, 23, 23)', width: 100 + '%', maxWidth: 728 + 'px', display: 'flex', fontSize: 1.5 + 'rem' }}>
-                <input value={formValue} onChange={(e) => setFormValue(e.target.value)} placeholder="type..." style={{ lineHeight: 1.5, width: 100 + '%', fontSize: 1.5 + 'rem', background: 'rgb(58, 58, 58)', color: 'white', outline: 'none', border: 'none', padding: 0 + ' ' + 10 + 'px' }}/>
+            <form onSubmit={sendMessage}>
+                <input className="chat_text_input" value={formValue} onChange={(e) => setFormValue(e.target.value)} placeholder="type..."/>
             </form>
-            <Button type="submit" disabled={!formValue} style="background-color: green; border: none; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; cursor: pointer; font-size: 1.25rem;">send</Button>
+            <Button type="chat_text_submit" disabled={!formValue}>send</Button>
         </>
     )
 }
@@ -104,8 +104,8 @@ function ChatMessage(props) {
     return (
         <>
             <div className={`message ${messageClass}`}>
-                <img src={'https://www.linusakesson.net/programming/kernighans-lever/cat.png'} />
-                <p>{text}</p>
+                <img className="chat_img" src={'https://www.linusakesson.net/programming/kernighans-lever/cat.png'} />
+                <p className="chat_text">{text}</p>
             </div>
         </>
     );
