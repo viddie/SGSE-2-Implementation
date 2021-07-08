@@ -60,7 +60,7 @@ router.post("/CreateUser",authenticateJWT, async (req,res) =>
     }
 })
 
-router.patch('/UserID/:id/Rating/:star_num',authenticateJWT, getUser, async (req,res) =>
+router.post('/UserID/:id/Rating/:star_num',authenticateJWT, getUser, async (req,res) =>
 {
     if(req.params.star_num == "1"){
         try{
