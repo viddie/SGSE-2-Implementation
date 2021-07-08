@@ -120,9 +120,15 @@ function ChatMessage(props) {
 function getMessages(other_user, token) {
     //var this_user = extract_username_from_token(token);
     var this_user = token;
+    
+    const request = async (user1, user2) => {
+        const response = await fetch(`http://sgse2.ad.fh-bielefeld.de/api/chat/messages/receive/${user1}/${user2}`, {method: 'GET'});
+        const json = await response.json();
+        return json;
+    }
 
-    var data1 = ApiCall(this_user, other_user);
-    var data2 = ApiCall(other_user, this_user);
+    var data1 = request(this_user, other_user);
+    var data2 = request(other_user, this_user);
     var data = undefined;
 
     Promise.all([data1, data2]).then(function(val) {
@@ -135,25 +141,6 @@ function getMessages(other_user, token) {
     if (data != undefined) {
         return data;
     }
-}
-
-function ApiCall(user1, user2) {
-    var data = undefined;
-
-    const request = async () => {
-        const response = await fetch(`http://sgse2.ad.fh-bielefeld.de/api/chat/messages/receive/${user1}/${user2}`, {method: 'GET'});
-        const json = await response.json();
-        data = json;
-        console.log("DEBUG: ApiCall: json")
-        console.log(json)
-    }
-    
-    request();
-    
-    console.log("DEBUG: ApiCall: data")
-    console.log(data)
-
-    return data;
 }
 
 export default Chat
