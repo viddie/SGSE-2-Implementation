@@ -169,10 +169,8 @@ router.post('/article', auth.authenticateJWT, upload.any(), function (req, res) 
 
         article.pictures = base64images;
         article.save(function (err) {
-            if (err) {
-                return console.error(err);
-            } 
-            return res.status(200);
+            if (err) return console.error(err);
+            return res.status(200).json('Alles jut')
         });
         
     } else {
