@@ -13,7 +13,7 @@ const image = "https://www.linusakesson.net/programming/kernighans-lever/cat.png
 
 function Chat(props) {
     return (
-        <div className="Chat" style={{ textAlign: center, maxWidth: 728 + 'px', margin: 0 + 'auto' }}>
+        <div className="Chat" style={{ textAlign: 'center', maxWidth: 728 + 'px', margin: 0 + 'auto' }}>
             <header style={{ backgroundColor: '#' + 181717, height: 10 + 'vh', minHeight: 50 + 'px', color: 'white', position: 'fixed', width: 100  + '%', maxWidth: 728 + 'px', top: 0, display: 'flex', alignItems: 'center', justifyContent: 'spaceBetween', zIndex: 99, padding: 10 + 'px', boxSizing: 'border-box' }}>
                 <h1>Name of Chat Partner</h1>
                 <div>Options</div>
