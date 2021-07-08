@@ -38,10 +38,6 @@ function SmallArticle(props) {
               </b>
             </Row>
             <Row>
-              <b>Angeboten von: </b>
-              <div>{props.article.sellerID}</div>
-            </Row>
-            <Row>
               <b>Angeboten seit: </b>
               <div>{props.article.startedOn}</div>
               </Row>
@@ -60,7 +56,7 @@ function SmallArticle(props) {
                   <div>{props.article.description}</div>
                   <b> Verkäufer </b>
                   <div style={{ fontStyle: "italic" }}>
-                    {props.article.sellerID}
+                    {props.article.sellerName}
                   </div>
                   <div float="left">
                     <div>Bewertung:</div>
