@@ -8,20 +8,25 @@ import Login from './user/login'
 import SignUp from './user/signUp'
 import {Switch, BrowserRouter, Route} from 'react-router-dom';
 
+const state = {
+  loggedIn : false
+}
+
+
 function App() {
   return (
     
 
     <BrowserRouter>
     <div className="App">
-      <Header/>
+      <Header state={state}/>
       <div className = "mt-3">
         <Switch>
           <Route exact path='/'>
             <Showroom categories={["all"]}/>
           </Route>
           <Route exact path='/login'>
-            <Login></Login>
+            <Login state={state}></Login>
           </Route>
           <Route exact path='/chat'>
             <Chat></Chat>

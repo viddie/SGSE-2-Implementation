@@ -1,13 +1,10 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React from 'react';
 import { Button, Navbar, Nav, Form, FormControl, Container, Image } from 'react-bootstrap'
 import { useJwt } from "react-jwt";
 import { LinkContainer } from 'react-router-bootstrap';
-import { State } from '../statemanagement/state';
 import logo from '/static/wurm.png'
 
 const Header = (props) => {
-    
-    const {state, dispatch} = useContext(State);
 
     return (
         <Navbar collapseOnSelect expand="lg" bg="success" variant="dark">
@@ -21,7 +18,7 @@ const Header = (props) => {
                 </Navbar.Brand>
                 </LinkContainer>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-                {state.loggedIn ?
+                {props.state.loggedIn ?
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className="me-auto">
                             <LinkContainer to="/login">
