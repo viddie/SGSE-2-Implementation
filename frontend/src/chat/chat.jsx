@@ -41,6 +41,7 @@ function ChatRoom(props) {
     console.log("DEBUG: ChatRoom: messages");
     console.log(messages);
 
+    
     console.log("DEBUG: ChatRoom: messages.resolve");
     const data = Promise.resolve(messages);
     console.log(p);
