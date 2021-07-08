@@ -9,7 +9,7 @@ import Login from './user/login';
 import SignUp from './user/signUp';
 import CreateArticle from './article/createArticle';
 import ErrorPageNotFound from './notFoundError/routeNotFound';
-import {Switch, BrowserRouter, Route} from 'react-router-dom';
+import { Switch, BrowserRouter, Route, Redirect } from 'react-router-dom';
 
 import { useObserver, useLocalStore } from 'mobx-react-lite'
 
@@ -39,17 +39,12 @@ function App() {
             </React.Fragment>
             :
             <React.Fragment>
-              <Route exact path='/userChat'>
-                <Chat></Chat>
-              </Route>
-              <Route exact path='/createArticle'>
-                <CreateArticle></CreateArticle>
-              </Route>
+              <Route exact path='/userChat' component={Chat}/>
+              <Route exact path='/createArticle' component={CreateArticle}/>
             </React.Fragment>
             }
-          <Route>
-            <ErrorPageNotFound></ErrorPageNotFound>
-          </Route>
+          <Route path='/404' component={ErrorPageNotFound} />
+          <Redirect to='/404' />
           </Switch>
         </div>
       </div>
