@@ -42,7 +42,7 @@ function App() {
             }
             {store.loggedIn &&
                 <Route exact path='/myArticles'>
-                  <Showroom store={store} path={"/api/offers/article/findByCategory?categories=all"}/>
+                  <Showroom store={store} path={"/api/offers/article/findByUser?users="+sessionStorage.getItem(userID)}/>
                 </Route>
             }
             {store.loggedIn &&
