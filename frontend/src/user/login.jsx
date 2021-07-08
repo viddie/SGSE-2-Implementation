@@ -53,7 +53,7 @@ const Login = (props) => {
     }
     
     return(
-        <Container className="m-auto" style={{maxWidth: "60%"}} >
+        <Container className="m-auto" style={{width: "60%"}} >
         {error &&
             <Alert variant={"warning"}>
                 Passwort oder Benutzername falsch!
