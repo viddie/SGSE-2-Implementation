@@ -4,8 +4,8 @@
     margin: 0 auto;
 }
 
-.Chat header {
-    background-color: #181717;
+.chat_header {
+    background-color: darkgreen;
     height: 10vh;
     min-height: 50px;
     color: white;
@@ -17,7 +17,11 @@
     box-sizing: border-box;
 }
 
-.Chat section {
+.chat_header_options {
+    float: right;
+}
+
+.chat_section {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -110,12 +114,12 @@
 }
 
 .sent .chat_text {
-    color: white;
-    background: #0b93f6;
+    color: black;
+    background: lightgreen;
     align-self: flex-end;
 }
 .received .chat_text {
-    background: #e5e5ea;
+    background: lightblue;
     color: black;
 }
 

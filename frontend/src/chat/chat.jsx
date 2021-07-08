@@ -15,13 +15,13 @@ const image = "https://www.linusakesson.net/programming/kernighans-lever/cat.png
 function Chat(props) {
     return (
         <div className="Chat">
-            <header>
+            <div className="chat_header">
                 <h1>Name of Chat Partner</h1>
-                <div>Options</div>
-            </header>
-            <section>
+                <div className="chat_header_options">Options</div>
+            </div>
+            <div className="chat_section">
                 <ChatRoom receiver="Ben" token="Alf"/>
-            </section>
+            </div>
         </div>
     );
 }
@@ -86,13 +86,13 @@ function ChatRoom(props) {
         <>
             <div className='mainchatroom'>
                 {messages && messages.map(msg => <ChatMessage key={msg.receiver} val={receiver} message={msg.text} />)}
-                <span className="chatdummy" ref={dummy}></span>
+                <span ref={dummy}></span>
             </div>
 
             <form onSubmit={sendMessage} className="chat_message_form">
                 <input className="chat_text_input" value={formValue} onChange={(e) => setFormValue(e.target.value)} placeholder="type..."/>
+                <Button type="submit" className="chat_text_submit" disabled={!formValue}>send</Button>
             </form>
-            <Button type="chat_text_submit" disabled={!formValue}>send</Button>
         </>
     )
 }
