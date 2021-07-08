@@ -125,7 +125,7 @@ router.put('/article', auth.authenticateJWT, upload.any(), function (req, res) {
 })
 
 // Lösche einen Artikel
-router.delete('/article', auth.authenticateJWT, upload.any(), function (req, res) {
+router.delete('/article', auth.authenticateJWT, function (req, res) {
     // Es muss überprüft werden, ob der Nutzer zur Änderung berechtigt ist, also Inhaber des Angebotes ist
     // userID wird aus dem Token extrahiert
     const sellerID = req.validUser.id;
