@@ -10,6 +10,7 @@ const CreateArticle = (props) => {
     const [price, setPrice] = useState(0.00);
     const [tags, setTags] = useState("");
     const [category, setCategory] = useState("Haushalt")
+    const [error, setError] = useState(false)
 
     function validateForm() {
         return username.length > 0 && password.length > 0 && email.length > 0;
