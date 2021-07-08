@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Form, Container, Alert} from 'react-bootstrap'
-import { useHistory } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
 const Login = (props) => {
 
@@ -41,7 +41,7 @@ const Login = (props) => {
                     .then((res)=>{
                         sessionStorage.setItem('accessToken', res.accessToken);
                         sessionStorage.setItem('refreshToken', res.refreshToken);
-                        history.push('/');
+                        <Redirect to="/" /> 
                     })
               }
           })
