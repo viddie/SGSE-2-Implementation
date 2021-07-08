@@ -85,14 +85,16 @@ function ContactButton() {
 }
 
 function LoginButton() {
-  return (    
+  return (<>
       <Link to="/login">
         <Button size="lg" block style={{ backgroundColor: "darkgreen", borderColor: "darkgreen" }}>
           Einloggen, um Anbieter zu kontaktieren
         </Button>
+      </Link>
+      <Link to="/createAccount">
         <div>Noch nicht dabei? Registriere dich!</div>
       </Link>
-  )
+  </>)
 }
 
 
