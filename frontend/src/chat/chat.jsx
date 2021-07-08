@@ -1,5 +1,5 @@
 import { func } from 'prop-types';
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Button } from "react-bootstrap";
 import 'regenerator-runtime/runtime'
 import './chat.css';
@@ -35,16 +35,29 @@ function ChatRoom(props) {
     
     const [formValue, setFormValue] = useState('');
 
-    const messages = getMessages(receiver, token);
+    const [data1, setData1] = useState([]);
+    const [data2, setData2] = useState([]);
+    const [messages, setMessages] = useState([]);
 
-
-    console.log("DEBUG: ChatRoom: messages");
-    console.log(messages);
-
-    console.log("DEBUG: ChatRoom: messages.resolve");
-    const data = Promise.resolve(messages);
-    console.log(data);
-
+    useEffect(() => {
+        fetch(`http://sgse2.ad.fh-bielefeld.de/api/chat/messages/receive/${this_user}/${other_user}`, { method: "GET", headers: { 'Content-Type': 'application/json' } })
+        .then(res => res.json())
+        .then(data => {
+            setData1(data);
+        })
+    }, []);
+    useEffect(() => {
+        fetch(`http://sgse2.ad.fh-bielefeld.de/api/chat/messages/receive/${other_user}/${this_user}`, { method: "GET", headers: { 'Content-Type': 'application/json' } })
+        .then(res => res.json())
+        .then(data => {
+            setData2(data);
+        })
+    }, []);
+    
+    useEffect(() => {
+        setMessages([...data1, ...data2]);
+        console.log(messages);
+    }, [data1, data2]);
 
     const sendMessage = async (e) => {
         e.preventDefault();
@@ -115,30 +128,6 @@ function ChatMessage(props) {
             </div>
         </>
     );
-}
-
-async function getMessages(other_user, token) {
-    var this_user = token;
-    let data1 = {}
-    let data2 = {}
-    
-    await fetch(`http://sgse2.ad.fh-bielefeld.de/api/chat/messages/receive/${this_user}/${other_user}`, { method: "GET", headers: { 'Content-Type': 'application/json' } })
-        .then(res => res.json())
-        .then(json => {
-            data1 = json;
-            await fetch(`http://sgse2.ad.fh-bielefeld.de/api/chat/messages/receive/${other_user}/${this_user}`, { method: "GET", headers: { 'Content-Type': 'application/json' } })
-                .then(res => res.json())
-                .then(json => {
-                    data2 = json;
-                    let data = [...data1,...data2];
-                    console.log("DEBUG: getMessages: data")
-                    console.log(data1);
-                    console.log(data2);
-                    console.log(data);
-
-                    return data;
-                })
-        });
 }
 
 export default Chat
