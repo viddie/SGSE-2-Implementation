@@ -80,8 +80,15 @@ const SmallArticle = (props) => {
 
 function DispatchButton(props) {
 
-  function deleteArticle(){
-    fetch
+  function deleteArticle(articleID){
+    fetch("http://sgse2.ad.fh-bielefeld.de/api/offers/article", {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer '+ sessionStorage.getItem("accessToken")
+    },
+    body: JSON.stringify({articleID:articleID}),
+  })
   }
 
   if (props.sellerID == sessionStorage.getItem("userID")) {
@@ -93,7 +100,7 @@ function DispatchButton(props) {
           </Button>
         </Link>
         <Link to="/myArticles">
-          <Button size="lg" onClick={()=>deleteArticle()} block style={{ backgroundColor: "darkgreen", borderColor: "darkgreen" }}>
+          <Button size="lg" onClick={()=>deleteArticle(props.articleID)} block style={{ backgroundColor: "darkgreen", borderColor: "darkgreen" }}>
             Artikel löschen
         </Button>
         </Link>
