@@ -34,6 +34,7 @@ const authenticateJWT = (req, res, next) => {
 
 ## Benutzung im Code 
 ```js
+//dummy get-Befehl 
 router.get('/', authenticateJWT, async (req,res) =>
 {
     try{
