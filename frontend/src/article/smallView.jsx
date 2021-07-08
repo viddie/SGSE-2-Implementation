@@ -64,7 +64,7 @@ function SmallArticle(props) {
                   </div>
                 </Col>
                 <Col style={{ display: "flex", alignItems: "center" }}>
-                  <Link to="/chat">
+                  <Link to="/userChat">
                     <Button size="lg" block style={{ backgroundColor: "darkgreen", borderColor: "darkgreen" }}>
                       Anbieter kontaktieren
                     </Button>
