@@ -9,17 +9,19 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+var dbHost = "172.17.0.6";
+
 const port = 30100;
 
 var con = mysql.createConnection({
-  host: "172.17.0.6",
+  host: dbHost,
   user: "root",
   password: "passwort123!"
 });
 
 con.connect(function(err) {
   if (err) throw err;
-  console.log("Connected!");
+  console.log("Connected to '"+dbHost+"'!");
 });
 
 // const mongo_client = new MongoClient("mongodb://root:passwort123!@172.17.0.17:27017"); //user DB
