@@ -6,6 +6,8 @@ const User = require('../models/auth')
 const bodyParser = require('body-parser');
 const jwt = require('jsonwebtoken');
 
+const { check, validationResult } = require('express-validator');
+
 let refreshTokens = [];
 const accessTokenSecret = 'somerandomaccesstoken';
 const refreshTokenSecret = 'somerandomstringforrefreshtoken';
