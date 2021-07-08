@@ -123,20 +123,20 @@ async function getMessages(other_user, token) {
     let data2 = {}
     
     await fetch(`http://sgse2.ad.fh-bielefeld.de/api/chat/messages/receive/${this_user}/${other_user})`)
-        .then(res => res.json())
+        .then(res => { return res.json(); })
         .then(json => {
             data1 = json;
             fetch(`http://sgse2.ad.fh-bielefeld.de/api/chat/messages/receive/${other_user}/${this_user})`)
-                .then(res => res.json())
+                .then(res => { return res.json(); })
                 .then(json => {
                     data2 = json;
-                        let data = [...data1,...data2];
-                        console.log("DEBUG: getMessages: data")
-                        console.log(data1);
-                        console.log(data2);
-                        console.log(data);
+                    let data = [...data1,...data2];
+                    console.log("DEBUG: getMessages: data")
+                    console.log(data1);
+                    console.log(data2);
+                    console.log(data);
 
-                        return data;
+                    return data;
                 })
         })
 }
