@@ -24,7 +24,7 @@ function App() {
       <div className = "mt-3">
         <Switch>
           <Route path='/'>
-            <Showroom store={store} categories={["all"]}/>
+            <Showroom store={store} categories={["all"]}></Showroom>
           </Route>
           {!store.loggedIn ?
           <React.Fragment>

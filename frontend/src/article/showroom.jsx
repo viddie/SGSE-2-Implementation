@@ -17,7 +17,7 @@ const Showroom = (props) => {
 
   return (
     <Container style={{ maxWidth: "60%", minWidth: "600px" }}>
-      <div>Zeige {articleIds.length} Artikel von 10</div>
+      <div>Zeige 10 Artikel von {articleIds.length}</div>
       <ListGroup>
         {articleIds.map((id => <SmallView store={props.store} id={id} key={id}></SmallView>))}
       </ListGroup>
