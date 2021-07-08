@@ -1,6 +1,5 @@
 import React from 'react';
 import { Button, Navbar, Nav, Form, FormControl, Container, Image } from 'react-bootstrap'
-import { useJwt } from "react-jwt";
 import { LinkContainer } from 'react-router-bootstrap';
 import logo from '/static/wurm.png'
 

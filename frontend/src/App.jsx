@@ -34,8 +34,11 @@ function App() {
             <SignUp></SignUp>
           </Route>
           </React.Fragment>
-           <Route exact path='/userChat'>
+           <Route exact path='/Chat'>
             <Chat></Chat>
+          </Route>
+          <Route>
+            <div>Not found</div>
           </Route>
         </Switch>
       </div>
