@@ -12,11 +12,8 @@ color: white;
 position: fixed;
 width: 100%;
 max-width: 728px;
-top: 0;
 display: flex;
 align-items: center;
-justify-content: space-between;
-z-index: 99;
 padding: 10px;
 box-sizing: border-box;
 }
@@ -31,7 +28,7 @@ background-color: rgb(40, 37, 53);
 
 .mainchatroom {
 padding: 10px;
-height: 80vh;
+height: 50vh;
 margin: 10vh 0 10vh;
 overflow-y: scroll;
 display: flex;
@@ -50,7 +47,7 @@ background: #1e1e24;
 background: #6649b8;
 }
 
-.chatdummy {
+.chat_message_form {
 height: 10vh;
 position: fixed;
 bottom: 0;
@@ -61,7 +58,7 @@ display: flex;
 font-size: 1.5rem;
 }
 
-.chatdummy button {
+.chat_message_form button {
 width: 20%;
 background-color: rgb(56, 56, 143);
 }

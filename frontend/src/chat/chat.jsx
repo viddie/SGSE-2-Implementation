@@ -84,7 +84,7 @@ function ChatRoom(props) {
                 <span className="chatdummy" ref={dummy}></span>
             </div>
 
-            <form onSubmit={sendMessage}>
+            <form onSubmit={sendMessage} className="chat_message_form">
                 <input className="chat_text_input" value={formValue} onChange={(e) => setFormValue(e.target.value)} placeholder="type..."/>
             </form>
             <Button type="chat_text_submit" disabled={!formValue}>send</Button>
@@ -133,13 +133,16 @@ function getMessages(other_user, token) {
 }
 
 function ApiCall(user1, user2) {
+    var data = []
+
     const request = async () => {
         const response = await fetch(`http://sgse2.ad.fh-bielefeld.de/api/chat/messages/receive/${user1}/${user2}`, {method: 'GET'});
         const json = await response.json();
-        return json;
+        data = json;
     }
     
-    const data = request();
+    request();
+    console.log(data);
     return data;
 }
 
