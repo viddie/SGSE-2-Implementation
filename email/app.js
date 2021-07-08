@@ -5,7 +5,37 @@ const port = 30100
 const axios = require('axios');
 const db = require("./database/database.js")
 const mail = require("./email/email")
+const jwt = require('jsonwebtoken');
 
+const accessTokenSecret = 'somerandomaccesstoken';
+
+var validUser;
+
+const authenticateJWT = (req, res, next) => {
+  const authHeader = req.headers.authorization;
+
+  if (authHeader) {
+      const token = authHeader.split(' ')[1];
+
+      jwt.verify(token, accessTokenSecret, (err, user) => {
+          if (err) {
+              return res.sendStatus(403);
+          }
+          validUser = user;
+          req.validUser = user;
+          next();
+      });
+  } else {
+      res.sendStatus(401);
+  }
+}
+
+
+
+
+app.get('/', authenticateJWT, async (req,res) =>
+{
+})
 
 const axiosi = axios.create({
   baseURL: 'http://sgse2.ad.fh-bielefeld.de/api/',
@@ -59,7 +89,11 @@ app.post("/sendMessage",async (req,res) => {
 
 app.get("/newOffer", async (req,res) => {
   res.send("email send")
-  res_article = await axiosi.get("/offers/article/" + req.query.id)
+  const accessToken = jwt.sign({ username: "BarterSmarter", role: "admin", id: "60e6ea2080499400127e9ebe", email: "BarterSmarter@web.de" }, accessTokenSecret, { expiresIn: '1h' })
+  const config = {
+    headers: { Authorization: `Bearer ${accessToken}`}
+  };
+  res_article = await axiosi.get("/offers/article/" + req.query.id,config)
   res_article = res_article.data
   console.log(res_article)
   res_users = await axiosi.get("/user/auth")
