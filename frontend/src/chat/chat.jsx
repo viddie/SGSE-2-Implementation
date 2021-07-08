@@ -142,10 +142,15 @@ function ApiCall(user1, user2) {
         const response = await fetch(`http://sgse2.ad.fh-bielefeld.de/api/chat/messages/receive/${user1}/${user2}`, {method: 'GET'});
         const json = await response.json();
         data = json;
+        console.log("DEBUG: ApiCall: json")
+        console.log(json)
     }
+
+    console.log("DEBUG: ApiCall: data")
+    console.log(data)
     
     request();
-    
+
     return data;
 }
 
