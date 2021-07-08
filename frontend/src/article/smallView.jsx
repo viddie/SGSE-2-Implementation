@@ -2,14 +2,13 @@ import React, { useState, useEffect } from "react";
 import { Container, Row, Col, ListGroup, Image, Button } from "react-bootstrap";
 import { Link } from 'react-router-dom';
 import haenchen from './wurm.jpg'
-import { useObserver } from 'mobx-react-lite'
 
 const SmallArticle = (props) => {
   const [hoover, setHoover] = useState({
     expanded: false,
     background: "white"});
   
-    return useObserver(()=>(
+    return (
       <ListGroup.Item>
         <Row
           style={{
@@ -72,7 +71,7 @@ const SmallArticle = (props) => {
           ) : null}
         </Row>
       </ListGroup.Item>
-    ));
+    );
   }
 
 function ContactButton() {
