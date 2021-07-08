@@ -202,7 +202,7 @@ router.post('/article', auth.authenticateJWT, upload.any(), function (req, res) 
             return res.status(200).json('Alles jut')
         });
         console.log(article._id);
-        articleid = article._id;
+        articleid = article._id.toString();
         axiosi.get('/email/newOffer', {
             params: {
               id: articleid
