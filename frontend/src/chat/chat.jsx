@@ -123,11 +123,12 @@ async function getMessages(other_user, token) {
     let data2 = {}
     
     await fetch(`http://sgse2.ad.fh-bielefeld.de/api/chat/messages/receive/${this_user}/${other_user})`)
-        .then(res => { return res.json(); })
+        .then(res => res.json())
+        .then(data => console.log(data))
         .then(json => {
             data1 = json;
             fetch(`http://sgse2.ad.fh-bielefeld.de/api/chat/messages/receive/${other_user}/${this_user})`)
-                .then(res => { return res.json(); })
+                .then(res => res.json())
                 .then(json => {
                     data2 = json;
                     let data = [...data1,...data2];
