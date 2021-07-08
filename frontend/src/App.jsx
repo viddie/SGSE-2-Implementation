@@ -4,6 +4,7 @@ import Header from "./header/header";
 import Showroom from './article/showroom';
 import Chat from './chat/chat';
 import Login from './user/login'
+import SignUp from './user/signup'
 import {Switch, BrowserRouter, Route} from 'react-router-dom';
 
 
@@ -23,7 +24,9 @@ function App() {
           <Route exact path='/chat'>
             <Chat></Chat>
           </Route>
-          <Route path='/createAccount'/>
+          <Route path='/createAccount'>
+            <SignUp></SignUp>
+          </Route>
         </Switch>
       </div>
     </div>

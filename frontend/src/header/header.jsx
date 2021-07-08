@@ -1,6 +1,5 @@
 import React from 'react'
 import { Button, Navbar, Nav, Form, FormControl, Container, Image } from 'react-bootstrap'
-import { Link } from 'react-router-dom';
 import logo from '/static/wurm.png'
 import {LinkContainer} from 'react-router-bootstrap'
 
