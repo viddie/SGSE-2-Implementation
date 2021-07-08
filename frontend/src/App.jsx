@@ -5,8 +5,9 @@ import React from 'react';
 import Footer from "./footer/footer";
 import Showroom from './article/showroom';
 import Chat from './chat/chat';
-import Login from './user/login'
-import SignUp from './user/signUp'
+import Login from './user/login';
+import SignUp from './user/signUp';
+import ErrorPageNotFound from './notFoundError/routeNotFound';
 import {Switch, BrowserRouter, Route} from 'react-router-dom';
 
 import { useObserver, useLocalStore } from 'mobx-react-lite'
@@ -40,7 +41,7 @@ function App() {
           </Route>
            }
           <Route path='*'>
-          <div> Du dummes Vieh. Gib mal ne richtige URI ein!!!!</div>
+          <ErrorPageNotFound></ErrorPageNotFound>
         </Route>
       </div>
     </div>

@@ -1,0 +1,27 @@
+.content {
+    top: 50%;
+    left: 50%;
+    width: 30em;
+    height: 18em;
+    margin-top: -9em;
+    margin-left: -15em;
+    border: 0px;
+    background-color: #b1b1b1;
+    position: fixed;
+}
+
+.container {
+    display: inline;
+}
+
+.container_title {
+    font-size: large;
+}
+
+.container_text {
+    font-size: medium;
+}
+
+.not_found_image {
+    display: inline;
+}
