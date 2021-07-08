@@ -134,10 +134,6 @@ function getMessages(other_user, token) {
 
     if (data != undefined) {
         return data;
-    } else {
-        return [];
-    }
-
 }
 
 function ApiCall(user1, user2) {
