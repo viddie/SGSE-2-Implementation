@@ -17,7 +17,7 @@ import {
 const Footer = (props) => {
   return (
     <Box>
-      <h1 style={{ color: "green", 
+      <h1 style={{ color: "#198754", 
                    textAlign: "center", 
                    marginTop: "-50px" }}>
         Barter Smarter - besser als eBay
