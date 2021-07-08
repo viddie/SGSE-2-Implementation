@@ -9,7 +9,7 @@ import Login from './user/login'
 import SignUp from './user/signUp'
 import {Switch, BrowserRouter, Route} from 'react-router-dom';
 
-import { useObserver, useLocalStore } from 'mobx-react'
+import { useObserver, useLocalStore } from 'mobx-react-light'
 
 const store = useLocalStore = (()=> ({
   loggedIn : false
