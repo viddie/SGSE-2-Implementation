@@ -123,7 +123,6 @@ function getMessages(other_user, token) {
 
     var data1 = ApiCall(this_user, other_user);
     var data2 = ApiCall(other_user, this_user);
-    var data = []
 
     Promise.all([data1, data2]).then(function(val) {
         data = [...val[0],...val[1]];
@@ -136,7 +135,6 @@ function getMessages(other_user, token) {
 }
 
 function ApiCall(user1, user2) {
-    var data = []
 
     const request = async () => {
         const response = await fetch(`http://sgse2.ad.fh-bielefeld.de/api/chat/messages/receive/${user1}/${user2}`, {method: 'GET'});
