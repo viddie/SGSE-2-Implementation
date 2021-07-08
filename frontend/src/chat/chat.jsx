@@ -2,6 +2,7 @@ import { func } from 'prop-types';
 import React, { useRef, useState } from 'react';
 import { Button } from "react-bootstrap";
 import 'regenerator-runtime/runtime'
+import './chat.css';
 
 /**
  * @author Marius
@@ -78,10 +79,10 @@ function ChatRoom(props) {
 
     return (
         <>
-            <mainchatroom>
+            <div className='mainchatroom'>
                 {messages && messages.map(msg => <ChatMessage key={msg.receiver} val={receiver} message={msg.text} />)}
                 <span className="chatdummy" ref={dummy}></span>
-            </mainchatroom>
+            </div>
 
             <form onSubmit={sendMessage}>
                 <input className="chat_text_input" value={formValue} onChange={(e) => setFormValue(e.target.value)} placeholder="type..."/>
