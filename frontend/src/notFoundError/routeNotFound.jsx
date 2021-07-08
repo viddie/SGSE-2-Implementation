@@ -1,4 +1,6 @@
 import React, { useRef, useState } from 'react';
+import { Nav, Image } from 'react-bootstrap'
+import { LinkContainer } from 'react-router-bootstrap';
 import 'regenerator-runtime/runtime';
 import './routeNotFound.css';
 import logo from '/static/wurm.png'
@@ -22,7 +24,7 @@ function ErrorPageNotFound() {
                     <Nav.Link >Home</Nav.Link>
                 </LinkContainer>
             </div>
-            <img className="not_found_image" src={logo}/>
+            <Image className="not_found_image" src={logo}/>
         </div>
     );
 }
