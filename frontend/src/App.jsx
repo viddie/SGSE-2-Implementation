@@ -1,7 +1,7 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from "./header/header";
-import Footer from "./components/footer";
+import Footer from "./footer/footer";
 import Showroom from './article/showroom';
 import Chat from './chat/chat';
 import Login from './user/login'
@@ -10,6 +10,8 @@ import {Switch, BrowserRouter, Route} from 'react-router-dom';
 
 function App() {
   return (
+    
+
     <BrowserRouter>
     <div className="App">
       <Header/>
