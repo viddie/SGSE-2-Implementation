@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Form, Container, Alert} from 'react-bootstrap'
 import { useHistory } from 'react-router-dom'; // version 5.2.0
-import { State } from './statemanagement/state';
+import { State } from '../statemanagement/state';
 
 const Login = (props) => {
     const history = useHistory();
