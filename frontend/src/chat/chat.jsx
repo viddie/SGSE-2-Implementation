@@ -13,12 +13,12 @@ const image = "https://www.linusakesson.net/programming/kernighans-lever/cat.png
 
 function Chat(props) {
     return (
-        <div className="Chat" style="text-align: center; max-width: 728px; margin: 0 auto;">
-            <header style="background-color: #181717; height: 10vh; min-height: 50px; color: white; position: fixed; width: 100%; max-width: 728px; top: 0; display: flex; align-items: center; justify-content: space-between; z-index: 99; padding: 10px; box-sizing: border-box;">
+        <div className="Chat" style={{ textAlign: center, maxWidth: 728 + 'px', margin: 0 + 'auto' }}>
+            <header style={{ backgroundColor: '#' + 181717, height: 10 + 'vh', minHeight: 50 + 'px', color: 'white', position: 'fixed', width: 100  + '%', maxWidth: 728 + 'px', top: 0, display: 'flex', alignItems: 'center', justifyContent: 'spaceBetween', zIndex: 99, padding: 10 + 'px', boxSizing: 'border-box' }}>
                 <h1>Name of Chat Partner</h1>
                 <div>Options</div>
             </header>
-            <section style="display: flex; flex-direction: column; justify-content: center; min-height: 100vh; background-color: rgb(40, 37, 53);">
+            <section style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', minHeight: 100 + 'vh', backgroundColor: "rgb(40, 37, 53)" }}>
                 <ChatRoom receiver="Ben" token="Alf"/>
             </section>
         </div>
@@ -78,13 +78,13 @@ function ChatRoom(props) {
 
     return (
         <>
-            <main style="padding: 10px; height: 80vh; margin: 10vh 0 10vh; overflow-y: scroll; display: flex; flex-direction: column;">
+            <main style={{ padding: 10 + 'px', height: 80 + 'vh', margin: 10 + 'vh ' +  0 + ' ' + 10 + 'vh', overflowY: 'scroll', display: 'flex', flexDirection: 'column' }}>
                 {messages && messages.map(msg => <ChatMessage key={msg.receiver} val={receiver} message={msg.text} />)}
                 <span ref={dummy}></span>
             </main>
 
-            <form onSubmit={sendMessage} style="height: 10vh; position: fixed; bottom: 0; background-color: rgb(24, 23, 23); width: 100%; max-width: 728px; display: flex; font-size: 1.5rem;">
-                <input value={formValue} onChange={(e) => setFormValue(e.target.value)} placeholder="type..." style="line-height: 1.5; width: 100%; font-size: 1.5rem; background: rgb(58, 58, 58); color: white; outline: none; border: none; padding: 0 10px;"/>
+            <form onSubmit={sendMessage} style={{ height: 10 + 'vh', position: 'fixed', bottom: 0, backgroundColor: 'rgb(24, 23, 23)', width: 100 + '%', maxWidth: 728 + 'px', display: 'flex', fontSize: 1.5 + 'rem' }}>
+                <input value={formValue} onChange={(e) => setFormValue(e.target.value)} placeholder="type..." style={{ lineHeight: 1.5, width: 100 + '%', fontSize: 1.5 + 'rem', background: 'rgb(58, 58, 58)', color: 'white', outline: 'none', border: 'none', padding: 0 + ' ' + 10 + 'px' }}/>
             </form>
             <Button type="submit" disabled={!formValue} style="background-color: green; border: none; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; cursor: pointer; font-size: 1.25rem;">send</Button>
         </>
