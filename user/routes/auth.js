@@ -23,7 +23,7 @@ router.get('/', async (req,res) =>
     }
 })
 
-outer.post("/signup",[
+router.post("/signup",[
     check('username').isLength({ min: 3 }),
     check('email').isEmail(),
     ],
