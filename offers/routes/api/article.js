@@ -127,6 +127,7 @@ router.post('/article', auth.authenticateJWT, upload.any(), function (req, res) 
     // Überprüfe das Token, enthält auch die UserID
     const sellerID = req.validUser.id;
     const sellerName = req.validUser.username;
+    console.log(sellerName, sellerID);
     // Überprüfe bzw. Überarbeite die notwendigen Eingabefelder
     let heading = req.body.heading;
     let description = req.body.description;
