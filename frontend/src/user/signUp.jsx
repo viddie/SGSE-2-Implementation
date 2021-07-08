@@ -14,6 +14,7 @@ const SignUp = (props) => {
     }
 
     function handleSubmit(event) {
+        const history = useHistory();
         const data = {
             username: username,
             email: email,
