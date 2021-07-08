@@ -13,7 +13,7 @@ const CreateArticle = (props) => {
     const [error, setError] = useState(false)
 
     function validateForm() {
-        return username.length > 0 && password.length > 0 && email.length > 0;
+        return heading.length > 0 && description.length > 0
     }
 
     function handleSubmit(event) {
