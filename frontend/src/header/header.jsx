@@ -18,7 +18,7 @@ const Header = (props) => {
                 </Navbar.Brand>
                 </LinkContainer>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-                {!props.state.loggedIn ?
+                {!props.store.loggedIn ?
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className="me-auto">
                             <LinkContainer to="/login">

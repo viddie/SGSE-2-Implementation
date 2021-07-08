@@ -11,19 +11,17 @@ import {Switch, BrowserRouter, Route} from 'react-router-dom';
 
 import { useObserver, useLocalStore } from 'mobx-react-lite'
 
-
+const store = useLocalStore(()=> ({
+  loggedIn : false
+}))
 
 
 
 function App() {
-
-  const store = useLocalStore(()=> ({
-  loggedIn : false
-}))
   return useObserver(()=>(
     <BrowserRouter>
     <div className="App">
-      <Header />
+      <Header store={store}/>
       <div className = "mt-3">
         <Switch>
           <Route exact path='/'>
@@ -32,7 +30,7 @@ function App() {
           {!store.loggedIn ?
           <React.Fragment>
           <Route exact path='/login'>
-            <Login ></Login>
+            <Login store={store}></Login>
           </Route>
           <Route exact path='/createAccount'>
             <SignUp></SignUp>
