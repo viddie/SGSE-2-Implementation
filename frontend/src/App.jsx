@@ -17,10 +17,9 @@ import { useObserver, useLocalStore } from 'mobx-react-lite'
 
 function App() {
 
-  const store = useLocalStore = (()=> ({
-    loggedIn : false
-  }))
-  
+  const store = useLocalStore(()=> ({
+  loggedIn : false
+}))
   return useObserver(()=>(
     <BrowserRouter>
     <div className="App">
