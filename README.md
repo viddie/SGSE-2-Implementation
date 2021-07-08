@@ -41,15 +41,15 @@ Diese Infos müsst ihr in eurer deployment.yaml angeben. Euer Deployment heißt 
 
 ## Datenbanken
 
-| Microservice       | Datenbank | IP:Port           |
-| ------------------ | --------- | ----------------- |
-| E-Mail             | MySQL     | 172.17.0.7:3306   |
-| Suche              | MySQL     | 172.17.0.11:3306  |
-| Chat               | MongoDB   | 172.17.0.6:27017  |
-| Angebote           | MongoDB   | 172.17.0.10:27017 |
-| Bewertungen        | MongoDB   | 172.17.0.8:27017  |
-| Benutzerverwaltung | MongoDB   | 172.17.0.12:27017 |
-| Test Datenbank     | MySQL     | 172.17.0.9:3306   |
+| Microservice       | Datenbank | IP:Port              |
+| ------------------ | --------- | -------------------- |
+| E-Mail             | MySQL     | 172.17.0.50:3306     |
+| ~~Suche~~          | ~~MySQL~~ | ~~172.17.0.11:3306~~ |
+| Chat               | MongoDB   | 172.17.0.51:27017    |
+| Angebote           | MongoDB   | 172.17.0.52:27017    |
+| Bewertungen        | MongoDB   | 172.17.0.53:27017    |
+| Benutzerverwaltung | MongoDB   | 172.17.0.54:27017    |
+| Test Datenbank     | MySQL     | 172.17.0.55:3306     |
 
 Die IP Adressen sollten sich nicht mehr ändern, also können diese hardcoded werden. Anmeldedaten (für alle gleich):
 
@@ -67,5 +67,4 @@ Die IP Adressen sollten sich nicht mehr ändern, also können diese hardcoded we
 | `kubectl get service`                                        | Zum Abfragen, ob der Service hinzugefügt wurde               |
 | `kubectl get pods`                                           | Zum Abfragen, ob das Docker Image für den Service in einem Pod ausgeführt werden konnte |
 | `kubectl logs <pod-name>`                                    | `<pod-name>` muss aus `kubectl get pods` kopiert werden. Gibt die logs aus, die z.B. über ein `console.log` im Express.js Server geloggt wurden |
-
 
