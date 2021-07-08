@@ -5,6 +5,7 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 RUN npm install
 RUN npm install body-parser jsonwebtoken
+RUN npm install express-validator
 # Copy app source code
 COPY . .
 #Expose port and start application
