@@ -14,16 +14,16 @@ function App() {
       <div className = "mt-3">
       <BrowserRouter>
       <Switch>
-        <Route exact path='/'>
+        <Route path='/'>
           <Showroom categories={["all"]}/>
         </Route>
-        <Route exact path='/login'>
+        <Route path='/login'>
           <Login></Login>
         </Route>
-        <Route exact path='/chat'>
+        <Route path='/chat'>
           <Chat></Chat>
         </Route>
-        <Route exact path='/createAccount'/>
+        <Route path='/createAccount'/>
       </Switch>
       </BrowserRouter>
       </div>
