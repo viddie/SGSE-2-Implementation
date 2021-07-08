@@ -21,9 +21,9 @@ function App() {
 
   return useObserver(()=>(
   <div className="App">
-    <Header store={store}/>
+    <BrowserRouter>
+      <Header store={store}/>
       <div className = "mt-3">
-        <BrowserRouter>
           <Switch>
             <Route exact path='/'>
               <Showroom store={store} categories={["all"]}/>
@@ -46,8 +46,8 @@ function App() {
             <Route path='/404' component={ErrorPageNotFound} />
             <Redirect to='/404' />
           </Switch>
-        </BrowserRouter>
       </div>
+      </BrowserRouter>
     </div>
   ));
 }
