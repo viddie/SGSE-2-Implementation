@@ -17,12 +17,12 @@ const Header = (props) => {
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="me-auto">
-                        <LinkContainer to="/login">
+                        <Link to="/login">
                             <Nav.Link >Login</Nav.Link>
-                        </LinkContainer>
-                        <LinkContainer to="/login">
-                            <Nav.Link to="/createAccount">Konto erstellen</Nav.Link>
-                        </LinkContainer>
+                        </Link>
+                        <Link to="/createAccount">
+                            <Nav.Link >Konto erstellen</Nav.Link>
+                        </Link>
                     </Nav>
                     <Nav>
                         <Form className="d-flex">
