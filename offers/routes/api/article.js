@@ -54,12 +54,13 @@ router.get('/article/findByCategory', function (req, res, next) {
 router.get('/article/findByUser', function (req, res, next) {
     // Die Angabe der zulässigen Kategorien erfolgt per Query Parameter mit Komma getrennt
     let users = req.query.users.split(',');
-    users = categories.map(e => e.trim());
+    users = users.map(e => e.trim());
     ArticleModel.find({sellerID : users}, (err, articles) => {
         if (err) {
             return console.error(err);
         } else {
-            res.status(200).json(articles);
+            idList = articles.map(element => element._id)
+            res.status(200).json(idList);
         }
     });
 });
