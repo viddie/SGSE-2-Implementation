@@ -8,6 +8,19 @@ var ArticleModel = mongoose.model('Article');
 
 const upload = multer({ dest: "uploads" });
 
+
+
+router.get('/getAll', async (req,res) =>
+{
+    try{
+        const articels = await ArticleModel.find()
+        res.json(articels)
+    }catch(err)
+    {
+        res.status(500).json({message: err.message})
+    }
+})
+
 router.get('/article/findByCategory', function (req, res, next) {
     // Die Angabe der zulässigen Kategorien erfolgt per Query Parameter mit Komma getrennt
     // Wird nur der Parameter "all" verwendet, werden alle zurückgeben
