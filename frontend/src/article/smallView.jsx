@@ -93,8 +93,8 @@ function DispatchButton(props) {
           </Button>
         </Link>
         <Link to="/myArticles">
-          <Button size="lg" onClick={deleteArticle()} block style={{ backgroundColor: "darkgreen", borderColor: "darkgreen" }}>
-          Artikel löschen
+          <Button size="lg" onClick={()=>deleteArticle()} block style={{ backgroundColor: "darkgreen", borderColor: "darkgreen" }}>
+            Artikel löschen
         </Button>
         </Link>
     </div>
