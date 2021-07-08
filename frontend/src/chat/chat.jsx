@@ -40,14 +40,14 @@ function ChatRoom(props) {
     const [messages, setMessages] = useState([]);
 
     useEffect(() => {
-        fetch(`http://sgse2.ad.fh-bielefeld.de/api/chat/messages/receive/${this_user}/${other_user}`, { method: "GET", headers: { 'Content-Type': 'application/json' } })
+        fetch(`http://sgse2.ad.fh-bielefeld.de/api/chat/messages/receive/${token}/${receiver}`, { method: "GET", headers: { 'Content-Type': 'application/json' } })
         .then(res => res.json())
         .then(data => {
             setData1(data);
         })
     }, []);
     useEffect(() => {
-        fetch(`http://sgse2.ad.fh-bielefeld.de/api/chat/messages/receive/${other_user}/${this_user}`, { method: "GET", headers: { 'Content-Type': 'application/json' } })
+        fetch(`http://sgse2.ad.fh-bielefeld.de/api/chat/messages/receive/${receiver}/${token}`, { method: "GET", headers: { 'Content-Type': 'application/json' } })
         .then(res => res.json())
         .then(data => {
             setData2(data);
