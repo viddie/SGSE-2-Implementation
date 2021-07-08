@@ -9,7 +9,8 @@ const CreateArticle = (props) => {
     const [description, setDescription] = useState("");
     const [price, setPrice] = useState(0.00);
     const [tags, setTags] = useState("");
-    const [category, setCategory] = useState("household")
+    const [category, setCategory] = useState("household");
+    const [files, setFiles] = useState([]);
     const [error, setError] = useState(false)
 
     function validateForm() {
@@ -23,6 +24,8 @@ const CreateArticle = (props) => {
         formData.append("price", price);
         formData.append("category", category);
         formData.append("tags", tags);
+        
+        files.forEach((file)=>formData.append('file',file));
 
         fetch(
             "http://sgse2.ad.fh-bielefeld.de/api/offers/article",
@@ -112,14 +115,14 @@ const CreateArticle = (props) => {
                 </Form.Control>
             </Form.Group>
 
-            <Form>
+            <Form.Group>
                 <Form.File 
-                    id="pictureUpload"
-                    label="Bilder hinzufügen"
+                    id="custom-file"
                     data-browse="Datei suchen"
                     custom
+                    onChange={(e) => setFiles(e.target.files)}
                 />
-            </Form>
+            </Form.Group>
             <Button block size="lg" onClick={()=>handleSubmit()} disabled={!validateForm()}>
             Artikel einstellen
             </Button>
