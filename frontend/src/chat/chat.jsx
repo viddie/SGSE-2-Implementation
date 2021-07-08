@@ -16,7 +16,7 @@ function Chat(props) {
     return (
         <div className="Chat">
             <div className="chat_header">
-                <h1>{props.receiver}</h1>
+                <h1>Name of Chat Partner</h1>
                 <div className="chat_header_options">Options</div>
             </div>
             <div className="chat_section">
@@ -40,6 +40,11 @@ function ChatRoom(props) {
 
     console.log("DEBUG: ChatRoom: messages");
     console.log(messages);
+
+    console.log("DEBUG: ChatRoom: messages.resolve");
+    const data = Promise.resolve(messages);
+    console.log(data);
+
 
     const sendMessage = async (e) => {
         e.preventDefault();
@@ -112,32 +117,33 @@ function ChatMessage(props) {
     );
 }
 
-const getMessages = async(other_user, token) => {
-    //var this_user = extract_username_from_token(token);
+async function getMessages(other_user, token) {
     var this_user = token;
+    let data1 = {}
+    let data2 = {}
+    let data = {}
     
-    const request = async (user1, user2) => {
-        const response = await fetch(`http://sgse2.ad.fh-bielefeld.de/api/chat/messages/receive/${user1}/${user2}`, {method: 'GET'});
-        const json = await response.json();
-        return json;
-    }
-
-    var data1 = await request(this_user, other_user);
-    var data2 = await request(other_user, this_user);
-    var data = undefined;
-
+    await fetch(`http://sgse2.ad.fh-bielefeld.de/api/chat/messages/receive/${this_user}/${other_user})`)
+        .then(res => res.json())
+        .then(json => data1 = json)
+        .then(() => {
+            fetch(`http://sgse2.ad.fh-bielefeld.de/api/chat/messages/receive/${other_user}/${this_user})`)
+            .then(res => res.json())
+            .then(json => data2 = json)
+            .then(resolve(true))
+        })
+    
     Promise.all([data1, data2]).then(function(val) {
         data = [...val[0],...val[1]];
         console.log("DEBUG: getMessages: val")
         console.log(val);
     });
 
-    console.log("DEBUG: getMessages: data")
-    console.log(data);
-
-    if (data != undefined) {
-        return data;
-    }
+    console.log("DEBUG: getMessages: data")     
+    console.log(data);      
+    if (data != undefined) {         
+        return data;    
+    } 
 }
 
 export default Chat
