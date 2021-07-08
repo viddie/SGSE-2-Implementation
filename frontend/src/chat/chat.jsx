@@ -122,12 +122,12 @@ async function getMessages(other_user, token) {
     let data1 = {}
     let data2 = {}
     
-    await fetch(`http://sgse2.ad.fh-bielefeld.de/api/chat/messages/receive/${this_user}/${other_user}`)
+    await fetch(`http://sgse2.ad.fh-bielefeld.de/api/chat/messages/receive/${this_user}/${other_user}`, { method="GET" })
         .then(res => res.json())
         .then(data => console.log(data))
         .then(json => {
             data1 = json;
-            fetch(`http://sgse2.ad.fh-bielefeld.de/api/chat/messages/receive/${other_user}/${this_user}`)
+            fetch(`http://sgse2.ad.fh-bielefeld.de/api/chat/messages/receive/${other_user}/${this_user}`, { method="GET" })
                 .then(res => res.json())
                 .then(json => {
                     data2 = json;
