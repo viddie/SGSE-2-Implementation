@@ -4,10 +4,12 @@ import { useHistory } from 'react-router-dom';
 
 const CreateArticle = (props) => {
     const history = useHistory();
-    const [username, setUsername] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [error, setError] = useState(false);
+
+    const [heading, setHeading] = useState("");
+    const [description, setDescription] = useState("");
+    const [price, setPrice] = useState(0.00);
+    const [tags, setTags] = useState("");
+    const [category, setCategory] = useState("Haushalt")
 
     function validateForm() {
         return username.length > 0 && password.length > 0 && email.length > 0;

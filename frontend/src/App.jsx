@@ -22,7 +22,6 @@ function App() {
     <div className="App">
       <Header store={store}/>
       <div className = "mt-3">
-        <Switch>
           <Route exact path='/'>
             <Showroom store={store} categories={["all"]}/>
           </Route>
@@ -43,7 +42,6 @@ function App() {
           <Route path='*'>
           <div> Du dummes Vieh. Gib mal ne richtige URI ein!!!!</div>
         </Route>
-        </Switch>
       </div>
     </div>
     </BrowserRouter>
