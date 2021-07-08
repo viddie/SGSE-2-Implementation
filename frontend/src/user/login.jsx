@@ -6,7 +6,8 @@ import { State } from '../statemanagement/state';
 const Login = (props) => {
     const history = useHistory();
 
-    const [state, dispatch] = useContext(State);
+    const {state, dispatch} = useContext(State);
+
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState(false);

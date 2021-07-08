@@ -7,7 +7,7 @@ import logo from '/static/wurm.png'
 
 const Header = (props) => {
     
-    const [state, dispatch] = useContext(State);
+    const {state, dispatch} = useContext(State);
 
     return (
         <Navbar collapseOnSelect expand="lg" bg="success" variant="dark">

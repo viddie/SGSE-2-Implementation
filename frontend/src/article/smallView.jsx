@@ -56,7 +56,7 @@ function SmallArticle(props) {
                   <div>{props.article.description}</div>
                   <b> Verkäufer </b>
                   <div style={{ fontStyle: "italic" }}>
-                    {props.article.userName}
+                    {props.article.sellerName}
                   </div>
                   <div float="left">
                     <div>Bewertung:</div>
