@@ -2,7 +2,7 @@ import React from 'react'
 import { Button, Navbar, Nav, Form, FormControl, Container, Image } from 'react-bootstrap'
 import { Link } from 'react-router-dom';
 import logo from '/static/wurm.png'
-
+import {LinkContainer} from 'react-router-bootstrap'
 
 const Header = (props) => {
     return (
@@ -17,12 +17,12 @@ const Header = (props) => {
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="me-auto">
-                        <Link to="/login">
+                        <LinkContainer to="/login">
                             <Nav.Link >Login</Nav.Link>
-                        </Link>
-                        <Link to="/login">
+                        </LinkContainer>
+                        <LinkContainer to="/login">
                             <Nav.Link to="/createAccount">Konto erstellen</Nav.Link>
-                        </Link>
+                        </LinkContainer>
                     </Nav>
                     <Nav>
                         <Form className="d-flex">
