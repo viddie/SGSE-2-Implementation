@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Button, Form, Container, Alert} from 'react-bootstrap'
 import { Redirect } from 'react-router-dom';
 
-const Login = (props) => {
+const SignUp = (props) => {
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -41,7 +41,7 @@ const Login = (props) => {
                     .then((res)=>{
                         sessionStorage.setItem('accessToken', res.accessToken);
                         sessionStorage.setItem('refreshToken', res.refreshToken);
-                        <Redirect to="/" /> 
+                        <Redirect to="/"></Redirect>;
                     })
               }
           })
