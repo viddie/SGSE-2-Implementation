@@ -23,7 +23,7 @@ function App() {
       <Header store={store}/>
       <div className = "mt-3">
         <Switch>
-          <Route exact path='/'>
+          <Route path='/'>
             <Showroom categories={["all"]}/>
           </Route>
           {!store.loggedIn ?
