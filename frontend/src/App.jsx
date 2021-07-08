@@ -24,6 +24,7 @@ function App() {
       <div className="App">
         <Header store={store}/>
         <div className = "mt-3">
+        <Switch>
           <Route exact path='/'>
             <Showroom store={store} categories={["all"]}/>
           </Route>
@@ -49,6 +50,7 @@ function App() {
           <Route>
             <ErrorPageNotFound></ErrorPageNotFound>
           </Route>
+          </Switch>
         </div>
       </div>
     </BrowserRouter>
