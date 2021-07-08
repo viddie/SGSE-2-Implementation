@@ -21,32 +21,35 @@ function App() {
   }))
 
   return useObserver(()=>(
-  <div className="App">
-    <BrowserRouter>
-      <Header store={store}/>
-      <div className = "mt-3">
+    <div className="App">
+      <BrowserRouter>
+        <Header store={store}/>
+        <div className = "mt-3">
           <Switch>
             <Route exact path='/'>
               <Showroom store={store} categories={["all"]}/>
             </Route>
-            {!store.loggedIn ?
-              <React.Fragment>
-                <Route exact path='/login'>
-                  <Login store={store}></Login>
-                </Route>
-                <Route exact path='/createAccount' component={SignUp}/>
-              </React.Fragment>
-              :
-              <React.Fragment>
+            {!store.loggedIn &&
+              <Route exact path='/login'>
+                <Login store={store}></Login>
+              </Route>
+            }
+            {!store.loggedIn &&
+              <Route exact path='/createAccount' component={SignUp}/>
+            }
+            {store.loggedIn &&
                 <Route exact path='/userChat' component={Chat}/>
+            }
+            {store.loggedIn &&
                 <Route exact path='/myArticles' component={MyArticles}/>
+            }
+            {store.loggedIn &&
                 <Route exact path='/createArticle' component={CreateArticle}/>
-              </React.Fragment>
             }
             <Route path='/404' component={ErrorPageNotFound}/>
             <Redirect to='/404'/>
           </Switch>
-      </div>
+        </div>
       </BrowserRouter>
     </div>
   ));
