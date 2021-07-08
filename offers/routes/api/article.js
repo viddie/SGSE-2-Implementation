@@ -50,7 +50,7 @@ router.get('/article/findByCategory', function (req, res, next) {
 
 router.get('/article/findByUser', function (req, res, next) {
     // Die Angabe der zulässigen Kategorien erfolgt per Query Parameter mit Komma getrennt
-    let users = req.query.usersplit(',');
+    let users = req.query.users.split(',');
     users = categories.map(e => e.trim());
     ArticleModel.find({sellerID : users}, (err, articles) => {
         if (err) {
