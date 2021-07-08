@@ -17,33 +17,32 @@ const CreateArticle = (props) => {
     }
 
     function handleSubmit(event) {
-        const data = {
-            username: username,
-            email: email,
-            password: password
-        };
+        const formData = new FormData();
+        formData.append("heading", heading);
+        formData.append("description", description);
+        formData.append("price", price);
+        formData.append("tags", tags);
+
         fetch(
-            "http://sgse2.ad.fh-bielefeld.de/api/user/auth/signup",
+            "http://sgse2.ad.fh-bielefeld.de/api/offers/article",
             {
                 method: 'POST', // *GET, POST, PUT, DELETE, etc.
                 mode: 'cors', // no-cors, *cors, same-origin
                 cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
                 credentials: 'same-origin', // include, *same-origin, omit
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'multipart/form-data ',
+                    'Authorization': 'Bearer '+ localStorage.getItem("accessToken")
                 },
                 redirect: 'follow', // manual, *follow, error
                 referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-                body: JSON.stringify(data) // body data type must match "Content-Type" header
+                body: formData // body data type must match "Content-Type" header
           })
           .then((res)=>{
               if (!res.ok){
                 setError(true);
-                setPassword("");
-                setEmail("");
-                setUsername("");
               } else {
-                history.push("/login");
+                history.push("/");
               }
           })
           .catch(()=>{
@@ -95,13 +94,23 @@ const CreateArticle = (props) => {
             <Form.Control
                 autoFocus
                 type="text"
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
+                value={tags}
+                onChange={(e) => setTags(e.target.value)}
                 aria-describedby="tagsHelper"
             />
             <Form.Text id="tagsHelper" muted>
                 Gib hier prägnante Tags kommasepariert ein. Es wird die Erreichbarkeit erhöhen!
             </Form.Text>
+            </Form.Group>
+
+            <Form.Group>
+                <Form.Control as="select">
+                    <option value="household">Haushaltswaren</option>
+                    <option value="electronics">Elektroartikel</option>
+                    <option value="antiques">Antiquitäten</option>
+                    <option value="miscellaneous">Sonstiges</option>
+                    <option>Default select</option>
+                </Form.Control>
             </Form.Group>
 
             <Button block size="lg" onClick={()=>handleSubmit()} disabled={!validateForm()}>
