@@ -145,6 +145,7 @@ function ApiCall(user1, user2) {
     }
     
     request();
+    
     return data;
 }
 
