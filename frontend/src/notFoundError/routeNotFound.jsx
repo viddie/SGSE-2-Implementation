@@ -20,7 +20,7 @@ function ErrorPageNotFound() {
                 <div className="container_text">
                     The page you're looking for does not exist.
                 </div>
-                <LinkContainer to="/login">
+                <LinkContainer to="/">
                     <Nav.Link >Home</Nav.Link>
                 </LinkContainer>
             </div>
