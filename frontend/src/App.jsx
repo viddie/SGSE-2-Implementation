@@ -26,7 +26,6 @@ function App() {
           <Route path='/'>
             <Showroom store={store} categories={["all"]}></Showroom>
           </Route>
-          {!store.loggedIn ?
           <React.Fragment>
           <Route exact path='/login'>
             <Login store={store}></Login>
@@ -35,11 +34,9 @@ function App() {
             <SignUp></SignUp>
           </Route>
           </React.Fragment>
-           :
-           <Route exact exact path='/userChat'>
+           <Route exact path='/userChat'>
             <Chat></Chat>
           </Route>
-           }
         </Switch>
       </div>
     </div>
