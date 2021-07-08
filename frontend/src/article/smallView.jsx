@@ -66,7 +66,7 @@ const SmallArticle = (props) => {
                 <Col style={{ display: "flex", alignItems: "center" }}>
                   {
                     props.store.loggedIn ? 
-                    <ContactButton></ContactButton> : 
+                    <DispatchButton></DispatchButton> : 
                     <LoginButton></LoginButton>
                   }
                 </Col>
@@ -78,14 +78,35 @@ const SmallArticle = (props) => {
     );
   }
 
-function ContactButton() {
-  return (    
+function DispatchButton(props) {
+
+  function deleteArticle(){
+    console.log("Deleted");
+  }
+
+  if (props.sellerID == sessionStorage.getItem("userID")) {
+    return(
+      <div>
+        <Link to="/editArticle">
+          <Button size="lg" block style={{ backgroundColor: "darkgreen", borderColor: "darkgreen" }}>
+            Artikel bearbeiten
+          </Button>
+        </Link>
+        <Link to="/myArticles">
+          <Button size="lg" block style={{ backgroundColor: "darkgreen", borderColor: "darkgreen" }}>
+          Artikel löschen
+        </Button>
+        </Link>
+    </div>
+    )
+  } else {
+    return (    
       <Link to="/chat?hempelmann">
         <Button size="lg" block style={{ backgroundColor: "darkgreen", borderColor: "darkgreen" }}>
           Anbieter kontaktieren
         </Button>
       </Link>
-  )
+    )}
 }
 
 function LoginButton() {

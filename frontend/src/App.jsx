@@ -8,7 +8,6 @@ import Chat from './chat/chat';
 import Login from './user/login';
 import SignUp from './user/signUp';
 import CreateArticle from './article/createArticle';
-import MyArticles from './article/myArticles';
 import ErrorPageNotFound from './notFoundError/routeNotFound';
 import { Switch, BrowserRouter, Route, Redirect } from 'react-router-dom';
 
@@ -27,7 +26,7 @@ function App() {
         <div className = "mt-3">
           <Switch>
             <Route exact path='/'>
-              <Showroom store={store} path={"/api/offers/article/findByCategory?categories=all"}/>
+              <Showroom key={12412} store={store} path={"/api/offers/article/findByCategory?categories=all"}/>
             </Route>
             {!store.loggedIn &&
               <Route exact path='/login'>
@@ -42,7 +41,7 @@ function App() {
             }
             {store.loggedIn &&
                 <Route exact path='/myArticles'>
-                  <Showroom store={store} path={"/api/offers/article/findByUser?users="+sessionStorage.getItem("userID")}/>
+                  <Showroom key={12412} store={store} path={"/api/offers/article/findByUser?users="+sessionStorage.getItem("userID")}/>
                 </Route>
             }
             {store.loggedIn &&
