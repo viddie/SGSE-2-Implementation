@@ -122,8 +122,7 @@ async function getMessages(other_user, token) {
     let data1 = {}
     let data2 = {}
     
-    await fetch(`http://sgse2.ad.fh-bielefeld.de/api/chat/messages/receive/${this_user}/${other_user}`, { method: "GET" })
-        .then(res => res.json())
+    await fetch(`http://sgse2.ad.fh-bielefeld.de/api/chat/messages/receive/${this_user}/${other_user}`, { method: "GET", headers= { 'Content-Type': 'application/json', body: JSON.stringify(data) } })
         .then(data => console.log(data))
         .then(json => {
             data1 = json;
@@ -139,7 +138,7 @@ async function getMessages(other_user, token) {
 
                     return data;
                 })
-        })
+        });
 }
 
 export default Chat
