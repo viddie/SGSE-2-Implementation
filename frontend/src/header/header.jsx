@@ -1,6 +1,6 @@
 import React from 'react'
 import { Button, Navbar, Nav, Form, FormControl, Container, Image } from 'react-bootstrap'
-
+import { Link } from 'react-router-dom';
 import logo from '/static/wurm.png'
 
 
@@ -17,9 +17,12 @@ const Header = (props) => {
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="me-auto">
-                    
-                        <Nav.Link to="/login">Login</Nav.Link>
-                        <Nav.Link to="/createAccount">Konto erstellen</Nav.Link>
+                        <Link to="/login">
+                            <Nav.Link >Login</Nav.Link>
+                        </Link>
+                        <Link to="/login">
+                            <Nav.Link to="/createAccount">Konto erstellen</Nav.Link>
+                        </Link>
                     </Nav>
                     <Nav>
                         <Form className="d-flex">
