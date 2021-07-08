@@ -71,7 +71,7 @@ router.post('/login', getUser, (req, res) => {
 
     if (res.user) {
         // generate an access token
-        const accessToken = jwt.sign({ username: res.user.username, role: res.user.role, id: res.user._id, email: res.user.email }, accessTokenSecret, { expiresIn: '1m' });
+        const accessToken = jwt.sign({ username: res.user.username, role: res.user.role, id: res.user._id, email: res.user.email }, accessTokenSecret, { expiresIn: '60m' });
         const refreshToken = jwt.sign({ username: res.user.username, role: res.user.role,id: res.user._id, email: res.user.email  }, refreshTokenSecret);
 
         refreshTokens.push(refreshToken);
