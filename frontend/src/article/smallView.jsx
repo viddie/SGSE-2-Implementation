@@ -3,7 +3,7 @@ import { Container, Row, Col, ListGroup, Image, Button } from "react-bootstrap";
 import { Link } from 'react-router-dom';
 import haenchen from './wurm.jpg'
 
-function SmallArticle(props) {
+const SmallArticle = (props) => {
   const [hoover, setHoover] = useState({
     expanded: false,
     background: "white"});
