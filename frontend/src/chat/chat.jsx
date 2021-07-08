@@ -1,5 +1,6 @@
 import { func } from 'prop-types';
 import React, { useRef, useState } from 'react';
+import { Button } from "react-bootstrap";
 import 'regenerator-runtime/runtime'
 
 /**
@@ -12,12 +13,12 @@ const image = "https://www.linusakesson.net/programming/kernighans-lever/cat.png
 
 function Chat(props) {
     return (
-        <div className="Chat">
-            <header>
+        <div className="Chat" style="text-align: center; max-width: 728px; margin: 0 auto;">
+            <header style="background-color: #181717; height: 10vh; min-height: 50px; color: white; position: fixed; width: 100%; max-width: 728px; top: 0; display: flex; align-items: center; justify-content: space-between; z-index: 99; padding: 10px; box-sizing: border-box;">
                 <h1>Name of Chat Partner</h1>
                 <div>Options</div>
             </header>
-            <section>
+            <section style="display: flex; flex-direction: column; justify-content: center; min-height: 100vh; background-color: rgb(40, 37, 53);">
                 <ChatRoom receiver="Ben" token="Alf"/>
             </section>
         </div>
@@ -77,15 +78,15 @@ function ChatRoom(props) {
 
     return (
         <>
-            <main>
+            <main style="padding: 10px; height: 80vh; margin: 10vh 0 10vh; overflow-y: scroll; display: flex; flex-direction: column;">
                 {messages && messages.map(msg => <ChatMessage key={msg.receiver} val={receiver} message={msg.text} />)}
                 <span ref={dummy}></span>
             </main>
 
-            <form onSubmit={sendMessage}>
-                <input value={formValue} onChange={(e) => setFormValue(e.target.value)} placeholder="type..." />
+            <form onSubmit={sendMessage} style="height: 10vh; position: fixed; bottom: 0; background-color: rgb(24, 23, 23); width: 100%; max-width: 728px; display: flex; font-size: 1.5rem;">
+                <input value={formValue} onChange={(e) => setFormValue(e.target.value)} placeholder="type..." style="line-height: 1.5; width: 100%; font-size: 1.5rem; background: rgb(58, 58, 58); color: white; outline: none; border: none; padding: 0 10px;"/>
             </form>
-            <button type="submit" disabled={!formValue}>send</button>
+            <Button type="submit" disabled={!formValue} style="background-color: green; border: none; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; cursor: pointer; font-size: 1.25rem;">send</Button>
         </>
     )
 }
@@ -119,9 +120,9 @@ function getMessages(other_user, token) {
     var data = []
     
     Promise.all([data1, data2]).then(function(val) {
-        //console.log(val);
+        console.log(val);
         data = [...val[0],...val[1]];
-        //console.log(data);
+        console.log(data);
     });
 
     return data;
