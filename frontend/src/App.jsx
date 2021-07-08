@@ -2,7 +2,7 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from "./header/header";
 import React from 'react';
-import Footer from "./footer/footer";
+import { uid } from 'uid';
 import Showroom from './article/showroom';
 import Chat from './chat/chat';
 import Login from './user/login';
@@ -26,7 +26,7 @@ function App() {
         <div className = "mt-3">
           <Switch>
             <Route exact path='/'>
-              <Showroom key={12412} store={store} path={"/api/offers/article/findByCategory?categories=all"}/>
+              <Showroom key={uid()} store={store} path={"/api/offers/article/findByCategory?categories=all"}/>
             </Route>
             {!store.loggedIn &&
               <Route exact path='/login'>
@@ -41,7 +41,7 @@ function App() {
             }
             {store.loggedIn &&
                 <Route exact path='/myArticles'>
-                  <Showroom key={12412} store={store} path={"/api/offers/article/findByUser?users="+sessionStorage.getItem("userID")}/>
+                  <Showroom key={uid()} store={store} path={"/api/offers/article/findByUser?users="+sessionStorage.getItem("userID")}/>
                 </Route>
             }
             {store.loggedIn &&
