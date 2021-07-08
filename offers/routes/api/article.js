@@ -169,9 +169,12 @@ router.post('/article', auth.authenticateJWT, upload.any(), function (req, res) 
 
         article.pictures = base64images;
         article.save(function (err) {
-            if (err) return console.error(err);
+            if (err) {
+                return console.error(err);
+            } 
+            return res.status(200);
         });
-
+        
     } else {
         return res.status(400).json('Ungültige Eingabeparameter!')
     }
