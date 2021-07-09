@@ -1,5 +1,5 @@
 
-const styles = {
+export const styles = {
     container: {
         display: 'flex',
         flexDirection: 'column',
@@ -25,7 +25,7 @@ const styles = {
     }
 };
 
-const colors = {
+export const colors = {
     orange: '#FFBA5A',
     grey: '#a9a9a9',
     green: '#40E0D0'
