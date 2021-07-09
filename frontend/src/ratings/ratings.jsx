@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FaStar } from "react-icons/fa";
 
 
@@ -16,6 +16,34 @@ const Ratings = (props) => {
   const [error, setError] = useState(false);
   const [avgRating, setAvgRating] = useState(0);
   const stars = Array(5).fill(0)
+  
+      useEffect(() =>{
+        fetch(
+            `http://sgse2.ad.fh-bielefeld.de/api/ratings/ratings/UserID`,
+            {
+                method: 'GET', 
+                headers: {
+                    'Authorization': 'Bearer '+ sessionStorage.getItem("accessToken"),
+                    'Content-Type': 'application/json'
+                },
+          
+          })
+          .then(res => {
+            if (res.ok){
+              console.log(res.body)
+              res.json()
+              .then(data => {setAvgRating(Math.round(data.avgStar));
+              console.log(data);})
+            }
+            else{
+              setError(true)
+            }
+          })
+      
+          .catch(()=>{
+              ;
+          })
+        }, []);
 
   function handleClick(value) {
     fetch(
