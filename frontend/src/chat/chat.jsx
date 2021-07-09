@@ -151,7 +151,7 @@ function ChatMessage(props) {
     const uid = props.message.receiver;
     const uid_r = props.rec;
 
-    const messageClass = 'sent';
+    let messageClass = 'sent';
     if (uid == uid_r) {
         messageClass = 'received';
     }
