@@ -17,7 +17,6 @@ function Chat(props) {
         <div className="Chat">
             <div className="chat_header">
                 <h1>Name of Chat Partner</h1>
-                <div className="chat_header_options">Options</div>
             </div>
             <div className="chat_section">
                 <ChatRoom receiver={props.receiver} />
