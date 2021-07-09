@@ -43,13 +43,13 @@ Diese Infos müsst ihr in eurer deployment.yaml angeben. Euer Deployment heißt 
 
 | Microservice       | Datenbank | IP:Port              |
 | ------------------ | --------- | -------------------- |
-| E-Mail             | MySQL     | 172.17.0.13:3306     |
+| E-Mail             | MySQL     | 172.17.0.7:3306      |
 | ~~Suche~~          | ~~MySQL~~ | ~~172.17.0.11:3306~~ |
-| Chat               | MongoDB   | 172.17.0.9:27017     |
-| Angebote           | MongoDB   | 172.17.0.5:27017     |
-| Bewertungen        | MongoDB   | 172.17.0.7:27017     |
-| Benutzerverwaltung | MongoDB   | 172.17.0.8:27017     |
-| Test Datenbank     | MySQL     | 172.17.0.6:3306      |
+| Chat               | MongoDB   | 172.17.0.6:27017     |
+| Angebote           | MongoDB   | 172.17.0.9:27017     |
+| Bewertungen        | MongoDB   | 172.17.0.10:27017    |
+| Benutzerverwaltung | MongoDB   | 172.17.0.11:27017    |
+| Test Datenbank     | MySQL     | 172.17.0.8:3306      |
 
 Die IP Adressen sollten sich nicht mehr ändern, also können diese hardcoded werden. Anmeldedaten (für alle gleich):
 
