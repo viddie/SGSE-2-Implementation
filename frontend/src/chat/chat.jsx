@@ -60,28 +60,12 @@ function ChatRoom(props) {
             // Got message
             let messages = await response.json();
             setMessages(messages);
-            await new Promise((resolve) => setTimeout(resolve, 500));
+            await new Promise((resolve) => setTimeout(resolve, 1000));
             await subscribe();
         }
     }
 
     subscribe();
-
-    /*
-    useEffect(() => {
-        fetch(`http://sgse2.ad.fh-bielefeld.de/api/chat/messages/${chatroomID}`, {
-            method: "GET",
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer '+ token
-            }
-        })
-        .then(res => res.json())
-        .then(data => {
-            setMessages(data);
-        })
-    }, []);
-    */
 
     const sendMessage = async (e) => {
         e.preventDefault();
@@ -136,7 +120,8 @@ function ChatRoom(props) {
                         <ChatMessage
                             key={msg.receiver}
                             val={receiver}
-                            message={msg.text}
+                            text={msg.text}
+                            message={msg}
                         />
                     ))}
                 <span ref={dummy}></span>
@@ -162,7 +147,8 @@ function ChatRoom(props) {
 }
 
 function ChatMessage(props) {
-    const text = props.message;
+    const text = props.text;
+    console.log(props.message);
     const uid = props.key;
     const uid_r = props.val;
 
@@ -171,8 +157,8 @@ function ChatMessage(props) {
         messageClass = 'received';
     }
 
-    console.log(uid);
-    console.log(uid_r);
+    console.log("uid/key = " + uid);
+    console.log("uid_r/val = " + uid_r);
 
     return (
         <>
