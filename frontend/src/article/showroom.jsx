@@ -15,8 +15,8 @@ const Showroom = (props) => {
     }, []);
 
     return (
-        <Container style={{ maxWidth: '60%', minWidth: '600px' }}>
-            <div>Zeige {articleIds.length} Artikel von 10</div>
+        <Container className="justify-content-md-center">
+            <div>{articleIds.length} Artikel gefunden!</div>
             <ListGroup>
                 {articleIds.map((id) => (
                     <LineView store={props.store} id={id} key={id}></LineView>
