@@ -41,6 +41,12 @@ const RatingsSchema = new mongoose.Schema({
         required: true,
         type: Number,
         default: 0
+    },
+    RaterIDs:
+    {
+        required: true,
+        type: [String],
+        default: []
     }
 }
 
