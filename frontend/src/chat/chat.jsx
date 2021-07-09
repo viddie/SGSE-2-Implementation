@@ -157,7 +157,7 @@ function getChatroomID(userID1, userID2) {
 }
 
 function hash(id) {
-    val = 0
+    var val = 0
     for (var i = 0; i < id.length; i++) {
         val = val + (i + 1) * id.charCodeAt(i);
     }
