@@ -54,14 +54,14 @@ function ChatRoom(props) {
                 'Error while sending chat message: API call malfunctioned',
                 error
             );
-            await new Promise((resolve) => setTimeout(() => resolve(), 5000));
+            await new Promise((res) => setTimeout(res, 50000));
             await subscribe();
         } else {
             // Got message
             let messages = await response.json();
             setMessages(messages);
             if (window.location.pathname === 'http://sgse2.ad.fh-bielefeld.de/userChat') {
-                await new Promise((resolve) => setTimeout(() => resolve(), 500));
+                await new Promise((res) => setTimeout(res, 50000));
                 await subscribe();
             }
         }
