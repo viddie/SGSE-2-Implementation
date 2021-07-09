@@ -91,8 +91,7 @@ function DispatchButton(props) {
       body: JSON.stringify({articleID:articleID}),
     })
     .then(()=>{
-      history.push("/empty");
-      history.goBack()
+      history.push("/myArticles");
     })
   }
 
