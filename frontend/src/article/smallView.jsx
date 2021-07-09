@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Container, Row, Col, ListGroup, Image, Button } from "react-bootstrap";
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import haenchen from './wurm.jpg'
 
 const SmallArticle = (props) => {
@@ -79,16 +79,21 @@ const SmallArticle = (props) => {
   }
 
 function DispatchButton(props) {
+  const history = useHistory();
 
   function deleteArticle(articleID){
     fetch("http://sgse2.ad.fh-bielefeld.de/api/offers/article", {
-    method: 'DELETE',
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': 'Bearer '+ sessionStorage.getItem("accessToken")
-    },
-    body: JSON.stringify({articleID:articleID}),
-  })
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer '+ sessionStorage.getItem("accessToken")
+      },
+      body: JSON.stringify({articleID:articleID}),
+    })
+    .then(()=>{
+      history.push("/empty");
+      history.goBack()
+    })
   }
 
   if (props.sellerID == sessionStorage.getItem("userID")) {
@@ -99,11 +104,10 @@ function DispatchButton(props) {
             Artikel bearbeiten
           </Button>
         </Link>
-        <Link to="/myArticles">
           <Button size="lg" onClick={()=>deleteArticle(props.articleID)} block style={{ backgroundColor: "darkgreen", borderColor: "darkgreen" }}>
             Artikel löschen
         </Button>
-        </Link>
+
     </div>
     )
   } else {
