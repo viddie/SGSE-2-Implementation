@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FaStar } from "react-icons/fa";
 
 
@@ -16,10 +16,39 @@ const Ratings = (props) => {
   const [error, setError] = useState(false);
   const [avgRating, setAvgRating] = useState(0);
   const stars = Array(5).fill(0)
+  
+      useEffect(() =>{
+        fetch(
+            `http://sgse2.ad.fh-bielefeld.de/api/ratings/ratings/UserID`,
+            {
+                method: 'GET', 
+                headers: {
+                    'Authorization': 'Bearer '+ sessionStorage.getItem("accessToken"),
+                    'Content-Type': 'application/json'
+                },
+          
+          })
+          .then(res => {
+            if (res.ok){
+              console.log(res.body)
+              res.json()
+              .then(data => {setAvgRating(Math.round(data.avgStar));
+                    setNumRating(data.totalRatings);
+                    console.log(data);})
+            }
+            else{
+              setError(true)
+            }
+          })
+      
+          .catch(()=>{
+              ;
+          })
+        }, []);
 
   function handleClick(value) {
     fetch(
-      `http://sgse2.ad.fh-bielefeld.de/api/ratings/ratings/UserID/60e6b6e760c6300011b6f099/Rating/${value}`,
+      `http://sgse2.ad.fh-bielefeld.de/api/ratings/ratings/UserID/${sessionStorage.getItem("userID")}/Rating/${value}`,
       {
           method: 'POST', 
           headers: {
@@ -33,7 +62,8 @@ const Ratings = (props) => {
         console.log(res.body)
         res.json()
         .then(data => {setAvgRating(Math.round(data.avgStar));
-        console.log(data);})
+                    setNumRating(data.totalRatings);
+                    console.log(data);})
       }
       else{
         setError(true)
@@ -94,6 +124,7 @@ const Ratings = (props) => {
           )
         })}
       </div>
+      <p> Anzahl der Bewertungen: {numRatings}</p>
     </div>
   );
 }
