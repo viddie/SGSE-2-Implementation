@@ -1,9 +1,9 @@
 const mongoose = require('mongoose')
 
 const message_subsschema = new mongoose.Schema({
-    id: 
+    room: 
     {
-        type: Number,
+        type: String,
         required: true
     },
 
