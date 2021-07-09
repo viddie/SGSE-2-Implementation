@@ -104,22 +104,24 @@ router.put('/article', auth.authenticateJWT, upload.any(), function (req, res) {
             if (err) {
                 return console.error(err);
             } else {
-                if (articles == null)
+                if (articles == null){
                     return res.status(400).json('Nicht vorhanden!')
-                // Überprüfe, ob das Angebot gefunden wurde und die sellerID dem User entspricht
-                if (articles[0].sellerID == sellerID){
-                    const article = articles[0];
-                    // Überprüfe bzw. Überarbeite die notwendigen Eingabefelder
-                    article.heading = req.body.heading;
-                    article.description = req.body.description;
-                    article.category = req.body.category;
-                    article.price = parseFloat(req.body.price).toFixed(2);
-                    article.save(function (err) {
-                        if (err) return console.error(err);
-                        return res.status(200).json('Alles jut')
-                    });
                 } else {
-                    return res.status(400).json('Angebot existiert nicht!')
+                     // Überprüfe, ob das Angebot gefunden wurde und die sellerID dem User entspricht
+                    if (articles[0].sellerID == sellerID){
+                        const article = articles[0];
+                        // Überprüfe bzw. Überarbeite die notwendigen Eingabefelder
+                        article.heading = req.body.heading;
+                        article.description = req.body.description;
+                        article.category = req.body.category;
+                        article.price = parseFloat(req.body.price).toFixed(2);
+                        article.save(function (err) {
+                            if (err) return console.error(err);
+                            return res.status(200).json('Alles jut')
+                        });
+                    } else {
+                        return res.status(400).json('Angebot existiert nicht!')
+                    }
                 }
             }
         });
@@ -138,15 +140,17 @@ router.delete('/article', auth.authenticateJWT, function (req, res) {
             if (err) {
                 return console.error(err);
             } else {
-                if (articles == null)
+                if (articles == null){
                     return res.status(400).json('Nicht vorhanden!')
-                // Überprüfe, ob das Angebot gefunden wurde und die sellerID dem User entspricht
-                if (articles[0].sellerID == sellerID){
-                    ArticleModel.deleteOne({_id : articleID}, (err)=> {
-                        if (err) return handleError(err);
-                    })
-                } else {
-                    return res.status(400).json('Objekt ist nicht im Besitz des Requeststellers!')
+                } else {  
+                    // Überprüfe, ob das Angebot gefunden wurde und die sellerID dem User entspricht
+                    if (articles[0].sellerID == sellerID){
+                        ArticleModel.deleteOne({_id : articleID}, (err)=> {
+                            if (err) return handleError(err);
+                        })
+                    } else {
+                        return res.status(400).json('Objekt ist nicht im Besitz des Requeststellers!')
+                    }
                 }
             }
         });
