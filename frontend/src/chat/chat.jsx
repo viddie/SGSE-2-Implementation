@@ -19,7 +19,7 @@ function Chat(props) {
     return (
         <div className="Chat">
             <div className="chat_header">
-                <h1>Name of Chat Partner</h1>
+                <h1>{{ id }}</h1>
             </div>
             <div className="chat_section">
                 <ChatRoom receiver={id} />
