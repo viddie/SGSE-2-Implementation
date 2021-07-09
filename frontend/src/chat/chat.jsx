@@ -72,7 +72,7 @@ function ChatRoom(props) {
             }
         }
     }*/
-    setInterval(function(){
+    setInterval(async function(){
         let response = await fetch(
             `http://sgse2.ad.fh-bielefeld.de/api/chat/messages/${chatroomID}`,
             {
