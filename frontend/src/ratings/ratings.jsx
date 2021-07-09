@@ -15,6 +15,7 @@ const Ratings = (props) => {
   const [hoverValue, setHoverValue] = useState(undefined);
   const [error, setError] = useState(false);
   const [avgRating, setAvgRating] = useState(0);
+  const [numRatings, setNumRating] = useState(0);
   const stars = Array(5).fill(0)
   
       useEffect(() =>{
