@@ -161,6 +161,7 @@ router.delete('/article', auth.authenticateJWT, function (req, res) {
                         return res.status(400).json('Nicht vorhanden!')
                     } else {  
                         // Überprüfe, ob das Angebot gefunden wurde und die sellerID dem User entspricht
+                        console.log(articles)
                         if (articles[0].sellerID == sellerID){
                             ArticleModel.deleteOne({_id : articleID}, (err)=> {
                                 if (err) return handleError(err);
