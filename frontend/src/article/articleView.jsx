@@ -157,7 +157,7 @@ function DispatchButton(props) {
         );
     } else {
         return (
-            <Link to="/userChat">
+            <Link to={"/userChat:"+props.sellerID}>
                 <Button
                     size="lg"
                     block
@@ -165,7 +165,6 @@ function DispatchButton(props) {
                         backgroundColor: 'darkgreen',
                         borderColor: 'darkgreen'
                     }}
-                    receiver={props.sellerID}
                 >
                     Anbieter kontaktieren
                 </Button>

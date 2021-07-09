@@ -1,6 +1,7 @@
 import { func } from 'prop-types';
 import React, { useEffect, useRef, useState } from 'react';
 import { Button } from 'react-bootstrap';
+import { useParams } from 'react-router-dom';
 import 'regenerator-runtime/runtime';
 import './chat.css';
 
@@ -13,13 +14,15 @@ const image =
     'https://www.linusakesson.net/programming/kernighans-lever/cat.png';
 
 function Chat(props) {
+    let { id } = useParams();
+
     return (
         <div className="Chat">
             <div className="chat_header">
                 <h1>Name of Chat Partner</h1>
             </div>
             <div className="chat_section">
-                <ChatRoom receiver={props.receiver} />
+                <ChatRoom receiver={id} />
             </div>
         </div>
     );
