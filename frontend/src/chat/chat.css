@@ -77,8 +77,8 @@
 }
 
 .chat_text_button {
-    background-color: #282c34; /* Green */
     border: none;
+    background-color: darkgreen;
     color: white;
     padding: 15px 32px;
     text-align: center;
@@ -91,6 +91,7 @@
 .chat_text_button:disabled {
     opacity: 0.5;
     cursor: not-allowed;
+    background-color: #282c34; /* Green */
 }
 
 .message {
