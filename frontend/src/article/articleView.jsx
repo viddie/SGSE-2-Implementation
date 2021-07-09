@@ -230,7 +230,7 @@ function RatingStar(props) {
     }
 }
 
-const SmallView = (props) => {
+const LineView = (props) => {
     // Zustandsobjekte
     const [loaded, setLoaded] = useState(false);
     const [hasError, setErrors] = useState(false);
@@ -255,4 +255,4 @@ const SmallView = (props) => {
     }
 };
 
-export default ArticleView;
+export default LineView;

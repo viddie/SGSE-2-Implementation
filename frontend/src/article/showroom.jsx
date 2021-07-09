@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Container, ListGroup } from 'react-bootstrap';
-import ArticleView from './articleView';
+import LineView from './articleView';
 
 const Showroom = (props) => {
     // Zustandsobjekte
@@ -20,11 +20,11 @@ const Showroom = (props) => {
             <div>Zeige {articleIds.length} Artikel von 10</div>
             <ListGroup>
                 {articleIds.map((id) => (
-                    <ArticleView
+                    <LineView
                         store={props.store}
                         id={id}
                         key={id}
-                    ></ArticleView>
+                    ></LineView>
                 ))}
             </ListGroup>
         </Container>
