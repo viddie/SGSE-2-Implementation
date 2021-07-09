@@ -37,7 +37,7 @@ router.get('/', authenticateJWT, async (req,res) =>
 })
 
 // Getting one
-router.get('/:id', authenticateJWT, getMessage, (req,res) =>
+router.get('/:id', authenticateJWT, getMessages, (req,res) =>
 {
     res.json(res.message)
 })
@@ -70,9 +70,11 @@ router.post('/send', authenticateJWT, async (req, res) =>
     }
 })
 
-async function getMessage(req, res, next){
+async function getMessages(req, res, next){
     try{
-        message = await Message.findById(req.params.id)
+        message = await Message.find({
+            id = req.params.id
+        })
         if(message == null){
             return res.status(404).json({message: 'Invalid MessageID'})
         }
