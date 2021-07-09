@@ -56,8 +56,8 @@ function ChatRoom(props) {
                 );
             } else {
                 // Got message
-                let messages = await response.json();
-                setMessages(messages);
+                res.json()
+                .then(()=>setMessages(messages));
             }
         });
     }
