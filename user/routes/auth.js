@@ -2,9 +2,14 @@ const { json } = require("express")
 const express = require("express")
 const router = express.Router()
 const User = require('../models/auth')
-
+const axios = require('axios');
 const bodyParser = require('body-parser');
 const jwt = require('jsonwebtoken');
+
+const axiosi = axios.create({
+    baseURL: 'http://sgse2.ad.fh-bielefeld.de/api/',
+    timeout: 1000,
+  })
 
 const { check, validationResult } = require('express-validator');
 
@@ -45,8 +50,15 @@ router.post("/signup",[
             role: req.body.role,
             email: req.body.email  
         })
-
         try{
+            axiosi.get('/email/registerConfirmation', {
+                params: {
+                  email: req.body.email,
+                  inhalt: "sgse2.ad.fh-bielefeld.de/api/email/confirm"
+                }
+              }).catch(function (error) {
+                console.log(error);
+              })
             const newUser = await user.save()
             res.sendStatus(201)
         }catch(err){
