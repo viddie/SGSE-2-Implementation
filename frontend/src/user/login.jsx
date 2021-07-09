@@ -78,6 +78,7 @@ const Login = (props) => {
                         onChange={(e) => setPassword(e.target.value)}
                     />
                 </Form.Group>
+                <Form.Group>
                 <Button
                     block
                     size="lg"
@@ -86,6 +87,7 @@ const Login = (props) => {
                 >
                     Login
                 </Button>
+                </Form.Group>
             </Form>
         </Container>
     );
