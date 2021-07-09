@@ -62,12 +62,15 @@ router.post("/CreateUser",authenticateJWT, async (req,res) =>
 
 router.post('/UserID/:id/Rating/:star_num',authenticateJWT, getUser, async (req,res) =>
 {
+    if(user.RatersID.length != 1){
+        res.user.RaterIDs.push(req.validUser.id);
+    }
+    
     if(req.params.star_num == "1"){
         try{
             res.user.One_Star = res.user.One_Star + 1
             res.user.avgStar = (res.user.totalRatings*res.user.avgStar + 1)/(res.user.totalRatings+1)
             res.user.totalRatings = res.user.totalRatings + 1
-            res.user.RaterIDs.push(req.validUser.id)
             const updatedUser = await res.user.save()              
             res.json(updatedUser)
         }catch (err){
@@ -79,7 +82,6 @@ router.post('/UserID/:id/Rating/:star_num',authenticateJWT, getUser, async (req,
             res.user.Two_Star = res.user.Two_Star + 1
             res.user.avgStar = (res.user.totalRatings*res.user.avgStar + 2)/(res.user.totalRatings+1)
             res.user.totalRatings = res.user.totalRatings + 1
-            res.user.RaterIDs.push(req.validUser.id) 
             const updatedUser = await res.user.save()  
             res.json(updatedUser)
         }catch (err){
@@ -91,7 +93,6 @@ router.post('/UserID/:id/Rating/:star_num',authenticateJWT, getUser, async (req,
             res.user.Three_Star = res.user.Three_Star + 1
             res.user.avgStar = (res.user.totalRatings*res.user.avgStar + 3)/(res.user.totalRatings+1)
             res.user.totalRatings = res.user.totalRatings + 1
-            res.user.RaterIDs.push(req.validUser.id) 
             const updatedUser = await res.user.save()  
             res.json(updatedUser)
         }catch (err){
@@ -103,7 +104,6 @@ router.post('/UserID/:id/Rating/:star_num',authenticateJWT, getUser, async (req,
             res.user.Four_Star = res.user.Four_Star + 1
             res.user.avgStar = (res.user.totalRatings*res.user.avgStar + 4)/(res.user.totalRatings+1)
             res.user.totalRatings = res.user.totalRatings + 1
-            res.user.RaterIDs.push(req.validUser.id)
             const updatedUser = await res.user.save()   
             res.json(updatedUser)
         }catch (err){
@@ -115,7 +115,6 @@ router.post('/UserID/:id/Rating/:star_num',authenticateJWT, getUser, async (req,
         res.user.Five_Star = res.user.Five_Star + 1
         res.user.avgStar = (res.user.totalRatings*res.user.avgStar + 5)/(res.user.totalRatings+1)
         res.user.totalRatings = res.user.totalRatings + 1
-        res.user.RaterIDs.push(req.validUser.id)
         const updatedUser = await res.user.save()   
         res.json(updatedUser)
     }catch (err){
