@@ -60,7 +60,10 @@ function ChatRoom(props) {
             // Got message
             let messages = await response.json();
             setMessages(messages);
-            if (window.location.pathname === 'http://sgse2.ad.fh-bielefeld.de/userChat') {
+            if (
+                window.location.pathname ===
+                'http://sgse2.ad.fh-bielefeld.de/userChat'
+            ) {
                 await new Promise((res) => setTimeout(res, 50000));
                 await subscribe();
             }
@@ -119,10 +122,7 @@ function ChatRoom(props) {
             <div className="mainchatroom">
                 {messages &&
                     messages.map((msg) => (
-                        <ChatMessage
-                            rec={receiver}
-                            message={msg}
-                        />
+                        <ChatMessage rec={receiver} message={msg} />
                     ))}
                 <span ref={dummy}></span>
             </div>

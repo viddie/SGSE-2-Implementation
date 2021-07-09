@@ -7,7 +7,7 @@ import Showroom from './article/showroom';
 import Chat from './chat/chat';
 import Login from './user/login';
 import SignUp from './user/signUp';
-import {MakeRating} from './ratings/ratings';
+import { MakeRating } from './ratings/ratings';
 import CreateArticle from './article/createArticle';
 import ErrorPageNotFound from './notFoundError/routeNotFound';
 import { Switch, BrowserRouter, Route, Redirect } from 'react-router-dom';
@@ -49,7 +49,11 @@ function App() {
                             <Route exact path="/userChat" component={Chat} />
                         )}
                         {!store.loggedIn && (
-                            <Route exact path="/rating" component={MakeRating} />
+                            <Route
+                                exact
+                                path="/rating"
+                                component={MakeRating}
+                            />
                         )}
                         {store.loggedIn && (
                             <Route exact path="/myArticles">

@@ -79,14 +79,14 @@ const Login = (props) => {
                     />
                 </Form.Group>
                 <Form.Group>
-                <Button
-                    block
-                    size="lg"
-                    onClick={() => handleSubmit()}
-                    disabled={!validateForm()}
-                >
-                    Login
-                </Button>
+                    <Button
+                        block
+                        size="lg"
+                        onClick={() => handleSubmit()}
+                        disabled={!validateForm()}
+                    >
+                        Login
+                    </Button>
                 </Form.Group>
             </Form>
         </Container>

@@ -243,7 +243,7 @@ const LineView = (props) => {
 
     if (loaded) {
         return (
-            <ArticleView store={props.store} article={article}></ArticleView >
+            <ArticleView store={props.store} article={article}></ArticleView>
         );
     } else {
         return null;

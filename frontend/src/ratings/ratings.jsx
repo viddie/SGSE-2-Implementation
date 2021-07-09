@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { FaStar } from 'react-icons/fa';
-import { styles, colors } from './styles'
+//import { styles, colors } from './styles'
 
 export const MakeRating = (props) => {
     const [numRatings, setNumRating] = useState(0);
@@ -10,9 +10,7 @@ export const MakeRating = (props) => {
     const [avgRating, setAvgRating] = useState(0);
 
     const stars = Array(5).fill(0);
-    const userID = sessionStorage.getItem(
-        'userID'
-    );
+    const userID = sessionStorage.getItem('userID');
 
     function handleClick(value) {
         fetch(
@@ -22,7 +20,7 @@ export const MakeRating = (props) => {
                 headers: {
                     Authorization:
                         'Bearer ' + sessionStorage.getItem('accessToken'),
-                        'Content-Type': 'application/json'
+                    'Content-Type': 'application/json'
                 }
             }
         )
@@ -85,14 +83,18 @@ export const RatingStars = (props) => {
     const [currentValue, setCurrentValue] = useState(0);
 
     useEffect(() => {
-        fetch(`http://sgse2.ad.fh-bielefeld.de/api/ratings/ratings/UserID/`+props.userID, {
-            method: 'GET',
-            headers: {
-                Authorization:
-                    'Bearer ' + sessionStorage.getItem('accessToken'),
+        fetch(
+            `http://sgse2.ad.fh-bielefeld.de/api/ratings/ratings/UserID/` +
+                props.userID,
+            {
+                method: 'GET',
+                headers: {
+                    Authorization:
+                        'Bearer ' + sessionStorage.getItem('accessToken'),
                     'Content-Type': 'application/json'
+                }
             }
-        })
+        )
             .then((res) => {
                 if (res.ok) {
                     console.log(res.body);
@@ -130,6 +132,37 @@ export const RatingStars = (props) => {
             </div>
             <p> Anzahl der Bewertungen: {numRatings}</p>
         </div>
-    )
+    );
+};
 
-}
+const styles = {
+    container: {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center'
+    },
+    stars: {
+        display: 'flex',
+        flexDirection: 'row'
+    },
+    textarea: {
+        border: '1px solid #a9a9a9',
+        borderRadius: 5,
+        padding: 10,
+        margin: '20px 0',
+        minHeight: 100,
+        width: 300
+    },
+    button: {
+        border: '1px solid #a9a9a9',
+        borderRadius: 5,
+        width: 300,
+        padding: 10
+    }
+};
+
+const colors = {
+    orange: '#FFBA5A',
+    grey: '#a9a9a9',
+    green: '#40E0D0'
+};
