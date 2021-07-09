@@ -54,7 +54,7 @@ function ChatRoom(props) {
                 );
             } else {
                 // Got message
-                res.json().then(() => setMessages(messages));
+                res.json().then((messages) => setMessages(messages));
             }
         });
     }
