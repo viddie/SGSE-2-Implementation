@@ -47,8 +47,7 @@ function ChatRoom(props) {
                 }
             }
         ).then((res) => {
-            if (res.ok) {
-                this.setState({ errorMessage: error.toString() });
+            if (!res.ok) {
                 console.error(
                     'Error while sending chat message: API call malfunctioned',
                     error
@@ -97,7 +96,6 @@ function ChatRoom(props) {
                 }
             })
             .catch((error) => {
-                this.setState({ errorMessage: error.toString() });
                 console.error(
                     'Error while sending chat message: API call malfunctioned',
                     error
