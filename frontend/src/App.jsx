@@ -15,7 +15,8 @@ import { Switch, BrowserRouter, Route, Redirect } from 'react-router-dom';
 import { useObserver, useLocalStore } from 'mobx-react-lite'
 
 function App() {
-
+  window.location.reload(false);
+  
   const store = useLocalStore(()=> ({
     loggedIn : false
   }))
