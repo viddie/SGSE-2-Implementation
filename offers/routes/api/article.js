@@ -157,6 +157,7 @@ router.delete('/article', auth.authenticateJWT, function (req, res) {
                 if (err) {
                     return console.error(err);
                 } else {
+                    console.log(articles)
                     if (articles.length){
                         return res.status(400).json('Nicht vorhanden!')
                     } else {  
