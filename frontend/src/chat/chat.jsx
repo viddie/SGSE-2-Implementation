@@ -54,8 +54,10 @@ function ChatRoom(props) {
                 'Error while sending chat message: API call malfunctioned',
                 error
             );
-            await new Promise((res) => setTimeout(res, 50000));
+            const sleep = milliseconds => Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, milliseconds);
+            sleep(5000);
             await subscribe();
+            
         } else {
             // Got message
             let messages = await response.json();
@@ -64,7 +66,8 @@ function ChatRoom(props) {
                 window.location.pathname ===
                 'http://sgse2.ad.fh-bielefeld.de/userChat'
             ) {
-                await new Promise((res) => setTimeout(res, 50000));
+                const sleep = milliseconds => Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, milliseconds);
+                sleep(5000);
                 await subscribe();
             }
         }
