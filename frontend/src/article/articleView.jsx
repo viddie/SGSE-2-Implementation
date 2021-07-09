@@ -148,7 +148,7 @@ function DispatchButton(props) {
         );
     } else {
         return (
-            <Link to="/chat?hempelmann">
+            <Link to="/userChat">
                 <Button
                     size="lg"
                     block
