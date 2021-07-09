@@ -36,7 +36,6 @@ router.get('/', authenticateJWT, async (req,res) =>
     }
 })
 
-// Getting one
 router.get('/:room', authenticateJWT, getMessages, (req,res) =>
 {
     res.json(res.message)
@@ -72,16 +71,16 @@ router.post('/send', authenticateJWT, async (req, res) =>
 
 async function getMessages(req, res, next){
     try{
-        message = await Message.find({
-            room = req.params.room
+        messages = await Message.find({
+            room: req.params.room
         })
-        if(message == null){
-            return res.status(404).json({message: 'Invalid chatroomID'})
+        if(messages == null){
+            return res.status(404).json({messages: 'Invalid chatroomID'})
         }
     } catch (err) {
-        return res.status(500).json({message: err.message})
+        return res.status(500).json({messages: err.message})
     }
-    res.message = message
+    res.messages = message
     next()
 }
 
