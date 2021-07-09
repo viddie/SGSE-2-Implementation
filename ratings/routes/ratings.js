@@ -134,9 +134,16 @@ router.delete('/:id',authenticateJWT, getUser, async (req,res) =>
 async function getUser(req, res, next){
     try{
         user = await User.findOne({ID: req.params.id})
-
+        
         if(user == null){
-            return res.status(404).json({message: 'Invalid User'})
+            const newUser = new User({
+                ID: req.validUser.id 
+            })
+            try{
+                user = await newUser.save()
+            }catch(err){
+                res.status(400).json({message: err.message})
+            }
         }
     }catch (err)
     {
