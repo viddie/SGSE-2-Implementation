@@ -35,8 +35,8 @@ function ChatRoom(props) {
     const [formValue, setFormValue] = useState('');
 
     const [messages, setMessages] = useState([]);
-    /*
-    async function subscribe() {
+
+    function startPolling() {
         let response = await fetch(
             `http://sgse2.ad.fh-bielefeld.de/api/chat/messages/${chatroomID}`,
             {
@@ -46,44 +46,9 @@ function ChatRoom(props) {
                     Authorization: 'Bearer ' + token
                 }
             }
-        );
-
-        if (response.status != 200) {
-            this.setState({ errorMessage: error.toString() });
-            console.error(
-                'Error while sending chat message: API call malfunctioned',
-                error
-            );
-            const sleep = milliseconds => Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, milliseconds);
-            sleep(5000);
-            await subscribe();
-            
-        } else {
-            // Got message
-            let messages = await response.json();
-            setMessages(messages);
-            if (
-                window.location.pathname ===
-                'http://sgse2.ad.fh-bielefeld.de/userChat'
-            ) {
-                const sleep = milliseconds => Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, milliseconds);
-                sleep(500);
-                await subscribe();
-            }
-        }
-    }*/
-    function startPolling() {
-        fetch(
-            `http://sgse2.ad.fh-bielefeld.de/api/chat/messages/${chatroomID}`,
-            {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                    Authorization: 'Bearer ' + token
-                }
-            }
-        ).then((res) => {
-            if (res.ok) {
+        )
+        .then((res) => {
+            if (res.ok)  {
                 this.setState({ errorMessage: error.toString() });
                 console.error(
                     'Error while sending chat message: API call malfunctioned',
@@ -96,6 +61,10 @@ function ChatRoom(props) {
             }
         });
     }
+
+    useEffect(() => {
+        setInterval(startPolling(), 500);
+    })
 
     useEffect(() => {
         setInterval(startPolling(), 5000);
