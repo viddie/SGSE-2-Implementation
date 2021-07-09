@@ -41,7 +41,7 @@ router.get('/', authenticateJWT, async (req,res) =>
 })
 
 // Getting one
-router.get('/UserID',authenticateJWT, userTokenAcces, (req,res) =>
+router.get('/UserID/:id',authenticateJWT, getUser, (req,res) =>
 {
     res.json(res.tokenuser)
 })
