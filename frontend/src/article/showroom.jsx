@@ -3,7 +3,7 @@ import { Container, ListGroup } from 'react-bootstrap';
 import LineView from './articleView';
 
 const Showroom = (props) => {
-    // Zustandsobjekte
+
     const [hasError, setErrors] = useState(false);
     const [articleIds, setArticleIds] = useState([]);
 

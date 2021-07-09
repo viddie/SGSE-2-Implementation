@@ -55,6 +55,7 @@ const ArticleView = (props) => {
                         <OnlineTime date={props.article.endsOn} />
                     </Row>
                     <Row>
+                        <b>Verkäufer</b>
                         <div style={{ fontStyle: 'italic' }}>
                             {props.article.sellerName}
                         </div>
@@ -72,9 +73,7 @@ const ArticleView = (props) => {
                                 <b> Beschreibung </b>
                                 <div>{props.article.description}</div>
                                 <b> Verkäuferbewertung</b>
-
                                 <div float="left">
-                                    <div>Bewertung:</div>
                                     <RatingStars></RatingStars>
                                 </div>
                             </Col>
@@ -168,27 +167,23 @@ function DispatchButton(props) {
 
 function LoginButton() {
     return (
-        <div>
-            <div>
-                <Link to="/login">
-                    <Button
-                        size="lg"
-                        block
-                        style={{
-                            backgroundColor: 'darkgreen',
-                            borderColor: 'darkgreen'
-                        }}
-                    >
-                        Einloggen, um Anbieter zu kontaktieren
-                    </Button>
-                </Link>
-            </div>
-            <div>
-                <Link to="/createAccount">
-                    <div>Noch nicht dabei? Registriere dich!</div>
-                </Link>
-            </div>
-        </div>
+        <Container>
+            <Link to="/login">
+                <Button
+                    size="lg"
+                    block
+                    style={{
+                        backgroundColor: 'darkgreen',
+                        borderColor: 'darkgreen'
+                    }}
+                >
+                    Einloggen, um Anbieter zu kontaktieren
+                </Button>
+            </Link>
+            <Link to="/createAccount">
+                <div>Noch nicht dabei? Registriere dich!</div>
+            </Link>
+        </Container>
     );
 }
 
