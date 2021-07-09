@@ -29,7 +29,6 @@ export const MakeRating = (props) => {
                     res.json().then((data) => {
                         setAvgRating(Math.round(data.avgStar));
                         setNumRating(data.totalRatings);
-                        console.log(data);
                     });
                 } else {
                     setError(true);
@@ -101,7 +100,6 @@ export const RatingStars = (props) => {
         )
             .then((res) => {
                 if (res.ok) {
-                    console.log(res.body);
                     res.json().then((data) => {
                         setAvgRating(Math.round(data.avgStar));
                         setNumRating(data.totalRatings);
