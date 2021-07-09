@@ -120,7 +120,7 @@ router.put('/article', auth.authenticateJWT, upload.any(), function (req, res) {
             if (err) {
                 return console.error(err);
             } else {
-                if (articles == null){
+                if (!articles){
                     return res.status(400).json('Nicht vorhanden!')
                 } else {
                      // Überprüfe, ob das Angebot gefunden wurde und die sellerID dem User entspricht
@@ -152,24 +152,28 @@ router.delete('/article', auth.authenticateJWT, function (req, res) {
     // Überprüfe, ob die zu ändernde articleID existiert
     const articleID = req.body.articleID;
     if (articleID) {
-        ArticleModel.find({_id : articleID}, (err, articles) => {
-            if (err) {
-                return console.error(err);
-            } else {
-                if (articles == null){
-                    return res.status(400).json('Nicht vorhanden!')
-                } else {  
-                    // Überprüfe, ob das Angebot gefunden wurde und die sellerID dem User entspricht
-                    if (articles[0].sellerID == sellerID){
-                        ArticleModel.deleteOne({_id : articleID}, (err)=> {
-                            if (err) return handleError(err);
-                        })
-                    } else {
-                        return res.status(400).json('Objekt ist nicht im Besitz des Requeststellers!')
+        try{
+            ArticleModel.find({_id : articleID}, (err, articles) => {
+                if (err) {
+                    return console.error(err);
+                } else {
+                    if (!articles){
+                        return res.status(400).json('Nicht vorhanden!')
+                    } else {  
+                        // Überprüfe, ob das Angebot gefunden wurde und die sellerID dem User entspricht
+                        if (articles[0].sellerID == sellerID){
+                            ArticleModel.deleteOne({_id : articleID}, (err)=> {
+                                if (err) return handleError(err);
+                            })
+                        } else {
+                            return res.status(400).json('Objekt ist nicht im Besitz des Requeststellers!')
+                        }
                     }
                 }
-            }
-        });
+            });
+        } catch {
+            return res.status(500).json("Hard Fault!")
+        }
     }
 })
 
