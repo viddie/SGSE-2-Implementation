@@ -29,7 +29,7 @@ function Chat(props) {
 }
 
 function ChatRoom(props) {
-    const receiver = 'Tristan'; //props.receiver;
+    const receiver = props.receiver;
     const token = sessionStorage.getItem('accessToken');
     const sender = sessionStorage.getItem('userID');
     const dummy = useRef();
