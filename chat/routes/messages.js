@@ -73,7 +73,7 @@ async function getMessages(req, res, next){
     try{
         messages = await Message.find({
             room: req.params.room
-        })
+        }).limit(500)
         if(messages == null){
             return res.status(404).json({messages: 'Invalid chatroomID'})
         }
@@ -88,7 +88,7 @@ async function getUserSpecific(req, res, next) {
     try{
         messages = await Message.find({
             receiver: req.params.receiver
-        })
+        }).limit(500)
         if(messages == null){
             return res.status(404).json({messages: 'Invalid Sender'})
         }
@@ -104,7 +104,7 @@ async function getSenderSpecific(req, res, next) {
         messages = await Message.find({
             sender: req.params.sender,
             receiver: req.params.receiver
-        })
+        }).limit(500)
         if(messages == null){
             return res.status(404).json({messages: 'Invalid Sender'})
         }
