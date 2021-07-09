@@ -1,53 +1,56 @@
-import React, { useState } from 'react'
-import { Button, Form, Container, Alert } from 'react-bootstrap'
-import { useHistory } from 'react-router-dom'
-import jwt_decode from 'jwt-decode'
+import React, { useState } from 'react';
+import { Button, Form, Container, Alert } from 'react-bootstrap';
+import { useHistory } from 'react-router-dom';
+import jwt_decode from 'jwt-decode';
 
 const Login = (props) => {
-    const history = useHistory()
+    const history = useHistory();
 
-    const [username, setUsername] = useState('')
-    const [password, setPassword] = useState('')
-    const [error, setError] = useState(false)
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState(false);
 
     function validateForm() {
-        return username.length > 0 && password.length > 0
+        return username.length > 0 && password.length > 0;
     }
 
     function handleSubmit(event) {
         const data = {
             username: username,
-            password: password,
-        }
+            password: password
+        };
         fetch('http://sgse2.ad.fh-bielefeld.de/api/user/auth/login', {
             method: 'POST', // *GET, POST, PUT, DELETE, etc.
             mode: 'cors', // no-cors, *cors, same-origin
             cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
             credentials: 'same-origin', // include, *same-origin, omit
             headers: {
-                'Content-Type': 'application/json',
+                'Content-Type': 'application/json'
             },
             redirect: 'follow', // manual, *follow, error
             referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-            body: JSON.stringify(data), // body data type must match "Content-Type" header
+            body: JSON.stringify(data) // body data type must match "Content-Type" header
         })
             .then((res) => {
                 if (!res.ok) {
-                    setError(true)
-                    setPassword('')
-                    setUsername('')
+                    setError(true);
+                    setPassword('');
+                    setUsername('');
                 } else {
                     res.json().then((res) => {
-                        sessionStorage.setItem('accessToken', res.accessToken)
-                        sessionStorage.setItem('refreshToken', res.refreshToken)
-                        var decoded = jwt_decode(res.accessToken)
-                        sessionStorage.setItem('userID', decoded.id)
-                        props.store.loggedIn = true
-                        history.push('/')
-                    })
+                        sessionStorage.setItem('accessToken', res.accessToken);
+                        sessionStorage.setItem(
+                            'refreshToken',
+                            res.refreshToken
+                        );
+                        var decoded = jwt_decode(res.accessToken);
+                        sessionStorage.setItem('userID', decoded.id);
+                        props.store.loggedIn = true;
+                        history.push('/');
+                    });
                 }
             })
-            .catch(() => {})
+            .catch(() => {});
     }
 
     return (
@@ -85,7 +88,7 @@ const Login = (props) => {
                 </Button>
             </Form>
         </Container>
-    )
-}
+    );
+};
 
-export default Login
+export default Login;

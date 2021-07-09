@@ -1,32 +1,32 @@
-import React, { useState } from 'react'
-import { Button, Form, Container, Alert } from 'react-bootstrap'
-import { useHistory } from 'react-router-dom'
+import React, { useState } from 'react';
+import { Button, Form, Container, Alert } from 'react-bootstrap';
+import { useHistory } from 'react-router-dom';
 
 const CreateArticle = (props) => {
-    const history = useHistory()
+    const history = useHistory();
 
-    const [heading, setHeading] = useState('')
-    const [description, setDescription] = useState('')
-    const [price, setPrice] = useState(0.0)
-    const [tags, setTags] = useState('')
-    const [category, setCategory] = useState('household')
-    const [files, setFiles] = useState([])
-    const [error, setError] = useState(false)
+    const [heading, setHeading] = useState('');
+    const [description, setDescription] = useState('');
+    const [price, setPrice] = useState(0.0);
+    const [tags, setTags] = useState('');
+    const [category, setCategory] = useState('household');
+    const [files, setFiles] = useState([]);
+    const [error, setError] = useState(false);
 
     function validateForm() {
-        return heading.length > 0 && description.length > 0
+        return heading.length > 0 && description.length > 0;
     }
 
     function handleSubmit(event) {
-        const formData = new FormData()
-        formData.append('heading', heading)
-        formData.append('description', description)
-        formData.append('price', price)
-        formData.append('category', category)
-        formData.append('tags', tags)
+        const formData = new FormData();
+        formData.append('heading', heading);
+        formData.append('description', description);
+        formData.append('price', price);
+        formData.append('category', category);
+        formData.append('tags', tags);
 
         for (let i = 0; i < files.length; i++) {
-            formData.append('file', files[i])
+            formData.append('file', files[i]);
         }
 
         fetch('http://sgse2.ad.fh-bielefeld.de/api/offers/article', {
@@ -35,21 +35,20 @@ const CreateArticle = (props) => {
             cache: 'no-cache',
             credentials: 'same-origin',
             headers: {
-                Authorization:
-                    'Bearer ' + sessionStorage.getItem('accessToken'),
+                Authorization: 'Bearer ' + sessionStorage.getItem('accessToken')
             },
             redirect: 'follow', // manual, *follow, error
             referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-            body: formData, // body data type must match "Content-Type" header
+            body: formData // body data type must match "Content-Type" header
         })
             .then((res) => {
                 if (!res.ok) {
-                    setError(true)
+                    setError(true);
                 } else {
-                    history.push('/')
+                    history.push('/');
                 }
             })
-            .catch(() => {})
+            .catch(() => {});
     }
 
     return (
@@ -134,7 +133,7 @@ const CreateArticle = (props) => {
                 </Button>
             </Form>
         </Container>
-    )
-}
+    );
+};
 
-export default CreateArticle
+export default CreateArticle;

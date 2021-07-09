@@ -1,12 +1,12 @@
-import React from 'react'
+import React from 'react';
 import {
     Box,
     Container,
     Row,
     Column,
     FooterLink,
-    Heading,
-} from './FooterStyles'
+    Heading
+} from './FooterStyles';
 
 const Footer = (props) => {
     return (
@@ -15,7 +15,7 @@ const Footer = (props) => {
                 style={{
                     color: '#198754',
                     textAlign: 'center',
-                    marginTop: '-50px',
+                    marginTop: '-50px'
                 }}
             >
                 Barter Smarter - besser als eBay
@@ -39,7 +39,7 @@ const Footer = (props) => {
                 </Row>
             </Container>
         </Box>
-    )
-}
+    );
+};
 
-export default Footer
+export default Footer;

@@ -1,19 +1,19 @@
-import { useState, useEffect } from 'react'
-import { FaStar } from 'react-icons/fa'
+import { useState, useEffect } from 'react';
+import { FaStar } from 'react-icons/fa';
 
 const colors = {
     orange: '#FFBA5A',
     grey: '#a9a9a9',
-    green: '#40E0D0',
-}
+    green: '#40E0D0'
+};
 
 const Ratings = (props) => {
-    const [currentValue, setCurrentValue] = useState(0)
-    const [hoverValue, setHoverValue] = useState(undefined)
-    const [error, setError] = useState(false)
-    const [avgRating, setAvgRating] = useState(0)
-    const [numRatings, setNumRating] = useState(0)
-    const stars = Array(5).fill(0)
+    const [currentValue, setCurrentValue] = useState(0);
+    const [hoverValue, setHoverValue] = useState(undefined);
+    const [error, setError] = useState(false);
+    const [avgRating, setAvgRating] = useState(0);
+    const [numRatings, setNumRating] = useState(0);
+    const stars = Array(5).fill(0);
 
     useEffect(() => {
         fetch(`http://sgse2.ad.fh-bielefeld.de/api/ratings/ratings/UserID`, {
@@ -21,24 +21,24 @@ const Ratings = (props) => {
             headers: {
                 Authorization:
                     'Bearer ' + sessionStorage.getItem('accessToken'),
-                'Content-Type': 'application/json',
-            },
+                'Content-Type': 'application/json'
+            }
         })
             .then((res) => {
                 if (res.ok) {
-                    console.log(res.body)
+                    console.log(res.body);
                     res.json().then((data) => {
-                        setAvgRating(Math.round(data.avgStar))
-                        setNumRating(data.totalRatings)
-                        console.log(data)
-                    })
+                        setAvgRating(Math.round(data.avgStar));
+                        setNumRating(data.totalRatings);
+                        console.log(data);
+                    });
                 } else {
-                    setError(true)
+                    setError(true);
                 }
             })
 
-            .catch(() => {})
-    }, [])
+            .catch(() => {});
+    }, []);
 
     function handleClick(value) {
         fetch(
@@ -50,35 +50,35 @@ const Ratings = (props) => {
                 headers: {
                     Authorization:
                         'Bearer ' + sessionStorage.getItem('accessToken'),
-                    'Content-Type': 'application/json',
-                },
+                    'Content-Type': 'application/json'
+                }
             }
         )
             .then((res) => {
                 if (res.ok) {
-                    console.log(res.body)
+                    console.log(res.body);
                     res.json().then((data) => {
-                        setAvgRating(Math.round(data.avgStar))
-                        setNumRating(data.totalRatings)
-                        console.log(data)
-                    })
+                        setAvgRating(Math.round(data.avgStar));
+                        setNumRating(data.totalRatings);
+                        console.log(data);
+                    });
                 } else {
-                    setError(true)
+                    setError(true);
                 }
             })
 
-            .catch(() => {})
+            .catch(() => {});
 
-        setCurrentValue(value)
+        setCurrentValue(value);
     }
 
     const handleMouseOver = (newHoverValue) => {
-        setHoverValue(newHoverValue)
-    }
+        setHoverValue(newHoverValue);
+    };
 
     const handleMouseLeave = () => {
-        setHoverValue(undefined)
-    }
+        setHoverValue(undefined);
+    };
 
     return (
         <div style={styles.container}>
@@ -99,10 +99,10 @@ const Ratings = (props) => {
                             }
                             style={{
                                 marginRight: 10,
-                                cursor: 'pointer',
+                                cursor: 'pointer'
                             }}
                         />
-                    )
+                    );
                 })}
             </div>
             <p> Anzahl Sterne: {currentValue}</p>
@@ -118,26 +118,26 @@ const Ratings = (props) => {
                             }
                             style={{
                                 marginRight: 10,
-                                cursor: 'pointer',
+                                cursor: 'pointer'
                             }}
                         />
-                    )
+                    );
                 })}
             </div>
             <p> Anzahl der Bewertungen: {numRatings}</p>
         </div>
-    )
-}
+    );
+};
 
 const styles = {
     container: {
         display: 'flex',
         flexDirection: 'column',
-        alignItems: 'center',
+        alignItems: 'center'
     },
     stars: {
         display: 'flex',
-        flexDirection: 'row',
+        flexDirection: 'row'
     },
     textarea: {
         border: '1px solid #a9a9a9',
@@ -145,14 +145,14 @@ const styles = {
         padding: 10,
         margin: '20px 0',
         minHeight: 100,
-        width: 300,
+        width: 300
     },
     button: {
         border: '1px solid #a9a9a9',
         borderRadius: 5,
         width: 300,
-        padding: 10,
-    },
-}
+        padding: 10
+    }
+};
 
-export default Ratings
+export default Ratings;

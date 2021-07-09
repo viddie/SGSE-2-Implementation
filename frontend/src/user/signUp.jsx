@@ -1,47 +1,47 @@
-import React, { useState } from 'react'
-import { Button, Form, Container, Alert } from 'react-bootstrap'
-import { useHistory } from 'react-router-dom'
+import React, { useState } from 'react';
+import { Button, Form, Container, Alert } from 'react-bootstrap';
+import { useHistory } from 'react-router-dom';
 
 const SignUp = (props) => {
-    const history = useHistory()
-    const [username, setUsername] = useState('')
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-    const [error, setError] = useState(false)
+    const history = useHistory();
+    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState(false);
 
     function validateForm() {
-        return username.length > 0 && password.length > 0 && email.length > 0
+        return username.length > 0 && password.length > 0 && email.length > 0;
     }
 
     function handleSubmit(event) {
         const data = {
             username: username,
             email: email,
-            password: password,
-        }
+            password: password
+        };
         fetch('http://sgse2.ad.fh-bielefeld.de/api/user/auth/signup', {
             method: 'POST', // *GET, POST, PUT, DELETE, etc.
             mode: 'cors', // no-cors, *cors, same-origin
             cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
             credentials: 'same-origin', // include, *same-origin, omit
             headers: {
-                'Content-Type': 'application/json',
+                'Content-Type': 'application/json'
             },
             redirect: 'follow', // manual, *follow, error
             referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-            body: JSON.stringify(data), // body data type must match "Content-Type" header
+            body: JSON.stringify(data) // body data type must match "Content-Type" header
         })
             .then((res) => {
                 if (!res.ok) {
-                    setError(true)
-                    setPassword('')
-                    setEmail('')
-                    setUsername('')
+                    setError(true);
+                    setPassword('');
+                    setEmail('');
+                    setUsername('');
                 } else {
-                    history.push('/login')
+                    history.push('/login');
                 }
             })
-            .catch(() => {})
+            .catch(() => {});
     }
 
     return (
@@ -84,7 +84,7 @@ const SignUp = (props) => {
                 </Button>
             </Form>
         </Container>
-    )
-}
+    );
+};
 
-export default SignUp
+export default SignUp;

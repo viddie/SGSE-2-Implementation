@@ -1,9 +1,9 @@
-import React, { useRef, useState } from 'react'
-import { Nav, Image } from 'react-bootstrap'
-import { LinkContainer } from 'react-router-bootstrap'
-import 'regenerator-runtime/runtime'
-import './routeNotFound.css'
-import logo from '/static/wurm.png'
+import React, { useRef, useState } from 'react';
+import { Nav, Image } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
+import 'regenerator-runtime/runtime';
+import './routeNotFound.css';
+import logo from '/static/wurm.png';
 
 /**
  * @author Marius
@@ -26,7 +26,7 @@ function ErrorPageNotFound() {
             </div>
             <Image className="not_found_image" src={logo} />
         </div>
-    )
+    );
 }
 
-export default ErrorPageNotFound
+export default ErrorPageNotFound;

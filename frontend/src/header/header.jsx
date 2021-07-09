@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import {
     Button,
     Navbar,
@@ -6,10 +6,10 @@ import {
     Form,
     FormControl,
     Container,
-    Image,
-} from 'react-bootstrap'
-import { LinkContainer } from 'react-router-bootstrap'
-import logo from '/static/wurm.png'
+    Image
+} from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
+import logo from '/static/wurm.png';
 
 const Header = (props) => {
     return (
@@ -74,7 +74,7 @@ const Header = (props) => {
                 )}
             </Container>
         </Navbar>
-    )
-}
+    );
+};
 
-export default Header
+export default Header;

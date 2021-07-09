@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from 'react'
-import { Container, Row, Col, ListGroup, Image, Button } from 'react-bootstrap'
-import { Link, useHistory } from 'react-router-dom'
-import { OnlineTime } from './helpers'
-import haenchen from './wurm.jpg'
+import React, { useState, useEffect } from 'react';
+import { Container, Row, Col, ListGroup, Image, Button } from 'react-bootstrap';
+import { Link, useHistory } from 'react-router-dom';
+import { OnlineTime } from './helpers';
+import haenchen from './wurm.jpg';
 
 const ArticleView = (props) => {
     const [hoover, setHoover] = useState({
         expanded: false,
-        background: 'white',
-    })
+        background: 'white'
+    });
     return (
         <ListGroup.Item>
             <Row
@@ -16,7 +16,7 @@ const ArticleView = (props) => {
                     background: hoover.background,
                     borderWidth: '50px',
                     border: 'double 4px transparent',
-                    borderRadius: '8px',
+                    borderRadius: '8px'
                 }}
                 onMouseOver={() =>
                     setHoover({ background: '#e0e0e0', expanded: true })
@@ -81,7 +81,7 @@ const ArticleView = (props) => {
                             <Col
                                 style={{
                                     display: 'flex',
-                                    alignItems: 'center',
+                                    alignItems: 'center'
                                 }}
                             >
                                 {props.store.loggedIn ? (
@@ -98,24 +98,23 @@ const ArticleView = (props) => {
                 ) : null}
             </Row>
         </ListGroup.Item>
-    )
-}
+    );
+};
 
 function DispatchButton(props) {
-    const history = useHistory()
+    const history = useHistory();
 
     function deleteArticle(articleID) {
         fetch('http://sgse2.ad.fh-bielefeld.de/api/offers/article', {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
-                Authorization:
-                    'Bearer ' + sessionStorage.getItem('accessToken'),
+                Authorization: 'Bearer ' + sessionStorage.getItem('accessToken')
             },
-            body: JSON.stringify({ articleID: articleID }),
+            body: JSON.stringify({ articleID: articleID })
         }).then(() => {
-            history.push('/myArticles')
-        })
+            history.push('/myArticles');
+        });
     }
 
     if (props.sellerID == sessionStorage.getItem('userID')) {
@@ -127,7 +126,7 @@ function DispatchButton(props) {
                         block
                         style={{
                             backgroundColor: 'darkgreen',
-                            borderColor: 'darkgreen',
+                            borderColor: 'darkgreen'
                         }}
                     >
                         Artikel bearbeiten
@@ -140,14 +139,14 @@ function DispatchButton(props) {
                         block
                         style={{
                             backgroundColor: 'darkgreen',
-                            borderColor: 'darkgreen',
+                            borderColor: 'darkgreen'
                         }}
                     >
                         Artikel löschen
                     </Button>
                 </Link>
             </div>
-        )
+        );
     } else {
         return (
             <Link to="/chat?hempelmann">
@@ -156,14 +155,14 @@ function DispatchButton(props) {
                     block
                     style={{
                         backgroundColor: 'darkgreen',
-                        borderColor: 'darkgreen',
+                        borderColor: 'darkgreen'
                     }}
                     receiver={props.sellerID}
                 >
                     Anbieter kontaktieren
                 </Button>
             </Link>
-        )
+        );
     }
 }
 
@@ -177,7 +176,7 @@ function LoginButton() {
                         block
                         style={{
                             backgroundColor: 'darkgreen',
-                            borderColor: 'darkgreen',
+                            borderColor: 'darkgreen'
                         }}
                     >
                         Einloggen, um Anbieter zu kontaktieren
@@ -190,7 +189,7 @@ function LoginButton() {
                 </Link>
             </div>
         </div>
-    )
+    );
 }
 
 function RatingStars(props) {
@@ -202,7 +201,7 @@ function RatingStars(props) {
             <RatingStar fill={true} offset={35} />
             <RatingStar fill={true} offset={45} />
         </svg>
-    )
+    );
 }
 
 function RatingStar(props) {
@@ -216,7 +215,7 @@ function RatingStar(props) {
                 strokeWidth="1"
                 fill="orange"
             />
-        )
+        );
     } else {
         return (
             <circle
@@ -227,33 +226,33 @@ function RatingStar(props) {
                 strokeWidth="1"
                 fill="white"
             />
-        )
+        );
     }
 }
 
 const SmallView = (props) => {
     // Zustandsobjekte
-    const [loaded, setLoaded] = useState(false)
-    const [hasError, setErrors] = useState(false)
-    const [article, setArticle] = useState({})
+    const [loaded, setLoaded] = useState(false);
+    const [hasError, setErrors] = useState(false);
+    const [article, setArticle] = useState({});
 
     useEffect(() => {
         fetch('/api/offers/article/' + props.id)
             .then((res) => res.json())
             .then((res) => {
-                setArticle(res)
-                setLoaded(true)
+                setArticle(res);
+                setLoaded(true);
             })
-            .catch(() => setErrors(true))
-    }, [])
+            .catch(() => setErrors(true));
+    }, []);
 
     if (loaded) {
         return (
             <SmallArticle store={props.store} article={article}></SmallArticle>
-        )
+        );
     } else {
-        return null
+        return null;
     }
-}
+};
 
-export default ArticleView
+export default ArticleView;

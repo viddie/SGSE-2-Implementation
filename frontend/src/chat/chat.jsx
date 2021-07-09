@@ -1,8 +1,8 @@
-import { func } from 'prop-types'
-import React, { useEffect, useRef, useState } from 'react'
-import { Button } from 'react-bootstrap'
-import 'regenerator-runtime/runtime'
-import './chat.css'
+import { func } from 'prop-types';
+import React, { useEffect, useRef, useState } from 'react';
+import { Button } from 'react-bootstrap';
+import 'regenerator-runtime/runtime';
+import './chat.css';
 
 /**
  * @author Marius
@@ -10,7 +10,7 @@ import './chat.css'
  **/
 
 const image =
-    'https://www.linusakesson.net/programming/kernighans-lever/cat.png'
+    'https://www.linusakesson.net/programming/kernighans-lever/cat.png';
 
 function Chat(props) {
     return (
@@ -23,19 +23,19 @@ function Chat(props) {
                 <ChatRoom receiver={props.receiver} />
             </div>
         </div>
-    )
+    );
 }
 
 function ChatRoom(props) {
-    const receiver = 'Tristan' //props.receiver;
-    const token = sessionStorage.getItem('accessToken')
-    const sender = sessionStorage.getItem('userID')
-    const dummy = useRef()
-    const chatroomID = getChatroomID(receiver, sender)
+    const receiver = 'Tristan'; //props.receiver;
+    const token = sessionStorage.getItem('accessToken');
+    const sender = sessionStorage.getItem('userID');
+    const dummy = useRef();
+    const chatroomID = getChatroomID(receiver, sender);
 
-    const [formValue, setFormValue] = useState('')
+    const [formValue, setFormValue] = useState('');
 
-    const [messages, setMessages] = useState([])
+    const [messages, setMessages] = useState([]);
 
     async function subscribe() {
         let response = await fetch(
@@ -44,28 +44,28 @@ function ChatRoom(props) {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
-                    Authorization: 'Bearer ' + token,
-                },
+                    Authorization: 'Bearer ' + token
+                }
             }
-        )
+        );
 
         if (response.status != 200) {
-            this.setState({ errorMessage: error.toString() })
+            this.setState({ errorMessage: error.toString() });
             console.error(
                 'Error while sending chat message: API call malfunctioned',
                 error
-            )
-            await new Promise((resolve) => setTimeout(resolve, 5000))
-            await subscribe()
+            );
+            await new Promise((resolve) => setTimeout(resolve, 5000));
+            await subscribe();
         } else {
             // Got message
-            let messages = await response.json()
-            setMessages(messages)
-            await subscribe()
+            let messages = await response.json();
+            setMessages(messages);
+            await subscribe();
         }
     }
 
-    subscribe()
+    subscribe();
 
     /*
     useEffect(() => {
@@ -84,21 +84,21 @@ function ChatRoom(props) {
     */
 
     const sendMessage = async (e) => {
-        e.preventDefault()
+        e.preventDefault();
 
         const requestOptions = {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                Authorization: 'Bearer ' + token,
+                Authorization: 'Bearer ' + token
             },
             body: JSON.stringify({
                 room: chatroomID,
                 sender: sender,
                 receiver: receiver,
-                text: formValue,
-            }),
-        }
+                text: formValue
+            })
+        };
         fetch(
             'http://sgse2.ad.fh-bielefeld.de/api/chat/messages/send',
             requestOptions
@@ -106,27 +106,27 @@ function ChatRoom(props) {
             .then(async (response) => {
                 const isJson = response.headers
                     .get('content-type')
-                    ?.includes('application/json')
-                const data = isJson && (await response.json())
+                    ?.includes('application/json');
+                const data = isJson && (await response.json());
 
                 // check for error response
                 if (!response.ok) {
                     // get error message from body or default to response status
-                    const error = (data && data.message) || response.status
-                    return Promise.reject(error)
+                    const error = (data && data.message) || response.status;
+                    return Promise.reject(error);
                 }
             })
             .catch((error) => {
-                this.setState({ errorMessage: error.toString() })
+                this.setState({ errorMessage: error.toString() });
                 console.error(
                     'Error while sending chat message: API call malfunctioned',
                     error
-                )
-            })
+                );
+            });
 
-        setFormValue('')
-        dummy.current.scrollIntoView({ behavior: 'smooth' })
-    }
+        setFormValue('');
+        dummy.current.scrollIntoView({ behavior: 'smooth' });
+    };
 
     return (
         <>
@@ -158,21 +158,21 @@ function ChatRoom(props) {
                 </Button>
             </form>
         </>
-    )
+    );
 }
 
 function ChatMessage(props) {
-    const text = props.message
-    const uid = props.key
-    const uid_r = props.val
+    const text = props.message;
+    const uid = props.key;
+    const uid_r = props.val;
 
-    const messageClass = 'sent'
+    const messageClass = 'sent';
     if (uid == uid_r) {
-        messageClass = 'received'
+        messageClass = 'received';
     }
 
-    console.log(uid)
-    console.log(uid_r)
+    console.log(uid);
+    console.log(uid_r);
 
     return (
         <>
@@ -186,19 +186,19 @@ function ChatMessage(props) {
                 <p className="chat_text">{text}</p>
             </div>
         </>
-    )
+    );
 }
 
 function getChatroomID(userID1, userID2) {
-    return (hash(userID1) + hash(userID2)).toString()
+    return (hash(userID1) + hash(userID2)).toString();
 }
 
 function hash(id) {
-    var val = 0
+    var val = 0;
     for (let i = 0; i < id.length; i++) {
-        val = val + (i + 1) * id.charCodeAt(i)
+        val = val + (i + 1) * id.charCodeAt(i);
     }
-    return val
+    return val;
 }
 
-export default Chat
+export default Chat;
