@@ -75,7 +75,7 @@ const ArticleView = (props) => {
                                 <div>{props.article.description}</div>
                                 <b> Verkäuferbewertung</b>
                                 <div float="left">
-                                    <RatingStars></RatingStars>
+                                    <RatingStars userID={props.article.sellerID}></RatingStars>
                                 </div>
                             </Col>
                             <Col
