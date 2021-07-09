@@ -60,28 +60,14 @@ function ChatRoom(props) {
             // Got message
             let messages = await response.json();
             setMessages(messages);
-            await new Promise((resolve) => setTimeout(resolve, 500));
-            await subscribe();
+            if (window.location.pathname === 'http://sgse2.ad.fh-bielefeld.de/userChat') {
+                await new Promise((resolve) => setTimeout(resolve, 1000));
+                await subscribe();
+            }
         }
     }
 
     subscribe();
-
-    /*
-    useEffect(() => {
-        fetch(`http://sgse2.ad.fh-bielefeld.de/api/chat/messages/${chatroomID}`, {
-            method: "GET",
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer '+ token
-            }
-        })
-        .then(res => res.json())
-        .then(data => {
-            setMessages(data);
-        })
-    }, []);
-    */
 
     const sendMessage = async (e) => {
         e.preventDefault();
@@ -134,9 +120,8 @@ function ChatRoom(props) {
                 {messages &&
                     messages.map((msg) => (
                         <ChatMessage
-                            key={msg.receiver}
-                            val={receiver}
-                            message={msg.text}
+                            rec={receiver}
+                            message={msg}
                         />
                     ))}
                 <span ref={dummy}></span>
@@ -162,17 +147,17 @@ function ChatRoom(props) {
 }
 
 function ChatMessage(props) {
-    const text = props.message;
-    const uid = props.key;
-    const uid_r = props.val;
+    const text = props.message.text;
+    const uid = props.message.receiver;
+    const uid_r = props.rec;
 
     const messageClass = 'sent';
     if (uid == uid_r) {
         messageClass = 'received';
     }
 
-    console.log(uid);
-    console.log(uid_r);
+    console.log("uid/key = " + uid);
+    console.log("uid_r/val = " + uid_r);
 
     return (
         <>
