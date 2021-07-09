@@ -115,6 +115,17 @@ app.get("/newOffer", async (req,res) => {
   db.saveItem(correct_user._id,"Barter Smarter",no_string,res_article._id)
 })
 
+app.get("/registerConfirmation", async (req,res) => {
+  res.send("email send")
+  email = req.query.email;
+  inhalt = req.query.inhalt;
+  confirm_string = `Hallo,\n
+  Bitte klicken sie auf den Registrierungslink: ${inhalt} \n \n
+  Mit freundlichen Grüßen \n
+  Ihr Barter Smarter Team`
+  mail.sendmail(email,"Registrierung BarterSmarter",confirm_string)
+})
+
 app.get("/confirmOffer",async (req,res) => {
   res.send("email send")
   res_article = await axiosi.get("/offers/article/" + req.query.id)
@@ -141,7 +152,7 @@ app.get("/confirmOffer",async (req,res) => {
 })
 
 app.listen(port, () => {
-  console.log(`Email Microservice listening at http://localhost:${port}`)
+  console.log(`Email Microservice listening at port ${port}`)
 })
 
 
