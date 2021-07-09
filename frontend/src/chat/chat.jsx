@@ -60,8 +60,10 @@ function ChatRoom(props) {
             // Got message
             let messages = await response.json();
             setMessages(messages);
-            await new Promise((resolve) => setTimeout(resolve, 1000));
-            await subscribe();
+            if (window.location.pathname === 'http://sgse2.ad.fh-bielefeld.de/userChat') {
+                await new Promise((resolve) => setTimeout(resolve, 1000));
+                await subscribe();
+            }
         }
     }
 
@@ -118,9 +120,7 @@ function ChatRoom(props) {
                 {messages &&
                     messages.map((msg) => (
                         <ChatMessage
-                            key={msg.receiver}
-                            val={receiver}
-                            text={msg.text}
+                            rec={receiver}
                             message={msg}
                         />
                     ))}
@@ -147,10 +147,9 @@ function ChatRoom(props) {
 }
 
 function ChatMessage(props) {
-    const text = props.text;
-    console.log(props.message);
-    const uid = props.key;
-    const uid_r = props.val;
+    const text = props.message.text;
+    const uid = props.message.receiver;
+    const uid_r = props.rec;
 
     const messageClass = 'sent';
     if (uid == uid_r) {
