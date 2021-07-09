@@ -46,9 +46,8 @@ function ChatRoom(props) {
                     Authorization: 'Bearer ' + token
                 }
             }
-        )
-        .then((res) => {
-            if (res.ok)  {
+        ).then((res) => {
+            if (res.ok) {
                 this.setState({ errorMessage: error.toString() });
                 console.error(
                     'Error while sending chat message: API call malfunctioned',
@@ -56,8 +55,7 @@ function ChatRoom(props) {
                 );
             } else {
                 // Got message
-                res.json()
-                .then(()=>setMessages(messages));
+                res.json().then(() => setMessages(messages));
             }
         });
     }

@@ -121,33 +121,39 @@ function DispatchButton(props) {
 
     if (props.sellerID == sessionStorage.getItem('userID')) {
         return (
-            <div>
-                <Link to="/editArticle">
-                    <Button
-                        size="lg"
-                        block
-                        style={{
-                            backgroundColor: 'darkgreen',
-                            borderColor: 'darkgreen'
-                        }}
-                    >
-                        Artikel bearbeiten
-                    </Button>
-                </Link>
-                <Link to="/myArticles">
-                    <Button
-                        size="lg"
-                        onClick={() => deleteArticle(props.articleID)}
-                        block
-                        style={{
-                            backgroundColor: 'darkgreen',
-                            borderColor: 'darkgreen'
-                        }}
-                    >
-                        Artikel löschen
-                    </Button>
-                </Link>
-            </div>
+            <Container>
+                <Row>
+                    <Col>
+                        <Link to="/editArticle">
+                            <Button
+                                size="lg"
+                                block
+                                style={{
+                                    backgroundColor: 'darkgreen',
+                                    borderColor: 'darkgreen'
+                                }}
+                            >
+                                Artikel bearbeiten
+                            </Button>
+                        </Link>
+                    </Col>
+                    <Col>
+                        <Link to="/myArticles">
+                            <Button
+                                size="lg"
+                                onClick={() => deleteArticle(props.articleID)}
+                                block
+                                style={{
+                                    backgroundColor: 'darkgreen',
+                                    borderColor: 'darkgreen'
+                                }}
+                            >
+                                Artikel löschen
+                            </Button>
+                        </Link>
+                    </Col>
+                </Row>
+            </Container>
         );
     } else {
         return (
