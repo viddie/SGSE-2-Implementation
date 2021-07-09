@@ -9,7 +9,7 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-var dbHost = "172.17.0.6";
+var dbHost = "172.17.0.8";
 
 const port = 30100;
 
