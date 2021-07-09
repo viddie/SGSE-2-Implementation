@@ -47,7 +47,7 @@ const Ratings = (props) => {
 
   function handleClick(value) {
     fetch(
-      `http://sgse2.ad.fh-bielefeld.de/api/ratings/ratings/UserID/60e6b6e760c6300011b6f099/Rating/${value}`,
+      `http://sgse2.ad.fh-bielefeld.de/api/ratings/ratings/UserID/${sessionStorage.getItem("userID")}/Rating/${value}`,
       {
           method: 'POST', 
           headers: {
