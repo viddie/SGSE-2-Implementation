@@ -87,7 +87,7 @@ function ChatRoom(props) {
                 'Authorization': 'Bearer '+ token
             },
             body: JSON.stringify({
-                id: chatroomID,
+                room: chatroomID,
                 sender: sender,
                 receiver: receiver,
                 text: formValue
