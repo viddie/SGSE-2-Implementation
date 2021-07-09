@@ -37,7 +37,7 @@ router.get('/', authenticateJWT, async (req,res) =>
 })
 
 // Getting one
-router.get('/:id', authenticateJWT, getMessages, (req,res) =>
+router.get('/:room', authenticateJWT, getMessages, (req,res) =>
 {
     res.json(res.message)
 })
@@ -55,7 +55,7 @@ router.get('/receive/:receiver/:sender', authenticateJWT, getSenderSpecific, (re
 router.post('/send', authenticateJWT, async (req, res) =>
 {
     const message = new Message({
-        id: req.body.id,
+        room: req.body.room,
         sender: req.body.sender,//req.validUser.id,
         receiver: req.body.receiver,
         text: req.body.text,
@@ -73,10 +73,10 @@ router.post('/send', authenticateJWT, async (req, res) =>
 async function getMessages(req, res, next){
     try{
         message = await Message.find({
-            id = req.params.id
+            room = req.params.room
         })
         if(message == null){
-            return res.status(404).json({message: 'Invalid MessageID'})
+            return res.status(404).json({message: 'Invalid chatroomID'})
         }
     } catch (err) {
         return res.status(500).json({message: err.message})
