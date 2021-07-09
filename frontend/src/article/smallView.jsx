@@ -112,7 +112,7 @@ function DispatchButton(props) {
   } else {
     return (    
       <Link to="/chat?hempelmann">
-        <Button size="lg" block style={{ backgroundColor: "darkgreen", borderColor: "darkgreen" }}>
+        <Button size="lg" block style={{ backgroundColor: "darkgreen", borderColor: "darkgreen" }} receiver={props.sellerID}>
           Anbieter kontaktieren
         </Button>
       </Link>
