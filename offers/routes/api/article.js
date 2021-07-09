@@ -24,6 +24,22 @@ router.get('/getAll', async (req,res) =>
     }
 })
 
+router.get('/article/findByTags', function (req, res, next) {
+    // Die Angabe der zulässigen Kategorien erfolgt per Query Parameter mit Komma getrennt
+    // Wird nur der Parameter "all" verwendet, werden alle zurückgeben
+    let tags = req.query.tags.split(',');
+    tags = tags.map(e => e.trim().toLowerCase());
+    // Ausgabe der gefundenen Artikel
+    ArticleModel.find({tags : tags}, (err, articles) => {
+        if (err) {
+            return console.error(err);
+        } else {
+            idList = articles.map(element => element._id)
+            res.status(200).json(idList);
+        }
+    });
+});
+
 router.get('/article/findByCategory', function (req, res, next) {
     // Die Angabe der zulässigen Kategorien erfolgt per Query Parameter mit Komma getrennt
     // Wird nur der Parameter "all" verwendet, werden alle zurückgeben
