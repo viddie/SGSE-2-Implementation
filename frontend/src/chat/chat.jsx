@@ -27,7 +27,7 @@ function Chat(props) {
 }
 
 function ChatRoom(props) {
-    const receiver = props.receiver;
+    const receiver = "Tristan";//props.receiver;
     const token = sessionStorage.getItem('accessToken');
     const sender = sessionStorage.getItem('userID');
     const dummy = useRef();
@@ -158,10 +158,8 @@ function getChatroomID(userID1, userID2) {
 
 function hash(id) {
     var val = 0;
-    var strid = id.toString();
-    console.log(strid);
-    for (let i = 0; i < strid.length; i++) {
-        val = val + (i + 1) * strid.charCodeAt(i);
+    for (let i = 0; i < id.length; i++) {
+        val = val + (i + 1) * id.charCodeAt(i);
     }
     return val;
 }
