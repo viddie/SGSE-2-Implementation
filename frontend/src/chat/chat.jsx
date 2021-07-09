@@ -61,6 +61,7 @@ function ChatRoom(props) {
             // Got message
             let messages = await response.json();
             setMessages(messages);
+            await new Promise((resolve) => setTimeout(resolve, 500));
             await subscribe();
         }
     }
