@@ -116,7 +116,7 @@ function ChatMessage(props) {
     const uid_r = props.val;
 
     const messageClass = 'sent';
-    if (uid == uid_r) {
+    if (uid != uid_r) {
         messageClass = 'received';
     }
 
