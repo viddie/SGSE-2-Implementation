@@ -68,7 +68,7 @@ function ChatRoom(props) {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                id: 1,
+                id: getChatroomID(token, receiver),
                 sender: token,
                 receiver: receiver,
                 text: formValue
@@ -120,6 +120,9 @@ function ChatMessage(props) {
         messageClass = 'received';
     }
 
+    console.log(uid);
+    console.log(uid_r);
+
     return (
         <>
             <div className={`message ${messageClass}`}>
@@ -128,6 +131,18 @@ function ChatMessage(props) {
             </div>
         </>
     );
+}
+
+function getChatroomID(userID1, userID2) {
+    return (hash(userID1) + hash(userID2)).toString()
+}
+
+function hash(id) {
+    val = 0
+    for (var i = 0; i < id.length; i++) {
+        val = val + (i + 1) * id.charCodeAt(i);
+    }
+    return val;
 }
 
 export default Chat

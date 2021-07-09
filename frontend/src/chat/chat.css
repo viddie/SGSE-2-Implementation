@@ -6,7 +6,7 @@
 
 .chat_header {
     background-color: darkgreen;
-    height: 10vh;
+    height: 5vh;
     min-height: 50px;
     color: white;
     width: 100%;
@@ -46,11 +46,11 @@
 }
 
 .mainchatroom::-webkit-scrollbar-thumb {
-    background: #6649b8;
+    background: darkgreen;
 }
 
 .chat_message_form {
-    height: 10vh;
+    height: 5vh;
     bottom: 0;
     background-color: rgb(24, 23, 23);
     width: 100%;
