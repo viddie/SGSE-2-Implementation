@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, ListGroup, Image, Button } from 'react-bootstrap';
 import { Link, useHistory } from 'react-router-dom';
 import { OnlineTime } from './helpers';
+import { RatingStars } from '../ratings/ratings'
 import haenchen from './wurm.jpg';
 
 const ArticleView = (props) => {
@@ -74,7 +75,7 @@ const ArticleView = (props) => {
                                 <div>{props.article.description}</div>
                                 <b> Verkäuferbewertung</b>
                                 <div float="left">
-                                    <RatingStars></RatingStars>
+                                    <RatingStars userID={props.article.sellerID}></RatingStars>
                                 </div>
                             </Col>
                             <Col
@@ -185,44 +186,6 @@ function LoginButton() {
             </Link>
         </Container>
     );
-}
-
-function RatingStars(props) {
-    return (
-        <svg height="10px" width="100px">
-            <RatingStar fill={true} offset={5} />
-            <RatingStar fill={true} offset={15} />
-            <RatingStar fill={true} offset={25} />
-            <RatingStar fill={true} offset={35} />
-            <RatingStar fill={true} offset={45} />
-        </svg>
-    );
-}
-
-function RatingStar(props) {
-    if (props.fill) {
-        return (
-            <circle
-                cx={15 + props.offset}
-                cy="5"
-                r="4"
-                stroke="black"
-                strokeWidth="1"
-                fill="orange"
-            />
-        );
-    } else {
-        return (
-            <circle
-                cx={5 + props.offset}
-                cy="5"
-                r="4"
-                stroke="black"
-                strokeWidth="1"
-                fill="white"
-            />
-        );
-    }
 }
 
 const LineView = (props) => {
