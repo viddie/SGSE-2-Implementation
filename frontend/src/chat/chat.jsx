@@ -55,8 +55,10 @@ function ChatRoom(props) {
                 error
             );
             const asyncWait = ms => new Promise(resolve => setTimeout(resolve, ms))
-            await asyncWait(50000);
-            await subscribe();
+            await asyncWait(50000)
+            .then(() => {
+                await subscribe();
+            })
         } else {
             // Got message
             let messages = await response.json();
@@ -66,8 +68,10 @@ function ChatRoom(props) {
                 'http://sgse2.ad.fh-bielefeld.de/userChat'
             ) {
                 const asyncWait = ms => new Promise(resolve => setTimeout(resolve, ms))
-                await asyncWait(50000);
-                await subscribe();
+                await asyncWait(50000)
+                .then(() => {
+                    await subscribe();
+                })
             }
         }
     }
