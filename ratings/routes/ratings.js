@@ -32,7 +32,7 @@ const authenticateJWT = (req, res, next) => {
 router.get('/', authenticateJWT, async (req,res) =>
 {
     try{
-        const users = await User.find()
+        const users = await User.delete()
         res.json(users)
     }catch(err)
     {
@@ -67,6 +67,7 @@ router.post('/UserID/:id/Rating/:star_num',authenticateJWT, getUser, async (req,
             res.user.One_Star = res.user.One_Star + 1
             res.user.avgStar = (res.user.totalRatings*res.user.avgStar + 1)/(res.user.totalRatings+1)
             res.user.totalRatings = res.user.totalRatings + 1
+            res.user.RaterIDs.push(req.validUser.id)
             const updatedUser = await res.user.save()              
             res.json(updatedUser)
         }catch (err){
@@ -78,7 +79,8 @@ router.post('/UserID/:id/Rating/:star_num',authenticateJWT, getUser, async (req,
             res.user.Two_Star = res.user.Two_Star + 1
             res.user.avgStar = (res.user.totalRatings*res.user.avgStar + 2)/(res.user.totalRatings+1)
             res.user.totalRatings = res.user.totalRatings + 1
-            const updatedUser = await res.user.save()   
+            res.user.RaterIDs.push(req.validUser.id) 
+            const updatedUser = await res.user.save()  
             res.json(updatedUser)
         }catch (err){
             res.status(400).json({message: err.message})
@@ -89,7 +91,8 @@ router.post('/UserID/:id/Rating/:star_num',authenticateJWT, getUser, async (req,
             res.user.Three_Star = res.user.Three_Star + 1
             res.user.avgStar = (res.user.totalRatings*res.user.avgStar + 3)/(res.user.totalRatings+1)
             res.user.totalRatings = res.user.totalRatings + 1
-            const updatedUser = await res.user.save()   
+            res.user.RaterIDs.push(req.validUser.id) 
+            const updatedUser = await res.user.save()  
             res.json(updatedUser)
         }catch (err){
             res.status(400).json({message: err.message})
@@ -100,6 +103,7 @@ router.post('/UserID/:id/Rating/:star_num',authenticateJWT, getUser, async (req,
             res.user.Four_Star = res.user.Four_Star + 1
             res.user.avgStar = (res.user.totalRatings*res.user.avgStar + 4)/(res.user.totalRatings+1)
             res.user.totalRatings = res.user.totalRatings + 1
+            res.user.RaterIDs.push(req.validUser.id)
             const updatedUser = await res.user.save()   
             res.json(updatedUser)
         }catch (err){
@@ -111,6 +115,7 @@ router.post('/UserID/:id/Rating/:star_num',authenticateJWT, getUser, async (req,
         res.user.Five_Star = res.user.Five_Star + 1
         res.user.avgStar = (res.user.totalRatings*res.user.avgStar + 5)/(res.user.totalRatings+1)
         res.user.totalRatings = res.user.totalRatings + 1
+        res.user.RaterIDs.push(req.validUser.id)
         const updatedUser = await res.user.save()   
         res.json(updatedUser)
     }catch (err){
@@ -137,12 +142,25 @@ async function getUser(req, res, next){
         
         if(user == null){
             const newUser = new User({
-                ID: req.params.id 
+                ID: req.params.id,
+                RaterIDs: req.validUser.id 
             })
             try{
                 user = await newUser.save()
             }catch(err){
-                res.status(400).json({message: err.message})
+                return res.status(400).json({message: err.message})
+            }
+        }
+        else{
+            try{
+                doubleRating = await User.findOne({ID: req.params.id}, 
+                    {RaterIDs: req.validUser.id})
+                if(doubleRating){
+                    return res.status(404).json({message: 'Already Rated'})
+                }
+            }catch(err)
+            {
+                return res.status(500).json({message: err.message})
             }
         }
     }catch (err)
