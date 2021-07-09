@@ -62,9 +62,9 @@ router.post("/CreateUser",authenticateJWT, async (req,res) =>
 
 router.post('/UserID/:id/Rating/:star_num',authenticateJWT, getUser, async (req,res) =>
 {
-    if(user.RatersID.length != 1){
-        res.user.RaterIDs.push(req.validUser.id);
-    }
+  
+    res.user.RaterIDs.push(req.validUser.id);
+    
     
     if(req.params.star_num == "1"){
         try{
@@ -142,7 +142,6 @@ async function getUser(req, res, next){
         if(user == null){
             const newUser = new User({
                 ID: req.params.id,
-                RaterIDs: req.validUser.id 
             })
             try{
                 user = await newUser.save()
@@ -187,3 +186,4 @@ async function userTokenAcces(req, res, next){
 
 
 module.exports = router
+
