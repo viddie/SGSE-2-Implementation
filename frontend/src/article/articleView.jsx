@@ -90,6 +90,7 @@ const ArticleView = (props) => {
                                     <DispatchButton
                                         sellerID={props.article.sellerID}
                                         articleID={props.article._id}
+                                        sellerName={props.article.sellerName}
                                     ></DispatchButton>
                                 ) : (
                                     <LoginButton></LoginButton>
@@ -157,7 +158,7 @@ function DispatchButton(props) {
         );
     } else {
         return (
-            <Link to={"/userChat:"+props.sellerID}>
+            <Link to={"/userChat:"+props.sellerName}>
                 <Button
                     size="lg"
                     block
