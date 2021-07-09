@@ -35,7 +35,7 @@ function ChatRoom(props) {
     const [formValue, setFormValue] = useState('');
 
     const [messages, setMessages] = useState([]);
-
+/*
     async function subscribe() {
         let response = await fetch(
             `http://sgse2.ad.fh-bielefeld.de/api/chat/messages/${chatroomID}`,
@@ -67,13 +67,34 @@ function ChatRoom(props) {
                 'http://sgse2.ad.fh-bielefeld.de/userChat'
             ) {
                 const sleep = milliseconds => Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, milliseconds);
-                sleep(5000);
+                sleep(500);
                 await subscribe();
             }
         }
-    }
-
-    subscribe();
+    }*/
+    setInterval(async function(){
+        let response = await fetch(
+            `http://sgse2.ad.fh-bielefeld.de/api/chat/messages/${chatroomID}`,
+            {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: 'Bearer ' + token
+                }
+            }
+        );
+        if (response.status != 200) {
+            this.setState({ errorMessage: error.toString() });
+            console.error(
+                'Error while sending chat message: API call malfunctioned',
+                error
+            );
+        } else {
+            // Got message
+            let messages = await response.json();
+            setMessages(messages);
+        }
+    }, 5000);
 
     const sendMessage = async (e) => {
         e.preventDefault();
