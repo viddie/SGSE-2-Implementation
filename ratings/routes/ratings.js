@@ -41,7 +41,7 @@ router.get('/', authenticateJWT, async (req,res) =>
 })
 
 // Getting one
-router.get('/UserID/:id',authenticateJWT, getUser, (req,res) =>
+router.get('/UserID/:id',authenticateJWT, userTokenAcces, (req,res) =>
 {
     res.json(res.tokenuser)
 })
@@ -173,7 +173,7 @@ async function getUser(req, res, next){
 
 async function userTokenAcces(req, res, next){
     try{
-        user = await User.findOne({ID: req.validUser.id})
+        user = await User.findOne({ID: req.params.id})
 
         if(user == null){
             return res.status(404).json({message: 'Invalid User'})
