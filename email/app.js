@@ -126,6 +126,10 @@ app.get("/registerConfirmation", async (req,res) => {
   mail.sendmail(email,"Registrierung BarterSmarter",confirm_string)
 })
 
+app.get("/confirm", async (req,res) => {
+  res.redirect("https://sgse2.ad.fh-bielefeld.de/login")
+})
+
 app.get("/confirmOffer",async (req,res) => {
   res.send("email send")
   res_article = await axiosi.get("/offers/article/" + req.query.id)
