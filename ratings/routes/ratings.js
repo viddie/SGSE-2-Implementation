@@ -137,7 +137,7 @@ async function getUser(req, res, next){
         
         if(user == null){
             const newUser = new User({
-                ID: req.validUser.id 
+                ID: req.params.id 
             })
             try{
                 user = await newUser.save()
