@@ -7,7 +7,6 @@ import Showroom from './article/showroom';
 import Chat from './chat/chat';
 import Login from './user/login';
 import SignUp from './user/signUp';
-import SignUp from './user/signUp';
 import Ratings from './ratings/ratings';
 import ErrorPageNotFound from './notFoundError/routeNotFound';
 import { Switch, BrowserRouter, Route, Redirect } from 'react-router-dom';
