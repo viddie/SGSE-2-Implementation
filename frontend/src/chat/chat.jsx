@@ -36,7 +36,7 @@ function ChatRoom(props) {
 
     const [messages, setMessages] = useState([]);
 
-    function startPolling() {
+    const startPolling = () => {
         fetch(
             `http://sgse2.ad.fh-bielefeld.de/api/chat/messages/${chatroomID}`,
             {
@@ -59,7 +59,8 @@ function ChatRoom(props) {
         });
     }
     useEffect(() => {
-        setInterval(startPolling(), 500);
+        const interval = setInterval(startPolling, 500);
+        return () => clearInterval(interval);
     }, []);
 
     const sendMessage = async (e) => {
