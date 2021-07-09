@@ -171,8 +171,8 @@ router.delete('/article', auth.authenticateJWT, function (req, res) {
                     }
                 }
             });
-        } catch {
-            return res.status(500).json("Hard Fault!")
+        } catch (error) {
+            return res.status(500).json("Hard Fault!");
         }
     }
 })
