@@ -120,7 +120,7 @@ router.put('/article', auth.authenticateJWT, upload.any(), function (req, res) {
             if (err) {
                 return console.error(err);
             } else {
-                if (!articles){
+                if (articles.length){
                     return res.status(400).json('Nicht vorhanden!')
                 } else {
                      // Überprüfe, ob das Angebot gefunden wurde und die sellerID dem User entspricht
@@ -157,7 +157,7 @@ router.delete('/article', auth.authenticateJWT, function (req, res) {
                 if (err) {
                     return console.error(err);
                 } else {
-                    if (!articles){
+                    if (articles.length){
                         return res.status(400).json('Nicht vorhanden!')
                     } else {  
                         // Überprüfe, ob das Angebot gefunden wurde und die sellerID dem User entspricht
