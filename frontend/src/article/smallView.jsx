@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Container, Row, Col, ListGroup, Image, Button } from "react-bootstrap";
 import { Link, useHistory } from 'react-router-dom';
+import { OnlineTime } from './helpers'
 import haenchen from './wurm.jpg'
 
 const SmallArticle = (props) => {
@@ -39,9 +40,9 @@ const SmallArticle = (props) => {
             </Row>
             <Row>
               <b>Angeboten seit: </b>
-              <div>{props.article.startedOn}</div>
+              <OnlineTime date={props.article.endsOn}/>
               </Row>
-            <Row><b>Endet am:</b> <div>{props.article.endsOn}</div></Row>
+            <Row><b>Endet am:</b> <OnlineTime date={props.article.endsOn}/></Row>
           </Col>
           <Col className="d-flex justify-content-center">
             <b className="center-block" style={{ fontSize: "30px" }}>
@@ -103,9 +104,11 @@ function DispatchButton(props) {
             Artikel bearbeiten
           </Button>
         </Link>
+        <Link to="/myArticles">
           <Button size="lg" onClick={()=>deleteArticle(props.articleID)} block style={{ backgroundColor: "darkgreen", borderColor: "darkgreen" }}>
-            Artikel löschen
-        </Button>
+              Artikel löschen
+          </Button>
+        </Link>
 
     </div>
     )
