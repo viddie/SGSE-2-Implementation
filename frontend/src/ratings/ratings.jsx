@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { FaStar } from 'react-icons/fa';
-import { styles, color } from './styles'
+import { styles, colors } from './styles'
 
 export const MakeRating = (props) => {
     const [numRatings, setNumRating] = useState(0);
