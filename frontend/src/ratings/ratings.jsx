@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { FaStar } from 'react-icons/fa';
-//import { styles, colors } from './styles'
+import { styles, colors } from './styles'
 
 export const MakeRating = (props) => {
     const [numRatings, setNumRating] = useState(0);
@@ -81,6 +81,7 @@ export const MakeRating = (props) => {
 export const RatingStars = (props) => {
     const [numRatings, setNumRating] = useState(0);
     const [currentValue, setCurrentValue] = useState(0);
+    const stars = Array(5).fill(0);
 
     useEffect(() => {
         fetch(
@@ -133,36 +134,4 @@ export const RatingStars = (props) => {
             <p> Anzahl der Bewertungen: {numRatings}</p>
         </div>
     );
-};
-
-const styles = {
-    container: {
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center'
-    },
-    stars: {
-        display: 'flex',
-        flexDirection: 'row'
-    },
-    textarea: {
-        border: '1px solid #a9a9a9',
-        borderRadius: 5,
-        padding: 10,
-        margin: '20px 0',
-        minHeight: 100,
-        width: 300
-    },
-    button: {
-        border: '1px solid #a9a9a9',
-        borderRadius: 5,
-        width: 300,
-        padding: 10
-    }
-};
-
-const colors = {
-    orange: '#FFBA5A',
-    grey: '#a9a9a9',
-    green: '#40E0D0'
 };
