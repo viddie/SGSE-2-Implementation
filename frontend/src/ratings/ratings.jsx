@@ -73,6 +73,8 @@ export const MakeRating = (props) => {
                     );
                 })}
             </div>
+            <p> Anzahl Sterne: {currentValue}</p>
+            <p> Durchschnittliche Bewertung</p>
             <RatingStars userID={userID}></RatingStars>
         </div>
     );
@@ -113,8 +115,6 @@ export const RatingStars = (props) => {
 
     return (
         <div>
-            <p> Anzahl Sterne: {currentValue}</p>
-            <p> Durchschnittliche Bewertung</p>
             <div style={styles.stars}>
                 {stars.map((_, index) => {
                     return (
