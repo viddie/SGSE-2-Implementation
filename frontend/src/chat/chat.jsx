@@ -1,4 +1,4 @@
-import { func } from 'prop-types';
+import { uid } from 'uid';
 import React, { useEffect, useRef, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
@@ -115,7 +115,7 @@ function ChatRoom(props) {
             <div className="mainchatroom">
                 {messages &&
                     messages.map((msg) => (
-                        <ChatMessage rec={receiver} message={msg} />
+                        <ChatMessage key={uid()} rec={receiver} message={msg} />
                     ))}
                 <span ref={dummy}></span>
             </div>
