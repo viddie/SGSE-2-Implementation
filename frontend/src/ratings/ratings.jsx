@@ -23,8 +23,7 @@ const Ratings = (props) => {
       {
           method: 'POST', 
           headers: {
-              //'Authorization': 'Bearer '+ sessionStorage.getItem("accessToken")
-              'Authorization': 'Bearer ' + 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRyaXN0YW4iLCJyb2xlIjoiYWRtaW4iLCJpZCI6IjYwZTZiNmU3NjBjNjMwMDAxMWI2ZjA5OSIsImVtYWlsIjoiY29kaW5ncXVlZW5AY29kZS5kZSIsImlhdCI6MTYyNTc4Mzg4OCwiZXhwIjoxNjI1Nzg3NDg4fQ.GgwpxyBuYZJXhu7furkDeHZswM32sLTSg_-eBgwUqto',
+              'Authorization': 'Bearer '+ sessionStorage.getItem("accessToken"),
               'Content-Type': 'application/json'
           },
     
