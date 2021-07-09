@@ -4,11 +4,10 @@ import { Link, useHistory } from 'react-router-dom';
 import { OnlineTime } from './helpers'
 import haenchen from './wurm.jpg'
 
-const SmallArticle = (props) => {
+const ArticleView = (props) => {
   const [hoover, setHoover] = useState({
     expanded: false,
     background: "white"});
-  
     return (
       <ListGroup.Item>
         <Row
@@ -39,10 +38,14 @@ const SmallArticle = (props) => {
               </b>
             </Row>
             <Row>
-              <b>Angeboten seit: </b>
+              <b>Endet in: </b>
               <OnlineTime date={props.article.endsOn}/>
               </Row>
-            <Row><b>Endet am:</b> <OnlineTime date={props.article.endsOn}/></Row>
+            <Row>
+              <div style={{ fontStyle: "italic" }}>
+                    {props.article.sellerName}
+                  </div>
+              </Row>
           </Col>
           <Col className="d-flex justify-content-center">
             <b className="center-block" style={{ fontSize: "30px" }}>
@@ -55,10 +58,8 @@ const SmallArticle = (props) => {
                 <Col xs align="left">
                   <b> Beschreibung </b>
                   <div>{props.article.description}</div>
-                  <b> Verkäufer </b>
-                  <div style={{ fontStyle: "italic" }}>
-                    {props.article.sellerName}
-                  </div>
+                  <b> Verkäuferbewertung</b>
+          
                   <div float="left">
                     <div>Bewertung:</div>
                     <RatingStars></RatingStars>
@@ -207,4 +208,4 @@ const SmallView = (props) => {
     
 }
 
-export default SmallView;
+export default ArticleView;

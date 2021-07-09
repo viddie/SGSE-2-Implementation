@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Container, ListGroup } from "react-bootstrap";
-import SmallView from "./smallView"
+import ArticleView from "./articleView"
 
 const Showroom = (props) => {
   // Zustandsobjekte 
@@ -19,7 +19,7 @@ const Showroom = (props) => {
     <Container style={{ maxWidth: "60%", minWidth: "600px" }}>
       <div>Zeige {articleIds.length} Artikel von 10</div>
       <ListGroup>
-        {articleIds.map((id => <SmallView store={props.store} id={id} key={id}></SmallView>))}
+        {articleIds.map((id => <ArticleView store={props.store} id={id} key={id}></ArticleView>))}
       </ListGroup>
     </Container>
     );
