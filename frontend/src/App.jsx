@@ -11,6 +11,7 @@ import Ratings from './ratings/ratings';
 import CreateArticle from './article/createArticle';
 import ErrorPageNotFound from './notFoundError/routeNotFound';
 import { Switch, BrowserRouter, Route, Redirect } from 'react-router-dom';
+import { useObserver, useLocalStore } from 'mobx-react-lite';
 
 function App() {
     const store = useLocalStore(() => ({
