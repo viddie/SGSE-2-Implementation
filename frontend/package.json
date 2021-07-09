@@ -6,20 +6,19 @@
   "dependencies": {
     "bootstrap": "^5.0.2",
     "jwt-decode": "^3.1.2",
-    "mobx": "^6.3.2",
-    "mobx-react-lite": "^3.2.0",
     "react": "^17.0.2",
     "react-bootstrap": "^1.6.1",
     "react-dom": "^17.0.2",
-    "react-jwt": "^1.1.2",
     "react-icons": "^4.1.0",
+    "react-jwt": "^1.1.2",
     "react-router-bootstrap": "^0.25.0",
     "react-router-dom": "^5.2.0",
     "styled-components": "^5.3.0",
     "uid": "^2.0.0"
   },
   "scripts": {
-    "build": "webpack"
+    "build": "webpack",
+    "prettier": "prettier --write **/*.jsx"
   },
   "eslintConfig": {
     "extends": [
@@ -47,6 +46,7 @@
     "css-loader": "^5.2.6",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.3.2",
+    "prettier": "^2.3.2",
     "style-loader": "^3.0.0",
     "webpack": "^5.42.1",
     "webpack-cli": "^4.7.2",

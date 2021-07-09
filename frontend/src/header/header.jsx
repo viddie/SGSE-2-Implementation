@@ -1,30 +1,37 @@
-import React from 'react';
-import { Button, Navbar, Nav, Form, FormControl, Container, Image } from 'react-bootstrap'
-import { LinkContainer } from 'react-router-bootstrap';
+import React from 'react'
+import {
+    Button,
+    Navbar,
+    Nav,
+    Form,
+    FormControl,
+    Container,
+    Image,
+} from 'react-bootstrap'
+import { LinkContainer } from 'react-router-bootstrap'
 import logo from '/static/wurm.png'
 
 const Header = (props) => {
-
     return (
         <Navbar collapseOnSelect expand="lg" bg="success" variant="dark">
             <Navbar sticky="top" />
             <Container>
                 <LinkContainer to="/">
-                <Navbar.Brand>
-                    Barter 
-                    <Image src={logo} height="40"></Image>
-                    Smarter
-                </Navbar.Brand>
+                    <Navbar.Brand>
+                        Barter
+                        <Image src={logo} height="40"></Image>
+                        Smarter
+                    </Navbar.Brand>
                 </LinkContainer>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-                {!props.store.loggedIn ?
+                {!props.store.loggedIn ? (
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className="me-auto">
                             <LinkContainer to="/login">
-                                <Nav.Link >Login</Nav.Link>
+                                <Nav.Link>Login</Nav.Link>
                             </LinkContainer>
                             <LinkContainer to="/createAccount">
-                                <Nav.Link >Konto erstellen</Nav.Link>
+                                <Nav.Link>Konto erstellen</Nav.Link>
                             </LinkContainer>
                         </Nav>
                         <Nav>
@@ -39,17 +46,17 @@ const Header = (props) => {
                             </Form>
                         </Nav>
                     </Navbar.Collapse>
-                    :
+                ) : (
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className="me-auto">
                             <LinkContainer to="/myArticles">
-                                <Nav.Link >Meine Artikel</Nav.Link>
+                                <Nav.Link>Meine Artikel</Nav.Link>
                             </LinkContainer>
                             <LinkContainer to="/createArticle">
-                                <Nav.Link >Artikel einstellen</Nav.Link>
+                                <Nav.Link>Artikel einstellen</Nav.Link>
                             </LinkContainer>
                             <LinkContainer to="/userChat">
-                                <Nav.Link >Chat</Nav.Link>
+                                <Nav.Link>Chat</Nav.Link>
                             </LinkContainer>
                         </Nav>
                         <Nav>
@@ -64,9 +71,9 @@ const Header = (props) => {
                             </Form>
                         </Nav>
                     </Navbar.Collapse>
-                }
+                )}
             </Container>
-        </Navbar >
+        </Navbar>
     )
 }
 
