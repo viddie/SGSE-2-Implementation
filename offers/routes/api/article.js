@@ -120,7 +120,7 @@ router.put('/article', auth.authenticateJWT, upload.any(), function (req, res) {
             if (err) {
                 return console.error(err);
             } else {
-                if (articles.length){
+                if (!articles.length){
                     return res.status(400).json('Nicht vorhanden!')
                 } else {
                      // Überprüfe, ob das Angebot gefunden wurde und die sellerID dem User entspricht
@@ -153,12 +153,12 @@ router.delete('/article', auth.authenticateJWT, function (req, res) {
     const articleID = req.body.articleID;
     if (articleID) {
         try{
-            ArticleModel.findOne({_id : articleID}, (err, articles) => {
+            ArticleModel.find({_id : articleID}, (err, articles) => {
                 if (err) {
                     return console.error(err);
                 } else {
                     console.log(articles)
-                    if (articles.length){
+                    if (!articles.length){
                         return res.status(400).json('Nicht vorhanden!')
                     } else {  
                         // Überprüfe, ob das Angebot gefunden wurde und die sellerID dem User entspricht
