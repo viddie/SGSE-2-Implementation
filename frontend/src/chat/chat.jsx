@@ -61,14 +61,10 @@ function ChatRoom(props) {
             }
         });
     }
-
     useEffect(() => {
         setInterval(startPolling(), 500);
-    })
-
-    useEffect(() => {
-        setInterval(startPolling(), 5000);
     }, []);
+
     const sendMessage = async (e) => {
         e.preventDefault();
 
