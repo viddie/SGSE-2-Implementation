@@ -80,7 +80,7 @@ async function getMessages(req, res, next){
     } catch (err) {
         return res.status(500).json({messages: err.message})
     }
-    res.messages = message
+    res.messages = messages
     next()
 }
 
