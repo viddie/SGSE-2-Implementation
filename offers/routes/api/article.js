@@ -153,7 +153,7 @@ router.delete('/article', auth.authenticateJWT, function (req, res) {
     const articleID = req.body.articleID;
     if (articleID) {
         try{
-            ArticleModel.find({_id : articleID}, (err, articles) => {
+            ArticleModel.findOne({_id : articleID}, (err, articles) => {
                 if (err) {
                     return console.error(err);
                 } else {
