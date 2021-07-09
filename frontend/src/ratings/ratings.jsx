@@ -33,7 +33,8 @@ const Ratings = (props) => {
               console.log(res.body)
               res.json()
               .then(data => {setAvgRating(Math.round(data.avgStar));
-              console.log(data);})
+                    setNumRating(data.totalRatings);
+                    console.log(data);})
             }
             else{
               setError(true)
@@ -61,7 +62,8 @@ const Ratings = (props) => {
         console.log(res.body)
         res.json()
         .then(data => {setAvgRating(Math.round(data.avgStar));
-        console.log(data);})
+                    setNumRating(data.totalRatings);
+                    console.log(data);})
       }
       else{
         setError(true)
@@ -122,6 +124,7 @@ const Ratings = (props) => {
           )
         })}
       </div>
+      <p> Anzahl der Bewertungen: {numRatings}</p>
     </div>
   );
 }
