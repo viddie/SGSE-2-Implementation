@@ -50,12 +50,12 @@ function ChatRoom(props) {
             this.setState({ errorMessage: error.toString() });
             console.error('Error while sending chat message: API call malfunctioned', error);
             await new Promise(resolve => setTimeout(resolve, 5000));
-            await subscribe();
+            //await subscribe();
         } else {
             // Got message
             let messages = await response.json();
             setMessages(messages);
-            await subscribe();
+            //await subscribe();
         }
     }
     
