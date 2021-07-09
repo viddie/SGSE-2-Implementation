@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, ListGroup, Image, Button } from 'react-bootstrap';
 import { Link, useHistory } from 'react-router-dom';
 import { OnlineTime } from './helpers';
-import { RatingStars } from '../ratings/ratings'
+import { RatingStars } from '../ratings/ratings';
 import haenchen from './wurm.jpg';
 
 const ArticleView = (props) => {
@@ -75,7 +75,9 @@ const ArticleView = (props) => {
                                 <div>{props.article.description}</div>
                                 <b> Verkäuferbewertung</b>
                                 <div float="left">
-                                    <RatingStars userID={props.article.sellerID}></RatingStars>
+                                    <RatingStars
+                                        userID={props.article.sellerID}
+                                    ></RatingStars>
                                 </div>
                             </Col>
                             <Col

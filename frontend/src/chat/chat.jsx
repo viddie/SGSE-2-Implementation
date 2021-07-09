@@ -35,7 +35,7 @@ function ChatRoom(props) {
     const [formValue, setFormValue] = useState('');
 
     const [messages, setMessages] = useState([]);
-/*
+    /*
     async function subscribe() {
         let response = await fetch(
             `http://sgse2.ad.fh-bielefeld.de/api/chat/messages/${chatroomID}`,
@@ -72,8 +72,8 @@ function ChatRoom(props) {
             }
         }
     }*/
-    setInterval(async function(){
-        let response = await fetch(
+    function startPolling() {
+        fetch(
             `http://sgse2.ad.fh-bielefeld.de/api/chat/messages/${chatroomID}`,
             {
                 method: 'GET',
@@ -82,20 +82,24 @@ function ChatRoom(props) {
                     Authorization: 'Bearer ' + token
                 }
             }
-        );
-        if (response.status != 200) {
-            this.setState({ errorMessage: error.toString() });
-            console.error(
-                'Error while sending chat message: API call malfunctioned',
-                error
-            );
-        } else {
-            // Got message
-            let messages = await response.json();
-            setMessages(messages);
-        }
-    }, 5000);
+        ).then((res) => {
+            if (res.ok) {
+                this.setState({ errorMessage: error.toString() });
+                console.error(
+                    'Error while sending chat message: API call malfunctioned',
+                    error
+                );
+            } else {
+                // Got message
+                let messages = await response.json();
+                setMessages(messages);
+            }
+        });
+    }
 
+    useEffect(() => {
+        setInterval(startPolling(), 5000);
+    }, []);
     const sendMessage = async (e) => {
         e.preventDefault();
 
