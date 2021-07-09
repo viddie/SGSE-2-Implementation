@@ -38,7 +38,7 @@ router.get('/', authenticateJWT, async (req,res) =>
 
 router.get('/:room', authenticateJWT, getMessages, (req,res) =>
 {
-    res.json(res.message)
+    res.json(res.messages)
 })
 
 router.get('/receive/:receiver', authenticateJWT, getUserSpecific, (req, res) =>
