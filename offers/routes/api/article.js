@@ -104,6 +104,8 @@ router.put('/article', auth.authenticateJWT, upload.any(), function (req, res) {
             if (err) {
                 return console.error(err);
             } else {
+                if (articles == null)
+                    return res.status(400).json('Nicht vorhanden!')
                 // Überprüfe, ob das Angebot gefunden wurde und die sellerID dem User entspricht
                 if (articles[0].sellerID == sellerID){
                     const article = articles[0];
@@ -136,13 +138,15 @@ router.delete('/article', auth.authenticateJWT, function (req, res) {
             if (err) {
                 return console.error(err);
             } else {
+                if (articles == null)
+                    return res.status(400).json('Nicht vorhanden!')
                 // Überprüfe, ob das Angebot gefunden wurde und die sellerID dem User entspricht
                 if (articles[0].sellerID == sellerID){
                     ArticleModel.deleteOne({_id : articleID}, (err)=> {
                         if (err) return handleError(err);
                     })
                 } else {
-                    return res.status(400).json('Nicht berechtigt!')
+                    return res.status(400).json('Objekt ist nicht im Besitz des Requeststellers!')
                 }
             }
         });
