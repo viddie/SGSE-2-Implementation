@@ -37,7 +37,7 @@ function ChatRoom(props) {
     const [messages, setMessages] = useState([]);
 
     function startPolling() {
-        let response = await fetch(
+        fetch(
             `http://sgse2.ad.fh-bielefeld.de/api/chat/messages/${chatroomID}`,
             {
                 method: 'GET',
