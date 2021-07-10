@@ -47,9 +47,9 @@ const Header = (props) => {
                                     aria-label="Search"
                                     onChange={(e) => setQuery(e.target.value)}
                                 />
-                                <Link to={'/search-' + query} >
+                                <LinkContainer to={'/search-' + query} >
                                     <Button variant="dark">Suche</Button>
-                                </Link>
+                                </LinkContainer>
                             </Form>
                         </Nav>
                     </Navbar.Collapse>
@@ -75,9 +75,9 @@ const Header = (props) => {
                                     aria-label="Search"
                                     onChange={(e) => setQuery(e.target.value)}
                                     />
-                                <Link to={'/search-' + query} >
+                                <LinkContainer to={'/search-' + query} >
                                     <Button variant="dark">Suche</Button>
-                                </Link>
+                                </LinkContainer>
                             </Form>
                         </Nav>
                     </Navbar.Collapse>
