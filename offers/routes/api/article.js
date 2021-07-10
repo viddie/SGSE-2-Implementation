@@ -81,20 +81,6 @@ router.get('/article/findByUser', function (req, res, next) {
     });
 });
 
-router.get('/article/findByTags', function (req, res, next) {
-    // Suche nach Tags
-    let tags = req.query.tags.split(',');
-    tags = tags.map(e => e.trim().toLowerCase());
-    // Ausgabe der gefundenen Artikel
-    ArticleModel.find({tags : tags}, (err, articles) => {
-        if (err) {
-            return console.error(err);
-        } else {
-            idList = articles.map(element => element._id)
-            res.status(200).json(idList);
-        }
-    });
-});
 
 router.get('/article/:id', function (req, res, next) {
     // Ausgabe des gefundenen Artikel
@@ -130,6 +116,7 @@ router.put('/article', auth.authenticateJWT, upload.any(), function (req, res) {
                         article.heading = req.body.heading;
                         article.description = req.body.description;
                         article.category = req.body.category;
+                        article.tags = req.body.tags;
                         article.price = parseFloat(req.body.price).toFixed(2);
                         article.save(function (err) {
                             if (err) return console.error(err);
