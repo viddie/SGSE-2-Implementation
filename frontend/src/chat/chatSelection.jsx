@@ -78,7 +78,6 @@ function Entry(props) {
     return (
         <div className="chat_selection_entry">
             <Link to={"/userChat-"+props.receiver}>
-                <div className="chat_select_item" id="chat_select_text">{props.receiver}</div>
                 <div className="chat_select_item" id="chat_select_img_container">
                     <img
                         className="chat_select_img"
@@ -86,6 +85,7 @@ function Entry(props) {
                             'https://www.linusakesson.net/programming/kernighans-lever/cat.png'
                         }
                     />
+                <div className="chat_select_item" id="chat_select_text">{props.receiver}</div>
                 </div>
                 <div className="chat_select_item" id="bewertung_TBD"></div>
             </Link>
