@@ -17,7 +17,7 @@ function ChatSelection() {
                 <h1>Select open Chat</h1>
             </div>
             <div className="chat_section">
-                <Room id={id}/>
+                <Room/>
             </div>
         </div>
     );
