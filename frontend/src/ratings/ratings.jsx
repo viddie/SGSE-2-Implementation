@@ -14,7 +14,7 @@ export const MakeRating = (props) => {
 
     function handleClick(value) {
         fetch(
-            `http://sgse2.ad.fh-bielefeld.de/api/ratings/ratings/UserID/7897dfg98687dfg68767fdgd86/Rating/${value}`, //replaced ${userID}
+            `http://sgse2.ad.fh-bielefeld.de/api/ratings/ratings/UserID/${props.UserID}/Rating/${value}`, //replaced ${userID}
             {
                 method: 'POST',
                 headers: {
@@ -74,7 +74,7 @@ export const MakeRating = (props) => {
             </div>
             <p> Anzahl Sterne: {currentValue}</p>
             <p> Durchschnittliche Bewertung</p>
-            <RatingStars userID={userID} avgRating={avgRating} numRatings={numRatings}></RatingStars>
+            <RatingStars userID={props.UserID}></RatingStars>
         </div>
     );
 };
@@ -88,7 +88,7 @@ export const RatingStars = (props) => {
     useEffect(() => {
         fetch(
             `http://sgse2.ad.fh-bielefeld.de/api/ratings/ratings/UserID/` +
-                `7897dfg98687dfg68767fdgd86`,
+                props.UserID,
             {
                 method: 'GET',
                 headers: {
@@ -130,11 +130,10 @@ export const RatingStars = (props) => {
                     );
                 })}
             </div>
-            {!props.numRatings ?
+            !props.numRating ?
             (<p>  Anzahl der Bewertungen: {numRatings}</p>)
              :
-            (<p>   Anzahl der Bewertungen: {props.numRatings}</p>
-            )}
+            (<p> Anzahl der Bewertungen: {props.numRatings}</p>)
         </div>
     );
 };
