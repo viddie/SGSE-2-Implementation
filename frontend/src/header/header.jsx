@@ -46,7 +46,7 @@ const Header = (props) => {
                                     aria-label="Search"
                                     onChange={(e) => setQuery(e.target.value)}
                                 />
-                                <LinkContainer to={'/search-' + props.sellerName} >
+                                <LinkContainer to={'/search-' + query} >
                                     <Button variant="dark">Suche</Button>
                                 </LinkContainer>
                             </Form>
@@ -66,17 +66,18 @@ const Header = (props) => {
                             </LinkContainer>
                         </Nav>
                         <Nav>
-                        <LinkContainer to="/search">
                             <Form className="d-flex">
                                 <FormControl
                                     type="search"
                                     placeholder="Leg direkt los!"
                                     className="mr-2"
                                     aria-label="Search"
-                                />
-                                <Button variant="dark">Suche</Button>
+                                    onChange={(e) => setQuery(e.target.value)}
+                                    />
+                                <LinkContainer to={'/search-' + query} >
+                                    <Button variant="dark">Suche</Button>
+                                </LinkContainer>
                             </Form>
-                        </LinkContainer>
                         </Nav>
                     </Navbar.Collapse>
                 )}

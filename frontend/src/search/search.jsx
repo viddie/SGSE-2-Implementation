@@ -2,7 +2,7 @@ import { uid } from 'uid';
 import { useParams } from 'react-router-dom';
 import Showroom from '../article/showroom'
 
-export function FoundArticles() {
+const FoundArticles = ()=> {
     let { query } = useParams();
 
     return (
