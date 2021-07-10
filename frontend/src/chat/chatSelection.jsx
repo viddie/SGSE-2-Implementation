@@ -74,8 +74,6 @@ function Room() {
 }
 
 function Entry(props) {
-    const userID = sessionStorage.getItem('userID');
-
     return (
         <div className="chat_selection_entry">
             <Link className="chat_selection_link" to={"/userChat-"+props.receiver}>
@@ -89,7 +87,7 @@ function Entry(props) {
                 <div className="chat_select_item" id="chat_select_text">{props.receiver}</div>
                 </div>
             </Link>
-            <div className="chat_select_item"><MakeRating UserID={userID}></MakeRating></div>
+            <div className="chat_select_item"><MakeRating UserID={props.receiver}></MakeRating></div>
         </div>
     );
 }
