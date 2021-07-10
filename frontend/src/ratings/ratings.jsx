@@ -74,7 +74,7 @@ export const MakeRating = (props) => {
             </div>
             <p> Anzahl Sterne: {currentValue}</p>
             <p> Durchschnittliche Bewertung</p>
-            <RatingStars userID={userID, currentValue}></RatingStars>
+            <RatingStars userID={userID} avgRating={avgRating}></RatingStars>
         </div>
     );
 };
@@ -120,7 +120,7 @@ export const RatingStars = (props) => {
                             key={index}
                             size={12}
                             color={
-                                avgRating > index ? colors.green : colors.grey
+                                 (props.avgRating || avgRating) > index ? colors.green : colors.grey
                             }
                             style={{
                                 marginRight: 10,
