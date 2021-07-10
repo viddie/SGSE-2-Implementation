@@ -7,8 +7,10 @@ import {
     FormControl,
     Container,
     Image,
-    LinkContainer,
+    Link
 } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
+
 import logo from '/static/wurm.png';
 
 const Header = (props) => {
@@ -44,8 +46,11 @@ const Header = (props) => {
                                     placeholder="Leg direkt los!"
                                     className="mr-2"
                                     aria-label="Search"
+                                    onChange={(e) => setQuery(e.target.value)}
                                 />
+                                <Link to={'/search-' + query} >
                                     <Button variant="dark">Suche</Button>
+                                </Link>
                             </Form>
                         </Nav>
                     </Navbar.Collapse>
@@ -69,8 +74,11 @@ const Header = (props) => {
                                     placeholder="Leg direkt los!"
                                     className="mr-2"
                                     aria-label="Search"
+                                    onChange={(e) => setQuery(e.target.value)}
                                     />
-                                    <Button variant="dark">Suche</Button>
+                                    <Link to={'/search-' + query} >
+                                        <Button variant="dark">Suche</Button>
+                                    </Link>
                             </Form>
                         </Nav>
                     </Navbar.Collapse>
