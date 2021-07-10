@@ -2,33 +2,8 @@ const mongoose = require('mongoose')
 
 const RatingsSchema = new mongoose.Schema({
     ID: {
-        type: String,
-        required: true,
-    },
-    Five_Star: {
         type: Number,
         required: true,
-        default: 0
-    },
-    Four_Star: {
-        type: Number,
-        required: true,
-        default: 0
-    },
-    Three_Star: {
-        type: Number,
-        required: true,
-        default: 0
-    },
-    Two_Star: {
-        type: Number,
-        required: true,
-        default: 0
-    },
-    One_Star: {
-        type: Number,
-        required: true,
-        default: 0
     },
     avgStar: 
     {
@@ -46,6 +21,12 @@ const RatingsSchema = new mongoose.Schema({
     {
         required: true,
         type: [String],
+        default: []
+    },
+    MappedRatings:
+    {
+        required: true,
+        type: [Number],
         default: []
     }
 }
