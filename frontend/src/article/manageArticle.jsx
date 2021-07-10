@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Button, Form, Container, Alert } from 'react-bootstrap';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 
 export const EditArticle = (props) => {
     const history = useHistory();
-
+    let { id } = useParams();
     const [heading, setHeading] = useState(props.article.heading);
     const [description, setDescription] = useState(props.article.description);
     const [price, setPrice] = useState(props.article.price);
@@ -23,6 +23,7 @@ export const EditArticle = (props) => {
         formData.append('price', price);
         formData.append('category', category);
         formData.append('tags', tags);
+        formData.append('articleID', id);
 
         for (let i = 0; i < files.length; i++) {
             formData.append('file', files[i]);

@@ -77,7 +77,7 @@ function App() {
                         {store.loggedIn && (
                             <Route
                                 exact
-                                path="/editArticle"
+                                path="/editArticle-:id"
                                 component={EditArticle}
                             />
                         )}

@@ -125,7 +125,7 @@ function DispatchButton(props) {
             <Container>
                 <Row>
                     <Col>
-                        <Link to="/editArticle">
+                        <Link to={"/editArticle-"+props.articleID}>
                             <Button
                                 size="lg"
                                 block
