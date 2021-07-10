@@ -32,7 +32,7 @@ const authenticateJWT = (req, res, next) => {
 router.get('/', authenticateJWT, async (req,res) =>
 {
     try{
-        const users = await User.remove()
+        const users = await User.find()
         res.json(users)
     }catch(err)
     {
@@ -41,7 +41,7 @@ router.get('/', authenticateJWT, async (req,res) =>
 })
 
 // Getting one
-router.get('/UserID/:id',authenticateJWT, userTokenAcces, (req,res) =>
+router.get('/UserID/:id', userTokenAcces, (req,res) =>
 {
     res.json(res.tokenuser)
 })
