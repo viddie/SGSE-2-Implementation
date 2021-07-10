@@ -15,14 +15,13 @@ function ChatSelection(props) {
                 <h1>Select open Chat</h1>
             </div>
             <div className="chat_section">
-                <ChatRoom receiver={id} />
+                <Room/>
             </div>
         </div>
     );
 }
 
-function ChatRoom() {
-    
+function Room() {
     const token = sessionStorage.getItem('accessToken');
     const userName = sessionStorage.getItem('userName');
 
