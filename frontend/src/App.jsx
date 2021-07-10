@@ -8,7 +8,7 @@ import Chat from './chat/chat';
 import Login from './user/login';
 import SignUp from './user/signUp';
 import { MakeRating } from './ratings/ratings';
-import CreateArticle from './article/createArticle';
+import { CreateArticle, EditArticle } from './article/manageArticle';
 import ErrorPageNotFound from './notFoundError/routeNotFound';
 import { Switch, BrowserRouter, Route, Redirect } from 'react-router-dom';
 import { useObserver, useLocalStore } from 'mobx-react-lite';
@@ -72,6 +72,13 @@ function App() {
                                 exact
                                 path="/createArticle"
                                 component={CreateArticle}
+                            />
+                        )}
+                        {store.loggedIn && (
+                            <Route
+                                exact
+                                path="/editArticle"
+                                component={EditArticle}
                             />
                         )}
                         <Route path="/404" component={ErrorPageNotFound} />

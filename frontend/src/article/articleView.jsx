@@ -144,6 +144,7 @@ function DispatchButton(props) {
                                 size="lg"
                                 onClick={() => deleteArticle(props.articleID)}
                                 block
+                                backgroundColor={"red"}
                                 style={{
                                     backgroundColor: 'darkgreen',
                                     borderColor: 'darkgreen'
