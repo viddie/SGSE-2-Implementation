@@ -125,7 +125,7 @@ function DispatchButton(props) {
             <Container>
                 <Row>
                     <Col>
-                        <Link to={"/editArticle-"+props.articleID}>
+                        <Link to={'/editArticle-' + props.articleID}>
                             <Button
                                 size="lg"
                                 block
@@ -144,7 +144,7 @@ function DispatchButton(props) {
                                 size="lg"
                                 onClick={() => deleteArticle(props.articleID)}
                                 block
-                                backgroundColor={"red"}
+                                backgroundColor={'red'}
                                 style={{
                                     backgroundColor: 'red',
                                     borderColor: 'red'
@@ -159,7 +159,7 @@ function DispatchButton(props) {
         );
     } else {
         return (
-            <Link to={"/userChat"+props.sellerName}>
+            <Link to={'/userChat' + props.sellerName}>
                 <Button
                     size="lg"
                     block

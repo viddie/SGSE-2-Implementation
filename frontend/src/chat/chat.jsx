@@ -19,7 +19,7 @@ function Chat(props) {
     return (
         <div className="Chat">
             <div className="chat_header">
-                <h1>{ id }</h1>
+                <h1>{id}</h1>
             </div>
             <div className="chat_section">
                 <ChatRoom receiver={id} />
@@ -60,7 +60,7 @@ function ChatRoom(props) {
                 res.json().then((messages) => setMessages(messages));
             }
         });
-    }
+    };
     useEffect(() => {
         const interval = setInterval(startPolling, 500);
         return () => clearInterval(interval);

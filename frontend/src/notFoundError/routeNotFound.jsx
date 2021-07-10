@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { Nav, Image } from 'react-bootstrap';
-import { LinkContainer } from 'react-router-bootstrap';
+import { LinkContainer, Container } from 'react-router-bootstrap';
 import 'regenerator-runtime/runtime';
 import './routeNotFound.css';
 import logo from '/static/wurm.png';
@@ -12,20 +12,22 @@ import logo from '/static/wurm.png';
 
 function ErrorPageNotFound() {
     return (
-        <div className="content">
-            <div className="container">
-                <div className="container_title">
-                    Something went wrong ... 404
+        <Container>
+            <div className="content">
+                <div className="container">
+                    <div className="container_title">
+                        Something went wrong ... 404
+                    </div>
+                    <div className="container_text">
+                        The page you're looking for does not exist.
+                    </div>
+                    <LinkContainer to="/">
+                        <Nav.Link>Home</Nav.Link>
+                    </LinkContainer>
                 </div>
-                <div className="container_text">
-                    The page you're looking for does not exist.
-                </div>
-                <LinkContainer to="/">
-                    <Nav.Link>Home</Nav.Link>
-                </LinkContainer>
+                <Image className="not_found_image" src={logo} />
             </div>
-            <Image className="not_found_image" src={logo} />
-        </div>
+        </Container>
     );
 }
 
