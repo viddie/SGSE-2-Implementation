@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import 'regenerator-runtime/runtime';
 import './chat.css';
+import { MakeRating } from '../ratings/ratings';
 
 /**
  * @author Marius
