@@ -30,7 +30,7 @@ router.get('/article/findByTags', function (req, res, next) {
     let tags = req.query.tags.split(',');
     tags = tags.map(e => e.trim().toLowerCase());
     // Ausgabe der gefundenen Artikel
-    ArticleModel.find({tags : tags}, (err, articles) => {
+    ArticleModel.find({tags : { $in: tags}}, (err, articles) => {
         if (err) {
             return console.error(err);
         } else {
