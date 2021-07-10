@@ -10,14 +10,14 @@ import { MakeRating } from '../ratings/ratings';
  * @function ChatSelection
  **/
 
-function ChatSelection(props) {
+function ChatSelection() {
     return (
         <div className="Chat">
             <div className="chat_header">
                 <h1>Select open Chat</h1>
             </div>
             <div className="chat_section">
-                <Room/>
+                <Room id={id}/>
             </div>
         </div>
     );
@@ -28,6 +28,8 @@ function Room() {
     const userName = sessionStorage.getItem('userName');
 
     const [entries, setEntries] = useState([]);
+
+    var chatPartner = [];
 
     const startPolling = () => {
         fetch(
@@ -49,9 +51,18 @@ function Room() {
                 // Got message
                 res.json().then((data) => {
                     console.log(data);
-                    const disdinctEntries = [... new Set(data.map(x => x.sender))];
-                    console.log(disdinctEntries);
-                    setEntries(disdinctEntries);
+                    const distinctEntries = [... new Set(data.map(x => x.sender))];
+                    const distinctIds = [... new Set(data.map(x => x.senderID))];
+
+                    for (let i = 0; i < distinctEntries.length; i++) {
+                        chatPartner.push({
+                            'user': distinctEntries[i],
+                            'userID': distinctIds[i]
+                        });
+                    }
+
+                    console.log(distinctEntries);
+                    setEntries(distinctEntries);
                 });
             }
         });
@@ -65,8 +76,8 @@ function Room() {
         <>
             <div className="mainchatroom">
                 {entries &&
-                    entries.map((msg) => (
-                        <Entry key={uid()} receiver={msg}/>
+                    entries.map((entry) => (
+                        <Entry key={uid()} receiver={entry.user} id={entry.userID}/>
                     ))}
             </div>
         </>
@@ -87,7 +98,7 @@ function Entry(props) {
                 <div className="chat_select_item" id="chat_select_text">{props.receiver}</div>
                 </div>
             </Link>
-            <div className="chat_select_item"><MakeRating UserID={props.receiver}></MakeRating></div>
+            <div className="chat_select_item"><MakeRating UserID={props.id}></MakeRating></div>
         </div>
     );
 }

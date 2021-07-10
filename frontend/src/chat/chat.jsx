@@ -14,7 +14,7 @@ import logo from '/static/wurm.png';
 const image =
     'https://www.linusakesson.net/programming/kernighans-lever/cat.png';
 
-function Chat(props) {
+function Chat() {
     let { id } = useParams();
 
     return (

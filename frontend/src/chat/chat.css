@@ -141,6 +141,7 @@
 }
 
 #chat_selection_entry {
+    text-align: left;
     display: flex;
     height: 100px;
     max-width: 728px;
