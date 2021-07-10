@@ -19,7 +19,8 @@ export const EditArticle = (props) => {
             .then((res) => res.json())
             .then((res) => {
                 setHeading(res.heading);
-                setDescription(res.price);
+                setDescription(res.description);
+                setPrice(res.price);
                 setTags(res.tags.join(','));
                 setCategory(res.category);
             })
