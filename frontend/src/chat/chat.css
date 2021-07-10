@@ -130,3 +130,32 @@
     margin: 2px 5px;
 }
 
+.chat_selection_entry {
+    display: flex;
+    align-items: center;
+    height: 100px;
+    max-width: 728px;
+}
+
+.chat_selection_entry:hover {
+    background-color: rgb(97, 94, 94);
+}
+
+.chat_select_text {
+    max-width: 200px;
+    margin-bottom: 12px;
+    line-height: 24px;
+    padding: 10px 20px;
+    border-radius: 25px;
+    position: relative;
+    color: white;
+    text-align: center;
+    font-size: large;
+}
+
+.chat_select_img_container {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin: 2px 5px;
+}

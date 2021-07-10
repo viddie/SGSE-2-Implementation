@@ -74,17 +74,20 @@ function Room() {
 
 function Entry(props) {
     return (
-        <>
+        <div className="chat_selection_entry">
             <Link to={"/userChat-"+props.receiver}>
-                <p className="chat_select_text">{props.receiver}</p>
-                <img
-                    className="chat_select_img"
-                    src={
-                        'https://www.linusakesson.net/programming/kernighans-lever/cat.png'
-                    }
-                />
+                <div className="chat_select_text">{props.receiver}</div>
+                <div className="chat_select_img_container">
+                    <img
+                        className="chat_select_img"
+                        src={
+                            'https://www.linusakesson.net/programming/kernighans-lever/cat.png'
+                        }
+                    />
+                </div>
+                <div className="bewertung_TBD"></div>
             </Link>
-        </>
+        </div>
     );
 }
 
