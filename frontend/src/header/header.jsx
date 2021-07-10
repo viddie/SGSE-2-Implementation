@@ -63,7 +63,7 @@ const Header = (props) => {
                             <LinkContainer to="/createArticle">
                                 <Nav.Link>Artikel einstellen</Nav.Link>
                             </LinkContainer>
-                            <LinkContainer to="/userChat">
+                            <LinkContainer to="/chatSelection">
                                 <Nav.Link>Chat</Nav.Link>
                             </LinkContainer>
                         </Nav>
