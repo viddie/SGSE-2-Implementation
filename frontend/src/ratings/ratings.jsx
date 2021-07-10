@@ -130,7 +130,7 @@ export const RatingStars = (props) => {
                     );
                 })}
             </div>
-            {!props.numRating ?
+            {!props.numRatings ?
             (<p> Anzahl der Bewertungen: {numRatings}</p>)
              :
             (<p> Anzahl der b: {props.numRatings}</p>
