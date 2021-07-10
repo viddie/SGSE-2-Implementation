@@ -29,7 +29,7 @@ function Room() {
 
     const startPolling = () => {
         fetch(
-            `http://sgse2.ad.fh-bielefeld.de/api/chat/messages/receive${userName}`,
+            `http://sgse2.ad.fh-bielefeld.de/api/chat/messages/receive/${userName}`,
             {
                 method: 'GET',
                 headers: {
