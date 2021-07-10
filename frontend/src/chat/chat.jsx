@@ -4,6 +4,7 @@ import { Button } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 import 'regenerator-runtime/runtime';
 import './chat.css';
+import logo from '/static/wurm.png';
 
 /**
  * @author Marius
@@ -143,10 +144,12 @@ function ChatMessage(props) {
     const text = props.message.text;
     const uid = props.message.receiver;
     const uid_r = props.rec;
-
+    
+    let img = 'https://www.linusakesson.net/programming/kernighans-lever/cat.png'
     let messageClass = 'sent';
     if (uid != uid_r) {
         messageClass = 'received';
+        img = logo;
     }
 
     return (
@@ -155,7 +158,7 @@ function ChatMessage(props) {
                 <img
                     className="chat_img"
                     src={
-                        'https://www.linusakesson.net/programming/kernighans-lever/cat.png'
+                        img
                     }
                 />
                 <p className="chat_text">{text}</p>

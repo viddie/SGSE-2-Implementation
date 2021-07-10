@@ -78,7 +78,7 @@ function Entry(props) {
 
     return (
         <div className="chat_selection_entry">
-            <Link className="chat_selection_link" to={"/userChat-"+props.receiver}>
+            <Link activeClassName="chat_selection_link" to={"/userChat-"+props.receiver}>
                 <div className="chat_select_item" id="chat_select_img_container">
                     <img
                         className="chat_select_img"
