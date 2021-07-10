@@ -14,7 +14,7 @@ export const MakeRating = (props) => {
 
     function handleClick(value) {
         fetch(
-            `http://sgse2.ad.fh-bielefeld.de/api/ratings/ratings/UserID/${userID}/Rating/${value}`,
+            `http://sgse2.ad.fh-bielefeld.de/api/ratings/ratings/UserID/7897dfg98687dfg68767fdgd86/Rating/${value}`, //replaced ${userID}
             {
                 method: 'POST',
                 headers: {
@@ -88,7 +88,7 @@ export const RatingStars = (props) => {
     useEffect(() => {
         fetch(
             `http://sgse2.ad.fh-bielefeld.de/api/ratings/ratings/UserID/` +
-                props.userID,
+                `7897dfg98687dfg68767fdgd86`,
             {
                 method: 'GET',
                 headers: {
