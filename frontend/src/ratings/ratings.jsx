@@ -74,7 +74,7 @@ export const MakeRating = (props) => {
             </div>
             <p> Anzahl Sterne: {currentValue}</p>
             <p> Durchschnittliche Bewertung</p>
-            <RatingStars userID={props.UserID}></RatingStars>
+            <RatingStars userID={props.UserID} numRatings = {numRatings}></RatingStars>
         </div>
     );
 };
