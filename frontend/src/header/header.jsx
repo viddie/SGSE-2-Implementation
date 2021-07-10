@@ -6,9 +6,9 @@ import {
     Form,
     FormControl,
     Container,
-    Image,
-    Link
+    Image
 } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import { LinkContainer } from 'react-router-bootstrap';
 
 import logo from '/static/wurm.png';
