@@ -29,7 +29,7 @@ function Room() {
 
     const [entries, setEntries] = useState([]);
 
-    var chatPartner = [];
+    var chatPartners = [];
 
     const startPolling = () => {
         fetch(
@@ -50,19 +50,18 @@ function Room() {
             } else {
                 // Got message
                 res.json().then((data) => {
-                    console.log(data);
                     const distinctEntries = [... new Set(data.map(x => x.sender))];
                     const distinctIds = [... new Set(data.map(x => x.senderID))];
 
                     for (let i = 0; i < distinctEntries.length; i++) {
-                        chatPartner.push({
+                        chatPartners.push({
                             'user': distinctEntries[i],
                             'userID': distinctIds[i]
                         });
                     }
 
-                    console.log(distinctEntries);
-                    setEntries(distinctEntries);
+                    console.log(chatPartners);
+                    setEntries(chatPartners);
                 });
             }
         });
