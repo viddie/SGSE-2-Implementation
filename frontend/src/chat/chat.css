@@ -157,7 +157,7 @@
     font-size: large;
 }
 
-#chat_select_img {
+.chat_select_img {
     width: 90px;
     height: 90px;
     border-radius: 50%;
@@ -167,7 +167,7 @@
 .chat_button {
     width: 30px;
     height: 30px;
-    padding-top: 20px;
+    padding-top: 2px;
     background-color: green;
     color: white;
     border-radius: 50%;
