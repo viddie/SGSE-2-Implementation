@@ -29,8 +29,6 @@ function Room() {
 
     const [entries, setEntries] = useState([]);
 
-    var chatPartners = [];
-
     const startPolling = () => {
         fetch(
             `http://sgse2.ad.fh-bielefeld.de/api/chat/messages/receive/${userName}`,
@@ -53,6 +51,7 @@ function Room() {
                     const distinctEntries = [... new Set(data.map(x => x.sender))];
                     const distinctIds = [... new Set(data.map(x => x.senderID))];
 
+                    var chatPartners = [];
                     for (let i = 0; i < distinctEntries.length; i++) {
                         chatPartners.push({
                             'user': distinctEntries[i],
