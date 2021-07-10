@@ -55,7 +55,7 @@ function App() {
                             <Route exact path="/chatSelection" component={ChatSelection} />
                         )}
                         {store.loggedIn && (
-                            <Route exact path="/chat:id" component={Chat} />
+                            <Route exact path="/chat-:id" component={Chat} />
                         )}
                         {!store.loggedIn && (
                             <Route

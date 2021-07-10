@@ -75,7 +75,7 @@ function Room() {
 function Entry(props) {
     return (
         <>
-            <Link to={"/userChat"+props.receiver}>
+            <Link to={"/userChat-"+props.receiver}>
                 <p className="chat_select_text">{props.receiver}</p>
                 <img
                     className="chat_select_img"
