@@ -49,7 +49,7 @@ export const MakeRating = (props) => {
 
     return (
         <div style={styles.container}>
-            <h2> User-Bewertung </h2>
+            <p> User-Bewertung: </p>
             <div style={styles.stars}>
                 {stars.map((_, index) => {
                     return (
