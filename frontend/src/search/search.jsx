@@ -11,7 +11,7 @@ export const FoundArticles = (props) => {
             path={
                 '/api/offers/article/findByTags?tags='+query
             }
-    />
+        />
     )
 }
 

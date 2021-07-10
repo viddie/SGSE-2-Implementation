@@ -44,7 +44,6 @@ const Header = (props) => {
                                     placeholder="Leg direkt los!"
                                     className="mr-2"
                                     aria-label="Search"
-                                    onChange={(e) => setQuery(e.target.value)}
                                 />
                                     <Button variant="dark">Suche</Button>
                             </Form>
@@ -70,7 +69,6 @@ const Header = (props) => {
                                     placeholder="Leg direkt los!"
                                     className="mr-2"
                                     aria-label="Search"
-                                    onChange={(e) => setQuery(e.target.value)}
                                     />
                                     <Button variant="dark">Suche</Button>
                             </Form>
