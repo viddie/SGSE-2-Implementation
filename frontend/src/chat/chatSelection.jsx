@@ -65,7 +65,7 @@ function Room() {
             <div className="mainchatroom">
                 {entries &&
                     entries.map((msg) => (
-                        <Entry key={uid()} receiver={msg.receiver}/>
+                        <Entry key={uid()} receiver={msg}/>
                     ))}
             </div>
         </>
