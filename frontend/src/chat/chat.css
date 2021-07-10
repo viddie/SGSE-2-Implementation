@@ -132,6 +132,9 @@
 
 .chat_select_item {
     display: inline-block;
+    width: 728px;
+    align-items: left;
+    color: white;
 }
 
 .chat_select_item:hover {
@@ -140,7 +143,6 @@
 
 #chat_selection_entry {
     display: flex;
-    align-items: left;
     height: 100px;
     max-width: 728px;
 }
@@ -152,8 +154,7 @@
     padding: 10px 20px;
     border-radius: 25px;
     position: relative;
-    color: white;
-    text-align: center;
+    text-align: left;
     font-size: large;
 }
 
