@@ -141,6 +141,10 @@
     background-color: rgb(97, 94, 94);
 }
 
+.chat_selection_link {
+    display: inline-block;
+}
+
 #chat_selection_entry {
     display: flex;
     height: 100px;
