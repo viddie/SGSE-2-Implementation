@@ -12,6 +12,9 @@ import { LinkContainer } from 'react-router-bootstrap';
 import logo from '/static/wurm.png';
 
 const Header = (props) => {
+
+    const [query, setQuery] = useState("");
+
     return (
         <Navbar collapseOnSelect expand="lg" bg="success" variant="dark">
             <Navbar sticky="top" />
@@ -41,8 +44,11 @@ const Header = (props) => {
                                     placeholder="Leg direkt los!"
                                     className="mr-2"
                                     aria-label="Search"
+                                    onChange={(e) => setQuery(e.target.value)}
                                 />
-                                <Button variant="dark">Suche</Button>
+                                <LinkContainer to={'/search-' + props.sellerName} >
+                                    <Button variant="dark">Suche</Button>
+                                </LinkContainer>
                             </Form>
                         </Nav>
                     </Navbar.Collapse>
@@ -60,6 +66,7 @@ const Header = (props) => {
                             </LinkContainer>
                         </Nav>
                         <Nav>
+                        <LinkContainer to="/search">
                             <Form className="d-flex">
                                 <FormControl
                                     type="search"
@@ -69,6 +76,7 @@ const Header = (props) => {
                                 />
                                 <Button variant="dark">Suche</Button>
                             </Form>
+                        </LinkContainer>
                         </Nav>
                     </Navbar.Collapse>
                 )}
