@@ -25,7 +25,7 @@ function Room() {
     const token = sessionStorage.getItem('accessToken');
     const userName = sessionStorage.getItem('userName');
 
-    const [openChats, setOpenChats] = useState([]);
+    const [entries, setEntries] = useState([]);
 
     const startPolling = () => {
         fetch(
@@ -49,7 +49,7 @@ function Room() {
                     console.log(data);
                     const disdinctReceivers = [... new Set(data.map(x => x.receiver))];
                     console.log(disdinctReceivers);
-                    setOpenChats(disdinctReceivers);
+                    setEntries(disdinctReceivers);
                 });
             }
         });
