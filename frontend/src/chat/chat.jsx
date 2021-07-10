@@ -4,6 +4,7 @@ import { Button } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 import 'regenerator-runtime/runtime';
 import './chat.css';
+import { MakeRating } from '../ratings/ratings';
 
 /**
  * @author Marius
