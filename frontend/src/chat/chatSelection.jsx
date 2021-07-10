@@ -78,7 +78,7 @@ function Entry(props) {
 
     return (
         <div className="chat_selection_entry">
-            <Link activeClassName="chat_selection_link" to={"/userChat-"+props.receiver}>
+            <Link className="chat_selection_link" to={"/userChat-"+props.receiver}>
                 <div className="chat_select_item" id="chat_select_img_container">
                     <img
                         className="chat_select_img"
@@ -89,7 +89,7 @@ function Entry(props) {
                 <div className="chat_select_item" id="chat_select_text">{props.receiver}</div>
                 </div>
             </Link>
-            <div className="chat_select_item" id="bewertung_TBD"><MakeRating UserID={userID}></MakeRating></div>
+            <div className="chat_select_item"><MakeRating UserID={userID}></MakeRating></div>
         </div>
     );
 }
