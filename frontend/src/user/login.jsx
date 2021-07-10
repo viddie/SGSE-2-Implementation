@@ -45,6 +45,7 @@ const Login = (props) => {
                         );
                         var decoded = jwt_decode(res.accessToken);
                         sessionStorage.setItem('userID', decoded.id);
+                        sessionStorage.setItem('userName', decoded.username);
                         props.store.loggedIn = true;
                         history.push('/');
                     });

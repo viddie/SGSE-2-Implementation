@@ -1,4 +1,4 @@
-import { func } from 'prop-types';
+import { uid } from 'uid';
 import React, { useEffect, useRef, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
@@ -31,7 +31,7 @@ function Chat(props) {
 function ChatRoom(props) {
     const receiver = props.receiver;
     const token = sessionStorage.getItem('accessToken');
-    const sender = sessionStorage.getItem('userID');
+    const sender = sessionStorage.getItem('userName');
     const dummy = useRef();
     const chatroomID = getChatroomID(receiver, sender);
 
@@ -115,7 +115,7 @@ function ChatRoom(props) {
             <div className="mainchatroom">
                 {messages &&
                     messages.map((msg) => (
-                        <ChatMessage rec={receiver} message={msg} />
+                        <ChatMessage key={uid()} rec={receiver} message={msg} />
                     ))}
                 <span ref={dummy}></span>
             </div>
@@ -165,6 +165,8 @@ function ChatMessage(props) {
 }
 
 function getChatroomID(userID1, userID2) {
+    console.log(userID1);
+    console.log(userID2);
     return (hash(userID1) + hash(userID2)).toString();
 }
 
