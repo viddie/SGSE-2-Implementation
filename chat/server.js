@@ -5,7 +5,7 @@ const mongoose = require('mongoose')
 const PORT = 8080;
 
 
-mongoose.connect("mongodb://172.17.0.6:27017", {
+mongoose.connect("mongodb://172.17.0.16:27017", {
     "auth": { "authSource": "admin" },
     "user": "root",
     "pass": "passwort123!",
