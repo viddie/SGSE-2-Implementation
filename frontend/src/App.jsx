@@ -7,7 +7,7 @@ import Showroom from './article/showroom';
 import Chat from './chat/chat';
 import Login from './user/login';
 import SignUp from './user/signUp';
-import { Search } from './search/search';
+import { FoundArticles } from './search/search';
 import { MakeRating } from './ratings/ratings';
 import { CreateArticle, EditArticle } from './article/manageArticle';
 import ErrorPageNotFound from './notFoundError/routeNotFound';
@@ -36,7 +36,7 @@ function App() {
                             />
                         </Route>
                         <Route exact path="/search-:query">
-                            <Search></Search>
+                            <FoundArticles></FoundArticles>
                         </Route>
                         {!store.loggedIn && (
                             <Route exact path="/login">
