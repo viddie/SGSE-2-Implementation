@@ -62,64 +62,48 @@ router.post("/CreateUser",authenticateJWT, async (req,res) =>
 
 router.post('/UserID/:id/Rating/:star_num',authenticateJWT, getUser, async (req,res) =>
 {
-  
-    res.user.RaterIDs.push(req.validUser.id);
-    
-    
-    if(req.params.star_num == "1"){
+    let average = (array) => array.reduce((a, b) => a + b) / array.length;
+
+    try{
         try{
-            res.user.One_Star = res.user.One_Star + 1
-            res.user.avgStar = (res.user.totalRatings*res.user.avgStar + 1)/(res.user.totalRatings+1)
-            res.user.totalRatings = res.user.totalRatings + 1
-            const updatedUser = await res.user.save()              
+        doubleRating = await User.findOne({ID: req.params.id, 
+            RaterIDs: req.validUser.id})
+        console.log(doubleRating)}
+        catch(err){
+            res.status(400).json({message: err.message});
+        }
+        if(doubleRating != null){
+            index = res.user.RaterIDs.indexOf(req.validUser.id);
+            tmp = res.user.MappedRatings;
+            tmp[index] = Number(req.params.star_num);
+            
+            const newUser = new User({
+                ID: doubleRating.ID,
+                RaterIDs: doubleRating.RaterIDs,
+                MappedRatings: tmp,
+                avgStar: average(tmp),
+                totalRatings: doubleRating.totalRatings
+            })
+            //res.user.avgStar = Number(req.params.star_num);
+
+            updatedUser = await newUser.save()  
+            await doubleRating.remove()    
+          
             res.json(updatedUser)
-        }catch (err){
-            res.status(400).json({message: err.message})
+        }else{
+            try{
+                res.user.RaterIDs.push(req.validUser.id);
+                res.user.MappedRatings.push(req.params.star_num);
+                res.user.avgStar = average(res.user.MappedRatings)
+                res.user.totalRatings = res.user.totalRatings + 1
+                const updatedUser = await res.user.save()              
+                res.json(updatedUser)
+            }catch (err){
+                res.status(400).json({message: err.message})
+                }
         }
-        }
-    if(req.params.star_num == "2"){
-        try{
-            res.user.Two_Star = res.user.Two_Star + 1
-            res.user.avgStar = (res.user.totalRatings*res.user.avgStar + 2)/(res.user.totalRatings+1)
-            res.user.totalRatings = res.user.totalRatings + 1
-            const updatedUser = await res.user.save()  
-            res.json(updatedUser)
-        }catch (err){
-            res.status(400).json({message: err.message})
-        }
-        }
-    if(req.params.star_num == "3"){
-        try{
-            res.user.Three_Star = res.user.Three_Star + 1
-            res.user.avgStar = (res.user.totalRatings*res.user.avgStar + 3)/(res.user.totalRatings+1)
-            res.user.totalRatings = res.user.totalRatings + 1
-            const updatedUser = await res.user.save()  
-            res.json(updatedUser)
-        }catch (err){
-            res.status(400).json({message: err.message})
-        }
-        }
-    if(req.params.star_num == "4"){
-        try{
-            res.user.Four_Star = res.user.Four_Star + 1
-            res.user.avgStar = (res.user.totalRatings*res.user.avgStar + 4)/(res.user.totalRatings+1)
-            res.user.totalRatings = res.user.totalRatings + 1
-            const updatedUser = await res.user.save()   
-            res.json(updatedUser)
-        }catch (err){
-            res.status(400).json({message: err.message})
-        }
-        }
-    if(req.params.star_num == "5"){
-        try{
-        res.user.Five_Star = res.user.Five_Star + 1
-        res.user.avgStar = (res.user.totalRatings*res.user.avgStar + 5)/(res.user.totalRatings+1)
-        res.user.totalRatings = res.user.totalRatings + 1
-        const updatedUser = await res.user.save()   
-        res.json(updatedUser)
-    }catch (err){
-        res.status(400).json({message: err.message})
-    }
+    }catch(err){
+        return res.status(500).json({message: err.message})
     }
 })
 
