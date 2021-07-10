@@ -1,5 +1,6 @@
 import { uid } from 'uid';
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import 'regenerator-runtime/runtime';
 import './chat.css';
 
@@ -47,9 +48,9 @@ function Room() {
                 // Got message
                 res.json().then((data) => {
                     console.log(data);
-                    const disdinctReceivers = [... new Set(data.map(x => x.receiver))];
-                    console.log(disdinctReceivers);
-                    setEntries(disdinctReceivers);
+                    const disdinctEntries = [... new Set(data.map(x => x.sender))];
+                    console.log(disdinctEntries);
+                    setEntries(disdinctEntries);
                 });
             }
         });
@@ -74,8 +75,8 @@ function Room() {
 function Entry(props) {
     return (
         <>
-            <Link to={"/userChat"+props.sellerName}>
-                <p className="chat_select_text">{text}</p>
+            <Link to={"/userChat"+props.receiver}>
+                <p className="chat_select_text">{props.receiver}</p>
                 <img
                     className="chat_select_img"
                     src={
