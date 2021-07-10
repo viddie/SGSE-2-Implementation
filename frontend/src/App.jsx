@@ -35,9 +35,7 @@ function App() {
                                 }
                             />
                         </Route>
-                        <Route exact path="/search-:query">
-                            <FoundArticles></FoundArticles>
-                        </Route>
+                        
                         {!store.loggedIn && (
                             <Route exact path="/login">
                                 <Login store={store}></Login>
