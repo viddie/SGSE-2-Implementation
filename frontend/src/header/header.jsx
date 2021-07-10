@@ -8,7 +8,6 @@ import {
     Container,
     Image,
     LinkContainer,
-    Link
 } from 'react-bootstrap';
 import logo from '/static/wurm.png';
 
@@ -47,9 +46,7 @@ const Header = (props) => {
                                     aria-label="Search"
                                     onChange={(e) => setQuery(e.target.value)}
                                 />
-                                <LinkContainer to={'/search-' + query} >
                                     <Button variant="dark">Suche</Button>
-                                </LinkContainer>
                             </Form>
                         </Nav>
                     </Navbar.Collapse>
@@ -75,9 +72,7 @@ const Header = (props) => {
                                     aria-label="Search"
                                     onChange={(e) => setQuery(e.target.value)}
                                     />
-                                <LinkContainer to={'/search-' + query} >
                                     <Button variant="dark">Suche</Button>
-                                </LinkContainer>
                             </Form>
                         </Nav>
                     </Navbar.Collapse>
