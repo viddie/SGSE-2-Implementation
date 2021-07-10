@@ -133,7 +133,7 @@ export const RatingStars = (props) => {
             {!props.numRatings ?
             (<p style={{textAlign: 'center'}}>  Anzahl der Bewertungen: {numRatings}</p>)
              :
-            (<p style={{textAlign: 'center'}}>  Anzahl der b: {props.numRatings}</p>
+            (<p style={{textAlign: 'center'}}>   Anzahl der Bewertungen: {props.numRatings}</p>
             )}
         </div>
     );
