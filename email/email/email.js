@@ -1,8 +1,12 @@
 const nodemailer = require("nodemailer")
 
 module.exports = {
-    sendmail: sendmail
+    sendmail: sendmail,
+    email_response: email_response,
+    getResponse: getResponse
   };
+
+var email_response;
 
 transporter = nodemailer.createTransport({
     host: "smtp.web.de",
@@ -26,10 +30,22 @@ async function sendmail(p_to,p_subject,p_body,p_res)
   transporter.sendMail(mailOptions, function(error, info){
     if (error) {
       console.log(error);
-      p_res.send(error);
+      if(p_res)
+      {
+        p_res.send(error);
+      }
     } else {
+      email_response = info;
       console.log('Email sent: ' + info.response);
-      p_res.send(info.response);
+      if(p_res)
+      {
+        p_res.send(info.response);
+      }
     }
-  }); 
+  });
+}
+
+function getResponse()
+{
+  return email_response;
 }

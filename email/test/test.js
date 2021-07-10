@@ -1,8 +1,13 @@
 var assert = require('assert');
-describe('Array', function() {
-  describe('#indexOf()', function() {
-    it('should return -1 when the value is not present', function() {
-      assert.equal([1, 2, 3].indexOf(4), -1);
+var mail = require("../email/email")
+
+describe('Email', function() {
+  describe('sendmail', function() {
+    it('Response has same Adress', async function() {
+      await mail.sendmail("Test@test.com","Mocha Test","Mocha Test");
+      const delay = ms => new Promise(resolve => setTimeout(resolve, ms))
+      await delay(1000)
+      assert.strictEqual(mail.getResponse().accepted[0], "Test@test.com");
     });
   });
 });
