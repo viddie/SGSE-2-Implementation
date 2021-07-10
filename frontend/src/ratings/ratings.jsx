@@ -85,7 +85,7 @@ export const RatingStars = (props) => {
     useEffect(() => {
         fetch(
             `http://sgse2.ad.fh-bielefeld.de/api/ratings/ratings/UserID/` +
-                props.UserID,
+                props.userID,
             {
                 method: 'GET',
                 headers: {
