@@ -66,7 +66,6 @@ function Room() {
                     entries.map((msg) => (
                         <Entry key={uid()} receiver={msg.receiver}/>
                     ))}
-                <span ref={dummy}></span>
             </div>
         </>
     );
