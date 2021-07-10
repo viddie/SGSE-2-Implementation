@@ -27,6 +27,6 @@ export const styles = {
 
 export const colors = {
     orange: '#FFBA5A',
-    grey: '#a9a9a9',
+    grey: '#F0FFFF',
     green: '#40E0D0'
 };
