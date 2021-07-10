@@ -8,6 +8,7 @@ export const FoundArticles = (props) => {
     return (
         <Showroom
             key={uid()}
+            store={props.store}
             path={
                 '/api/offers/article/findByTags?tags='+query
             }
