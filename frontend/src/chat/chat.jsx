@@ -15,15 +15,15 @@ const image =
     'https://www.linusakesson.net/programming/kernighans-lever/cat.png';
 
 function Chat() {
-    let { id } = useParams();
+    let { name, id } = useParams();
 
     return (
         <div className="Chat">
             <div className="chat_header">
-                <h1>{id}</h1>
+                <h1>{name}</h1>
             </div>
             <div className="chat_section">
-                <ChatRoom receiver={id} />
+                <ChatRoom receiver={name} userID={id} />
             </div>
         </div>
     );
@@ -79,6 +79,7 @@ function ChatRoom(props) {
             body: JSON.stringify({
                 room: chatroomID,
                 sender: sender,
+                senderID: props.userID,
                 receiver: receiver,
                 text: formValue
             })
@@ -168,8 +169,6 @@ function ChatMessage(props) {
 }
 
 function getChatroomID(userID1, userID2) {
-    console.log(userID1);
-    console.log(userID2);
     return (hash(userID1) + hash(userID2)).toString();
 }
 
