@@ -66,7 +66,7 @@ export const EditArticle = (props) => {
     }
     return (
         <Container className="m-auto" style={{ maxWidth: '60%' }}>
-            {error ? (
+            {!error ? (
                 <Form onSubmit={handleSubmit}>
                     <Form.Group size="lg" controlId="heading">
                         <Form.Label>Überschrift</Form.Label>
