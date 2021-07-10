@@ -12,7 +12,6 @@ import logo from '/static/wurm.png';
 
 function ErrorPageNotFound() {
     return (
-        <Container>
             <div className="content">
                 <div className="container">
                     <div className="container_title">
@@ -27,7 +26,7 @@ function ErrorPageNotFound() {
                 </div>
                 <Image className="not_found_image" src={logo} />
             </div>
-        </Container>
+
     );
 }
 
