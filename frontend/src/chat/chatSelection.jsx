@@ -50,20 +50,21 @@ function Room() {
             } else {
                 // Got message
                 res.json().then((data) => {
-                    const distinctEntries = [... new Set([... new Set(data.map(x => x.sender)), ...new Set(data.map(x => x.receiver))])];
-                    const distinctIds = [... new Set([... new Set(data.map(x => x.senderID)), ...new Set(data.map(x => x.receiverID))])];
-
-                    console.log(distinctEntries);
+                    const distinctEntries = new Set([... new Set(data.map(x => x.sender)), ...new Set(data.map(x => x.receiver))]);
+                    const distinctIds = new Set([... new Set(data.map(x => x.senderID)), ...new Set(data.map(x => x.receiverID))]);
 
                     var chatPartners = [];
-                    for (let i = 0; i < distinctEntries.length; i++) {
-                        if (distinctEntries[i] != userName) {
+
+                    distinctEntries.forEach(function (entry, index) {
+                        console.log(entry);
+                        console.log(index);
+                        if (entriy != userName) {
                             chatPartners.push({
-                                'user': distinctEntries[i],
-                                'userID': distinctIds[i]
+                                'user': entry,
+                                'userID': distinctIds[index]
                             });
                         }
-                    }
+                    })
 
                     console.log(chatPartners);
                     setEntries(chatPartners);
