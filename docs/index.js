@@ -10,7 +10,7 @@ const offers = require('./swagger/offers.json');
 app.get('/offers', swaggerUi.setup(offers));
 
 // Starte den Server
-app.listen(22222, err => {
+app.listen(3000, err => {
     if (err)
         throw err
     console.log('Ich bin der Niklas und habe kein Leben')
