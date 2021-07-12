@@ -43,7 +43,7 @@ function ChatButton() {
                             entries.push(entry);
                         }
                     });
-                    setEntries(distinctEntries);
+                    setEntries(entries);
                 });
             }
         });
