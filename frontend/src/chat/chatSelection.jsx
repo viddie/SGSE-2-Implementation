@@ -50,20 +50,18 @@ function Room() {
             } else {
                 // Got message
                 res.json().then((data) => {
-                    const distinctEntries = new Set([... new Set(data.map(x => x.sender)), ...new Set(data.map(x => x.receiver))]);
-                    const distinctIds = new Set([... new Set(data.map(x => x.senderID)), ...new Set(data.map(x => x.receiverID))]);
+                    const distinctEntries = Array.from(new Set([... new Set(data.map(x => x.sender)), ...new Set(data.map(x => x.receiver))]));
+                    const distinctIds = Array.from(new Set([... new Set(data.map(x => x.senderID)), ...new Set(data.map(x => x.receiverID))]));
 
                     var chatPartners = [];
-                    var i = 0;
 
-                    distinctEntries.forEach(function callback(entry) {
+                    distinctEntries.forEach(function callback(entry, iter) {
                         if (entry != userName) {
                             chatPartners.push({
                                 'user': entry,
-                                'userID': distinctIds[i]
+                                'userID': distinctIds[iter]
                             });
                         }
-                        i++;
                     })
 
                     console.log(chatPartners);
