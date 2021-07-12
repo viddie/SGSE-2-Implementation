@@ -1,0 +1,293 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "description": "Dies ist die Schnittstellenbeschreibung des Angebotsmanagements",
+      "version": "1.0.0",
+      "title": "Swagger Article-Management"
+    },
+    "basePath": "/api",
+    "tags": [
+      {
+        "name": "articles",
+        "description": "Mögliche Methoden zur Manipulation, Hinzufügen oder Abruf von Artikeln"
+      }
+    ],
+    "schemes": [
+      "https"
+    ],
+    "paths": {
+      "/article": {
+        "post": {
+          "tags": [
+            "articles"
+          ],
+          "summary": "Fügt einen neuen Artikel hinzu",
+          "description": "",
+          "operationId": "addArticle",
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "description": "Artikelobjekt, das hinzugefügt werden soll",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/Article"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            },
+            "405": {
+              "description": "Ungültige Attribute"
+            }
+          },
+          "security": [
+            {
+              "articles_auth": [
+                "write:article",
+                "read:article"
+              ]
+            }
+          ]
+        },
+        "put": {
+          "tags": [
+            "articles"
+          ],
+          "summary": "Aktualisiere einen Artikel",
+          "description": "",
+          "operationId": "updateArticle",
+          "consumes": [
+            "application/json",
+            "application/xml"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "description": "Artikelobjekt verändern",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/Article"
+              }
+            }
+          ],
+          "responses": {
+            "400": {
+              "description": "Ungültige ID übergeben."
+            },
+            "404": {
+              "description": "Artikel nicht gefunden."
+            },
+            "405": {
+              "description": "Nicht genügend Rechte."
+            }
+          },
+          "security": [
+            {
+              "articles_auth": [
+                "write:article",
+                "read:article"
+              ]
+            }
+          ]
+        }
+      },
+      "/article/findByCategory": {
+        "get": {
+          "tags": [
+            "articles"
+          ],
+          "summary": "Gibt die verfügbaren Artikel einer Kategorie in Form einer Liste aus",
+          "description": "Mehrere Kategorien können durch Separation per Komma ausgewählt werden",
+          "operationId": "findArticlesByCategory",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "categories",
+              "in": "query",
+              "description": "Anfrage der verschiedenen Kategorien",
+              "required": true,
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "collectionFormat": "multi"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "number"
+                }
+              }
+            },
+            "400": {
+              "description": "Ungültige Kategorien"
+            }
+          },
+          "security": [
+            {
+              "articles_auth": [
+                "write:article",
+                "read:article"
+              ]
+            }
+          ]
+        }
+      },
+      "/article/{articleID}": {
+        "get": {
+          "tags": [
+            "articles"
+          ],
+          "summary": "Gebe das Objekt eines Artikels zurück",
+          "operationId": "getArticle",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "articleID",
+              "in": "path",
+              "description": "Id des zurückzugebenen Angebotes",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "schema": {
+                "$ref": "#/definitions/Article"
+              }
+            },
+            "400": {
+              "description": "Ungültige ID übergeben."
+            },
+            "404": {
+              "description": "Artikel nicht gefunden"
+            }
+          }
+        },
+        "delete": {
+          "tags": [
+            "articles"
+          ],
+          "summary": "Lösche einen Artikel",
+          "description": "Löschung eines Artikels durch einen Anbieter",
+          "operationId": "deleteArticle",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "articleID",
+              "in": "path",
+              "description": "Id des zu löschenden Angebotes",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "400": {
+              "description": "Ungültige ID übergeben."
+            },
+            "404": {
+              "description": "Artikel nicht gefunden"
+            }
+          }
+        }
+      }
+    },
+    "securityDefinitions": {
+      "articles_auth": {
+        "type": "oauth2",
+        "authorizationUrl": "http://<nochzuvergeben>.de",
+        "flow": "implicit",
+        "scopes": {
+          "write:article": "Ändere Artikel",
+          "read:article": "Hole Artikel"
+        }
+      },
+      "api_key": {
+        "type": "apiKey",
+        "name": "api_key",
+        "in": "header"
+      }
+    },
+    "definitions": {
+      "Category": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "name": {
+            "type": "string"
+          }
+        },
+        "xml": {
+          "name": "Category"
+        }
+      },
+      "Article": {
+        "type": "object",
+        "required": [
+          "sellerID",
+          "category",
+          "heading",
+          "price"
+        ],
+        "properties": {
+          "articleID": {
+            "type": "string"
+          },
+          "sellerID": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "heading": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "category": {
+            "$ref": "#/definitions/Category"
+          },
+          "picture": {
+            "type": "string"
+          },
+          "tags": {
+            "type": "string"
+          },
+          "price": {
+            "type": "number",
+            "format": "float64"
+          },
+          "startedOn": {
+            "type": "string"
+          },
+          "endsOn": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+  
