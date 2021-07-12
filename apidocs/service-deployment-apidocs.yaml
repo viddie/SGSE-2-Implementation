@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
       - name: docs-deployment
-        image: sgse2/apidocs:latest
+        image: sgse2/docs:latest
         resources:
           limits:
             memory: "128Mi"
