@@ -7,7 +7,7 @@ const app = express();
 // Hier die Swagger Beschreibungen einfügen
 const offers = require('./swagger/offers.json');
 // Und deployen
-app.use('/docs', swaggerUi.serve);
+app.use('/docs/offers', swaggerUi.serve);
 app.get('/docs/offers', swaggerUi.setup(offers));
 
 // Starte den Server
