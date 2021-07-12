@@ -130,17 +130,7 @@
     margin: 2px 5px;
 }
 
-.chat_select_item {
-    float: left;
-    color: white;
-}
-
-.chat_selection_link {
-    float: left;
-}
-
 .chat_selection_entry {
-    display: flex;
     height: 100px;
     max-width: 728px;
 }
@@ -149,14 +139,19 @@
     background-color: rgb(97, 94, 94);
 }
 
+.chat_selection_link {
+    float: left;
+}
+
+.chat_select_item {
+    display: inline-block;
+    color: white;
+}
+
 #chat_select_text {
-    max-width: 200px;
     margin-bottom: 12px;
     line-height: 24px;
     padding: 10px 20px;
-    border-radius: 25px;
-    position: relative;
-    text-align: left;
     font-size: large;
 }
 
@@ -165,6 +160,11 @@
     height: 90px;
     border-radius: 50%;
     margin: 5px;
+}
+
+#chat_rating {
+    float: right;
+    color: white;
 }
 
 .chat_button {
@@ -177,9 +177,4 @@
     border-width: 2px;
     border-color: black;
     margin: 2px;
-}
-
-#chat_rating {
-    float: right;
-    color: white;
 }
