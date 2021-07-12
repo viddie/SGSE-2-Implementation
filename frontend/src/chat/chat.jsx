@@ -52,6 +52,8 @@ function ChatRoom(props) {
             }
         ).then((res) => {
             if (!res.ok) {
+                const data = res.json();
+                const error = (data.json && data.message) || res.status;
                 console.error(
                     'Error while sending chat message: API call malfunctioned',
                     error
@@ -81,7 +83,7 @@ function ChatRoom(props) {
                 sender: sender,
                 senderID: sessionStorage.getItem('userID'),
                 receiver: receiver,
-                receiver: props.userID,
+                receiverID: props.userID,
                 text: formValue
             })
         };
