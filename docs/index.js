@@ -11,9 +11,6 @@ const email = require("./swagger/email.json");
 var options = {}
 
 // Und deployen
-//app.use('/offers', swaggerUi.serve);
-//app.get('/offers', swaggerUi.setup(offers));
-//app.get('/email', swaggerUi.setup(email));
 app.use('/docs-offers', swaggerUi.serveFiles(offers, options), swaggerUi.setup(offers));
 app.use('/docs-email', swaggerUi.serveFiles(email, options), swaggerUi.setup(email));
 
