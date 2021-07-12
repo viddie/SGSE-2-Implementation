@@ -154,6 +154,7 @@
     padding: 10px 20px;
     width: 400px;
     font-size: large;
+    text-align: left;
 }
 
 .chat_select_img {
