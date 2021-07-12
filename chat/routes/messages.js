@@ -88,7 +88,10 @@ async function getMessages(req, res, next){
 async function getUserSpecific(req, res, next) {
     try{
         messages = await Message.find({
-            receiver: req.params.receiver
+            $or: [
+                sender: req.params.receiver,
+                receiver: req.params.receiver
+            ]
         }).limit(500)
         if(messages == null){
             return res.status(404).json({messages: 'Invalid Sender'})
