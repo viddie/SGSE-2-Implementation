@@ -1,0 +1,157 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "E-Mail Microservice Open-Api description",
+    "version": "1.0.0",
+    "title": "E-Mail Microservice",
+    "termsOfService": "http://swagger.io/terms/"
+  },
+  "schemes": [
+    "https",
+    "http"
+  ],
+  "paths": {
+    "/sendMessage": {
+      "post": {
+        "tags": [
+          "E-Mail Microservice"
+        ],
+        "summary": "Sends a custom message to an user",
+        "description": "Sends a custom message to an user",
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "parameters": [
+          {
+            "name": "von",
+            "in": "formData",
+            "description": "Welcher User schickt was",
+            "required": false,
+            "type": "number"
+          },
+          {
+            "name": "an",
+            "in": "formData",
+            "description": "An welchen User wird was geschickt",
+            "required": true,
+            "type": "number"
+          },
+          {
+            "name": "inhalt",
+            "in": "formData",
+            "description": "Der Inhalt der E-Mail",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "250": {
+            "description": "E-Mail send successfully"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/newOffer": {
+      "get": {
+        "tags": [
+          "E-Mail Microservice"
+        ],
+        "summary": "Sends an email to the user that created this offer",
+        "description": "Sends an email to the user that created this offer",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "The id of the new created offer",
+            "required": true,
+            "type": "number"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "E-Mail send successfully"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/confirmOffer": {
+      "get": {
+        "tags": [
+          "E-Mail Microservice"
+        ],
+        "summary": "Sends an email to the user when that offer is closed",
+        "description": "Sends an email to the user when that offer is closed",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "The id of the closed offer",
+            "required": true,
+            "type": "number"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "E-Mail send successfully"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/registerConfirmation": {
+      "get": {
+        "tags": [
+          "E-Mail Microservice"
+        ],
+        "summary": "Sends an email with a register confirmation link to an user",
+        "description": "Sends an email with a register confirmation link to an user",
+        "parameters": [
+          {
+            "name": "email",
+            "in": "query",
+            "description": "The email of the user to be confirmed",
+            "required": true,
+            "type": "number"
+          },
+          {
+            "name": "inhalt",
+            "in": "query",
+            "description": "The confirmation link as text",
+            "required": true,
+            "type": "number"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "E-Mail send successfully"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/confirm": {
+      "get": {
+        "tags": [
+          "E-Mail Microservice"
+        ],
+        "summary": "Confirms a user by redirecting to the login site",
+        "description": "Confirms a user by redirecting to the login site",
+        "responses": {
+          "300": {
+            "description": "Weitergeleitet"
+          }
+        }
+      }
+    }
+  }
+}
