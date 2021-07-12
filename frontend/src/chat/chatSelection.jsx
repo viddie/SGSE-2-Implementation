@@ -55,10 +55,10 @@ function Room() {
 
                     var chatPartners = [];
 
-                    distinctEntries.forEach(function (entry, index) {
+                    distinctEntries.forEach(function callback(entry, index) {
                         console.log(entry);
                         console.log(index);
-                        if (entriy != userName) {
+                        if (entry != userName) {
                             chatPartners.push({
                                 'user': entry,
                                 'userID': distinctIds[index]
