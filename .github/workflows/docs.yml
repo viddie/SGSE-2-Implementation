@@ -1,4 +1,4 @@
-name: Offers CI/CD
+name: Docu CI/CD
 
 on:
   push:
