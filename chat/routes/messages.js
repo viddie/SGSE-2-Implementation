@@ -90,8 +90,8 @@ async function getUserSpecific(req, res, next) {
     try{
         messages = await Message.find({
             $or: [
-                sender: req.params.receiver,
-                receiver: req.params.receiver
+                { sender: req.params.receiver },
+                { receiver: req.params.receiver }
             ]
         }).limit(500)
         if(messages == null){
