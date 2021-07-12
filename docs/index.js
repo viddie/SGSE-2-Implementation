@@ -14,8 +14,8 @@ var options = {}
 //app.use('/offers', swaggerUi.serve);
 //app.get('/offers', swaggerUi.setup(offers));
 //app.get('/email', swaggerUi.setup(email));
-app.use('/offers', swaggerUi.serveFiles(offers, options), swaggerUi.setup(offers));
-app.use('/email', swaggerUi.serveFiles(email, options), swaggerUi.setup(email));
+app.use('/docs-offers', swaggerUi.serveFiles(offers, options), swaggerUi.setup(offers));
+app.use('/docs-email', swaggerUi.serveFiles(email, options), swaggerUi.setup(email));
 
 // Starte den Server
 app.listen(3000, err => {
