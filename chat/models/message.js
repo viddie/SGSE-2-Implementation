@@ -22,6 +22,11 @@ const message_subsschema = new mongoose.Schema({
         required: true
     },
 
+    receiverID: {
+        type: String,
+        required: true
+    },
+
     text: {
         type: String,
         required: true
