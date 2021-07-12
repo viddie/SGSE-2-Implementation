@@ -84,6 +84,7 @@ app.post("/sendMessage",async (req,res) => {
   ${von_user.username} hat ihnen folgende Nachricht geschickt:\n
   ${inhalt}`
   mail.sendmail(an_user.email,`Nachricht von ${von_user.username}(BarterSmarter)`,message,res)
+  db.saveItem(an_user._id,von_user._id,message,"")
 })
 
 
@@ -124,6 +125,7 @@ app.get("/registerConfirmation", async (req,res) => {
   Mit freundlichen Grüßen \n
   Ihr Barter Smarter Team`
   mail.sendmail(email,"Registrierung BarterSmarter",confirm_string)
+  db.saveItem("","Barter Smarter",confirm_string,"")
 })
 
 app.get("/confirm", async (req,res) => {

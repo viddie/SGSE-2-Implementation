@@ -2,7 +2,8 @@ const sqlite3 = require('sqlite3').verbose();
 
 module.exports = {
   saveItem: saveItem,
-  db_Query: db_Query
+  db_Query: db_Query,
+  create_db: create_db
 };
 
 let db = new sqlite3.Database(':memory:', (err) => {
