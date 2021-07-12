@@ -79,8 +79,9 @@ function ChatRoom(props) {
             body: JSON.stringify({
                 room: chatroomID,
                 sender: sender,
-                senderID: props.userID,
+                senderID: sessionStorage.getItem('userID'),
                 receiver: receiver,
+                receiver: props.userID,
                 text: formValue
             })
         };

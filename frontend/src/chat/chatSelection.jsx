@@ -48,15 +48,17 @@ function Room() {
             } else {
                 // Got message
                 res.json().then((data) => {
-                    const distinctEntries = [... new Set(data.map(x => x.sender))];
-                    const distinctIds = [... new Set(data.map(x => x.senderID))];
+                    const distinctEntries = new Set([... new Set(data.map(x => x.sender)), ...new Set(data.map(x => x.receiver))]);
+                    const distinctIds = new Set([... new Set(data.map(x => x.senderID)), ...new Set(data.map(x => x.receiverID))]);
 
                     var chatPartners = [];
                     for (let i = 0; i < distinctEntries.length; i++) {
-                        chatPartners.push({
-                            'user': distinctEntries[i],
-                            'userID': distinctIds[i]
-                        });
+                        if (distinctEntries[i] != userName) {
+                            chatPartners.push({
+                                'user': distinctEntries[i],
+                                'userID': distinctIds[i]
+                            });
+                        }
                     }
 
                     console.log(chatPartners);
