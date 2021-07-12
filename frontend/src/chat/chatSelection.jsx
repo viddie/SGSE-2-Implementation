@@ -41,6 +41,8 @@ function Room() {
             }
         ).then((res) => {
             if (!res.ok) {
+                const data = res.json();
+                const error = (data.json && data.message) || res.status;
                 console.error(
                     'Error while sending chat message: API call malfunctioned',
                     error
@@ -48,8 +50,8 @@ function Room() {
             } else {
                 // Got message
                 res.json().then((data) => {
-                    const distinctEntries = new Set([... new Set(data.map(x => x.sender)), ...new Set(data.map(x => x.receiver))]);
-                    const distinctIds = new Set([... new Set(data.map(x => x.senderID)), ...new Set(data.map(x => x.receiverID))]);
+                    const distinctEntries = [... new Set([... new Set(data.map(x => x.sender)), ...new Set(data.map(x => x.receiver))])];
+                    const distinctIds = [... new Set([... new Set(data.map(x => x.senderID)), ...new Set(data.map(x => x.receiverID))])];
 
                     console.log(distinctEntries);
 

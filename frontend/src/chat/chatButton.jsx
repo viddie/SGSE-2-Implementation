@@ -27,6 +27,8 @@ function ChatButton() {
             }
         ).then((res) => {
             if (!res.ok) {
+                const data = res.json();
+                const error = (data.json && data.message) || res.status;
                 console.error(
                     'Error while sending chat message: API call malfunctioned',
                     error
