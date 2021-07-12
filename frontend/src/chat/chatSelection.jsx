@@ -54,16 +54,16 @@ function Room() {
                     const distinctIds = new Set([... new Set(data.map(x => x.senderID)), ...new Set(data.map(x => x.receiverID))]);
 
                     var chatPartners = [];
+                    var i = 0;
 
-                    distinctEntries.forEach(function callback(entry, index) {
-                        console.log(entry);
-                        console.log(index);
+                    distinctEntries.forEach(function callback(entry) {
                         if (entry != userName) {
                             chatPartners.push({
                                 'user': entry,
-                                'userID': distinctIds[index]
+                                'userID': distinctIds[i]
                             });
                         }
+                        i++;
                     })
 
                     console.log(chatPartners);
