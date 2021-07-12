@@ -101,7 +101,7 @@ function Entry(props) {
                 <div className="chat_select_item" id="chat_select_text">{props.receiver}</div>
                 </div>
             </Link>
-            <div id="chat_rating" className="chat_select_item"><MakeRating UserID={props.id}></MakeRating></div>
+            <div id="chat_rating"><MakeRating UserID={props.id}></MakeRating></div>
         </div>
     );
 }

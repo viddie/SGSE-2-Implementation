@@ -131,17 +131,15 @@
 }
 
 .chat_select_item {
-    display: inline-block;
-    align-items: left;
+    float: left;
     color: white;
 }
 
 .chat_selection_link {
-    display: inline-block;
+    float: left;
 }
 
 .chat_selection_entry {
-    text-align: left;
     display: flex;
     height: 100px;
     max-width: 728px;
@@ -183,4 +181,5 @@
 
 #chat_rating {
     float: right;
+    color: white;
 }

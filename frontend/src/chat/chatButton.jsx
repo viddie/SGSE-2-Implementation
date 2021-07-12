@@ -37,6 +37,12 @@ function ChatButton() {
                 // Got message
                 res.json().then((data) => {
                     const distinctEntries = Array.from(new Set([... new Set(data.map(x => x.sender)), ...new Set(data.map(x => x.receiver))]));
+                    var entries = [];
+                    distinctEntries.forEach(function callback(entry) {
+                        if (entry != userName) {
+                            entries.push(entry);
+                        }
+                    });
                     setEntries(distinctEntries);
                 });
             }
