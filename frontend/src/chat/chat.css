@@ -180,3 +180,7 @@
     border-color: black;
     margin: 2px;
 }
+
+#chat_rating {
+    float: right;
+}
