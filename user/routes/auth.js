@@ -133,7 +133,7 @@ router.post('/logout', (req, res) => {
 router.delete('/', deleteUser, async (req,res) =>
 {
     try{
-        await User.remove()
+        await res.user.remove()
         res.json({message: 'Deleted User'})
     }catch (err)
     {
