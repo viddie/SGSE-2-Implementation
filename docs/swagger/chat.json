@@ -1,0 +1,332 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "This model specifies the chat-functionality of the trade website 'barter smarter'.",
+    "version": "1.0.0",
+    "title": "Chat",
+    "contact": {
+      "email": "marius_werner.warning@fh-bielefeld.de"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "tags": [
+    {
+      "name": "message",
+      "description": "send and receive messages"
+    },
+    {
+      "name": "configuration",
+      "description": "get and set user specific configuration"
+    }
+  ],
+  "schemes": [
+    "https",
+    "http"
+  ],
+  "paths": {
+    "/message": {
+      "get": {
+        "tags": [
+          "message"
+        ],
+        "summary": "get all messages",
+        "description": "Returns a single message",
+        "operationId": "getMEssages",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Message"
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Message not found"
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/message/{room}": {
+      "get": {
+        "tags": [
+          "message"
+        ],
+        "summary": "get all messages in a room",
+        "description": "Returns a single message",
+        "operationId": "getMEssageByRoomId",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "room",
+            "in": "path",
+            "description": "room ID of the messages to be returned",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Message"
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Message not found"
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/message/receive/{userID}": {
+      "get": {
+        "tags": [
+          "message"
+        ],
+        "summary": "Get all messages of a specific user",
+        "description": "The message is stored in the message databank, where the receiving user can retreive it",
+        "operationId": "getMessageByUser",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "userID",
+            "in": "path",
+            "description": "ID of user whos messages will be returned",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Message object that will be added to the database",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Message"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Message"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        },
+        "security": [
+          {
+            "chat_auth": [
+              "write:message",
+              "read:message"
+            ]
+          }
+        ]
+      }
+    },
+    "/message/receive/{receiver}/{sender}": {
+      "get": {
+        "tags": [
+          "message"
+        ],
+        "summary": "Get messages send from sender to receiver",
+        "description": "The message is stored in the message databank, where the receiving user can retreive it",
+        "operationId": "getMessageByReceiverAndSender",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "receiver",
+            "in": "path",
+            "description": "ID of user whos messages will be returned",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "sender",
+            "in": "path",
+            "description": "ID of user whos messages will be returned",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Message object that will be added to the database",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Message"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Message"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        },
+        "security": [
+          {
+            "chat_auth": [
+              "write:message",
+              "read:message"
+            ]
+          }
+        ]
+      }
+    },
+    "/message/send": {
+      "post": {
+        "tags": [
+          "message"
+        ],
+        "summary": "Send a new message to a specific user",
+        "description": "The message is stored in the message databank, where the receiving user can retreive it",
+        "operationId": "addMessage",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Message object that will be added to the database",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Message"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Message"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        },
+        "security": [
+          {
+            "chat_auth": [
+              "write:message",
+              "read:message"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "securityDefinitions": {
+    "chat_auth": {
+      "type": "oauth2",
+      "authorizationUrl": "http://bartersmarter.de/oauth/dialog",
+      "flow": "implicit",
+      "scopes": {
+        "write:message": "write messages",
+        "read:message": "read your messages"
+      }
+    },
+    "api_key": {
+      "type": "apiKey",
+      "name": "api_key",
+      "in": "header"
+    }
+  },
+  "definitions": {
+    "Message": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "sender": {
+          "type": "string",
+          "description": "the user who send the message"
+        },
+        "senderID": {
+          "type": "string",
+          "description": "the ID of the user who send the message"
+        },
+        "receiver": {
+          "type": "string",
+          "description": "the user who will receive the message"
+        },
+        "receiverID": {
+          "type": "string",
+          "description": "the ID of the user who will receive the message"
+        },
+        "text": {
+          "type": "string",
+          "description": "the content of the message"
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    }
+  }
+}
