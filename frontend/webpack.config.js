@@ -7,6 +7,12 @@ module.exports = {
     contentBase: path.join(__dirname, "build"),
     compress: true,
     port: 9000,
+    proxy: {
+      "/api": {
+        target: "http://sgse2.ad.fh-bielefeld.de:80",
+        changeOrigin: true
+      }
+    }
   },
   entry: {
     App: "./src/index.js",
