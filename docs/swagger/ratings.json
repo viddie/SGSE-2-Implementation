@@ -1,0 +1,162 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Ratings API"
+  },
+  "host": "ratings.local",
+  "basePath": "/v2",
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/ratings/UserID": {
+      "get": {
+        "tags": [
+          "ratings"
+        ],
+        "summary": "Returns a users rating",
+        "description": "Returns a users rating based on jwt token",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "header",
+            "description": "id of user to create entry with, signed in jwt token",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "400": {
+            "description": "Invalid User"
+          },
+          "500": {
+            "description": "server error"
+          }
+        }
+      }
+    },
+    "/ratings/Delete": {
+      "delete": {
+        "tags": [
+          "ratings"
+        ],
+        "summary": "Deletes a users rating",
+        "description": "Deletes a users rating",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "header",
+            "description": "id of user to delete entry with, signed in jwt token",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "user deleted"
+          },
+          "400": {
+            "description": "user error"
+          },
+          "500": {
+            "description": "server error"
+          }
+        }
+      }
+    },
+    "/UserID/{id}/Rating/{star_num}": {
+      "patch": {
+        "tags": [
+          "ratings"
+        ],
+        "summary": "Updates a users rating or creates a new users rating",
+        "description": "Returns a users updated rating based on path variable",
+        "operationId": "updatetUserRatingById",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id of user to update",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "star_num",
+            "in": "path",
+            "description": "rating",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied or user not found"
+          },
+          "500": {
+            "description": "server error"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "User": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "avgStar": {
+          "type": "integer",
+          "format": "int64",
+          "description": "avergae rating"
+        },
+        "totalRatings": {
+          "type": "integer",
+          "format": "int64",
+          "description": "number of ratings"
+        },
+        "UserRatings": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          },
+          "description": "all ids of user who rated"
+        },
+        "MappedRatings": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          },
+          "description": "corresponding ratings"
+        }
+      },
+      "xml": {
+        "name": "User"
+      }
+    }
+  }
+}
