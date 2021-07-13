@@ -7,7 +7,7 @@ const app = express();
 // Hier die Swagger Beschreibungen einfügen
 const offers = require('./swagger/offers.json');
 const email = require("./swagger/email.json");
-const email = require("./swagger/ratings.json");
+const ratings = require("./swagger/ratings.json");
 
 var options = {}
 
