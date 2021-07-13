@@ -78,7 +78,6 @@ export const MakeRating = (props) => {
 
 export const RatingStars = (props) => {
     const [numRatings, setNumRating] = useState(0);
-    const [currentValue, setCurrentValue] = useState(0);
     const [avgRating, setAvgRating] = useState(0);
     const stars = Array(5).fill(0);
 
