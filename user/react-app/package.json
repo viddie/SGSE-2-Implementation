@@ -1,0 +1,32 @@
+{
+  "name": "react-app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "watch": "parcel --port=7001 src/index.html"
+  },
+  "devDependencies": {
+    "parcel-bundler": "^1.12.5"
+  },
+  "dependencies": {
+    "@apollo/client": "^3.3.20",
+    "@apollo/react-hooks": "^4.0.0",
+    "apollo-cache-inmemory": "^1.6.6",
+    "apollo-client": "^2.6.10",
+    "apollo-link-http": "^1.5.17",
+    "graphql": "^15.5.1",
+    "graphql-tag": "^2.12.5",
+    "react": "^16.8.0 || ^17",
+    "react-apollo": "^3.1.5",
+    "react-dom": ">= 16.8.0",
+    "react-hook-form": "^7.9.0",
+    "react-is": ">= 16.8.0",
+    "react-redux": "^7.2.4",
+    "styled-components": "^5.3.0",
+    "yup": "^0.32.9"
+  },
+  "alias": {
+    "#root": "./src"
+  }
+}
