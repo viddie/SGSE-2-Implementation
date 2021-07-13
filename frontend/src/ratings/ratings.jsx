@@ -14,7 +14,7 @@ export const MakeRating = (props) => {
 
     function handleClick(value) {
         fetch(
-            `http://sgse2.ad.fh-bielefeld.de/api/ratings/ratings/UserID/7897dfg98687dfg68767fdgd86/Rating/${value}`, //replaced ${userID}
+            `http://sgse2.ad.fh-bielefeld.de/api/ratings/ratings/UserID/${props.UserID}/Rating/${value}`, //replaced ${userID}
             {
                 method: 'POST',
                 headers: {
@@ -49,7 +49,7 @@ export const MakeRating = (props) => {
 
     return (
         <div style={styles.container}>
-            <h2> User-Bewertung </h2>
+            <p> User-Bewertung: </p>
             <div style={styles.stars}>
                 {stars.map((_, index) => {
                     return (
@@ -72,9 +72,6 @@ export const MakeRating = (props) => {
                     );
                 })}
             </div>
-            <p> Anzahl Sterne: {currentValue}</p>
-            <p> Durchschnittliche Bewertung</p>
-            <RatingStars userID={userID}></RatingStars>
         </div>
     );
 };
@@ -88,7 +85,7 @@ export const RatingStars = (props) => {
     useEffect(() => {
         fetch(
             `http://sgse2.ad.fh-bielefeld.de/api/ratings/ratings/UserID/` +
-                `7897dfg98687dfg68767fdgd86`,
+                props.userID,
             {
                 method: 'GET',
                 headers: {
@@ -120,7 +117,7 @@ export const RatingStars = (props) => {
                             key={index}
                             size={12}
                             color={
-                                avgRating > index ? colors.green : colors.grey
+                                 (props.avgRating || avgRating) > index ? colors.green : colors.grey
                             }
                             style={{
                                 marginRight: 10,
@@ -130,7 +127,7 @@ export const RatingStars = (props) => {
                     );
                 })}
             </div>
-            <p> Anzahl der Bewertungen: {numRatings}</p>
+            <p>  Anzahl der Bewertungen: {numRatings}</p>
         </div>
     );
 };

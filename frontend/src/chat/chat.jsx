@@ -4,6 +4,7 @@ import { Button } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 import 'regenerator-runtime/runtime';
 import './chat.css';
+import logo from '/static/wurm.png';
 
 /**
  * @author Marius
@@ -13,16 +14,16 @@ import './chat.css';
 const image =
     'https://www.linusakesson.net/programming/kernighans-lever/cat.png';
 
-function Chat(props) {
-    let { id } = useParams();
+function Chat() {
+    let { name, id } = useParams();
 
     return (
         <div className="Chat">
             <div className="chat_header">
-                <h1>{id}</h1>
+                <h1>{name}</h1>
             </div>
             <div className="chat_section">
-                <ChatRoom receiver={id} />
+                <ChatRoom receiver={name} userID={id} />
             </div>
         </div>
     );
@@ -51,6 +52,8 @@ function ChatRoom(props) {
             }
         ).then((res) => {
             if (!res.ok) {
+                const data = res.json();
+                const error = (data.json && data.message) || res.status;
                 console.error(
                     'Error while sending chat message: API call malfunctioned',
                     error
@@ -78,7 +81,9 @@ function ChatRoom(props) {
             body: JSON.stringify({
                 room: chatroomID,
                 sender: sender,
+                senderID: sessionStorage.getItem('userID'),
                 receiver: receiver,
+                receiverID: props.userID,
                 text: formValue
             })
         };
@@ -143,10 +148,12 @@ function ChatMessage(props) {
     const text = props.message.text;
     const uid = props.message.receiver;
     const uid_r = props.rec;
-
+    
+    let img = 'https://www.linusakesson.net/programming/kernighans-lever/cat.png'
     let messageClass = 'sent';
     if (uid != uid_r) {
         messageClass = 'received';
+        img = logo;
     }
 
     return (
@@ -155,7 +162,7 @@ function ChatMessage(props) {
                 <img
                     className="chat_img"
                     src={
-                        'https://www.linusakesson.net/programming/kernighans-lever/cat.png'
+                        img
                     }
                 />
                 <p className="chat_text">{text}</p>
@@ -165,8 +172,6 @@ function ChatMessage(props) {
 }
 
 function getChatroomID(userID1, userID2) {
-    console.log(userID1);
-    console.log(userID2);
     return (hash(userID1) + hash(userID2)).toString();
 }
 

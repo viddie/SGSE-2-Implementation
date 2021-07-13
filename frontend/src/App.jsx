@@ -5,6 +5,7 @@ import React from 'react';
 import { uid } from 'uid';
 import Showroom from './article/showroom';
 import Chat from './chat/chat';
+import ChatSelection from './chat/chatSelection';
 import Login from './user/login';
 import SignUp from './user/signUp';
 import { FoundArticles } from './search/search';
@@ -51,7 +52,10 @@ function App() {
                             />
                         )}
                         {store.loggedIn && (
-                            <Route exact path="/userChat:id" component={Chat} />
+                            <Route exact path="/chatSelection" component={ChatSelection} />
+                        )}
+                        {store.loggedIn && (
+                            <Route exact path="/userChat-:name/:id" component={Chat} />
                         )}
                         {!store.loggedIn && (
                             <Route

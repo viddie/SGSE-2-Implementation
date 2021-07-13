@@ -159,7 +159,7 @@ function DispatchButton(props) {
         );
     } else {
         return (
-            <Link to={'/userChat' + props.sellerName}>
+            <Link to={'/userChat-' + props.sellerName + '/' + props.sellerID}>
                 <Button
                     size="lg"
                     block

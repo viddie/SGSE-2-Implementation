@@ -10,6 +10,7 @@ import {
 } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { LinkContainer } from 'react-router-bootstrap';
+import ChatButton from '../chat/chatButton';
 
 import logo from '/static/wurm.png';
 
@@ -63,9 +64,7 @@ const Header = (props) => {
                             <LinkContainer to="/createArticle">
                                 <Nav.Link>Artikel einstellen</Nav.Link>
                             </LinkContainer>
-                            <LinkContainer to="/userChat">
-                                <Nav.Link>Chat</Nav.Link>
-                            </LinkContainer>
+                            <ChatButton/>
                         </Nav>
                         <Nav>
                             <Form className="d-flex">
