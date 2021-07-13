@@ -64,7 +64,7 @@ const ArticleView = (props) => {
                 </Col>
                 <Col className="d-flex justify-content-center">
                     <b className="center-block" style={{ fontSize: '30px' }}>
-                        {props.article.price.replace(".", ",")} €{' '}
+                        {props.article.price} €{' '}
                     </b>
                 </Col>
                 {hoover.expanded ? (
