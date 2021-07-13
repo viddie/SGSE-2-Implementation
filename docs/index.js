@@ -22,6 +22,7 @@ app.listen(3000, err => {
         throw err
     console.log('Ich bin der Niklas und habe kein Leben')
     console.log('Tristan: "Leider bin ich meinen jungen Jahren schon so ausgebrannt, dass ich einen Hörsturz habe"')
+    console.log('Marius: Ich bin ein Übermensch, weil ich 30 Seiten in BE schreiben konnte ohne mich nur einmal übergeben zu müssen.')
 
 })
 

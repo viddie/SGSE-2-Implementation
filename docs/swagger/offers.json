@@ -103,7 +103,7 @@
       },
       "/article/findByCategory": {
         "get": {
-          "tags": [
+          "category": [
             "articles"
           ],
           "summary": "Gibt die verfügbaren Artikel einer Kategorie in Form einer Liste aus",
@@ -137,6 +137,54 @@
             },
             "400": {
               "description": "Ungültige Kategorien"
+            }
+          },
+          "security": [
+            {
+              "articles_auth": [
+                "write:article",
+                "read:article"
+              ]
+            }
+          ]
+        }
+      },
+      "/article/findByTags": {
+        "get": {
+          "tags": [
+            "articles"
+          ],
+          "summary": "Gibt die verfügbaren Artikel mit hinterlegten Tags in Form einer Liste aus",
+          "description": "Mehrere Tags können durch Separation per Komma ausgewählt werden",
+          "operationId": "findArticlesByCategory",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "tags",
+              "in": "query",
+              "description": "Anfrage der verschiedenen Tags",
+              "required": true,
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "collectionFormat": "multi"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "number"
+                }
+              }
+            },
+            "400": {
+              "description": "Ungültige Tags"
             }
           },
           "security": [
