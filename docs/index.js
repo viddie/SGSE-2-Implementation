@@ -8,6 +8,7 @@ const app = express();
 const offers = require('./swagger/offers.json');
 const email = require("./swagger/email.json");
 const ratings = require("./swagger/ratings.json");
+const user = require("./swagger/user.json");
 
 var options = {}
 
@@ -15,6 +16,7 @@ var options = {}
 app.use('/docs-offers', swaggerUi.serveFiles(offers, options), swaggerUi.setup(offers));
 app.use('/docs-email', swaggerUi.serveFiles(email, options), swaggerUi.setup(email));
 app.use('/docs-ratings', swaggerUi.serveFiles(ratings, options), swaggerUi.setup(ratings));
+app.use('/docs-user', swaggerUi.serveFiles(user, options), swaggerUi.setup(user));
 
 // Starte den Server
 app.listen(3000, err => {
